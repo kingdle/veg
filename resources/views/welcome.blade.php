@@ -522,7 +522,7 @@
     @endif
     <div class="content">
         <div class="title m-b-md">
-            <h2 class="heading">苗果，用数据记录每一粒种子精彩的一生。</h2>
+            <h2 class="heading">苗果，用数据记录每一粒种子精彩的一生</h2>
         </div>
 
     </div>
