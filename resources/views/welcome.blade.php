@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>苗果 美丽乡村从优苗开始</title>
+    <title>苗果笔记</title>
 
     <!-- Styles -->
     <style>
@@ -522,7 +522,7 @@
     @endif
     <div class="content">
         <div class="title m-b-md">
-            <h2 class="heading">苗果，用数据记录每一粒种子精彩的一生。</h2>
+            <h2 class="heading">苗果笔记，用数据记录每一粒种子精彩的一生。</h2>
         </div>
 
     </div>
