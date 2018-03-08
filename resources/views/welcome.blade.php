@@ -19,7 +19,7 @@
             margin: 0;
             font: normal 100% Arial, Helvetica, sans-serif;
             background-color: #1a1a1b;
-            text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
         }
 
         .heading span {
@@ -67,7 +67,7 @@
             color: #ffffff;
         }
 
-        .title h2{
+        .title h2 {
             font-size: 66px;
         }
 
