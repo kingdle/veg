@@ -134,7 +134,7 @@
                     "picUrl": "http://i3.hunantv.com/p1/20161031/1448166059C.jpg",
                     "playUrl": "http://www.mgtv.com/v/10/295077/f/3665788.html",
                     "icon": ["https://veg.kim/images-mp-weixin/shop1.jpg","https://veg.kim/images-mp-weixin/shop2.jpg","https://veg.kim/images-mp-weixin/shop3.jpg"],
-                    "tags": "齐达利,普罗旺斯,粉果,硬果,欧顿,樱桃西红柿,草莓西红柿",
+                    "tags": ["齐达利","普罗旺斯","粉果","硬果","欧顿","樱桃西红柿","草莓西红柿"],
                     "intro": "我们像呵护婴儿一样呵护我们的小幼苗...",
                     "videoId": 3665788,
                     "address":"北慈村"
@@ -150,7 +150,7 @@
                     "picUrl": "http://i3.hunantv.com/p1/20161031/1448166059C.jpg",
                     "playUrl": "http://www.mgtv.com/v/10/295077/f/3665788.html",
                     "icon": ["https://veg.kim/images-mp-weixin/shop1.jpg","https://veg.kim/images-mp-weixin/shop2.jpg","https://veg.kim/images-mp-weixin/shop3.jpg"],
-                    "tags": "齐达利,普罗旺斯,粉果,硬果,欧顿,樱桃西红柿,草莓西红柿",
+                    "tags": ["齐达利","普罗旺斯","粉果","硬果","欧顿","樱桃西红柿","草莓西红柿"],
                     "intro": "有好的种子来源才有优质的菜苗...",
                     "videoId": 3665788,
                     "address":"南慈村"
@@ -166,7 +166,7 @@
                     "picUrl": "http://i3.hunantv.com/p1/20161031/1448166059C.jpg",
                     "playUrl": "http://www.mgtv.com/v/10/295077/f/3665788.html",
                     "icon": ["https://veg.kim/images-mp-weixin/shop1.jpg","https://veg.kim/images-mp-weixin/shop2.jpg","https://veg.kim/images-mp-weixin/shop3.jpg"],
-                    "tags": "齐达利,普罗旺斯,粉果,硬果,欧顿,樱桃西红柿,草莓西红柿",
+                    "tags": ["齐达利","普罗旺斯","粉果","硬果","欧顿","樱桃西红柿","草莓西红柿"],
                     "intro": "十里八村的大棚都用我家的苗子，有口碑...",
                     "videoId": 3665788,
                     "address":"河崖村"
@@ -182,7 +182,7 @@
                     "picUrl": "http://i3.hunantv.com/p1/20161031/1448166059C.jpg",
                     "playUrl": "http://www.mgtv.com/v/10/295077/f/3665788.html",
                     "icon": ["https://veg.kim/images-mp-weixin/shop1.jpg","https://veg.kim/images-mp-weixin/shop2.jpg","https://veg.kim/images-mp-weixin/shop3.jpg"],
-                    "tags": "齐达利,普罗旺斯,粉果,硬果,欧顿,樱桃西红柿,草莓西红柿",
+                    "tags": ["齐达利","普罗旺斯","粉果","硬果","欧顿","樱桃西红柿","草莓西红柿"],
                     "intro": "不断推出新品种，一年比一年收获多...",
                     "videoId": 3665788,
                     "address":"稻庄"
@@ -198,8 +198,8 @@
                     "picUrl": "http://i5.hunantv.com/p1/20161031/1447131247C.jpg",
                     "playUrl": "http://www.mgtv.com/v/10/295077/f/3665790.html",
                     "icon": "",
-                    "tag": "01:26",
-                    "intro": "保障100%成活率，保障一季度的收成...",
+                    "tag": ["齐达利","普罗旺斯","粉果","硬果","欧顿","樱桃西红柿","草莓西红柿"],
+                    "intro": "保障100%成活率，保障每季度的收成...",
                     "videoId": 3665790,
                     "address":"稻田"
                 }
