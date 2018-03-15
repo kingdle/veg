@@ -2,72 +2,6 @@
     "code": 200,
     "data": [
         {
-            "type": "banner",
-            "templateData": [
-                {
-                    "name": "【青云志】至第54集 李易峰、赵丽颖含泪诀别",
-                    "jumpType": "videoPlayer",
-                    "subjectId": 1401,
-                    "picUrl": "http://i3.hunantv.com/p1/20161030/2348011464C.jpg",
-                    "playUrl": "http://www.mgtv.com/v/2/104817/f/3336767.html",
-                    "icon": "",
-                    "tag": "",
-                    "desc": "",
-                    "videoId": 3336767,
-                    "hotDegree": "",
-                    "hotType": 0,
-                    "playTimeIconUrl": "",
-                    "webUrl": "",
-                    "splitItem": "",
-                    "canShare": 1,
-                    "ext": 0,
-                    "libId": 0,
-                    "channelId": 0,
-                    "jumpChannel": 0,
-                    "osType": "",
-                    "activityId": 0,
-                    "cid": 104817,
-                    "rootId": 2,
-                    "isFormal": 1,
-                    "ended": 0,
-                    "updateList": [
-                        {
-                            "index": "53",
-                            "videoId": "3660603"
-                        }
-                    ]
-                },
-                {
-                    "name": "【一年级·毕业季】汪峰陈伟霆空降指导",
-                    "jumpType": "videoPlayer",
-                    "subjectId": 0,
-                    "picUrl": "http://i3.hunantv.com/p1/20161029/2335584186C.jpg",
-                    "playUrl": "http://www.mgtv.com/v/1/295121/f/3664738.html",
-                    "icon": "",
-                    "tag": "",
-                    "desc": "",
-                    "videoId": 3664738,
-                    "hotDegree": "",
-                    "hotType": 0,
-                    "playTimeIconUrl": "",
-                    "webUrl": "imgotv://concertPlayer?type=0",
-                    "splitItem": "",
-                    "canShare": 1,
-                    "ext": 0,
-                    "libId": 0,
-                    "channelId": 0,
-                    "jumpChannel": 0,
-                    "osType": "",
-                    "activityId": 1000020,
-                    "cid": 295121,
-                    "rootId": 1,
-                    "isFormal": 1,
-                    "ended": 0,
-                    "updateList": []
-                }
-            ]
-        },
-        {
             "type": "textRollLink",
             "templateData": [
                 {
@@ -744,8 +678,6 @@
                 }
             ]
         },
-
-
         {
             "type": "textMoreLink",
             "templateData": [
