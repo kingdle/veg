@@ -190,7 +190,11 @@
             "type": "normalLandScape",
             "templateData": [
                 {
-                    "name": "小樱桃",
+                    "id":1,
+                    "nickname":"洋柿子",
+                    "name": "慈石",
+                    "phone":"18666666666",
+                    "avatar":"https://veg.kim/images-mp-weixin/shop2.jpg",
                     "jumpType": "videoPlayer",
                     "subjectId": 0,
                     "picUrl": "http://i3.hunantv.com/p1/20161031/1448166059C.jpg",
@@ -198,10 +202,15 @@
                     "icon": ["https://veg.kim/images-mp-weixin/shop1.jpg","https://veg.kim/images-mp-weixin/shop2.jpg","https://veg.kim/images-mp-weixin/shop3.jpg"],
                     "tags": "齐达利,普罗旺斯,粉果,硬果,欧顿,樱桃西红柿,草莓西红柿",
                     "desc": "我们像呵护婴儿一样呵护我们的小幼苗。",
-                    "videoId": 3665788
+                    "videoId": 3665788,
+                    "address":"山东省寿光市北慈村"
                 },
                 {
-                    "name": "小樱桃",
+                    "id":2,
+                    "nickname":"小樱桃",
+                    "name": "伦青",
+                    "phone":"18666666666",
+                    "avatar":"https://veg.kim/images-mp-weixin/shop1.jpg",
                     "jumpType": "videoPlayer",
                     "subjectId": 0,
                     "picUrl": "http://i3.hunantv.com/p1/20161031/1448166059C.jpg",
@@ -209,10 +218,15 @@
                     "icon": ["https://veg.kim/images-mp-weixin/shop1.jpg","https://veg.kim/images-mp-weixin/shop2.jpg","https://veg.kim/images-mp-weixin/shop3.jpg"],
                     "tags": "齐达利,普罗旺斯,粉果,硬果,欧顿,樱桃西红柿,草莓西红柿",
                     "desc": "我们像呵护婴儿一样呵护我们的小幼苗。",
-                    "videoId": 3665788
+                    "videoId": 3665788,
+                    "address":"山东省寿光市北慈村"
                 },
                 {
-                    "name": "小樱桃",
+                    "id":3,
+                    "nickname":"黄瓜爬爬",
+                    "name": "宋明",
+                    "phone":"18666666666",
+                    "avatar":"https://veg.kim/images-mp-weixin/shop3.jpg",
                     "jumpType": "videoPlayer",
                     "subjectId": 0,
                     "picUrl": "http://i3.hunantv.com/p1/20161031/1448166059C.jpg",
@@ -220,10 +234,15 @@
                     "icon": ["https://veg.kim/images-mp-weixin/shop1.jpg","https://veg.kim/images-mp-weixin/shop2.jpg","https://veg.kim/images-mp-weixin/shop3.jpg"],
                     "tags": "齐达利,普罗旺斯,粉果,硬果,欧顿,樱桃西红柿,草莓西红柿",
                     "desc": "我们像呵护婴儿一样呵护我们的小幼苗。",
-                    "videoId": 3665788
+                    "videoId": 3665788,
+                    "address":"山东省寿光市北慈村"
                 },
                 {
-                    "name": "小樱桃",
+                    "id":4,
+                    "nickname":"小樱桃",
+                    "name": "伦青",
+                    "phone":"18666666666",
+                    "avatar":"https://veg.kim/images-mp-weixin/shop4.jpg",
                     "jumpType": "videoPlayer",
                     "subjectId": 0,
                     "picUrl": "http://i3.hunantv.com/p1/20161031/1448166059C.jpg",
@@ -231,10 +250,15 @@
                     "icon": ["https://veg.kim/images-mp-weixin/shop1.jpg","https://veg.kim/images-mp-weixin/shop2.jpg","https://veg.kim/images-mp-weixin/shop3.jpg"],
                     "tags": "齐达利,普罗旺斯,粉果,硬果,欧顿,樱桃西红柿,草莓西红柿",
                     "desc": "我们像呵护婴儿一样呵护我们的小幼苗。",
-                    "videoId": 3665788
+                    "videoId": 3665788,
+                    "address":"山东省寿光市北慈村"
                 },
                 {
-                    "name": "空军“亮剑”中国国际航展",
+                    "id":5,
+                    "nickname":"哎哎哎",
+                    "name": "伦青",
+                    "phone":"18666666666",
+                    "avatar":"https://veg.kim/images-mp-weixin/shop5.jpg",
                     "jumpType": "videoPlayer",
                     "subjectId": 0,
                     "picUrl": "http://i5.hunantv.com/p1/20161031/1447131247C.jpg",
@@ -242,7 +266,8 @@
                     "icon": "",
                     "tag": "01:26",
                     "desc": "国产无人机强大阵容参展",
-                    "videoId": 3665790
+                    "videoId": 3665790,
+                    "address":"山东省寿光市北慈村"
                 }
             ]
         },
