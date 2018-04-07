@@ -60,38 +60,7 @@
                                 </router-link>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
 
-                                <router-link :to="{name: 'profile.editProfile'}" class="nav-link" activeClass="active"
-                                             exact>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" class="feather feather-bar-chart-2">
-                                        <line x1="18" y1="20" x2="18" y2="10"></line>
-                                        <line x1="12" y1="20" x2="12" y2="4"></line>
-                                        <line x1="6" y1="20" x2="6" y2="14"></line>
-                                    </svg>
-                                    修改资料
-                                </router-link>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-
-                                <router-link :to="{name: 'profile.editPassword'}" class="nav-link" activeClass="active"
-                                             exact>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" class="feather feather-layers">
-                                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                        <polyline points="2 17 12 22 22 17"></polyline>
-                                        <polyline points="2 12 12 17 22 12"></polyline>
-                                    </svg>
-                                    修改密码
-                                </router-link>
-                            </a>
-                        </li>
                     </ul>
 
 
@@ -99,11 +68,17 @@
 
             </nav>
             <div class="side-nav-content-menu-sub" data-reactid=".1.0.1">
-                <div class="active side-nav-content-menu-sub-item" data-reactid=".1.0.1.$0"><a href="/info" target=""
-                                                                                               data-reactid=".1.0.1.$0.0">信息设置</a>
+                <div class="active side-nav-content-menu-sub-item" data-reactid=".1.0.1.$0">
+                    <router-link :to="{name: 'profile.editProfile'}" class="nav-link" activeClass="active"
+                                 exact>
+                        修改资料
+                    </router-link>
                 </div>
-                <div class=" side-nav-content-menu-sub-item" data-reactid=".1.0.1.$1"><a href="/tag" target=""
-                                                                                         data-reactid=".1.0.1.$1.0">标签设置</a>
+                <div class=" side-nav-content-menu-sub-item" data-reactid=".1.0.1.$1">
+                    <router-link :to="{name: 'profile.editPassword'}" class="nav-link" activeClass="active"
+                                 exact>
+                        修改密码
+                    </router-link>
                 </div>
             </div>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
