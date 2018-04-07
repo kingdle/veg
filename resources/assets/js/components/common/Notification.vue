@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div class="notification">
             <transition name="fade" mode="in-out">
                 <div class="alert" :class="notificationLevel"

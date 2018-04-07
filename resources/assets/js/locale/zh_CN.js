@@ -1,7 +1,7 @@
 import { formatFileSize, isDefinedGlobally } from './utils';
 
 const messages = {
-            after: (field, [target]) => ` ${field}必须在${target}之后`,
+    after: (field, [target]) => ` ${field}必须在${target}之后`,
     alpha_dash: (field) => ` ${field}能够包含字母数字字符，包括破折号、下划线`,
     alpha_num: (field) => `${field} 只能包含字母数字字符.`,
     alpha_spaces: (field) => ` ${field} 只能包含字母字符，包括空格.`,
@@ -15,9 +15,10 @@ const messages = {
     digits: (field, [length]) => ` ${field} 必须是数字，且精确到 ${length}数`,
     dimensions: (field, [width, height]) => ` ${field}必须是 ${width} 像素到 ${height} 像素.`,
     email: (field) => ` ${field} 必须是有效的邮箱.`,
+    phone: (field) => ` ${field} 必须是有效的手机号.`,
     ext: (field) => ` ${field} 必须是有效的文件.`,
     image: (field) => ` ${field} 必须是图片.`,
-in: (field) => ` ${field} 必须是一个有效值.`,
+    in: (field) => ` ${field} 必须是一个有效值.`,
     ip: (field) => ` ${field} 必须是一个有效的地址.`,
     max: (field, [length]) => ` ${field} 不能大于${length}字符.`,
     max_value: (field, [max]) => ` ${field} 必须小于或等于${max}.`,

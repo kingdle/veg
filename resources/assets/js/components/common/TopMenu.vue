@@ -1,8 +1,10 @@
 <template>
     <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <router-link to="/" class="navbar-brand" exact>苗果笔记</router-link>
+                <router-link to="/" class="navbar-brand" exact>
+                    <img src="/images-pc/logo-pc.png" alt="苗果" width="110" height="42">
+                </router-link>
             </div>
             <div class="" id="app-navbar-collapse">
                 <ul class="nav navbar-nav"></ul>
@@ -14,7 +16,8 @@
                         <a>注册</a>
                     </router-link>
                     <router-link v-if="user.authenticated" to="/profile" tag="li">
-                        <a>个人中心</a>
+                        <a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">个人中心</a>
+                        <span class="caret"></span>
                     </router-link>
                     <li v-if="user.authenticated">
                         <a @click.prevent="logout" href="#">退出</a>

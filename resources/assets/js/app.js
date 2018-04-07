@@ -8,6 +8,7 @@ import jwtToken from './helpers/jwt';
 import store from './store/index';
 import App from './components/App';
 
+
 import zh_CN from './locale/zh_CN';
 import VeeValidate, {Validator} from 'vee-validate';
 
@@ -24,6 +25,9 @@ Validator.localize('zh_CN', zh_CN);
 
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
+
+
+
 Vue.component('app',App);
 
 new Vue({

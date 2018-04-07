@@ -55,4 +55,8 @@ class LoginController extends Controller
     {
         return $this->proxy->refresh();
     }
+    public function username()
+    {
+        return 'name';
+    }
 }
