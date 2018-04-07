@@ -59,7 +59,8 @@ class TokenProxy {
             'client_secret' => env('PASSPORT_CLIENT_SECRET'),
             'grant_type'    => $grantType,
         ]);
-        $response = $this->http->post('http://veg.name/oauth/token', [
+        $url = env('APP_URL').'/oauth/token';
+        $response = $this->http->post($url, [
             'form_params' => $data,
         ]);
         $token = json_decode((string)$response->getBody(), true);
