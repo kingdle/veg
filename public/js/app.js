@@ -58473,8 +58473,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         loginRequest: function loginRequest(_ref, formData) {
             var dispatch = _ref.dispatch;
 
-            axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'; //此处是增加的代码，设置请求头的类型
-
             return axios.post('/api/login', formData).then(function (response) {
                 dispatch('loginSuccess', response.data);
             });
@@ -59992,14 +59990,9 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-lg btn-success btn-block",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("登录")]
-      ),
+      _c("button", { staticClass: "btn btn-lg btn-success btn-block" }, [
+        _vm._v("登录")
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "mt-5 mb-3 text-muted" }, [_vm._v("© 2017-2018")])
     ]

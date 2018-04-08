@@ -14,7 +14,7 @@
                 <span class="help-block" v-show="errors.has('password')">{{errors.first('password')}}</span>
                 <span class="help-block" v-if="mismatchError">{{bag.first('password:auth')}}</span>
             </label>
-            <button class="btn btn-lg btn-success btn-block" type="submit">登录</button>
+            <button class="btn btn-lg btn-success btn-block" >登录</button>
             <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
         </form>
 </template>
