@@ -7,6 +7,8 @@ import router from './routes';
 import jwtToken from './helpers/jwt';
 import store from './store/index';
 import App from './components/App';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 
 import zh_CN from './locale/zh_CN';
@@ -25,7 +27,7 @@ Validator.localize('zh_CN', zh_CN);
 
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
-
+Vue.use(VueAxios, axios)
 
 
 Vue.component('app',App);
