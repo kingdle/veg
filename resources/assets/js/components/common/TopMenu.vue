@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top sticky-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <router-link to="/" class="navbar-brand" exact>
@@ -16,12 +16,18 @@
                         <a>注册</a>
                     </router-link>
                     <router-link v-if="user.authenticated" to="/profile" tag="li">
-                        <a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">个人中心</a>
-                        <span class="caret"></span>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success btn-sm" data-placement="bottom" title="控制台">{{
+                                user.email }}
+                            </button>
+                            <button @click.prevent="logout" type="button"
+                                    class="btn btn-info btn-sm" data-placement="bottom" title="退出">
+                                <svg id="i-signout" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <path d="M28 16 L8 16 M20 8 L28 16 20 24 M11 28 L3 28 3 4 11 4" />
+                                </svg>
+                            </button>
+                        </div>
                     </router-link>
-                    <li v-if="user.authenticated">
-                        <a @click.prevent="logout" href="#">退出</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -35,16 +41,16 @@
         computed: {
             ...mapState({
                     user: state => state.AuthUser
-    }
-    )
-    },
-    methods:{
-        logout()
-        {
-            this.$store.dispatch('logoutRequest').then(response => {
-                this.$router.push({name: 'home'})
-        })
+                }
+            )
+        },
+        methods: {
+            logout()
+            {
+                this.$store.dispatch('logoutRequest').then(response => {
+                    this.$router.push({name: 'home'})
+                })
+            }
         }
-    }
     }
 </script>

@@ -58506,8 +58506,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var dispatch = _ref.dispatch;
 
             return axios.post('/api/user/profile/update', formData).then(function (response) {
+                $('#ProfileModalCenter').modal('hide');
                 dispatch('showNotification', { level: 'success', msg: '资料更新成功' });
             }).catch(function (errors) {
+                $('#ProfileModalCenter').modal('hide');
                 dispatch('showNotification', { level: 'error', msg: '资料更新失败' });
             });
         }
@@ -60237,7 +60239,7 @@ exports = module.exports = __webpack_require__(20)(false);
 
 
 // module
-exports.push([module.i, "\n.list-group-item.active {\n    z-index: 2;\n    color: #fff;\n    background-color: #f06307;\n    border-color: #f06307;\n}\n.list-group-item.active:hover {\n    color: #fff;\n    background-color: #f05d0d;\n    border-color: #f05d0d;\n}\n.navbar {\n    padding: 0.5rem 1.25rem;\n    margin-bottom: 1rem;\n    background-color: rgba(255, 255, 255, 0.8);\n    border-bottom: 1px solid rgba(0, 0, 0, 0.125);\n}\n.sidebar {\n    background-color: #3e495a !important;\n    padding-top: 10px;\n    margin-top: -1rem;\n    font-size: 16px;\n    width: 130px;\n    height: 100%;\n    min-height: 100%;\n    position: absolute;\n}\n.bg-light {\n    background-color: #3e495a !important;\n}\n.sidebar .nav-link.active {\n    color: #f05d0d;\n    background-color: #fff;\n}\n.sidebar .nav-link {\n    font-weight: 500;\n    color: #fff;\n    line-height: 60px;\n}\n.nav-link {\n    display: block;\n    padding: 0rem 0rem;\n}\n.sidebar .nav-link .feather {\n    margin: 0px 4px 0px 15px;\n}\nsvg:not(:root) {\n    overflow: hidden;\n}\n.feather {\n    width: 20px;\n    height: 20px;\n    vertical-align: text-bottom;\n}\n.side-nav-content-menu-sub {\n    height: 100%;\n    width: 140px;\n    background: #fff;\n    min-height: 100%;\n    margin-top: -1rem;\n    padding: 10px;\n    position: absolute;\n    left: 130px;\n}\n.side-nav-content-menu-sub .active {\n    background-color: #f5f5f5;\n}\n.side-nav-content-menu-sub-item {\n    height: 40px;\n    width: 100%;\n    line-height: 40px;\n    list-style: none;\n    display: inline-block;\n    overflow: hidden;\n    text-align: left;\n    margin-top: 10px;\n    padding-left: 10px;\n    border-radius: 2px;\n}\n.side-nav-content-menu-sub-item a {\n    color: #666;\n    font-size: 14px;\n    display: block;\n}\n", ""]);
+exports.push([module.i, "\n.list-group-item.active {\n    z-index: 2;\n    color: #fff;\n    background-color: #f06307;\n    border-color: #f06307;\n}\n.list-group-item.active:hover {\n    color: #fff;\n    background-color: #f05d0d;\n    border-color: #f05d0d;\n}\n.navbar {\n    padding: 0.5rem 1.25rem;\n    margin-bottom: 1rem;\n    background-color: rgba(255, 255, 255, 0.8);\n    border-bottom: 1px solid rgba(0, 0, 0, 0.125);\n}\n.bg-light {\n    background-color: #3e495a !important;\n}\n.sidebar {\n    background-color: #3e495a !important;\n    padding-top: 10px;\n\n    font-size: 16px;\n    min-width: 130px;\n    height: 100%;\n    min-height: 100%;\n    position: absolute;\n}\n.sidebar .nav-link.active {\n    color: #f05d0d;\n    background-color: #fff;\n}\n.mg-main{\n    margin-top: -1rem;\n}\n.mg-main .col-md-1 {\n    padding: 15px 0px;\n}\n.sidebar .nav-link {\n    font-weight: 500;\n    color: #fff;\n    line-height: 60px;\n}\n.nav-link {\n    display: block;\n    padding: 0rem 0rem;\n}\n.sidebar .nav-link .feather {\n    margin: 0px 4px 0px 15px;\n}\nsvg:not(:root) {\n    overflow: hidden;\n}\n.feather {\n    width: 20px;\n    height: 20px;\n    vertical-align: text-bottom;\n}\n\n", ""]);
 
 // exports
 
@@ -60248,6 +60250,25 @@ exports.push([module.i, "\n.list-group-item.active {\n    z-index: 2;\n    color
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_jwt__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vee_validate__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_Notification__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_Notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_Notification__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store_mutation_type__ = __webpack_require__(6);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -60375,8 +60396,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'profile-wrapper'
+    name: 'profile-wrapper',
+    created: function created() {
+        this.$store.dispatch('setAuthUser');
+    },
+
+    computed: {
+        name: {
+            get: function get() {
+                return this.$store.state.AuthUser.name;
+            },
+            set: function set(value) {
+                this.$store.commit({
+                    type: __WEBPACK_IMPORTED_MODULE_3__store_mutation_type__["f" /* UPDATE_PROFILE_NAME */],
+                    value: value
+                });
+            }
+        },
+        email: {
+            get: function get() {
+                return this.$store.state.AuthUser.email;
+            },
+            set: function set(value) {
+                this.$store.commit({
+                    type: __WEBPACK_IMPORTED_MODULE_3__store_mutation_type__["e" /* UPDATE_PROFILE_EMAIL */],
+                    value: value
+                });
+            }
+        }
+    },
+    methods: {
+        updateProfile: function updateProfile() {
+            var _this = this;
+
+            var formData = {
+                name: this.name
+            };
+            this.$store.dispatch('updateProfileRequest', formData).then(function (response) {
+                _this.$router.push({ name: 'profile' });
+            }).catch(function (error) {});
+        }
+    },
+    components: {
+        Notification: __WEBPACK_IMPORTED_MODULE_2__common_Notification___default.a
+    }
 });
 
 /***/ }),
@@ -60388,325 +60456,506 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("nav", { staticClass: " d-none d-md-block bg-light sidebar" }, [
-        _c("div", { staticClass: "sidebar-sticky" }, [
-          _c("ul", { staticClass: "nav flex-column" }, [
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "#" } },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { to: { name: "home" }, exact: "" }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "feather feather-home",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            fill: "none",
-                            stroke: "currentColor",
-                            "stroke-width": "2",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        },
-                        [
-                          _c("path", {
+    _c("div", { staticClass: "row mg-main" }, [
+      _c(
+        "nav",
+        { staticClass: "col-lg-1 col-md-1 d-none d-md-block bg-light sidebar" },
+        [
+          _c("div", { staticClass: "sidebar-sticky" }, [
+            _c("ul", { staticClass: "nav flex-column" }, [
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  { staticClass: "nav-link", attrs: { href: "#" } },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { to: { name: "home" }, exact: "" }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "feather feather-home",
                             attrs: {
-                              d:
-                                "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "24",
+                              height: "24",
+                              viewBox: "0 0 24 24",
+                              fill: "none",
+                              stroke: "currentColor",
+                              "stroke-width": "2",
+                              "stroke-linecap": "round",
+                              "stroke-linejoin": "round"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("polyline", {
-                            attrs: { points: "9 22 9 12 15 12 15 22" }
-                          })
-                        ]
-                      ),
-                      _vm._v(
-                        "\n                                概况\n                            "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "#" } },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: { name: "news" },
-                        activeClass: "active",
-                        exact: ""
-                      }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "feather feather-file",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            fill: "none",
-                            stroke: "currentColor",
-                            "stroke-width": "2",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        },
-                        [
-                          _c("path", {
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("polyline", {
+                              attrs: { points: "9 22 9 12 15 12 15 22" }
+                            })
+                          ]
+                        ),
+                        _vm._v(
+                          "\n                                概况\n                            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  { staticClass: "nav-link", attrs: { href: "#" } },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          to: { name: "news" },
+                          activeClass: "active",
+                          exact: ""
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "feather feather-file",
                             attrs: {
-                              d:
-                                "M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "24",
+                              height: "24",
+                              viewBox: "0 0 24 24",
+                              fill: "none",
+                              stroke: "currentColor",
+                              "stroke-width": "2",
+                              "stroke-linecap": "round",
+                              "stroke-linejoin": "round"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("polyline", {
-                            attrs: { points: "13 2 13 9 20 9" }
-                          })
-                        ]
-                      ),
-                      _vm._v(
-                        "\n                                动态\n                            "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "#" } },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: { name: "news" },
-                        activeClass: "active",
-                        exact: ""
-                      }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "feather feather-shopping-cart",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            fill: "none",
-                            stroke: "currentColor",
-                            "stroke-width": "2",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        },
-                        [
-                          _c("circle", {
-                            attrs: { cx: "9", cy: "21", r: "1" }
-                          }),
-                          _vm._v(" "),
-                          _c("circle", {
-                            attrs: { cx: "20", cy: "21", r: "1" }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("polyline", {
+                              attrs: { points: "13 2 13 9 20 9" }
+                            })
+                          ]
+                        ),
+                        _vm._v(
+                          "\n                                动态\n                            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  { staticClass: "nav-link", attrs: { href: "#" } },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          to: { name: "news" },
+                          activeClass: "active",
+                          exact: ""
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "feather feather-shopping-cart",
                             attrs: {
-                              d:
-                                "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "24",
+                              height: "24",
+                              viewBox: "0 0 24 24",
+                              fill: "none",
+                              stroke: "currentColor",
+                              "stroke-width": "2",
+                              "stroke-linecap": "round",
+                              "stroke-linejoin": "round"
                             }
-                          })
-                        ]
-                      ),
-                      _vm._v(
-                        "\n                                营销\n                            "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "#" } },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: {
-                        to: { name: "profile" },
-                        activeClass: "active",
-                        exact: ""
-                      }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "feather feather-users",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            fill: "none",
-                            stroke: "currentColor",
-                            "stroke-width": "2",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        },
-                        [
-                          _c("path", {
+                          },
+                          [
+                            _c("circle", {
+                              attrs: { cx: "9", cy: "21", r: "1" }
+                            }),
+                            _vm._v(" "),
+                            _c("circle", {
+                              attrs: { cx: "20", cy: "21", r: "1" }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(
+                          "\n                                订单\n                            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  { staticClass: "nav-link", attrs: { href: "#" } },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          to: { name: "profile" },
+                          activeClass: "active",
+                          exact: ""
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "feather feather-users",
                             attrs: {
-                              d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "24",
+                              height: "24",
+                              viewBox: "0 0 24 24",
+                              fill: "none",
+                              stroke: "currentColor",
+                              "stroke-width": "2",
+                              "stroke-linecap": "round",
+                              "stroke-linejoin": "round"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("circle", { attrs: { cx: "9", cy: "7", r: "4" } }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: { d: "M23 21v-2a4 4 0 0 0-3-3.87" }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: { d: "M16 3.13a4 4 0 0 1 0 7.75" }
-                          })
-                        ]
-                      ),
-                      _vm._v(
-                        "\n                                个人资料\n                            "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("circle", {
+                              attrs: { cx: "9", cy: "7", r: "4" }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: { d: "M23 21v-2a4 4 0 0 0-3-3.87" }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: { d: "M16 3.13a4 4 0 0 1 0 7.75" }
+                            })
+                          ]
+                        ),
+                        _vm._v(
+                          "\n                                个人资料\n                            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  { staticClass: "nav-link", attrs: { href: "#" } },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          to: { name: "profile.editProfile" },
+                          activeClass: "active",
+                          exact: ""
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "feather feather-file-text",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "24",
+                              height: "24",
+                              viewBox: "0 0 24 24",
+                              fill: "none",
+                              stroke: "currentColor",
+                              "stroke-width": "2",
+                              "stroke-linecap": "round",
+                              "stroke-linejoin": "round"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("polyline", {
+                              attrs: { points: "14 2 14 8 20 8" }
+                            }),
+                            _vm._v(" "),
+                            _c("line", {
+                              attrs: { x1: "16", y1: "13", x2: "8", y2: "13" }
+                            }),
+                            _vm._v(" "),
+                            _c("line", {
+                              attrs: { x1: "16", y1: "17", x2: "8", y2: "17" }
+                            }),
+                            _vm._v(" "),
+                            _c("polyline", {
+                              attrs: { points: "10 9 9 9 8 9" }
+                            })
+                          ]
+                        ),
+                        _vm._v(
+                          "\n                                修改资料\n                            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
+                _c(
+                  "a",
+                  { staticClass: "nav-link", attrs: { href: "#" } },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          to: { name: "profile.editPassword" },
+                          activeClass: "active",
+                          exact: ""
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "feather feather-file-text",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "24",
+                              height: "24",
+                              viewBox: "0 0 24 24",
+                              fill: "none",
+                              stroke: "currentColor",
+                              "stroke-width": "2",
+                              "stroke-linecap": "round",
+                              "stroke-linejoin": "round"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("polyline", {
+                              attrs: { points: "14 2 14 8 20 8" }
+                            }),
+                            _vm._v(" "),
+                            _c("line", {
+                              attrs: { x1: "16", y1: "13", x2: "8", y2: "13" }
+                            }),
+                            _vm._v(" "),
+                            _c("line", {
+                              attrs: { x1: "16", y1: "17", x2: "8", y2: "17" }
+                            }),
+                            _vm._v(" "),
+                            _c("polyline", {
+                              attrs: { points: "10 9 9 9 8 9" }
+                            })
+                          ]
+                        ),
+                        _vm._v(
+                          "\n                                修改密码\n                            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
             ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "side-nav-content-menu-sub",
-          attrs: { "data-reactid": ".1.0.1" }
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "active side-nav-content-menu-sub-item",
-              attrs: { "data-reactid": ".1.0.1.$0" }
-            },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-link",
-                  attrs: {
-                    to: { name: "profile.editProfile" },
-                    activeClass: "active",
-                    exact: ""
-                  }
-                },
-                [_vm._v("\n                    修改资料\n                ")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: " side-nav-content-menu-sub-item",
-              attrs: { "data-reactid": ".1.0.1.$1" }
-            },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-link",
-                  attrs: {
-                    to: { name: "profile.editPassword" },
-                    activeClass: "active",
-                    exact: ""
-                  }
-                },
-                [_vm._v("\n                    修改密码\n                ")]
-              )
-            ],
-            1
-          )
         ]
       ),
       _vm._v(" "),
       _c(
         "main",
         {
-          staticClass: "col-md-9 ml-sm-auto col-lg-10 pt-3 px-4",
+          staticClass: "col-lg-11 col-md-10 ml-sm-auto pt-3 px-4",
           attrs: { role: "main" }
         },
         [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
+          _c("notification"),
           _vm._v(" "),
           _c(
             "div",
-            {
-              staticClass:
-                "d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom"
-            },
-            [
-              _c(
-                "transition",
-                { attrs: { name: "fade", mode: "out-in" } },
-                [_c("router-view")],
-                1
-              )
-            ],
+            { staticClass: "justify-content-between" },
+            [_c("router-view")],
             1
           )
-        ]
+        ],
+        1
       )
     ]),
     _vm._v(" "),
-    _vm._m(2)
+    _c(
+      "div",
+      {
+        staticClass: "modal",
+        attrs: {
+          id: "ProfileModalCenter",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "ProfileModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.updateProfile($event)
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-group",
+                        class: { "has-error": _vm.errors.has("name") }
+                      },
+                      [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "control-label",
+                            attrs: { for: "name" }
+                          },
+                          [_vm._v("用户名")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.name,
+                              expression: "name"
+                            },
+                            { name: "validate", rawName: "v-validate" }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            "data-vv-rules": "required",
+                            "data-vv-as": "邮箱",
+                            id: "name",
+                            type: "text",
+                            name: "name",
+                            required: ""
+                          },
+                          domProps: { value: _vm.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.name = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("name"),
+                                expression: "errors.has('name')"
+                              }
+                            ],
+                            staticClass: "help-block"
+                          },
+                          [_vm._v(_vm._s(_vm.errors.first("name")))]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -60714,120 +60963,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "chartjs-size-monitor",
-        staticStyle: {
-          position: "absolute",
-          left: "0px",
-          top: "0px",
-          right: "0px",
-          bottom: "0px",
-          overflow: "hidden",
-          "pointer-events": "none",
-          visibility: "hidden",
-          "z-index": "-1"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "chartjs-size-monitor-expand",
-            staticStyle: {
-              position: "absolute",
-              left: "0",
-              top: "0",
-              right: "0",
-              bottom: "0",
-              overflow: "hidden",
-              "pointer-events": "none",
-              visibility: "hidden",
-              "z-index": "-1"
-            }
-          },
-          [
-            _c("div", {
-              staticStyle: {
-                position: "absolute",
-                width: "1000000px",
-                height: "1000000px",
-                left: "0",
-                top: "0"
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "chartjs-size-monitor-shrink",
-            staticStyle: {
-              position: "absolute",
-              left: "0",
-              top: "0",
-              right: "0",
-              bottom: "0",
-              overflow: "hidden",
-              "pointer-events": "none",
-              visibility: "hidden",
-              "z-index": "-1"
-            }
-          },
-          [
-            _c("div", {
-              staticStyle: {
-                position: "absolute",
-                width: "200%",
-                height: "200%",
-                left: "0",
-                top: "0"
-              }
-            })
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom"
-      },
-      [
-        _c("h1", { staticClass: "h2" }, [_vm._v("概况")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "btn-toolbar mb-2 mb-md-0" }, [
-          _c("div", { staticClass: "btn-group mr-2" }, [
-            _c("button", { staticClass: "btn btn-sm btn-outline-secondary" }, [
-              _vm._v("分享")
-            ]),
-            _vm._v(" "),
-            _c("button", { staticClass: "btn btn-sm btn-outline-secondary" }, [
-              _vm._v("返回")
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-2" }, [
-        _c("div", { staticClass: "list-group" })
-      ]),
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("更新用户信息")]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-10" })
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("确定修改")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("取消")]
+      )
     ])
   }
 ]
@@ -60845,6 +61020,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(121)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(91)
@@ -60853,7 +61032,7 @@ var __vue_template__ = __webpack_require__(92)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -60915,6 +61094,33 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -60938,27 +61144,105 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "panel panel-default" }, [
-      _c("ul", { staticClass: "list-group" }, [
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("\n                用户名\n                "),
-          _c("br"),
+  return _c(
+    "div",
+    { staticClass: "container-fluid list-group-item mg-content" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel panel-default" }, [
+        _c("ul", { staticClass: "list-group" }, [
+          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+            _c("p", { staticClass: "set-up-item-label" }, [
+              _vm._v("\n                    苗果昵称:\n                ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "set-up-item-content font-weight-bold text-dark" },
+              [_vm._v(_vm._s(_vm.user.name))]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success f-r",
+                attrs: {
+                  type: "button",
+                  "data-toggle": "modal",
+                  "data-target": "#ProfileModalCenter"
+                }
+              },
+              [_vm._v("\n                    修改\n                ")]
+            )
+          ]),
           _vm._v(" "),
-          _c("h4", [_vm._v(_vm._s(_vm.user.name))])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-group-item" }, [
-          _vm._v("\n                邮箱\n                "),
-          _c("br"),
+          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("邮箱:")]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "set-up-item-content font-weight-bold text-dark" },
+              [_vm._v(_vm._s(_vm.user.email))]
+            )
+          ]),
           _vm._v(" "),
-          _c("h4", [_vm._v(_vm._s(_vm.user.email))])
+          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("用户名")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "set-up-item-content" }, [
+              _vm._v(_vm._s(_vm.user.name))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("邮箱")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "set-up-item-content" }, [
+              _vm._v(_vm._s(_vm.user.email))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("用户名")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "set-up-item-content" }, [
+              _vm._v(_vm._s(_vm.user.name))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("邮箱")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "set-up-item-content" }, [
+              _vm._v(_vm._s(_vm.user.email))
+            ])
+          ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel text-center set-up-icon" }, [
+      _c("img", {
+        staticClass: "rounded border-bottom",
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180316_83ih0fig3c94d2a9ilc0aae01abhe_144x144.png_100x100.png"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "mc-image-uploader" }, [
+        _vm._v("\n            修改头像\n        ")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -61799,7 +62083,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -61906,6 +62189,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -61934,92 +62223,126 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("nav", { staticClass: "navbar navbar-default navbar-static-top" }, [
-    _c("div", { staticClass: "container-fluid" }, [
-      _c(
-        "div",
-        { staticClass: "navbar-header" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "navbar-brand", attrs: { to: "/", exact: "" } },
-            [
-              _c("img", {
-                attrs: {
-                  src: "/images-pc/logo-pc.png",
-                  alt: "苗果",
-                  width: "110",
-                  height: "42"
-                }
-              })
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { attrs: { id: "app-navbar-collapse" } }, [
-        _c("ul", { staticClass: "nav navbar-nav" }),
-        _vm._v(" "),
+  return _c(
+    "nav",
+    { staticClass: "navbar navbar-default navbar-static-top sticky-top" },
+    [
+      _c("div", { staticClass: "container-fluid" }, [
         _c(
-          "ul",
-          { staticClass: "nav navbar-nav navbar-right" },
+          "div",
+          { staticClass: "navbar-header" },
           [
-            !_vm.user.authenticated
-              ? _c("router-link", { attrs: { to: "/login", tag: "li" } }, [
-                  _c("a", [_vm._v("登录")])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            !_vm.user.authenticated
-              ? _c("router-link", { attrs: { to: "/register", tag: "li" } }, [
-                  _c("a", [_vm._v("注册")])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.user.authenticated
-              ? _c("router-link", { attrs: { to: "/profile", tag: "li" } }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        "data-toggle": "dropdown",
-                        href: "#",
-                        role: "button",
-                        "aria-haspopup": "true",
-                        "aria-expanded": "false"
-                      }
-                    },
-                    [_vm._v("个人中心")]
-                  ),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "caret" })
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.user.authenticated
-              ? _c("li", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.logout($event)
-                        }
-                      }
-                    },
-                    [_vm._v("退出")]
-                  )
-                ])
-              : _vm._e()
+            _c(
+              "router-link",
+              { staticClass: "navbar-brand", attrs: { to: "/", exact: "" } },
+              [
+                _c("img", {
+                  attrs: {
+                    src: "/images-pc/logo-pc.png",
+                    alt: "苗果",
+                    width: "110",
+                    height: "42"
+                  }
+                })
+              ]
+            )
           ],
           1
-        )
+        ),
+        _vm._v(" "),
+        _c("div", { attrs: { id: "app-navbar-collapse" } }, [
+          _c("ul", { staticClass: "nav navbar-nav" }),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "nav navbar-nav navbar-right" },
+            [
+              !_vm.user.authenticated
+                ? _c("router-link", { attrs: { to: "/login", tag: "li" } }, [
+                    _c("a", [_vm._v("登录")])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.user.authenticated
+                ? _c("router-link", { attrs: { to: "/register", tag: "li" } }, [
+                    _c("a", [_vm._v("注册")])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.authenticated
+                ? _c("router-link", { attrs: { to: "/profile", tag: "li" } }, [
+                    _c("div", { staticClass: "btn-group" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-sm",
+                          attrs: {
+                            type: "button",
+                            "data-placement": "bottom",
+                            title: "控制台"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.user.email) +
+                              "\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info btn-sm",
+                          attrs: {
+                            type: "button",
+                            "data-placement": "bottom",
+                            title: "退出"
+                          },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.logout($event)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-signout",
+                                viewBox: "0 0 32 32",
+                                width: "16",
+                                height: "16",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M28 16 L8 16 M20 8 L28 16 20 24 M11 28 L3 28 3 4 11 4"
+                                }
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                : _vm._e()
+            ],
+            1
+          )
+        ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -62203,8 +62526,6 @@ var render = function() {
     "div",
     [
       _c("top-menu"),
-      _vm._v(" "),
-      _c("notification"),
       _vm._v(" "),
       _c(
         "transition",
@@ -62430,6 +62751,49 @@ var isDefinedGlobally = function isDefinedGlobally() {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(122);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(21)("7ae4fc90", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-503e1b48\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-503e1b48\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(20)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.mg-content{\n    min-height:700px;\n    background: #fff;\n    padding: 40px;\n}\n.mc-image-uploader {\n    height: 30px;\n    color: #f06307;\n    border: none;\n    margin: 10px auto;\n}\n.set-up-icon img {\n\n    background-color: #f4f3f4;\n}\n.list-group li{\n    list-style-type:none;\n}\n.list-group li p{\n    margin:0px 1rem;\n    padding: 0px;\n}\n.list-group li a {\n    z-index: 2;\n    color: #f06307;\n}\n.b-b{\n    border-bottom: 1px solid #dedede;\n}\n.p-b-20{\n    padding-bottom:20px;\n}\n.p-t-20{\n    padding-top:20px;\n}\n.f-r{\n    float: right;\n}\n.set-up-item-label{\n    min-width: 60px;\n    text-align: right;\n    font-size: 14px;\n    line-height: 30px;\n    float: left;\n}\n.set-up-item-content {\n    margin-left: 30px;\n    font-size: 18px;\n    line-height: 28px;\n    float: left;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

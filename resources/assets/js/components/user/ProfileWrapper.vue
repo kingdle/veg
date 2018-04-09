@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
-        <div class="row">
-            <nav class=" d-none d-md-block bg-light sidebar">
+        <div class="row mg-main">
+            <nav class="col-lg-1 col-md-1 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -40,7 +40,7 @@
                                         <circle cx="20" cy="21" r="1"></circle>
                                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                                     </svg>
-                                    营销
+                                    订单
                                 </router-link>
                             </a>
                         </li>
@@ -60,73 +60,132 @@
                                 </router-link>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <router-link :to="{name: 'profile.editProfile'}" class="nav-link" activeClass="active"
+                                             exact>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                         stroke-linejoin="round" class="feather feather-file-text">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    修改资料
+                                </router-link>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <router-link :to="{name: 'profile.editPassword'}" class="nav-link" activeClass="active"
+                                             exact>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                         stroke-linejoin="round" class="feather feather-file-text">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    修改密码
+                                </router-link>
+                            </a>
+                        </li>
                     </ul>
-
-
                 </div>
-
             </nav>
-            <div class="side-nav-content-menu-sub" data-reactid=".1.0.1">
-                <div class="active side-nav-content-menu-sub-item" data-reactid=".1.0.1.$0">
-                    <router-link :to="{name: 'profile.editProfile'}" class="nav-link" activeClass="active"
-                                 exact>
-                        修改资料
-                    </router-link>
-                </div>
-                <div class=" side-nav-content-menu-sub-item" data-reactid=".1.0.1.$1">
-                    <router-link :to="{name: 'profile.editPassword'}" class="nav-link" activeClass="active"
-                                 exact>
-                        修改密码
-                    </router-link>
-                </div>
-            </div>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                <div class="chartjs-size-monitor"
-                     style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                    <div class="chartjs-size-monitor-expand"
-                         style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                        <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                    </div>
-                    <div class="chartjs-size-monitor-shrink"
-                         style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                        <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">概况</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group mr-2">
-                            <button class="btn btn-sm btn-outline-secondary">分享</button>
-                            <button class="btn btn-sm btn-outline-secondary">返回</button>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <transition name="fade" mode="out-in">
-                        <router-view></router-view>
-                    </transition>
+            <main role="main" class="col-lg-11 col-md-10 ml-sm-auto pt-3 px-4">
+                <!--<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">-->
+                    <!--<h1 class="h2">概况</h1>-->
+                <!--</div>-->
+                <notification></notification>
+                <div class="justify-content-between">
+                    <router-view></router-view>
                 </div>
             </main>
         </div>
+        <div class="modal" id="ProfileModalCenter" tabindex="-1" role="dialog" aria-labelledby="ProfileModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">更新用户信息</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form @submit.prevent="updateProfile">
+                            <div class="form-group" :class="{'has-error' : errors.has('name') }">
+                                <label for="name" class="control-label">用户名</label>
+                                <input v-model="name"
+                                       v-validate data-vv-rules="required" data-vv-as="邮箱"
+                                       id="name" type="text" class="form-control" name="name" required>
+                                <span class="help-block" v-show="errors.has('name')">{{errors.first('name')}}</span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">确定修改</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            </div>
+                        </form>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-2">
-                <div class="list-group">
                 </div>
-            </div>
-            <div class="col-md-10">
-
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import jwtToken from './../../helpers/jwt'
+    import { ErrorBag } from 'vee-validate';
+    import Notification from './../common/Notification'
+    import * as types from './../../store/mutation-type'
     export default{
-        name: 'profile-wrapper'
+        name: 'profile-wrapper',
+        created() {
+            this.$store.dispatch('setAuthUser');
+        },
+        computed:{
+            name: {
+                get() {
+                    return this.$store.state.AuthUser.name;
+                },
+                set(value) {
+                    this.$store.commit({
+                        type: types.UPDATE_PROFILE_NAME,
+                        value: value
+                    })
+                }
+            },
+            email: {
+                get() {
+                    return this.$store.state.AuthUser.email;
+                },
+                set(value) {
+                    this.$store.commit({
+                        type: types.UPDATE_PROFILE_EMAIL,
+                        value: value
+                    })
+                }
+            }
+        },
+        methods:{
+            updateProfile() {
+                const formData = {
+                    name: this.name
+                }
+                this.$store.dispatch('updateProfileRequest',formData).then(response => {
+                    this.$router.push({name:'profile'})
+                }).catch(error => {
+                })
+            }
+        },
+        components:{
+            Notification
+        }
     }
 </script>
 <style>
@@ -150,26 +209,32 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     }
 
+    .bg-light {
+        background-color: #3e495a !important;
+    }
+
     .sidebar {
         background-color: #3e495a !important;
         padding-top: 10px;
-        margin-top: -1rem;
+
         font-size: 16px;
-        width: 130px;
+        min-width: 130px;
         height: 100%;
         min-height: 100%;
         position: absolute;
-    }
-
-    .bg-light {
-        background-color: #3e495a !important;
     }
 
     .sidebar .nav-link.active {
         color: #f05d0d;
         background-color: #fff;
     }
+    .mg-main{
+        margin-top: -1rem;
+    }
 
+    .mg-main .col-md-1 {
+        padding: 15px 0px;
+    }
     .sidebar .nav-link {
         font-weight: 500;
         color: #fff;
@@ -195,37 +260,4 @@
         vertical-align: text-bottom;
     }
 
-    .side-nav-content-menu-sub {
-        height: 100%;
-        width: 140px;
-        background: #fff;
-        min-height: 100%;
-        margin-top: -1rem;
-        padding: 10px;
-        position: absolute;
-        left: 130px;
-    }
-
-    .side-nav-content-menu-sub .active {
-        background-color: #f5f5f5;
-    }
-
-    .side-nav-content-menu-sub-item {
-        height: 40px;
-        width: 100%;
-        line-height: 40px;
-        list-style: none;
-        display: inline-block;
-        overflow: hidden;
-        text-align: left;
-        margin-top: 10px;
-        padding-left: 10px;
-        border-radius: 2px;
-    }
-
-    .side-nav-content-menu-sub-item a {
-        color: #666;
-        font-size: 14px;
-        display: block;
-    }
 </style>
