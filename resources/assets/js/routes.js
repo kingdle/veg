@@ -18,7 +18,7 @@ let routes = [
         path: '/shops/:id',
         name: 'shops',
         component: require('./components/shops/Shop'),
-        meta: {}
+        meta: {requiresAuth: true}
     },
     {
         path: '/register',
@@ -60,6 +60,30 @@ let routes = [
                 component: require('./components/password/EditPassword'),
                 meta: {requiresAuth: true}
             },
+            {
+                path: '/shop',
+                name: 'profile.Shop',
+                component: require('./components/shops/Shop'),
+                meta: {requiresAuth: true}
+            },
+            {
+                path: '/orders',
+                name: 'profile.Orders',
+                component: require('./components/orders/Orders'),
+                meta: {requiresAuth: true}
+            },
+            {
+                path: '/news',
+                name: 'profile.News',
+                component: require('./components/news/News'),
+                meta: {requiresAuth: true}
+            },
+            {
+                path: '/home',
+                name: 'profile.Home',
+                component: require('./components/home/Home'),
+                meta: {requiresAuth: true}
+            }
         ],
         meta: {requiresAuth: true}
     }

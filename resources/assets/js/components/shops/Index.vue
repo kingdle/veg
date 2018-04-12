@@ -17,7 +17,7 @@
 <script>
     export default {
         mounted() {
-            axios.get('/api/shops').then(response => {
+            axios.get('/api/v1/shops').then(response => {
                 this.shops = response.data.data
         })
         },

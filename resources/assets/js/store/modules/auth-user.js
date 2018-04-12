@@ -3,11 +3,15 @@ export default{
     state:{
         authenticated:false,
         name:null,
+        phone:null,
         email:null
     },
     mutations: {
         [types.UPDATE_PROFILE_NAME](state, payload) {
             state.name = payload.value
+        },
+        [types.UPDATE_PROFILE_PHONE](state, payload) {
+            state.phone = payload.value
         },
         [types.UPDATE_PROFILE_EMAIL](state, payload) {
             state.email = payload.value
@@ -15,11 +19,13 @@ export default{
         [types.SET_AUTH_USER](state, payload) {
             state.authenticated = true
             state.name = payload.user.name
+            state.phone = payload.user.phone
             state.email = payload.user.email
         },
         [types.UNSET_AUTH_USER](state) {
             state.authenticated = false
             state.name = null
+            state.phone = null
             state.email = null
         }
     },

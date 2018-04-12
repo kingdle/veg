@@ -6,7 +6,7 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <router-link :to="{name: 'home'}" class="nav-link" exact>
+                                <router-link :to="{name: 'profile.Home'}" class="nav-link" activeClass="active" exact>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                          stroke-linejoin="round" class="feather feather-home">
@@ -19,7 +19,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <router-link :to="{name: 'news'}" class="nav-link" activeClass="active" exact>
+                                <router-link :to="{name: 'profile.News'}" class="nav-link" activeClass="active" exact>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                          stroke-linejoin="round" class="feather feather-file">
@@ -32,7 +32,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <router-link :to="{name: 'news'}" class="nav-link" activeClass="active" exact>
+                                <router-link :to="{name: 'profile.Orders'}" class="nav-link" activeClass="active" exact>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                          stroke-linejoin="round" class="feather feather-shopping-cart">
@@ -46,8 +46,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-
-                                <router-link :to="{name: 'profile'}" class="nav-link" activeClass="active" exact>
+                                <router-link :to="{name: 'profile.Shop'}" class="nav-link" activeClass="active" exact>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                          stroke-linejoin="round" class="feather feather-users">
@@ -56,24 +55,15 @@
                                         <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                         <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                     </svg>
-                                    个人资料
+                                    苗场
                                 </router-link>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <router-link :to="{name: 'profile.editProfile'}" class="nav-link" activeClass="active"
-                                             exact>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" class="feather feather-file-text">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                        <polyline points="14 2 14 8 20 8"></polyline>
-                                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                                        <polyline points="10 9 9 9 8 9"></polyline>
-                                    </svg>
-                                    修改资料
+                                <router-link :to="{name: 'profile'}" class="nav-link" activeClass="active" exact>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                                    设置
                                 </router-link>
                             </a>
                         </li>
@@ -99,19 +89,22 @@
             </nav>
             <main role="main" class="col-lg-11 col-md-10 ml-sm-auto pt-3 px-4">
                 <!--<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">-->
-                    <!--<h1 class="h2">概况</h1>-->
+                <!--<h1 class="h2">概况</h1>-->
                 <!--</div>-->
-                <notification></notification>
+
                 <div class="justify-content-between">
                     <router-view></router-view>
                 </div>
             </main>
         </div>
-        <div class="modal" id="ProfileModalCenter" tabindex="-1" role="dialog" aria-labelledby="ProfileModalCenterTitle" aria-hidden="true">
+        <div class="modal" id="ProfileModalCenter" tabindex="-1" role="dialog" aria-labelledby="ProfileModalCenterTitle"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">更新用户信息</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">
+                            <label for="name" class="control-label">苗果昵称(店铺名)</label>
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -119,7 +112,6 @@
                     <div class="modal-body">
                         <form @submit.prevent="updateProfile">
                             <div class="form-group" :class="{'has-error' : errors.has('name') }">
-                                <label for="name" class="control-label">用户名</label>
                                 <input v-model="name"
                                        v-validate data-vv-rules="required" data-vv-as="邮箱"
                                        id="name" type="text" class="form-control" name="name" required>
@@ -140,15 +132,15 @@
 
 <script>
     import jwtToken from './../../helpers/jwt'
-    import { ErrorBag } from 'vee-validate';
-    import Notification from './../common/Notification'
+    import {ErrorBag} from 'vee-validate';
+
     import * as types from './../../store/mutation-type'
     export default{
         name: 'profile-wrapper',
         created() {
             this.$store.dispatch('setAuthUser');
         },
-        computed:{
+        computed: {
             name: {
                 get() {
                     return this.$store.state.AuthUser.name;
@@ -172,19 +164,16 @@
                 }
             }
         },
-        methods:{
+        methods: {
             updateProfile() {
                 const formData = {
                     name: this.name
                 }
-                this.$store.dispatch('updateProfileRequest',formData).then(response => {
-                    this.$router.push({name:'profile'})
+                this.$store.dispatch('updateProfileRequest', formData).then(response => {
+                    this.$router.push({name: 'profile'})
                 }).catch(error => {
                 })
             }
-        },
-        components:{
-            Notification
         }
     }
 </script>
@@ -228,13 +217,15 @@
         color: #f05d0d;
         background-color: #fff;
     }
-    .mg-main{
+
+    .mg-main {
         margin-top: -1rem;
     }
 
     .mg-main .col-md-1 {
         padding: 15px 0px;
     }
+
     .sidebar .nav-link {
         font-weight: 500;
         color: #fff;

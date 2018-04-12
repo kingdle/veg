@@ -2,16 +2,9 @@
     <div class="container-fluid">
         <div class="notification">
             <transition name="fade" mode="in-out">
-                <div class="alert" :class="notificationLevel"
+                <div class="hidden" :class="notificationLevel"
                      v-if="msg"
                      @click="hideNotification()">
-                    <button type="button"
-                            class="close"
-                            data-dismiss="alert"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    {{ msg }}
                 </div>
             </transition>
         </div>
@@ -24,17 +17,21 @@
         name: 'notification',
         computed: {
             ...mapState({
-                    level: state => state.Notification.level,
+                level: state => state.Notification.level,
                 msg: state => state.Notification.msg
-    }),
-    notificationLevel() {
-        return 'alert-' + this.level;
-    }
-    },
-    methods: {
-    ...mapActions([
-            'hideNotification'
-        ])
-    }
+            }),
+            notificationLevel() {
+                this.$notify({
+                    message: this.msg,
+                    type:this.level,
+                    offset: 36
+                });
+            }
+        },
+        methods: {
+            ...mapActions([
+                'hideNotification'
+            ])
+        }
     }
 </script>

@@ -10,7 +10,7 @@
             <ul class="list-group">
                 <li class="b-b p-b-20 p-t-20">
                     <p class="set-up-item-label">
-                        苗果昵称:
+                        姓名:
                     </p>
                     <p class="set-up-item-content font-weight-bold text-dark">{{ user.name }}</p>
                     <button type="button" class="btn btn-success f-r" data-toggle="modal" data-target="#ProfileModalCenter">
@@ -21,23 +21,6 @@
                     <p class="set-up-item-label">邮箱:</p>
                     <p class="set-up-item-content font-weight-bold text-dark">{{ user.email }}</p>
 
-                </li>
-                <li class="b-b p-b-20 p-t-20">
-                    <p class="set-up-item-label">用户名</p>
-                    <p class="set-up-item-content">{{ user.name }}</p>
-
-                </li>
-                <li class="b-b p-b-20 p-t-20">
-                    <p class="set-up-item-label">邮箱</p>
-                    <p class="set-up-item-content">{{ user.email }}</p>
-                </li>
-                <li class="b-b p-b-20 p-t-20">
-                    <p class="set-up-item-label">用户名</p>
-                    <p class="set-up-item-content">{{ user.name }}</p>
-                </li>
-                <li class="b-b p-b-20 p-t-20">
-                    <p class="set-up-item-label">邮箱</p>
-                    <p class="set-up-item-content">{{ user.email }}</p>
                 </li>
             </ul>
         </div>

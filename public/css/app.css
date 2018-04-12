@@ -10044,3 +10044,7 @@ a:hover {
   color: #f06307;
 }
 
+.form-control.is-invalid {
+  border-color: #f06307;
+}
+

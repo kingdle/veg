@@ -10,11 +10,11 @@ class TokenProxy {
     {
         $this->http = $http;
     }
-    public function login($email, $password)
+    public function login($phone, $password)
     {
-        if (auth()->attempt(['email' => $email, 'password' => $password, 'is_active' => 1])) {
+        if (auth()->attempt(['phone' => $phone, 'password' => $password])) {
             return $this->proxy('password', [
-                'username' => $email,
+                'username' => $phone,
                 'password' => $password,
                 'scope'    => '',
             ]);

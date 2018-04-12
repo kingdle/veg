@@ -18,7 +18,7 @@
                     <router-link v-if="user.authenticated" to="/profile" tag="li">
                         <div class="btn-group">
                             <button type="button" class="btn btn-success btn-sm" data-placement="bottom" title="控制台">{{
-                                user.email }}
+                                user.phone }}
                             </button>
                             <button @click.prevent="logout" type="button"
                                     class="btn btn-info btn-sm" data-placement="bottom" title="退出">

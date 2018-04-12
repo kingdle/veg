@@ -44,7 +44,7 @@ class LoginController extends Controller
     public function login()
     {
 //        $this->validateLogin(request());
-        return $this->proxy->login(request('email'),request('password'));
+        return $this->proxy->login(request('phone'),request('password'));
 
     }
     public function logout()
@@ -54,9 +54,5 @@ class LoginController extends Controller
     public function refresh()
     {
         return $this->proxy->refresh();
-    }
-    public function username()
-    {
-        return 'name';
     }
 }

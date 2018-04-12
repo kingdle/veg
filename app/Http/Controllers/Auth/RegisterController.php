@@ -43,11 +43,13 @@ class RegisterController extends Controller
     }
     public function register(Request $request)
     {
+
+
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
 
-        return response()->json(['status'=>true,'message'=>'User Created!']);
+        return response()->json(['status'=>true,'message'=>'用户创建成功！']);
     }
     /**
      * Get a validator for an incoming registration request.
@@ -58,9 +60,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-//            'phone' => 'required|regex:/^1[34578]\d{9}$/|unique:users',
+//            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|regex:/^1[34578]\d{9}$/|unique:users',
             'password' => 'required|string|min:6',
         ]);
     }
@@ -74,10 +75,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-//            'phone' => $data['phone'],
+//            'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
+
     }
 }
