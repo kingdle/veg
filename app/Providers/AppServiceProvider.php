@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 //        Resource::wrap('items');
+        Resource::withoutWrapping();
     }
 
     /**

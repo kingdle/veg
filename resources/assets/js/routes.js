@@ -67,6 +67,18 @@ let routes = [
                 meta: {requiresAuth: true}
             },
             {
+                path: '/shop/:id',
+                name: 'profile.Shopid',
+                component: require('./components/shops/Shop'),
+                meta: {requiresAuth: true}
+            },
+            {
+                path: '/edit-shop',
+                name: 'profile.editShop',
+                component: require('./components/shops/EditShop'),
+                meta: {requiresAuth: true}
+            },
+            {
                 path: '/orders',
                 name: 'profile.Orders',
                 component: require('./components/orders/Orders'),

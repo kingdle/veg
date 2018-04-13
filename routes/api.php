@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    $user = $request->user();
+    return new \App\Http\Resources\User($user);
 });
 
 Route::post('/register','Auth\RegisterController@register');
@@ -16,7 +16,7 @@ Route::post('/user/profile/update','UsersController@update')->middleware('auth:a
 Route::post('/user/password/update','PasswordController@update')->middleware('auth:api');
 Route::post('/user/shop/update','ShopsController@update')->middleware('auth:api');
 
-Route::group(['prefix'=>'/v1'],function(){
-    Route::resource('/users','UsersController');
-    Route::resource('/shops','ShopsController');
+Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
+    Route::resource('/users','UsersController')->middleware('auth:api');;
+    Route::resource('/shops','ShopsController')->middleware('auth:api');;
 });

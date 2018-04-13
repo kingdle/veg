@@ -1,23 +1,24 @@
 <template>
-    <div class="modal" id="ProfileModalCenter" tabindex="-1" role="dialog" aria-labelledby="ProfileModalCenterTitle"
+    <div class="modal" id="ShopModalCenter" tabindex="-1" role="dialog" aria-labelledby="ShopModalCenterTitle"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">
-                        <label for="name" class="control-label">苗果昵称(店铺名)</label>
+                    <h5 class="modal-title" id="shopModalLongTitle">
+                        <label for="name" class="control-label">修改您的育苗厂简介</label>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="updateProfile">
+                    <form @submit.prevent="updateShop">
                         <div class="form-group" :class="{'has-error' : errors.has('name') }">
-                            <input v-model="name"
-                                   v-validate data-vv-rules="required" data-vv-as="邮箱"
-                                   id="name" type="text" class="form-control" name="name" required>
-                            <span class="help-block" v-show="errors.has('name')">{{errors.first('name')}}</span>
+                            <textarea
+                                    v-model="summary"
+                                    v-validate data-vv-rules="required" data-vv-as="介绍"
+                                    class="form-control" id="summary" name="summary" required></textarea>
+                            <span class="help-block" v-show="errors.has('summary')">{{errors.first('summary')}}</span>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">确定修改</button>
@@ -25,7 +26,6 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
@@ -50,27 +50,15 @@
                         value: value
                     })
                 }
-            },
-            avatar: {
-                get() {
-                    return this.$store.state.AuthUser.avatar;
-                },
-                set(value) {
-                    this.$store.commit({
-                        type: types.UPDATE_SHOP_AVATAR,
-                        value: value
-                    })
-                }
             }
         },
         methods:{
             updateShop() {
                 const formData = {
                     summary: this.summary,
-                    avatar: this.avatar
                 }
                 this.$store.dispatch('updateShopRequest',formData).then(response => {
-                    this.$router.push({name:'shop'})
+                    this.$router.push({name:'profile.Shop'})
                 }).catch(error=>{
 
                 })

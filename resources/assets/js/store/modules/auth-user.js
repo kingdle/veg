@@ -1,31 +1,43 @@
 import * as types from './../mutation-type'
 export default{
-    state:{
-        authenticated:false,
-        name:null,
-        phone:null,
-        email:null
+    state: {
+        authenticated: false,
+        id: null,
+        name: null,
+        phone: null,
+        avatar: null,
+        email: null,
     },
     mutations: {
+        [types.UPDATE_PROFILE_ID](state, payload) {
+            state.id = payload.value
+        },
         [types.UPDATE_PROFILE_NAME](state, payload) {
             state.name = payload.value
         },
         [types.UPDATE_PROFILE_PHONE](state, payload) {
             state.phone = payload.value
         },
+        [types.UPDATE_PROFILE_AVATAR](state, payload) {
+            state.avatar = payload.value
+        },
         [types.UPDATE_PROFILE_EMAIL](state, payload) {
             state.email = payload.value
         },
         [types.SET_AUTH_USER](state, payload) {
             state.authenticated = true
+            state.id = payload.user.id
             state.name = payload.user.name
             state.phone = payload.user.phone
+            state.avatar = payload.user.avatar
             state.email = payload.user.email
         },
         [types.UNSET_AUTH_USER](state) {
             state.authenticated = false
+            state.id = null
             state.name = null
             state.phone = null
+            state.avatar = null
             state.email = null
         }
     },
@@ -47,10 +59,10 @@ export default{
         },
         refreshToken({commit, dispatch}) {
             return axios.post('/api/token/refresh').then(response => {
-                    dispatch('loginSuccess',response.data)
-        }).catch(error => {
+                dispatch('loginSuccess', response.data)
+            }).catch(error => {
                 dispatch('logoutRequest')
-        })
+            })
         },
     }
 }

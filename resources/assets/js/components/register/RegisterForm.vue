@@ -3,7 +3,6 @@
 
         <div class="form-group row" :class="{'has-error' : errors.has('phone') }">
             <label for="phone" class="col-md-4 col-form-label text-md-right">手机号</label>
-
             <div class="col-md-6">
                 <input v-model="phone"
                        v-validate data-vv-rules="required|numeric" data-vv-as="手机号"
@@ -13,20 +12,6 @@
                 <span class="help-block" v-show="errors.has('phone')">{{errors.first('phone')}}</span>
             </div>
         </div>
-
-        <!--<div class="form-group row" :class="{'has-error' : errors.has('email') }">-->
-            <!--<label for="email" class="col-md-4 col-form-label text-md-right">邮箱地址</label>-->
-
-            <!--<div class="col-md-6">-->
-                <!--<input v-model="email"-->
-                       <!--v-validate data-vv-rules="required|email" data-vv-as="邮箱"-->
-                       <!--class="form-control"-->
-                       <!--:class="{'input': true, 'is-invalid': errors.has('email') }"-->
-                       <!--id="email" type="email" name="email" value="" required>-->
-                <!--<span class="help-block" v-show="errors.has('email')">{{errors.first('email')}}</span>-->
-            <!--</div>-->
-        <!--</div>-->
-
         <div class="form-group row" :class="{'has-error' : errors.has('password') }">
             <label for="password"
                    class="col-md-4 col-form-label text-md-right">密码</label>
@@ -67,7 +52,6 @@
         data(){
             return {
                 phone: '',
-//                email: '',
                 password: ''
             }
         },
@@ -75,7 +59,6 @@
             register(){
                 let formData = {
                     phone:this.phone,
-//                    email:this.email,
                     password:this.password
                 }
                 axios.post('/api/register',formData).then(response =>{

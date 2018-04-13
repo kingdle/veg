@@ -10028,6 +10028,17 @@ a:hover {
   padding: 0 5px;
 }
 
+.user-top-avatar {
+  border-radius: 2rem !important;
+  background-color: #f4f3f4;
+  margin-right: 10px;
+}
+
+.user-top-phone {
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .btn-success {
   color: #fff;
   background-color: #f06307;

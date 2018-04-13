@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid list-group-item mg-content">
         <div class="panel text-center set-up-icon">
-            <img class="rounded border-bottom" src="http://s3.mogucdn.com/mlcdn/bd3fc0/180316_83ih0fig3c94d2a9ilc0aae01abhe_144x144.png_100x100.png">
+            <img class="rounded border-bottom user-avatar" :src=user.avatar>
             <div class="mc-image-uploader">
                 修改头像
             </div>
@@ -30,10 +30,6 @@
 <script>
     import {mapState} from 'vuex'
     export default {
-        name: 'top-menu',
-        created() {
-            this.$store.dispatch('setAuthUser');
-        },
         computed: {
             ...mapState({
                 user: state => state.AuthUser
@@ -55,7 +51,8 @@
         margin: 10px auto;
     }
     .set-up-icon img {
-
+        width: 110px;
+        height: 110px;
         background-color: #f4f3f4;
     }
     .list-group li{

@@ -44,7 +44,7 @@
                             password: this.password
                         }
                         this.$store.dispatch('loginRequest', formData).then(response => {
-                            this.$router.push({name: 'profile'})
+                            this.$router.push({name: 'profile.Shop'})
                         }).catch(error => {
                             if (error.response.status === 421) {
                                 this.bag.add('password', '用户名或密码错误', 'auth');

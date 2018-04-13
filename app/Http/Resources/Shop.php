@@ -21,6 +21,10 @@ class Shop extends JsonResource
             'summary'=>$this->summary,
             'avatar'=>$this->avatar,
             'address'=>$this->address,
+            'pic_count'=>$this->pic_count,
+            'dynamic_count'=>$this->dynamic_count,
+            'published_at'=>$this->published_at,
+            'code'=>$this->code,
         ];
     }
 }
