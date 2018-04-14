@@ -21,7 +21,7 @@ class ShopsController extends Controller
     }
     public function update()
     {
-        request()->user()->shop->update(request()->only('summary'));
+        request()->user()->shop->update(request()->only('summary','address'));
         return response()->json(['status' => true]);
     }
 }

@@ -33,16 +33,16 @@
 
 <script>
     import jwtToken from './../../helpers/jwt'
-    import { ErrorBag } from 'vee-validate';
+    import {ErrorBag} from 'vee-validate';
     import * as types from './../../store/mutation-type'
     export default {
         created() {
-            this.$store.dispatch('setAuthUser');
+            this.$store.dispatch('setAuthShop');
         },
-        computed:{
+        computed: {
             summary: {
                 get() {
-                    return this.$store.state.AuthUser.name;
+                    return this.$store.state.AuthShop.summary;
                 },
                 set(value) {
                     this.$store.commit({
@@ -50,16 +50,16 @@
                         value: value
                     })
                 }
-            }
+            },
         },
-        methods:{
+        methods: {
             updateShop() {
                 const formData = {
                     summary: this.summary,
                 }
-                this.$store.dispatch('updateShopRequest',formData).then(response => {
-                    this.$router.push({name:'profile.Shop'})
-                }).catch(error=>{
+                this.$store.dispatch('updateShopRequest', formData).then(response => {
+                    this.$router.push({name: 'profile.Shop'})
+                }).catch(error => {
 
                 })
             }

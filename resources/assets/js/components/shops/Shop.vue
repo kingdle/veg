@@ -25,8 +25,8 @@
                     </button>
                 </li>
                 <li class="b-b p-b-20 p-t-20">
-                    <p class="set-up-item-label">认证主体</p>
-                    <p class="set-up-item-content">{{ shop.property }} {{ shop.user_id }}</p>
+                    <p class="set-up-item-label">性质</p>
+                    <p class="set-up-item-content">{{ shop.property }}</p>
 
                 </li>
                 <li class="b-b p-b-20 p-t-20">
@@ -47,25 +47,34 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
-        data(){
-            return {
-                shop: [],
-            }
-        },
         created(){
-            this.fetchData()
+            this.$store.dispatch('setAuthShop')
         },
-        watch: {
-            '$route': 'fetchData'
+        computed: {
+            ...mapState({
+                shop: state => state.AuthShop
+            })
         },
-        methods: {
-            fetchData(){
-                this.axios.get('/api/v1/shops/' + this.$route.params.id).then(response => {
-                    this.shop = response.data
-                })
-            }
-        }
+//        data(){
+//            return {
+//                shop: [],
+//            }
+//        },
+//        created(){
+//            this.fetchData()
+//        },
+//        watch: {
+//            '$route': 'fetchData'
+//        },
+//        methods: {
+//            fetchData(){
+//                this.axios.get('/api/v1/shops/' + this.$route.params.id).then(response => {
+//                    this.shop = response.data
+//                })
+//            }
+//        }
     }
 
 </script>

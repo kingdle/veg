@@ -6,6 +6,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     $user = $request->user();
     return new \App\Http\Resources\User($user);
 });
+Route::middleware('auth:api')->get('/shop', function (Request $request) {
+    $user = $request->user();
+    $shop = \App\Shop::where('user_id', $user->id)->get();
+    return $shop[0];
+});
 
 Route::post('/register','Auth\RegisterController@register');
 Route::post('/login','Auth\LoginController@login');

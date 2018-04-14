@@ -20,7 +20,15 @@
                 <li class="b-b p-b-20 p-t-20">
                     <p class="set-up-item-label">邮箱:</p>
                     <p class="set-up-item-content font-weight-bold text-dark">{{ user.email }}</p>
-
+                </li>
+                <li class="b-b p-b-20 p-t-20">
+                    <p class="set-up-item-label">
+                        密码:
+                    </p>
+                    <p class="set-up-item-content font-weight-bold text-dark">密码就不显示了</p>
+                    <button type="button" class="btn btn-success f-r" data-toggle="modal" data-target="#PasswordModalCenter">
+                        修改
+                    </button>
                 </li>
             </ul>
         </div>

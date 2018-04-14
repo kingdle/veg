@@ -15,7 +15,7 @@
                     <form @submit.prevent="updateProfile">
                         <div class="form-group" :class="{'has-error' : errors.has('name') }">
                             <input v-model="name"
-                                   v-validate data-vv-rules="required" data-vv-as="邮箱"
+                                   v-validate data-vv-rules="required" data-vv-as="姓名"
                                    id="name" type="text" class="form-control" name="name" required>
                             <span class="help-block" v-show="errors.has('name')">{{errors.first('name')}}</span>
                         </div>

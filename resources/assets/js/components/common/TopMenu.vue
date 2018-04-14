@@ -15,7 +15,7 @@
                     <router-link v-if="!user.authenticated" to="/register" tag="li">
                         <a>注册</a>
                     </router-link>
-                    <router-link v-if="user.authenticated" to="/shop" tag="li">
+                    <router-link v-if="user.authenticated" :to="{name: 'profile.Shop'}" tag="li">
                         <div class="btn-group">
                             <!--<img class="rounded border-bottom user-top-avatar" :src=user.avatar>-->
                             <button type="button" class="btn btn-success user-top-phone" data-placement="bottom" title="控制台">

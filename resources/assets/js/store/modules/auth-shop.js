@@ -17,9 +17,10 @@ export default{
     },
     mutations: {
         [types.UPDATE_SHOP_SUMMARY](state, payload) {
-            state.id = payload.value
+            state.summary = payload.value
         },
         [types.SET_AUTH_SHOP](state, payload) {
+            state.authenticated = true,
             state.id = payload.shop.id
             state.user_id = payload.shop.user_id
             state.title = payload.shop.title
@@ -36,13 +37,12 @@ export default{
     },
     actions: {
         setAuthShop({commit, dispatch}) {
-            return axios.get('/api/v1/shops/' + this.$route.params.id).then(response => {
+            return axios.get('/api/shop').then(response => {
                 commit({
                     type: types.SET_AUTH_SHOP,
                     shop: response.data
                 })
             }).catch(error => {
-                dispatch('refreshToken')
             })
         }
     }
