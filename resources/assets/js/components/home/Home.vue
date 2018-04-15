@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="jumbotron">
-            <img class="float-right mr-1 d-none d-md-block" src="/images-pc/mg-code-mp.jpg" alt="苗果" width="110" height="110">
+            <img class="float-right mr-5 pt-0 d-none d-md-block" src="/images-pc/mg-code-mp.jpg" alt="苗果" width="110" height="110">
             <h1 class="display-4">老乡，您好!</h1>
             <p class="lead">
                 欢迎使用专业的菜苗交易平台，目前上线了微信小程序，请通过微信搜索"<a href="https://veg.kim" target="_blank" class="alert-success alert-link">苗果</a>"，或者扫码找到我们。
@@ -91,5 +91,10 @@
     .jumbotron{
         background-color: rgba(255, 255, 255, 0.8);
         border: 1px solid rgba(0, 0, 0, 0.125);
+    }
+    .jumbotron .display-4{
+        font-size: 3rem;
+        font-weight: 300;
+        line-height: 1.2;
     }
 </style>

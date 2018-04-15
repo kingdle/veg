@@ -64079,7 +64079,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n#i-compose,#i-msg{\n    color: #b0bdb8;\n}\n.jumbotron{\n    background-color: rgba(255, 255, 255, 0.8);\n    border: 1px solid rgba(0, 0, 0, 0.125);\n}\n", ""]);
+exports.push([module.i, "\n#i-compose,#i-msg{\n    color: #b0bdb8;\n}\n.jumbotron{\n    background-color: rgba(255, 255, 255, 0.8);\n    border: 1px solid rgba(0, 0, 0, 0.125);\n}\n.jumbotron .display-4{\n    font-size: 3rem;\n    font-weight: 300;\n    line-height: 1.2;\n}\n", ""]);
 
 // exports
 
@@ -64190,7 +64190,7 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "jumbotron" }, [
       _c("img", {
-        staticClass: "float-right mr-1 d-none d-md-block",
+        staticClass: "float-right mr-5 pt-0 d-none d-md-block",
         attrs: {
           src: "/images-pc/mg-code-mp.jpg",
           alt: "苗果",
