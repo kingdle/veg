@@ -33,7 +33,7 @@
                                 <td>2018年7月20日上午</td>
                             </tr>
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">2</th>
                                 <td>已发农户，待确认</td>
                                 <td>西红柿 齐达利</td>
                                 <td>4000</td>
@@ -51,11 +51,11 @@
                                 <td>2018年7月22日上午</td>
                             </tr>
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">4</th>
+                                <td>订单已生效</td>
                                 <td>西红柿 齐达利</td>
                                 <td>2000</td>
                                 <td>@伦清风</td>
-                                <td>订单已生效</td>
                                 <td>20天前</td>
                                 <td>2018年7月30日下午</td>
                             </tr>
