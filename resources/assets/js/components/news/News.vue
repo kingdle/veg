@@ -4,7 +4,7 @@
             <div class="">
                 <div class="mc-alert mc-alert-info m-b-30">
                     <div class="mc-alert-title">
-                        <div class="text-666 text-lg">苗果动态发布规则：<span class="text-666">为了提升用户图片浏览体验，尽可能的用手机拍照上传，请不要发乱七八糟的图。</span></div>
+                        <div class="text-666 text-lg">为了提升用户图片浏览体验，尽可能的用手机拍照上传，请不要发乱七八糟的图。</div>
                     </div>
                 </div>
             </div>

@@ -1,13 +1,19 @@
 <template>
-    <nav class="navbar navbar-default navbar-static-top sticky-top">
-        <div class="container-fluid">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid px-0">
             <div class="navbar-header">
                 <router-link to="/" class="navbar-brand" exact>
                     <img src="/images-pc/logo-pc.png" alt="苗果" width="110" height="42">
                 </router-link>
+                <div v-if="user.authenticated" class="d-block d-sm-none d-none d-sm-block d-md-none float-right pt-2">
+                    <button class="navbar-toggler btn btn-outline-secondary btn-sm pt-2 px-0" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg id="i-menu" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+                            <path d="M4 8 L28 8 M4 16 L28 16 M4 24 L28 24" />
+                        </svg>
+                    </button>
+                </div>
             </div>
             <div class="" id="app-navbar-collapse">
-                <ul class="nav navbar-nav"></ul>
                 <ul class="nav navbar-nav navbar-right">
                     <router-link v-if="!user.authenticated" to="/login" tag="li">
                         <a>登录</a>

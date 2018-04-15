@@ -2,7 +2,7 @@
     <div class="container-fluid list-group-item mg-content">
         <div class="row header-subscribe">
             <div class="hidden-xs col-xs-12 col-md-3">
-                <div class="header-logo-container"><img class="img-fluid" src="/images-pc/home-page-header.png">
+                <div class="header-logo-container"><img class="img-fluid" src="/images-pc/open-source.png">
                 </div>
             </div>
             <div class="col-xs-12 col-md-9">
