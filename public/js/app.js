@@ -58932,6 +58932,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(144)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(62)
@@ -58940,7 +58944,7 @@ var __vue_template__ = __webpack_require__(63)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -58996,6 +59000,93 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -59018,14 +59109,194 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("首页还没做呢")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                    计划1周完成\n                ")
+    return _c("div", { staticClass: "home" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12 px-0" }, [
+          _c("div", { staticClass: "flex-md-row mb-3" }, [
+            _c("div", { staticClass: "card-body mt-2" }, [
+              _c("div", { staticClass: "mg-business" }, [
+                _c("div", { staticClass: "col-12 text-center" }, [
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars2.githubusercontent.com/u/2378022?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("何家苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars0.githubusercontent.com/u/1499009?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("董家稻庄苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars3.githubusercontent.com/u/270923?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("水南苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars2.githubusercontent.com/u/8569015?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("水南苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars1.githubusercontent.com/u/1858004?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("北慈苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars2.githubusercontent.com/u/5693018?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("北河崖苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars0.githubusercontent.com/u/15792249?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("水南苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars2.githubusercontent.com/u/25668?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("大伦苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars1.githubusercontent.com/u/523906?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("南慈苗场")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("figure", { staticClass: "figure mr-2 text-center" }, [
+                    _c("div", { staticClass: "contributor-pics" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://avatars1.githubusercontent.com/u/523906?v=4",
+                            width: "64px"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("figcaption", { staticClass: "figure-caption" }, [
+                      _vm._v("南慈苗场")
+                    ])
+                  ])
+                ])
+              ])
             ])
           ])
         ])
@@ -66103,6 +66374,49 @@ var isDefinedGlobally = function isDefinedGlobally() {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(145);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(7)("14e4a4c8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0a937e7e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Home.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0a937e7e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Home.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(6)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.bd-callout {\n    border: 0px solid #eee;\n    border-left-color: #7bc276;\n    border-left-width: .1rem;\n    border-radius: .1rem;\n}\n.mg-home-top .card-title {\n    font-size: 12px;\n}\n.mg-home-top .card-text {\n    font-size: 30px;\n    font-weight: 700;\n}\n.mg-hello h2 {\n    font-weight: 200;\n}\n.mg-hello p {\n    text-indent: 2rem;\n}\n.mg-business .mg-img {\n    width: 200px;\n    height: 200px;\n}\n.verticalLine {\n    width: 1px;\n    height: 80px;\n    background: #E5E5E5;\n    float: left;\n}\n.contributor-pics img {\n    border-radius: 50%;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
