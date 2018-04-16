@@ -64626,7 +64626,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.bd-callout {\n    border: 0px solid #eee;\n    border-left-color: #7bc276;\n    border-left-width: .1rem;\n    border-radius: .1rem;\n}\n.mg-hello h2 {\n    font-weight: 200;\n}\n.mg-hello .lead {\n    font-size: 1rem;\n}\n.mg-business .mg-img {\n    width: 200px;\n    height: 200px;\n}\n.contributor-pics img {\n    border-radius: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.bd-callout {\n    border: 0px solid #eee;\n    border-left-color: #7bc276;\n    border-left-width: .1rem;\n    border-radius: .1rem;\n}\n.card-title{\n    font-size: 12px;\n}\n.card-text {\n    font-size: 30px;\n    font-weight: 700;\n}\n.mg-hello h2 {\n    font-weight: 200;\n}\n.mg-hello .lead {\n    font-size: 1rem;\n}\n.mg-business .mg-img {\n    width: 200px;\n    height: 200px;\n}\n.verticalLine {\n    width: 1px;\n    height: 80px;\n    background: #E5E5E5;\n    float: left;\n}\n.contributor-pics img {\n    border-radius: 50%;\n}\n", ""]);
 
 // exports
 
@@ -64640,6 +64640,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -64885,16 +64905,14 @@ var render = function() {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 px-0" }, [
         _c("div", { staticClass: "card flex-md-row mb-3" }, [
           _c("div", { staticClass: "card-body mt-2" }, [
             _c("div", { staticClass: "mg-business" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
-              _c("div", { staticClass: "col-12" }, [
+              _c("div", { staticClass: "col-12 text-center" }, [
                 _c("figure", { staticClass: "figure mr-2 text-center" }, [
                   _c("div", { staticClass: "contributor-pics" }, [
                     _c("a", { attrs: { href: "" } }, [
@@ -64908,6 +64926,8 @@ var render = function() {
                     _vm._v("水南苗场")
                   ])
                 ]),
+                _vm._v(" "),
+                _vm._m(2),
                 _vm._v(" "),
                 _vm._m(3),
                 _vm._v(" "),
@@ -64935,7 +64955,9 @@ var render = function() {
     _vm._v(" "),
     _vm._m(12),
     _vm._v(" "),
-    _vm._m(13)
+    _vm._m(13),
+    _vm._v(" "),
+    _vm._m(14)
   ])
 }
 var staticRenderFns = [
@@ -64945,151 +64967,125 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 px-0" }, [
-        _c("div", { staticClass: "card flex-md-row mb-3" }, [
-          _c("div", { staticClass: "card-body mt-2" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _c("textarea", {
-                staticClass: "form-control bd-callout lead",
-                attrs: {
-                  rows: "3",
-                  placeholder:
-                    "欢迎使用苗果小程序，只要您有创新的想法，我们就能在平台上实现，请发送给我们的大梦想家。",
-                  "aria-label": "With textarea"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-success", attrs: { type: "button" } },
-                  [_vm._v("想法")]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "m-3 mx-5 flex-auto d-none d-md-block",
-            attrs: {
-              src: "/images-pc/mg-code-mp.jpg",
-              alt: "苗果",
-              width: "110",
-              height: "110"
-            }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 px-0" }, [
-        _c("div", { staticClass: "card flex-md-row mb-3" }, [
+        _c("div", { staticClass: "card flex-row mb-3" }, [
           _c("div", { staticClass: "card-body mt-2" }, [
             _c("div", {}, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "bg-white h-150 p-20 min-w-1000 m-t-15 m-b-20 b-radius box-shadow"
-                },
-                [
-                  _c("div", { staticClass: "text-555" }, [
-                    _c(
-                      "span",
-                      { staticClass: "text-success text-bold m-r-5" },
-                      [_vm._v("|")]
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "vertical-middle" }, [
-                      _vm._v("运营概况")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "m-t-5" }, [
-                    _c(
-                      "div",
-                      { staticClass: "float-left w-per-33 h-80  flex-center" },
-                      [
-                        _c("div", { staticClass: "w-per-50 fl text-center" }, [
-                          _c("p", { staticClass: "text-muted text-sm" }, [
-                            _vm._v(" 动态数")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            { staticClass: "text-30 text-bold text-555" },
-                            [_vm._v(" 4")]
-                          )
-                        ]),
+              _c("div", { staticClass: "text-555" }, [
+                _c("span", { staticClass: "text-success text-bold m-r-5" }, [
+                  _vm._v("|")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "vertical-middle" }, [
+                  _vm._v("运营概况")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-4 col-12" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "row text-center",
+                      staticStyle: { "white-space": "nowrap" }
+                    },
+                    [
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "h5",
+                          {
+                            staticClass: "card-title text-muted pt-2 mb-0",
+                            staticStyle: { "white-space": "nowrap" }
+                          },
+                          [_vm._v("订单数")]
+                        ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "w-per-50 fl text-center" }, [
-                          _c("p", { staticClass: "text-muted text-sm" }, [
-                            _vm._v(" 订单数")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            { staticClass: "text-30 text-bold text-555" },
-                            [_vm._v(" 2")]
-                          )
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "verticalLine" }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "float-left w-per-33 h-80 flex-center" },
-                      [
-                        _c("div", { staticClass: "fl text-center m-auto" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "btn btn-success w-114 h-l-36 m-r-10",
-                              attrs: {
-                                href: "/dynamic/publish",
-                                target: "_blank"
-                              }
-                            },
-                            [_vm._v(" 发表动态")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-success w-114 h-l-36",
-                              attrs: { href: "/photo", target: "_blank" }
-                            },
-                            [_vm._v(" 上传图片")]
-                          )
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "verticalLine" }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "float-left w-per-33 h-150 m-t--30" },
-                      [
                         _c(
                           "p",
                           {
-                            staticClass: "text-sm text-muted m-t-5 text-center"
+                            staticClass: "card-text text-secondary",
+                            staticStyle: { "white-space": "nowrap" }
                           },
-                          [_vm._v(" 您的小程序码")]
+                          [_vm._v("10")]
                         )
-                      ]
-                    )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "h5",
+                          {
+                            staticClass: "card-title text-muted pt-2 mb-0",
+                            staticStyle: { "white-space": "nowrap" }
+                          },
+                          [_vm._v("动态数")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticClass: "card-text text-secondary",
+                            staticStyle: { "white-space": "nowrap" }
+                          },
+                          [_vm._v("6")]
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4 col-7" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "text-center mt-3 px-2",
+                      staticStyle: {
+                        "border-right": "1px solid #eaeaea",
+                        "border-left": "1px solid #eaeaea"
+                      }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-success ",
+                          attrs: { href: "#" }
+                        },
+                        [_vm._v("发动态")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { href: "#" }
+                        },
+                        [_vm._v("查订单")]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "mt-3 text-muted" }, [
+                        _vm._v("每天发一条动态可以提高排名。")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4 col-5" }, [
+                  _c("div", { staticClass: "p-0 text-center" }, [
+                    _c("img", {
+                      staticClass: "text-algin",
+                      attrs: {
+                        src: "/images-pc/mg-code-mp.jpg",
+                        alt: "苗果",
+                        width: "90",
+                        height: "90"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-title text-muted" }, [
+                      _vm._v("苗果小程序")
+                    ])
                   ])
-                ]
-              )
+                ])
+              ])
             ])
           ])
         ])
@@ -65287,6 +65283,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("figure", { staticClass: "figure mr-2 text-center" }, [
+      _c("div", { staticClass: "contributor-pics" }, [
+        _c("a", { attrs: { href: "" } }, [
+          _c("img", {
+            attrs: {
+              src: "https://avatars1.githubusercontent.com/u/523906?v=4",
+              width: "64px"
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("figcaption", { staticClass: "figure-caption" }, [_vm._v("南慈苗场")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 px-0" }, [
         _c("div", { staticClass: "card flex-md-row mb-3" }, [
@@ -65332,7 +65347,9 @@ var staticRenderFns = [
                 )
               ]),
               _c("p", { staticClass: "lead mg-message" }, [
-                _vm._v("在这个平台上您会得到所需的一切服务，请多多帮助小"),
+                _vm._v(
+                  "在这个平台上您会得到所需的一切服务，只要您有创新的想法，我们就能在平台上为您实现。请多多帮助小"
+                ),
                 _c(
                   "a",
                   {
@@ -65359,6 +65376,48 @@ var staticRenderFns = [
               ])
             ])
           ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 px-0" }, [
+        _c("div", { staticClass: "card flex-md-row mb-3" }, [
+          _c("div", { staticClass: "card-body mt-2" }, [
+            _c("div", { staticClass: "input-group" }, [
+              _c("textarea", {
+                staticClass: "form-control bd-callout lead",
+                attrs: {
+                  rows: "3",
+                  placeholder:
+                    "欢迎使用苗果小程序，只要您有创新的想法，我们就能在平台上实现，请发送给我们的大梦想家。",
+                  "aria-label": "With textarea"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group-append" }, [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-success", attrs: { type: "button" } },
+                  [_vm._v("想法")]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "m-3 mx-5 flex-auto d-none d-md-block",
+            attrs: {
+              src: "/images-pc/mg-code-mp.jpg",
+              alt: "苗果",
+              width: "110",
+              height: "110"
+            }
+          })
         ])
       ])
     ])
