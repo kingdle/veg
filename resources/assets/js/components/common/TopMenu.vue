@@ -21,10 +21,13 @@
                     <router-link v-if="!user.authenticated" to="/register" tag="li">
                         <a>注册</a>
                     </router-link>
-                    <router-link v-if="user.authenticated" :to="{name: 'profile.Shop'}" tag="li">
+                    <router-link v-if="user.authenticated" :to="{name: 'profile.Home'}" tag="li">
                         <div class="btn-group">
                             <!--<img class="rounded border-bottom user-top-avatar" :src=user.avatar>-->
                             <button type="button" class="btn btn-success btn-sm user-top-phone" data-placement="bottom" title="控制台">
+                                <svg id="i-user" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
+                                </svg>
                                 <span>{{ user.phone }}</span>
                             </button>
                             <button @click.prevent="logout" type="button"

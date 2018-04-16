@@ -17,6 +17,7 @@
                             <textarea
                                     v-model="summary"
                                     v-validate data-vv-rules="required" data-vv-as="介绍"
+                                    rows="5"
                                     class="form-control" id="summary" name="summary" required></textarea>
                             <span class="help-block" v-show="errors.has('summary')">{{errors.first('summary')}}</span>
                         </div>

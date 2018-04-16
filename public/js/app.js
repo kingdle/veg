@@ -59216,6 +59216,26 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -59256,84 +59276,130 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container-fluid list-group-item mg-content" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "panel panel-default" }, [
-        _c("ul", { staticClass: "list-group" }, [
-          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-            _c("p", { staticClass: "set-up-item-label" }, [
-              _vm._v("\n                    苗果昵称:\n                ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "p",
-              { staticClass: "set-up-item-content font-weight-bold text-dark" },
-              [_vm._v(_vm._s(_vm.shop.title))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("介绍:")]),
-            _vm._v(" "),
-            _c(
-              "p",
-              { staticClass: "set-up-item-content font-weight-bold text-dark" },
-              [_vm._v(_vm._s(_vm.shop.summary))]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success f-r",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "modal",
-                  "data-target": "#ShopModalCenter"
-                }
-              },
-              [_vm._v("\n                    修改\n                ")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("性质")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "set-up-item-content" }, [
-              _vm._v(_vm._s(_vm.shop.property))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("照片数")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "set-up-item-content" }, [
-              _vm._v(_vm._s(_vm.shop.pic_count))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("动态数")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "set-up-item-content" }, [
-              _vm._v(_vm._s(_vm.shop.dynamic_count))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("地址")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "set-up-item-content" }, [
-              _vm._v(_vm._s(_vm.shop.address))
+  return _c("div", { staticClass: "mg-shop" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 px-0" }, [
+        _c("div", { staticClass: "card flex-row mb-3" }, [
+          _c("div", { staticClass: "card-body mt-2" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-12" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c("ul", { staticClass: "list-group" }, [
+                    _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+                      _c(
+                        "p",
+                        { staticClass: "set-up-item-label text-secondary" },
+                        [
+                          _vm._v(
+                            "\n                                            苗果昵称:\n                                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        {
+                          staticClass:
+                            "set-up-item-content font-weight-bold text-dark"
+                        },
+                        [_vm._v(_vm._s(_vm.shop.title))]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+                      _c(
+                        "p",
+                        { staticClass: "set-up-item-label text-secondary" },
+                        [_vm._v("介绍:")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        {
+                          staticClass:
+                            "set-up-item-content font-weight-bold text-dark"
+                        },
+                        [_vm._v(_vm._s(_vm.shop.summary))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success f-r",
+                          attrs: {
+                            type: "button",
+                            "data-toggle": "modal",
+                            "data-target": "#ShopModalCenter"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                            修改\n                                        "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+                      _c(
+                        "p",
+                        { staticClass: "set-up-item-label text-secondary" },
+                        [_vm._v("性质")]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "set-up-item-content" }, [
+                        _vm._v(_vm._s(_vm.shop.property))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+                      _c(
+                        "p",
+                        { staticClass: "set-up-item-label text-secondary" },
+                        [_vm._v("照片数")]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "set-up-item-content" }, [
+                        _vm._v(_vm._s(_vm.shop.pic_count))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+                      _c(
+                        "p",
+                        { staticClass: "set-up-item-label text-secondary" },
+                        [_vm._v("动态数")]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "set-up-item-content" }, [
+                        _vm._v(_vm._s(_vm.shop.dynamic_count))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+                      _c(
+                        "p",
+                        { staticClass: "set-up-item-label text-secondary" },
+                        [_vm._v("地址：")]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "set-up-item-content" }, [
+                        _vm._v(_vm._s(_vm.shop.address))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ])
+                ])
+              ])
             ])
           ])
         ])
       ])
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -59350,7 +59416,31 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("div", { staticClass: "mc-image-uploader" }, [
-        _vm._v("\n            店铺头像\n        ")
+        _vm._v(
+          "\n                                    店铺头像\n                                "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+      _c("p", { staticClass: "set-up-item-label text-secondary" }, [
+        _vm._v("您的苗果小程序码")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "set-up-item-content" }, [
+        _c("img", {
+          staticClass: "m-3 mx-5",
+          attrs: {
+            src: "/images-pc/mg-code-mp.jpg",
+            alt: "苗果",
+            width: "120",
+            height: "120"
+          }
+        })
       ])
     ])
   }
@@ -61271,6 +61361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -61371,6 +61462,7 @@ var render = function() {
                         attrs: {
                           "data-vv-rules": "required",
                           "data-vv-as": "介绍",
+                          rows: "5",
                           id: "summary",
                           name: "summary",
                           required: ""
@@ -61770,7 +61862,7 @@ var staticRenderFns = [
           _c(
             "label",
             { staticClass: "control-label", attrs: { for: "name" } },
-            [_vm._v("修改密码(还得加上短信认证，先标注下)")]
+            [_vm._v("修改密码")]
           )
         ]
       ),
@@ -61981,6 +62073,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -61999,63 +62104,93 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container-fluid list-group-item mg-content" },
-    [
-      _c("div", { staticClass: "panel text-center set-up-icon" }, [
-        _c("img", {
-          staticClass: "rounded border-bottom user-avatar",
-          attrs: { src: _vm.user.avatar }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "mc-image-uploader" }, [
-          _vm._v("\n            修改头像\n        ")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "panel panel-default" }, [
-        _c("ul", { staticClass: "list-group" }, [
-          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-            _c("p", { staticClass: "set-up-item-label" }, [
-              _vm._v("\n                    姓名:\n                ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "p",
-              { staticClass: "set-up-item-content font-weight-bold text-dark" },
-              [_vm._v(_vm._s(_vm.user.name))]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success f-r",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "modal",
-                  "data-target": "#ProfileModalCenter"
-                }
-              },
-              [_vm._v("\n                    修改\n                ")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-            _c("p", { staticClass: "set-up-item-label" }, [_vm._v("邮箱:")]),
-            _vm._v(" "),
-            _c(
-              "p",
-              { staticClass: "set-up-item-content font-weight-bold text-dark" },
-              [_vm._v(_vm._s(_vm.user.email))]
-            )
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
+  return _c("div", { staticClass: "mg-profile" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 px-0" }, [
+        _c("div", { staticClass: "card flex-row mb-3" }, [
+          _c("div", { staticClass: "card-body mt-2" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-12" }, [
+                _c("div", { staticClass: "panel text-center set-up-icon" }, [
+                  _c("img", {
+                    staticClass: "rounded border-bottom user-avatar",
+                    attrs: { src: _vm.user.avatar }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mc-image-uploader" }, [
+                    _vm._v(
+                      "\n                                    微信头像\n                                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "panel panel-default" }, [
+                  _c("ul", { staticClass: "list-group" }, [
+                    _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+                      _c(
+                        "p",
+                        { staticClass: "set-up-item-label text-secondary" },
+                        [
+                          _vm._v(
+                            "\n                                            姓名:\n                                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        {
+                          staticClass:
+                            "set-up-item-content font-weight-bold text-dark"
+                        },
+                        [_vm._v(_vm._s(_vm.user.name))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success f-r",
+                          attrs: {
+                            type: "button",
+                            "data-toggle": "modal",
+                            "data-target": "#ProfileModalCenter"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                            修改\n                                        "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
+                      _c(
+                        "p",
+                        { staticClass: "set-up-item-label text-secondary" },
+                        [_vm._v("邮箱:")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        {
+                          staticClass:
+                            "set-up-item-content font-weight-bold text-dark"
+                        },
+                        [_vm._v(_vm._s(_vm.user.email))]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ])
+                ])
+              ])
+            ])
+          ])
         ])
       ])
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -62063,8 +62198,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "b-b p-b-20 p-t-20" }, [
-      _c("p", { staticClass: "set-up-item-label" }, [
-        _vm._v("\n                    密码:\n                ")
+      _c("p", { staticClass: "set-up-item-label text-secondary" }, [
+        _vm._v(
+          "\n                                            密码:\n                                        "
+        )
       ]),
       _vm._v(" "),
       _c(
@@ -62083,7 +62220,11 @@ var staticRenderFns = [
             "data-target": "#PasswordModalCenter"
           }
         },
-        [_vm._v("\n                    修改\n                ")]
+        [
+          _vm._v(
+            "\n                                            修改\n                                        "
+          )
+        ]
       )
     ])
   }
@@ -62477,7 +62618,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62491,6 +62632,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62621,185 +62771,217 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "container-fluid list-group-item mg-content" },
-      [
-        _c("div", { staticClass: "row header-subscribe" }, [
-          _c("div", { staticClass: "hidden-xs col-xs-12 col-md-3" }, [
-            _c("div", { staticClass: "header-logo-container" }, [
-              _c("img", {
-                staticClass: "img-fluid",
-                attrs: { src: "/images-pc/open-source.png" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-xs-12 col-md-9" }, [
-            _c("div", { staticClass: "header-text-container" }, [
-              _c("h1", [_vm._v("订单列表")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  '农户通过微信的"苗果"小程序发来订单需求，您需要尽快联系农户，并填写发送给农户确认，本订单才生效。'
-                )
-              ]),
-              _vm._v(" "),
+    return _c("div", { staticClass: "mg-orders" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12 px-0" }, [
+          _c("div", { staticClass: "card flex-row mb-3" }, [
+            _c("div", { staticClass: "card-body mt-2" }, [
               _c("div", { staticClass: "row" }, [
-                _c("table", { staticClass: "table table-hover" }, [
-                  _c("thead", [
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v("订单状态")
+                _c("div", { staticClass: "col-xs-12 col-md-9" }, [
+                  _c("div", { staticClass: "header-text-container" }, [
+                    _c("div", { staticClass: "mb-3" }, [
+                      _c("p", { staticClass: "vertical-middle" }, [
+                        _c(
+                          "span",
+                          { staticClass: "text-success text-bold m-r-5" },
+                          [_vm._v("|")]
+                        ),
+                        _vm._v(
+                          "\n                                        订单列表\n                                    "
+                        )
                       ]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("菜苗")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v("数量（棵）")
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("农户")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v("下单时间")
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v("送苗时间")
+                      _c("mark", [
+                        _vm._v(
+                          '农户通过微信的"苗果"小程序发来订单需求，您需要尽快联系农户，并填写发送给农户确认，本订单才生效。'
+                        )
                       ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("待处理")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("西红柿 齐达利")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("4000")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@伦清风")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("1分钟前")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("2018年7月20日上午")])
                     ]),
                     _vm._v(" "),
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("已发农户，待确认")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("西红柿 齐达利")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("4000")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@伦清风")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("5分钟前")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("2018年7月21日上午")])
+                    _c("div", { staticClass: "row" }, [
+                      _c("table", { staticClass: "table table-hover" }, [
+                        _c("thead", [
+                          _c("tr", [
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("#")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("订单状态")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("菜苗")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("数量（棵）")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("农户")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("下单时间")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("送苗时间")
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("tbody", [
+                          _c("tr", [
+                            _c("th", { attrs: { scope: "row" } }, [
+                              _vm._v("1")
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("待处理")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("西红柿 齐达利")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("4000")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("@伦清风")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("1分钟前")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("2018年7月20日上午")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("th", { attrs: { scope: "row" } }, [
+                              _vm._v("2")
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("已发农户，待确认")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("西红柿 齐达利")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("4000")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("@伦清风")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("5分钟前")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("2018年7月21日上午")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("th", { attrs: { scope: "row" } }, [
+                              _vm._v("3")
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("订单已生效")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("辣椒")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("6000")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("@王大明")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("10分钟前")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("2018年7月22日上午")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("th", { attrs: { scope: "row" } }, [
+                              _vm._v("4")
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("订单已生效")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("西红柿 齐达利")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("2000")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("@伦清风")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("20天前")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("2018年7月30日下午")])
+                          ])
+                        ])
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("订单已生效")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("辣椒")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("6000")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@王大明")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("10分钟前")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("2018年7月22日上午")])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("4")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("订单已生效")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("西红柿 齐达利")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("2000")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@伦清风")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("20天前")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("2018年7月30日下午")])
-                    ])
+                    _c(
+                      "nav",
+                      { attrs: { "aria-label": "Page navigation example" } },
+                      [
+                        _c(
+                          "ul",
+                          { staticClass: "pagination justify-content-center" },
+                          [
+                            _c("li", { staticClass: "page-item disabled" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#", tabindex: "-1" }
+                                },
+                                [_vm._v("首页")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("1")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("2")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("3")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("下一页")]
+                              )
+                            ])
+                          ]
+                        )
+                      ]
+                    )
                   ])
                 ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "nav",
-                { attrs: { "aria-label": "Page navigation example" } },
-                [
-                  _c(
-                    "ul",
-                    { staticClass: "pagination justify-content-center" },
-                    [
-                      _c("li", { staticClass: "page-item disabled" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "page-link",
-                            attrs: { href: "#", tabindex: "-1" }
-                          },
-                          [_vm._v("首页")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "page-item" }, [
-                        _c(
-                          "a",
-                          { staticClass: "page-link", attrs: { href: "#" } },
-                          [_vm._v("1")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "page-item" }, [
-                        _c(
-                          "a",
-                          { staticClass: "page-link", attrs: { href: "#" } },
-                          [_vm._v("2")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "page-item" }, [
-                        _c(
-                          "a",
-                          { staticClass: "page-link", attrs: { href: "#" } },
-                          [_vm._v("3")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "page-item" }, [
-                        _c(
-                          "a",
-                          { staticClass: "page-link", attrs: { href: "#" } },
-                          [_vm._v("下一页")]
-                        )
-                      ])
-                    ]
-                  )
-                ]
-              )
+              ])
             ])
           ])
         ])
-      ]
-    )
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -62897,7 +63079,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.mc-alert.mc-alert-info {\n    background: #F1F8FF;\n    border-color: #D6EAFF;\n}\n.mc-alert {\n    position: relative;\n    top: 0;\n    left: 0;\n    padding: 10px 15px;\n    border: 1px solid #dedede;\n    border-radius: 4px;\n    line-height: 1.5;\n}\n.list-box .list-item {\n    width: 240px;\n    height: 316px;\n    background: #F9FAFA;\n}\n.m-b-30, .m-b-xl {\n    margin-bottom: 30px;\n}\n.text-666 {\n    color: #666;\n    font-size: 14px;\n    margin-bottom: 2px;\n}\n.text-lg {\n    font-size: 16px;\n}\n.list-box .list {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n}\n.m-t-30, .m-t-xl {\n    margin-top: 30px;\n}\n.weshop-rate .mc-rate-star-full .mc-rate-star-second, .weshop-rate .mc-rate-star-full:hover .mc-rate-star-second, .weshop-rate .mc-rate-star-half .mc-rate-star-first, .weshop-rate .mc-rate-star-half:hover .mc-rate-star-first {\n    color: #ff9c00 !important\n}\n.weshop-rate .mc-rate-star {\n    margin-right: 0 !important\n}\n.label-w-auto .mc-field-label {\n    width: auto !important\n}\n.m-b-30, .m-b-xl {\n    margin-bottom: 30px;\n}\n.m-r-30, .m-r-xl {\n    margin-right: 30px;\n}\n.p-10, .p-sm, .wrapper-sm {\n    padding: 10px;\n}\n.pos-rlt {\n    position: relative;\n}\n.m-b-30, .m-b-xl {\n    margin-bottom: 30px;\n}\n.list-box .list-item .list-delete {\n    width: 30px;\n    height: 30px;\n    background: #fff;\n    border-radius: 2px;\n    top: 20px;\n    right: 20px;\n    text-align: center;\n    cursor: pointer;\n    display: none;\n    z-index: 3;\n}\n.iconfont {\n    font-family: \"iconfont\" !important;\n    font-style: normal;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n}\n.pos-abt {\n    position: absolute;\n}\n.list-box .list-item .list-item-imgList {\n    width: 220px;\n    height: 220px;\n}\n.list-box .list-item .list-item-img-box {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    width: 250px;\n}\n.pos-rlt {\n    position: relative;\n}\n.list-item-imgList ul {\n    padding-left: 0;\n}\n.list-item-img img {\n    width: 70px;\n    height: 70px;\n}\n.pointer {\n    cursor: pointer;\n}\n.m-b-5, .m-b-xs {\n    margin-bottom: 5px;\n}\n.m-r-5, .m-r-xs {\n    margin-right: 5px;\n}\n.pos-rlt {\n    position: relative;\n}\n.pos-abt {\n    position: absolute;\n    width: 1px;\n    height: 220px;\n    background: #eee;\n    left: 71.5px;\n    top: 0px;\n}\n.list-box .list-item .list-desc {\n    text-overflow: ellipsis;\n    display: -webkit-box;\n    font-size: 12px;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n}\n.m-t-10, .m-t-sm {\n    margin-top: 10px;\n}\n.text-555 {\n    color: #555;\n}\n.list-box .list-item .list-desc .list-desc-content {\n    width: 180px;\n    height: 38px;\n    margin-left: 34px;\n    top: -20px;\n    margin-bottom: -20px;\n}\n", ""]);
+exports.push([module.i, "\n.mg-news-img img {\n    width: 72px;\n}\n.border-top {\n    border-top: 1px solid rgb(234, 234, 234) !important;\n}\n.mg-news-img img:first-child {\n    border-top-left-radius: 0.25rem !important;\n    border-bottom-left-radius: 0.25rem !important;\n}\n.mg-news-img img:last-child {\n    border-top-right-radius: .25rem !important;\n    border-bottom-right-radius: .25rem !important;\n}\n", ""]);
 
 // exports
 
@@ -62911,66 +63093,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -63279,1256 +63401,1006 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "mg-news" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 px-0" }, [
+        _c("div", { staticClass: "card flex-row mb-3" }, [
+          _c("div", { staticClass: "card-body mt-2" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "card-columns" }, [
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v(
+                          "\n                                        我们有一个梦想，就是要 用科技创新农业，用智慧振兴中国，用智能改变世界。\n                                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            3分钟以前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v("生根发芽、茁壮成长")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            2小时以前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v(
+                          '欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"苗果"，或者扫码找到我们。'
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            1天前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v(
+                          "\n                                        我们有一个梦想，就是要 用科技创新农业，用智慧振兴中国，用智能改变世界。\n                                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            3分钟以前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v("生根发芽、茁壮成长")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            2小时以前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v(
+                          '欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"苗果"，或者扫码找到我们。'
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            1天前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v(
+                          "\n                                        我们有一个梦想，就是要 用科技创新农业，用智慧振兴中国，用智能改变世界。\n                                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            3分钟以前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v("生根发芽、茁壮成长")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            2小时以前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(9),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v(
+                          '欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"苗果"，或者扫码找到我们。'
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            1天前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "card-body px-2 border-top border-info rounded"
+                    },
+                    [
+                      _vm._m(10),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v(
+                          "\n                                        我们有一个梦想，就是要 用科技创新农业，用智慧振兴中国，用智能改变世界。\n                                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            3分钟以前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(11),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v("生根发芽、茁壮成长")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            2小时以前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card border-0" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-body px-2 border-top rounded" },
+                    [
+                      _vm._m(12),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text mt-2 mb-0" }, [
+                        _vm._v(
+                          '欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"苗果"，或者扫码找到我们。'
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-clock",
+                                viewBox: "0 0 32 32",
+                                width: "10",
+                                height: "10",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("circle", {
+                                attrs: { cx: "16", cy: "16", r: "14" }
+                              }),
+                              _vm._v(" "),
+                              _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                            ]
+                          ),
+                          _vm._v(
+                            "\n                                            1天前"
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "container-fluid list-group-item mg-content" },
-      [
-        _c("div", { staticClass: "weshop-wrapper list-box" }, [
-          _c("div", {}, [
-            _c("div", { staticClass: "mc-alert mc-alert-info m-b-30" }, [
-              _c("div", { staticClass: "mc-alert-title" }, [
-                _c("div", { staticClass: "text-666 text-lg" }, [
-                  _vm._v(
-                    "为了提升用户图片浏览体验，尽可能的用手机拍照上传，请不要发乱七八糟的图。"
-                  )
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", [
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-6 col-7" }, [
+        _c(
+          "div",
+          {
+            staticClass: "text-left mt-3 px-2",
+            staticStyle: { "border-right": "1px solid #eaeaea" }
+          },
+          [
             _c(
               "a",
-              { staticClass: "btn btn-success m-r-10", attrs: { href: "" } },
-              [_vm._v("发动态就是最好的营销")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("div", { staticClass: "list m-t-30" }, [
-              _c(
-                "div",
-                { staticClass: "list-item p-10 m-r-30 m-b-30 pos-rlt" },
-                [
-                  _c("div", {
-                    staticClass:
-                      "list-delete pos-abt iconfont icon-delete text-h2"
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-item-imgList" }, [
-                    _c("ul", { staticClass: "list-item-img-box pos-rlt" }, [
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1hb3b4ca50i3jlc06b4ck38a9hbd4_900x554.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_7h03h4l99g62eeba2b9ll1hlj35jg_985x751.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1a032kbl0cdeg20lkl4jj4df546kb_1024x687.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3jk778442c3d752b7d841c46jdbed_1024x702.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "71.5px",
-                          top: "0px"
-                        },
-                        attrs: { "data-reactid": ".3.0.1.2.0.0.2.0.1" }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "147px",
-                          top: "0px"
-                        },
-                        attrs: { "data-reactid": ".3.0.1.2.0.0.2.0.2" }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "71.5px"
-                        },
-                        attrs: { "data-reactid": ".3.0.1.2.0.0.2.0.3" }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "147px"
-                        },
-                        attrs: { "data-reactid": ".3.0.1.2.0.0.2.0.4" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-desc m-t-10 text-info" }, [
-                    _c("span", { staticClass: "label text-555" }, [
-                      _vm._v("描述：")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-desc-content pos-rlt" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mc-popover  mc-popover-hover",
-                          attrs: { id: "popover-zd563b0c36", tabindex: "1" }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "mc-popover-wrapper top",
-                              staticStyle: { bottom: "46px", left: "0px" }
-                            },
-                            [
-                              _c("div", { staticClass: "mc-popover-triangle" }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mc-popover-content" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticStyle: {
-                                      "max-width": "300px",
-                                      "word-wrap": "break-word"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                            不同的视野，不同的世界\n                                        "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "list-date m-t-5" }, [
-                    _c("span", [_vm._v("发表时间：")]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("2018-04-14 20:36:34")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "list-item p-10 m-r-30 m-b-30 pos-rlt" },
-                [
-                  _c("div", {
-                    staticClass:
-                      "list-delete pos-abt iconfont icon-delete text-h2"
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-item-imgList" }, [
-                    _c("ul", { staticClass: "list-item-img-box pos-rlt" }, [
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1hb3b4ca50i3jlc06b4ck38a9hbd4_900x554.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_7h03h4l99g62eeba2b9ll1hlj35jg_985x751.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1a032kbl0cdeg20lkl4jj4df546kb_1024x687.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3jk778442c3d752b7d841c46jdbed_1024x702.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "71.5px",
-                          top: "0px"
-                        },
-                        attrs: { "data-reactid": ".3.0.1.2.0.0.2.0.1" }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "147px",
-                          top: "0px"
-                        },
-                        attrs: { "data-reactid": ".3.0.1.2.0.0.2.0.2" }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "71.5px"
-                        },
-                        attrs: { "data-reactid": ".3.0.1.2.0.0.2.0.3" }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "147px"
-                        },
-                        attrs: { "data-reactid": ".3.0.1.2.0.0.2.0.4" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-desc m-t-10 text-info" }, [
-                    _c("span", { staticClass: "label text-555" }, [
-                      _vm._v("描述：")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-desc-content pos-rlt" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mc-popover  mc-popover-hover",
-                          attrs: { id: "popover-zd563b0c36", tabindex: "1" }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "mc-popover-wrapper top",
-                              staticStyle: { bottom: "46px", left: "0px" }
-                            },
-                            [
-                              _c("div", { staticClass: "mc-popover-triangle" }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mc-popover-content" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticStyle: {
-                                      "max-width": "300px",
-                                      "word-wrap": "break-word"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                            不同的视野，不同的世界\n                                        "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "list-date m-t-5" }, [
-                    _c("span", [_vm._v("发表时间：")]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("2018-04-14 20:36:34")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "list-item p-10 m-r-30 m-b-30 pos-rlt" },
-                [
-                  _c("div", {
-                    staticClass:
-                      "list-delete pos-abt iconfont icon-delete text-h2"
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-item-imgList" }, [
-                    _c("ul", { staticClass: "list-item-img-box pos-rlt" }, [
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7kk4g5ih206aj72caa91lkc41fgcj_1024x683.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7gj32aif6hh05dhg82eicg4b6a3fl_400x600.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_43ga4khkh73lgal0dll92k5fjjig2_400x600.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "71.5px",
-                          top: "0px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "147px",
-                          top: "0px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "71.5px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "147px"
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-desc m-t-10 text-info" }, [
-                    _c("span", { staticClass: "label text-555" }, [
-                      _vm._v("描述：")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-desc-content pos-rlt" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mc-popover  mc-popover-hover",
-                          attrs: { id: "popover-e43ajojjsab", tabindex: "1" }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "mc-popover-wrapper top",
-                              staticStyle: { bottom: "46px", left: "0px" }
-                            },
-                            [
-                              _c("div", { staticClass: "mc-popover-triangle" }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mc-popover-content" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticStyle: {
-                                      "max-width": "300px",
-                                      "word-wrap": "break-word"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                            艺术来源于生活\n                                        "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "list-date m-t-5" }, [
-                    _c("span", [_vm._v("发表时间：")]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("2018-04-14 20:36:00")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "list-item p-10 m-r-30 m-b-30 pos-rlt" },
-                [
-                  _c("div", {
-                    staticClass:
-                      "list-delete pos-abt iconfont icon-delete text-h2"
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-item-imgList" }, [
-                    _c("ul", { staticClass: "list-item-img-box pos-rlt" }, [
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7kk4g5ih206aj72caa91lkc41fgcj_1024x683.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7gj32aif6hh05dhg82eicg4b6a3fl_400x600.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_43ga4khkh73lgal0dll92k5fjjig2_400x600.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "71.5px",
-                          top: "0px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "147px",
-                          top: "0px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "71.5px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "147px"
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-desc m-t-10 text-info" }, [
-                    _c("span", { staticClass: "label text-555" }, [
-                      _vm._v("描述：")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-desc-content pos-rlt" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mc-popover  mc-popover-hover",
-                          attrs: { id: "popover-e43ajojjsab", tabindex: "1" }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "mc-popover-wrapper top",
-                              staticStyle: { bottom: "46px", left: "0px" }
-                            },
-                            [
-                              _c("div", { staticClass: "mc-popover-triangle" }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mc-popover-content" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticStyle: {
-                                      "max-width": "300px",
-                                      "word-wrap": "break-word"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                            艺术来源于生活\n                                        "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "list-date m-t-5" }, [
-                    _c("span", [_vm._v("发表时间：")]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("2018-04-14 20:36:00")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "list-item p-10 m-r-30 m-b-30 pos-rlt" },
-                [
-                  _c("div", {
-                    staticClass:
-                      "list-delete pos-abt iconfont icon-delete text-h2"
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-item-imgList" }, [
-                    _c("ul", { staticClass: "list-item-img-box pos-rlt" }, [
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180404_718a3d4j4640l5hfbdfgg7ilg06h4_800x533.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s11.mogucdn.com/mlcdn/bd3fc0/180404_2kf8j1j98ei0ela7708c84lei13d2_800x598.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180404_52a348bb1hb7j4ed8kai9hg1b1ka7_800x598.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180404_718a3d4j4640l5hfbdfgg7ilg06h4_800x533.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s11.mogucdn.com/mlcdn/bd3fc0/180404_2kf8j1j98ei0ela7708c84lei13d2_800x598.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180404_52a348bb1hb7j4ed8kai9hg1b1ka7_800x598.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "71.5px",
-                          top: "0px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "147px",
-                          top: "0px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "71.5px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "147px"
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-desc m-t-10 text-info" }, [
-                    _c("span", { staticClass: "label text-555" }, [
-                      _vm._v("描述：")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-desc-content pos-rlt" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mc-popover  mc-popover-hover",
-                          attrs: { id: "popover-m4gy2ck87w", tabindex: "1" }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "mc-popover-wrapper top",
-                              staticStyle: { bottom: "46px", left: "0px" }
-                            },
-                            [
-                              _c("div", { staticClass: "mc-popover-triangle" }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mc-popover-content" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticStyle: {
-                                      "max-width": "300px",
-                                      "word-wrap": "break-word"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                            hhhjhjhgh\n                                        "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "list-date m-t-5" }, [
-                    _c("span", [_vm._v("发表时间：")]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("2018-04-04 18:52:30")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "list-item p-10 m-r-30 m-b-30 pos-rlt" },
-                [
-                  _c("div", {
-                    staticClass:
-                      "list-delete pos-abt iconfont icon-delete text-h2"
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-item-imgList" }, [
-                    _c("ul", { staticClass: "list-item-img-box pos-rlt" }, [
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180404_718a3d4j4640l5hfbdfgg7ilg06h4_800x533.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s11.mogucdn.com/mlcdn/bd3fc0/180404_2kf8j1j98ei0ela7708c84lei13d2_800x598.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180404_52a348bb1hb7j4ed8kai9hg1b1ka7_800x598.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180404_718a3d4j4640l5hfbdfgg7ilg06h4_800x533.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s11.mogucdn.com/mlcdn/bd3fc0/180404_2kf8j1j98ei0ela7708c84lei13d2_800x598.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        {
-                          staticClass:
-                            "list-item-img pointer m-r-5 m-b-5 pos-rlt"
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "http://s3.mogucdn.com/mlcdn/bd3fc0/180404_52a348bb1hb7j4ed8kai9hg1b1ka7_800x598.jpg_100x100.jpg"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "71.5px",
-                          top: "0px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "1px",
-                          height: "220px",
-                          background: "#eee",
-                          left: "147px",
-                          top: "0px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "71.5px"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "pos-abt",
-                        staticStyle: {
-                          width: "220px",
-                          height: "1px",
-                          background: "#eee",
-                          left: "0px",
-                          top: "147px"
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-desc m-t-10 text-info" }, [
-                    _c("span", { staticClass: "label text-555" }, [
-                      _vm._v("描述：")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-desc-content pos-rlt" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "mc-popover  mc-popover-hover",
-                          attrs: { id: "popover-m4gy2ck87w", tabindex: "1" }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "mc-popover-wrapper top",
-                              staticStyle: { bottom: "46px", left: "0px" }
-                            },
-                            [
-                              _c("div", { staticClass: "mc-popover-triangle" }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mc-popover-content" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticStyle: {
-                                      "max-width": "300px",
-                                      "word-wrap": "break-word"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                            hhhjhjhgh\n                                        "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "list-date m-t-5" }, [
-                    _c("span", [_vm._v("发表时间：")]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("2018-04-04 18:52:30")])
-                  ])
-                ]
-              )
+              { staticClass: "btn btn-success m-r-10", attrs: { href: "#" } },
+              [_vm._v("发动态")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "mt-3 text-muted" }, [
+              _vm._v("经常发动态就是最好的营销。")
             ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-5" }, [
+        _c("div", { staticClass: "p-0 text-center" }, [
+          _c("img", {
+            staticClass: "text-algin",
+            attrs: {
+              src: "/images-pc/mg-code-mp.jpg",
+              alt: "苗果",
+              width: "90",
+              height: "90"
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-title text-muted" }, [
+            _vm._v("您的苗果小程序码")
           ])
         ])
-      ]
-    )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1hb3b4ca50i3jlc06b4ck38a9hbd4_900x554.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_7h03h4l99g62eeba2b9ll1hlj35jg_985x751.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1a032kbl0cdeg20lkl4jj4df546kb_1024x687.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3jk778442c3d752b7d841c46jdbed_1024x702.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7kk4g5ih206aj72caa91lkc41fgcj_1024x683.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7gj32aif6hh05dhg82eicg4b6a3fl_400x600.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_43ga4khkh73lgal0dll92k5fjjig2_400x600.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1hb3b4ca50i3jlc06b4ck38a9hbd4_900x554.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_7h03h4l99g62eeba2b9ll1hlj35jg_985x751.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1a032kbl0cdeg20lkl4jj4df546kb_1024x687.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3jk778442c3d752b7d841c46jdbed_1024x702.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7kk4g5ih206aj72caa91lkc41fgcj_1024x683.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7gj32aif6hh05dhg82eicg4b6a3fl_400x600.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_43ga4khkh73lgal0dll92k5fjjig2_400x600.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1hb3b4ca50i3jlc06b4ck38a9hbd4_900x554.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_7h03h4l99g62eeba2b9ll1hlj35jg_985x751.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1a032kbl0cdeg20lkl4jj4df546kb_1024x687.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3jk778442c3d752b7d841c46jdbed_1024x702.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7kk4g5ih206aj72caa91lkc41fgcj_1024x683.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7gj32aif6hh05dhg82eicg4b6a3fl_400x600.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_43ga4khkh73lgal0dll92k5fjjig2_400x600.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1hb3b4ca50i3jlc06b4ck38a9hbd4_900x554.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_7h03h4l99g62eeba2b9ll1hlj35jg_985x751.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1a032kbl0cdeg20lkl4jj4df546kb_1024x687.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3jk778442c3d752b7d841c46jdbed_1024x702.jpg_100x100.jpg"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7kk4g5ih206aj72caa91lkc41fgcj_1024x683.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7gj32aif6hh05dhg82eicg4b6a3fl_400x600.jpg_100x100.jpg"
+        }
+      }),
+      _vm._v(" "),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_43ga4khkh73lgal0dll92k5fjjig2_400x600.jpg_100x100.jpg"
+        }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -64626,7 +64498,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.bd-callout {\n    border: 0px solid #eee;\n    border-left-color: #7bc276;\n    border-left-width: .1rem;\n    border-radius: .1rem;\n}\n.card-title{\n    font-size: 12px;\n}\n.card-text {\n    font-size: 30px;\n    font-weight: 700;\n}\n.mg-hello h2 {\n    font-weight: 200;\n}\n.mg-hello .lead {\n    font-size: 1rem;\n}\n.mg-business .mg-img {\n    width: 200px;\n    height: 200px;\n}\n.verticalLine {\n    width: 1px;\n    height: 80px;\n    background: #E5E5E5;\n    float: left;\n}\n.contributor-pics img {\n    border-radius: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.bd-callout {\n    border: 0px solid #eee;\n    border-left-color: #7bc276;\n    border-left-width: .1rem;\n    border-radius: .1rem;\n}\n.mg-home-top .card-title {\n    font-size: 12px;\n}\n.mg-home-top .card-text {\n    font-size: 30px;\n    font-weight: 700;\n}\n.mg-hello h2 {\n    font-weight: 200;\n}\n.mg-hello p {\n    text-indent: 2rem;\n}\n.mg-business .mg-img {\n    width: 200px;\n    height: 200px;\n}\n.verticalLine {\n    width: 1px;\n    height: 80px;\n    background: #E5E5E5;\n    float: left;\n}\n.contributor-pics img {\n    border-radius: 50%;\n}\n", ""]);
 
 // exports
 
@@ -64640,7 +64512,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
 //
 //
 //
@@ -64969,120 +64840,112 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-md-12 px-0" }, [
         _c("div", { staticClass: "card flex-row mb-3" }, [
           _c("div", { staticClass: "card-body mt-2" }, [
-            _c("div", {}, [
-              _c("div", { staticClass: "text-555" }, [
-                _c("span", { staticClass: "text-success text-bold m-r-5" }, [
-                  _vm._v("|")
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "vertical-middle" }, [
-                  _vm._v("运营概况")
-                ])
+            _c("div", { staticClass: "title" }, [
+              _c("span", { staticClass: "text-success text-bold m-r-5" }, [
+                _vm._v("|")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-4 col-12" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "row text-center",
-                      staticStyle: { "white-space": "nowrap" }
-                    },
-                    [
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "h5",
-                          {
-                            staticClass: "card-title text-muted pt-2 mb-0",
-                            staticStyle: { "white-space": "nowrap" }
-                          },
-                          [_vm._v("订单数")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          {
-                            staticClass: "card-text text-secondary",
-                            staticStyle: { "white-space": "nowrap" }
-                          },
-                          [_vm._v("10")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col" }, [
-                        _c(
-                          "h5",
-                          {
-                            staticClass: "card-title text-muted pt-2 mb-0",
-                            staticStyle: { "white-space": "nowrap" }
-                          },
-                          [_vm._v("动态数")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          {
-                            staticClass: "card-text text-secondary",
-                            staticStyle: { "white-space": "nowrap" }
-                          },
-                          [_vm._v("6")]
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-4 col-7" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "text-center mt-3 px-2",
-                      staticStyle: {
-                        "border-right": "1px solid #eaeaea",
-                        "border-left": "1px solid #eaeaea"
-                      }
-                    },
-                    [
+              _c("span", { staticClass: "vertical-middle" }, [
+                _vm._v("运营概况")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-sm-4 col-12 mg-home-top" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "row text-center",
+                    staticStyle: { "white-space": "nowrap" }
+                  },
+                  [
+                    _c("div", { staticClass: "col pt-2" }, [
                       _c(
-                        "a",
+                        "h5",
                         {
-                          staticClass: "btn btn-success ",
-                          attrs: { href: "#" }
+                          staticClass: "card-title text-muted pt-2 mb-0",
+                          staticStyle: { "white-space": "nowrap" }
                         },
-                        [_vm._v("发动态")]
+                        [_vm._v("订单数")]
                       ),
                       _vm._v(" "),
                       _c(
-                        "a",
+                        "p",
                         {
-                          staticClass: "btn btn-success",
-                          attrs: { href: "#" }
+                          staticClass: "card-text text-secondary",
+                          staticStyle: { "white-space": "nowrap" }
                         },
-                        [_vm._v("查订单")]
-                      ),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "mt-3 text-muted" }, [
-                        _vm._v("每天发一条动态可以提高排名。")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-4 col-5" }, [
-                  _c("div", { staticClass: "p-0 text-center" }, [
-                    _c("img", {
-                      staticClass: "text-algin",
-                      attrs: {
-                        src: "/images-pc/mg-code-mp.jpg",
-                        alt: "苗果",
-                        width: "90",
-                        height: "90"
-                      }
-                    }),
+                        [_vm._v("10")]
+                      )
+                    ]),
                     _vm._v(" "),
-                    _c("p", { staticClass: "card-title text-muted" }, [
-                      _vm._v("苗果小程序")
+                    _c("div", { staticClass: "col pt-2" }, [
+                      _c(
+                        "h5",
+                        {
+                          staticClass: "card-title text-muted pt-2 mb-0",
+                          staticStyle: { "white-space": "nowrap" }
+                        },
+                        [_vm._v("动态数")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        {
+                          staticClass: "card-text text-secondary",
+                          staticStyle: { "white-space": "nowrap" }
+                        },
+                        [_vm._v("6")]
+                      )
                     ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4 col-7" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "text-center mt-3 px-2",
+                    staticStyle: {
+                      "border-right": "1px solid #eaeaea",
+                      "border-left": "1px solid #eaeaea"
+                    }
+                  },
+                  [
+                    _c(
+                      "a",
+                      { staticClass: "btn btn-success ", attrs: { href: "#" } },
+                      [_vm._v("发动态")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "btn btn-success", attrs: { href: "#" } },
+                      [_vm._v("查订单")]
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "mt-3 text-muted" }, [
+                      _vm._v("每天发一条动态可以提高排名。")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4 col-5" }, [
+                _c("div", { staticClass: "p-0 text-center" }, [
+                  _c("img", {
+                    staticClass: "text-algin",
+                    attrs: {
+                      src: "/images-pc/mg-code-mp.jpg",
+                      alt: "苗果",
+                      width: "90",
+                      height: "90"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-title text-muted" }, [
+                    _vm._v("您的苗果小程序码")
                   ])
                 ])
               ])
@@ -65307,34 +65170,19 @@ var staticRenderFns = [
         _c("div", { staticClass: "card flex-md-row mb-3" }, [
           _c("div", { staticClass: "card-body mt-2" }, [
             _c("div", { staticClass: "mg-hello p-2" }, [
-              _c("h2", [_vm._v("老乡，您好!")]),
+              _c("h5", [_vm._v("老乡，您好!")]),
               _vm._v(" "),
-              _c("p", { staticClass: "lead" }, [
+              _c("p", { staticClass: "mb-0 mt-3" }, [
                 _vm._v(
-                  '\n                            欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"'
-                ),
-                _c(
-                  "a",
-                  {
-                    staticClass: "alert-success alert-link",
-                    attrs: { href: "https://veg.kim", target: "_blank" }
-                  },
-                  [_vm._v("苗果")]
-                ),
-                _vm._v('"，或者扫码找到我们。\n                        ')
+                  "\n                            习主席说过：要让居民望得见山、看得见水、记得住乡愁。\n                        "
+                )
               ]),
               _vm._v(" "),
               _c("hr", { staticClass: "my-2" }),
               _vm._v(" "),
-              _c("p", { staticClass: "lead mg-message" }, [
+              _c("p", [
                 _vm._v(
-                  "\n                            习主席说过：让居民望得见山、看得见水、记得住乡愁。\n                        "
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "lead mg-message" }, [
-                _vm._v(
-                  '\n                            每个人都有一份乡愁！而我们终于有机会来到家乡，编织梦想。战略家马云说过两句话，一句是"梦想一定要有，万一实现了呢"，另一句是"只有农村富，中国才会富，只有乡村强，中国才会强，只有乡村振兴，中国才会振兴"。\n                            我们有一个梦想，就是要\n                            '
+                  '\n                            每个人都有一份乡愁！而我们终于有机会来到家乡，编织梦想。战略家马云说过"梦想一定要有，万一实现了呢"，还有一句关于农业的"只有农村富，中国才会富，只有乡村强，中国才会强，只有乡村振兴，中国才会振兴"。\n                            我们有一个梦想，就是要\n                            '
                 ),
                 _c(
                   "mark",
@@ -65346,7 +65194,7 @@ var staticRenderFns = [
                   ]
                 )
               ]),
-              _c("p", { staticClass: "lead mg-message" }, [
+              _c("p", [
                 _vm._v(
                   "在这个平台上您会得到所需的一切服务，只要您有创新的想法，我们就能在平台上为您实现。请多多帮助小"
                 ),
@@ -65367,9 +65215,24 @@ var staticRenderFns = [
                 )
               ]),
               _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  '\n                            欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"'
+                ),
+                _c(
+                  "a",
+                  {
+                    staticClass: "alert-success alert-link",
+                    attrs: { href: "https://veg.kim", target: "_blank" }
+                  },
+                  [_vm._v("苗果")]
+                ),
+                _vm._v('"，或者扫码找到我们。\n                        ')
+              ]),
+              _vm._v(" "),
               _c("p"),
               _vm._v(" "),
-              _c("p", { staticClass: "lead mg-message" }, [
+              _c("p", [
                 _vm._v(
                   "\n                            ~~好了，就从苗开始，\n                        "
                 )
@@ -65393,8 +65256,7 @@ var staticRenderFns = [
                 staticClass: "form-control bd-callout lead",
                 attrs: {
                   rows: "3",
-                  placeholder:
-                    "欢迎使用苗果小程序，只要您有创新的想法，我们就能在平台上实现，请发送给我们的大梦想家。",
+                  placeholder: "创新驱动价值，欢迎提意见。",
                   "aria-label": "With textarea"
                 }
               }),
@@ -65637,6 +65499,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -65759,7 +65624,7 @@ var render = function() {
             _vm.user.authenticated
               ? _c(
                   "router-link",
-                  { attrs: { to: { name: "profile.Shop" }, tag: "li" } },
+                  { attrs: { to: { name: "profile.Home" }, tag: "li" } },
                   [
                     _c("div", { staticClass: "btn-group" }, [
                       _c(
@@ -65772,7 +65637,34 @@ var render = function() {
                             title: "控制台"
                           }
                         },
-                        [_c("span", [_vm._v(_vm._s(_vm.user.phone))])]
+                        [
+                          _c(
+                            "svg",
+                            {
+                              attrs: {
+                                id: "i-user",
+                                viewBox: "0 0 32 32",
+                                width: "16",
+                                height: "16",
+                                fill: "none",
+                                stroke: "currentcolor",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(_vm.user.phone))])
+                        ]
                       ),
                       _vm._v(" "),
                       _c(

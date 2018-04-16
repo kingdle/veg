@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="passwordModalLongTitle">
-                        <label for="name" class="control-label">修改密码(还得加上短信认证，先标注下)</label>
+                        <label for="name" class="control-label">修改密码</label>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
