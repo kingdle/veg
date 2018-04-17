@@ -10165,6 +10165,9 @@ svg:not(:root) {
   width: 110px;
   height: 110px;
   background-color: #f4f3f4;
+  padding: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
 .list-group li {

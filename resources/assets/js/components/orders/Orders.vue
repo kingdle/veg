@@ -5,7 +5,7 @@
                 <div class="card flex-row mb-3">
                     <div class="card-body mt-2">
                         <div class="row">
-                            <div class="col-xs-12 col-md-9">
+                            <div class="col-12">
                                 <div class="header-text-container">
                                     <div class="mb-3">
                                         <p class="vertical-middle">
