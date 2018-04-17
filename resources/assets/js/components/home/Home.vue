@@ -25,7 +25,8 @@
                             <div class="col-sm-4 col-7">
                                 <div class="text-center mt-3 px-2"
                                      style="border-right:1px solid #eaeaea;border-left:1px solid #eaeaea">
-                                    <a href="#" class="btn btn-success ">发动态</a>
+                                    <a href="#" class="btn btn-success " data-toggle="modal"
+                                       data-target="#AddNewsModalCenter">发动态</a>
                                     <a href="#" class="btn btn-success">查订单</a>
                                     <p class="mt-3 text-muted">每天发一条动态可以提高排名。</p>
                                 </div>

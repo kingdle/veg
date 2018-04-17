@@ -98,6 +98,88 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 w-100per m-b-100 overflow-auto" data-reactid=".2.5">
+                <div class="w-1200 pt-5 m-auto text-333 six" data-reactid=".2.5.0"><h2 class=" text-center"
+                                                                                 data-reactid=".2.5.0.0">苗果在您身边</h2>
+                    <p class="text-sm text-center letter-10  m-b-45" data-reactid=".2.5.0.1">优质农业服务</p>
+                    <div class="m-t-40" data-reactid=".2.5.0.2">
+                        <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.0"><a class="inline-block m-auto shop"
+                                                                                        href="javascript:void(0)"
+                                                                                        target="_blank"
+                                                                                        data-reactid=".2.5.0.2.0.0"><img
+                                class="img" style="width:288px;"
+                                src="https://s10.mogucdn.com/mlcdn/c45406/180408_47hd4lh9ee39l33bh0fkc02585al0_576x514.png"
+                                data-reactid=".2.5.0.2.0.0.0"><img class="hoverImg" style="width:288px;"
+                                                                   src="https://s10.mogucdn.com/mlcdn/c45406/180408_1602hkc76j4lgf4ckfekd2g540311_576x514.png"
+                                                                   data-reactid=".2.5.0.2.0.0.1"></a></div>
+                        <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.1"><a class="inline-block m-auto shop"
+                                                                                        href="javascript:void(0)"
+                                                                                        target="_blank"
+                                                                                        data-reactid=".2.5.0.2.1.0"><img
+                                class="img" style="width:288px;"
+                                src="https://s10.mogucdn.com/mlcdn/c45406/180330_0jki392jle427fjb8g80ll5064969_576x514.png"
+                                data-reactid=".2.5.0.2.1.0.0"><img class="hoverImg" style="width:288px;"
+                                                                   src="https://s10.mogucdn.com/mlcdn/c45406/180330_1ccc75igb6ceeii6kb0ekcd9ce05e_576x514.png"
+                                                                   data-reactid=".2.5.0.2.1.0.1"></a></div>
+                        <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.2"><a class="inline-block m-auto shop"
+                                                                                        href="javascript:void(0)"
+                                                                                        target="_blank"
+                                                                                        data-reactid=".2.5.0.2.2.0"><img
+                                class="img" style="width:288px;"
+                                src="https://s10.mogucdn.com/mlcdn/c45406/180330_2ace3619lkd0l4jdk9l6h035hkia5_576x514.png"
+                                data-reactid=".2.5.0.2.2.0.0"><img class="hoverImg" style="width:288px;"
+                                                                   src="https://s10.mogucdn.com/mlcdn/c45406/180330_8580h932ahf0b17cje6de3lahiggi_576x514.png"
+                                                                   data-reactid=".2.5.0.2.2.0.1"></a></div>
+                        <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.3"><a class="inline-block m-auto shop"
+                                                                                        href="javascript:void(0)"
+                                                                                        target="_blank"
+                                                                                        data-reactid=".2.5.0.2.3.0"><img
+                                class="img" style="width:288px;"
+                                src="https://s10.mogucdn.com/mlcdn/c45406/180330_1142l0hah7h5059hie11hjkl2645i_576x514.png"
+                                data-reactid=".2.5.0.2.3.0.0"><img class="hoverImg" style="width:288px;"
+                                                                   src="https://s10.mogucdn.com/mlcdn/c45406/180330_3fg03acbl5kkd935g3a4jcf8b1ihj_576x514.png"
+                                                                   data-reactid=".2.5.0.2.3.0.1"></a></div>
+                        <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.4"><a class="inline-block m-auto shop"
+                                                                                        href="javascript:void(0)"
+                                                                                        target="_blank"
+                                                                                        data-reactid=".2.5.0.2.4.0"><img
+                                class="img" style="width:288px;"
+                                src="https://s10.mogucdn.com/mlcdn/c45406/180330_4j78ce3ka8jfdj021dgge86hd7ed8_576x514.png"
+                                data-reactid=".2.5.0.2.4.0.0"><img class="hoverImg" style="width:288px;"
+                                                                   src="https://s10.mogucdn.com/mlcdn/c45406/180330_7ha6ei6alf3221fgl35ih6jd609b6_576x514.png"
+                                                                   data-reactid=".2.5.0.2.4.0.1"></a></div>
+                        <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.5"><a class="inline-block m-auto shop"
+                                                                                        href="javascript:void(0)"
+                                                                                        target="_blank"
+                                                                                        data-reactid=".2.5.0.2.5.0"><img
+                                class="img" style="width:288px;"
+                                src="https://s10.mogucdn.com/mlcdn/c45406/180330_33blgkek826954fe66g86376ie3k4_576x514.png"
+                                data-reactid=".2.5.0.2.5.0.0"><img class="hoverImg" style="width:288px;"
+                                                                   src="https://s10.mogucdn.com/mlcdn/c45406/180330_1761ch47j28b14hee5059fef1hk8j_576x514.png"
+                                                                   data-reactid=".2.5.0.2.5.0.1"></a></div>
+                        <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.6"><a class="inline-block m-auto shop"
+                                                                                        href="javascript:void(0)"
+                                                                                        target="_blank"
+                                                                                        data-reactid=".2.5.0.2.6.0"><img
+                                class="img" style="width:288px;"
+                                src="https://s10.mogucdn.com/mlcdn/c45406/180330_55890g955j5k736ij75440046828b_576x514.png"
+                                data-reactid=".2.5.0.2.6.0.0"><img class="hoverImg" style="width:288px;"
+                                                                   src="https://s10.mogucdn.com/mlcdn/c45406/180330_5b361ie5j06c4466994k544lhhc15_576x514.png"
+                                                                   data-reactid=".2.5.0.2.6.0.1"></a></div>
+                        <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.7"><a class="inline-block m-auto shop"
+                                                                                        href="javascript:void(0)"
+                                                                                        target="_blank"
+                                                                                        data-reactid=".2.5.0.2.7.0"><img
+                                class="img" style="width:288px;"
+                                src="https://s10.mogucdn.com/mlcdn/c45406/180330_116l5ih1h2dll4dh252c6ia9ef918_576x514.png"
+                                data-reactid=".2.5.0.2.7.0.0"><img class="hoverImg" style="width:288px;"
+                                                                   src="https://s10.mogucdn.com/mlcdn/c45406/180330_0b7llf6edaild6cjabgkhge28i687_576x514.png"
+                                                                   data-reactid=".2.5.0.2.7.0.1"></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

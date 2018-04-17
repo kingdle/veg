@@ -28,7 +28,7 @@ const messages = {
     not_in: (field) => ` ${field}必须是一个有效值.`,
     numeric: (field) => ` ${field} 只能包含数字字符.`,
     regex: (field) => ` ${field} 格式无效.`,
-    required: (field) => `${field} 是必填项.`,
+    required: (field) => `${field} 必须填写.`,
     size: (field, [size]) => ` ${field} 必须小于 ${formatFileSize(size)}.`,
     url: (field) => ` ${field}不是有效的url.`
 };

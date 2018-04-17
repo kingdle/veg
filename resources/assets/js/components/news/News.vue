@@ -8,7 +8,8 @@
                             <div class="col-sm-6 col-7">
                                 <div class="text-left mt-3 px-2"
                                      style="border-right:1px solid #eaeaea;">
-                                    <a class="btn btn-success m-r-10" href="#">发动态</a>
+                                    <a class="btn btn-success m-r-10 text-light" data-toggle="modal"
+                                       data-target="#AddNewsModalCenter">发动态</a>
                                     <p class="mt-3 text-muted">经常发动态就是最好的营销。</p>
                                 </div>
                             </div>

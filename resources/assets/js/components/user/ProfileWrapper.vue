@@ -16,6 +16,7 @@
         <edit-profile-form></edit-profile-form>
         <edit-shop-form></edit-shop-form>
         <edit-password-form></edit-password-form>
+        <add-news-form></add-news-form>
     </div>
 </template>
 
@@ -24,13 +25,15 @@
     import EditProfileForm from './EditProfileForm.vue'
     import EditShopForm from './../shops/EditShopForm.vue'
     import EditPasswordForm from './../password/EditPasswordForm.vue'
+    import AddNewsForm from './../news/AddNews.vue'
     export default{
         name: 'profile-wrapper',
         components: {
             Sidebar,
             EditProfileForm,
             EditShopForm,
-            EditPasswordForm
+            EditPasswordForm,
+            AddNewsForm
         }
     }
 </script>

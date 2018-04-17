@@ -85,6 +85,12 @@ let routes = [
                 meta: {requiresAuth: true}
             },
             {
+                path: '/addnews',
+                name: 'AddNews',
+                component: require('./components/news/AddNews'),
+                meta: {requiresAuth: true}
+            },
+            {
                 path: '/home',
                 name: 'profile.Home',
                 component: require('./components/home/Home'),
