@@ -9,7 +9,6 @@ import store from './store/index';
 import App from './components/App';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import VueCoreImageUpload  from 'vue-core-image-upload';
 
 
 // import ElementUI from 'element-ui';
@@ -34,7 +33,7 @@ Vue.use(VueRouter);
 Vue.use(VeeValidate);
 Vue.use(VueAxios, axios)
 // Vue.use(ElementUI);
-Vue.use(VueCoreImageUpload)
+
 Vue.component('app',App);
 
 new Vue({

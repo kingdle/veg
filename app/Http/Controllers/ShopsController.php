@@ -40,14 +40,7 @@ class ShopsController extends Controller
         $shop->avatar = '/avatars/'.$filename;
         $shop->save();
 
-//        return ['url' => $shop->avatar];
-        return json_encode(array(
-            'errcode' => 0,
-            'data' => array(
-                'src' =>  $shop->avatar,
-            )
-            )
-        );
+        return ['url' => $shop->avatar];
     }
 
 }
