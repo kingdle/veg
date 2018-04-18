@@ -133,20 +133,18 @@
 </script>
 <style>
     .vue-image-crop-upload .vicp-wrap {
-         width: 70% !important;
-         height: 50% !important;
-         background-color:rgba(0, 0, 0, 0.23) !important;
-    }
-    .vicp-hint {
-        color: #27e241 !important;
-    }
-    .vicp-operate a{
-        color: #27e241 !important;
+         width: 90% !important;
+         height: 70% !important;
+        max-width:600px;
+        max-height:300px;
+         background-color: rgba(255, 255, 255, 0.8) !important;
     }
     .vicp-drop-area {
-        border: 1px dashed #ddd !important;
+        border: 1px dashed #f06307 !important;
     }
-    .vicp-icon1 i {
-        color: #27e241 !important;
+    .vicp-operate a {
+        color: #f06307 !important;
+        font-weight: 700;
+
     }
 </style>

@@ -9,6 +9,9 @@ import EditPassword from './modules/edit-password'
 import EditShop from './modules/edit-shop'
 import Notification from './modules/notification'
 
+import AddNews from './modules/add-news'
+
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -19,7 +22,8 @@ export default new Vuex.Store({
         EditProfile,
         EditPassword,
         EditShop,
-        Notification
+        Notification,
+        AddNews
     },
     strict: true
 })

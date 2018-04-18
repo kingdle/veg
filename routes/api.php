@@ -24,6 +24,7 @@ Route::post('/user/shop/update','ShopsController@update')->middleware('auth:api'
 Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     Route::resource('/users','UsersController');
     Route::resource('/shops','ShopsController');
+    Route::resource('/dynamics','DynamicsController');
     Route::post('/shop/avatar','ShopsController@changeAvatar')->middleware('auth:api');
 
 });

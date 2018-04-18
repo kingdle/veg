@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="AddNewsModalLongTitle">
-                        <label for="name" class="control-label">发动态</label>
+                        <label for="dynamic" class="control-label">发动态</label>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
