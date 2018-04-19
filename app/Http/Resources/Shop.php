@@ -25,6 +25,7 @@ class Shop extends JsonResource
             'dynamic_count'=>$this->dynamic_count,
             'published_at'=>$this->published_at,
             'code'=>$this->code,
+            'user'=>new User($this->user)
         ];
     }
 }

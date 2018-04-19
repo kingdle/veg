@@ -26,8 +26,9 @@ class DynamicsController extends Controller
     public function store(Request $request,Dynamic $dynamic)
     {
         $file = $request->images;
-        $base64 = preg_replace("/\s/",'+',$request->input('img'));
-        return $file;
+        $base64 = preg_replace("/\s/",'+',$file);
+        $img = base64_decode($base64);
+        return $img;
         $filePath = [];
         if($file){
             foreach ($file as $key => $value) {

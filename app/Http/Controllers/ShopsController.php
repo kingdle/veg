@@ -14,13 +14,13 @@ class ShopsController extends Controller
         return new ShopCollection($shops);
     }
 
-    public function show($user_id)
+    public function show($id)
     {
-        $shop = Shop::where('user_id', $user_id)->get();
-        if ($shop->count() == 0) {
+        $shop = Shop::find($id);
+        if (!$shop) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
-        return $shop[0];
+        return new \App\Http\Resources\Shop($shop);
     }
 
     public function update()

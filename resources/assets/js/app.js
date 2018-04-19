@@ -10,9 +10,9 @@ import App from './components/App';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+//
+// import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
 
 
 import zh_CN from './locale/zh_CN';
@@ -32,7 +32,7 @@ Validator.localize('zh_CN', zh_CN);
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
 Vue.use(VueAxios, axios)
-Vue.use(ElementUI);
+// Vue.use(ElementUI);
 
 Vue.component('app',App);
 
