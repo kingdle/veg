@@ -27,7 +27,11 @@
                                      style="border-right:1px solid #eaeaea;border-left:1px solid #eaeaea">
                                     <a href="#" class="btn btn-success " data-toggle="modal"
                                        data-target="#AddNewsModalCenter">发动态</a>
-                                    <a href="#" class="btn btn-success">查订单</a>
+                                    <a href="#">
+                                        <router-link :to="{name: 'profile.Orders'}" class="btn btn-success" activeClass="active" exact>
+                                            查订单
+                                        </router-link>
+                                        </a>
                                     <p class="mt-3 text-muted">每天发一条动态可以提高排名。</p>
                                 </div>
                             </div>

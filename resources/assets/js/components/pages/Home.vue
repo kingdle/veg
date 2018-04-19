@@ -102,7 +102,7 @@
             <div class="col-12 w-100per m-b-100 overflow-auto" data-reactid=".2.5">
                 <div class="w-1200 pt-5 m-auto text-333 six" data-reactid=".2.5.0"><h2 class=" text-center"
                                                                                  data-reactid=".2.5.0.0">苗果在您身边</h2>
-                    <p class="text-sm text-center letter-10  m-b-45" data-reactid=".2.5.0.1">确认过眼神，一起种菜的人</p>
+                    <p class="text-sm text-center letter-10  m-b-45" data-reactid=".2.5.0.1">看看这个大世界，还有好多梦想等着我们去冒险</p>
                     <div class="m-t-40" data-reactid=".2.5.0.2">
                         <div class="fl flex-4 text-center" data-reactid=".2.5.0.2.0"><a class="inline-block m-auto shop"
                                                                                         href="javascript:void(0)"

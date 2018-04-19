@@ -90,7 +90,6 @@
             ...mapState({
                 shop: state => state.AuthShop
             })
-
         },
         data() {
             return{
@@ -120,7 +119,10 @@
                 console.log('-------- upload success --------');
                 console.log(response);
                 console.log('field: ' + field);
-                this.show = !this.show;
+                setTimeout(() => {
+                   this.show = !this.show;
+                }, 1000)
+
             },
             cropUploadFail(status, field){
                 console.log('-------- upload fail --------');

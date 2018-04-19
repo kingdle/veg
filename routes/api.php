@@ -21,6 +21,7 @@ Route::post('/user/profile/update','UsersController@update')->middleware('auth:a
 Route::post('/user/password/update','PasswordController@update')->middleware('auth:api');
 Route::post('/user/shop/update','ShopsController@update')->middleware('auth:api');
 
+
 Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     Route::resource('/users','UsersController');
     Route::resource('/shops','ShopsController');
