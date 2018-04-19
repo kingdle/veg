@@ -14,6 +14,16 @@ class Dynamic extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'=>$this->id,
+            'userid'=>$this->user_id,
+            'shop_id'=>$this->shop_id,
+            'content'=>$this->content,
+            'pic'=>$this->pic,
+            'published_at'=>$this->published_at,
+            'created_at'=>$this->created_at,
+            'updated_at'=>$this->updated_at,
+            'user'=>new User($this->user)
+        ];
     }
 }

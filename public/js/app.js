@@ -73681,26 +73681,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         removeImage: function removeImage(e) {
             this.images = [];
         },
-        uploadImage: function uploadImage() {
-            return false;
-            var obj = {};
-            obj.images = this.images;
-            //                $.ajax({
-            //                    type: 'post',
-            //                    url: "upload.php",
-            //                    data: obj,
-            //                    dataType: "json",
-            //                    success: function(data) {
-            //                        if(data.status){
-            //                            alert(data.msg);
-            //                            return false;
-            //                        }else{
-            //                            alert(data.msg);
-            //                            return false;
-            //                        }
-            //                    }
-            //                });
-        },
         updateNews: function updateNews() {
             var _this = this;
 
@@ -73807,7 +73787,7 @@ var render = function() {
                           attrs: {
                             "data-vv-rules": "required",
                             "data-vv-as": "动态文字",
-                            placeholder: "请输入内容（最多输入2000个）",
+                            placeholder: "请输入内容（最多输入1800个）",
                             rows: "3",
                             id: "dynamic",
                             name: "dynamic",
@@ -73837,9 +73817,9 @@ var render = function() {
                           _vm._v("图片:\n                                "),
                           _vm.images.length > 0
                             ? _c(
-                                "button",
+                                "a",
                                 {
-                                  staticClass: "btn btn-outline-success btn-sm",
+                                  staticClass: "text-info",
                                   on: { click: _vm.removeImage }
                                 },
                                 [_vm._v("移除全部图片")]

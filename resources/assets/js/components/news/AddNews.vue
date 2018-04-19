@@ -23,7 +23,7 @@
                                 <textarea
                                         v-model="dynamic"
                                         v-validate data-vv-rules="required" data-vv-as="动态文字"
-                                        placeholder="请输入内容（最多输入2000个）"
+                                        placeholder="请输入内容（最多输入1800个）"
                                         rows="3"
                                         :class="{'input': true, 'is-invalid': errors.has('dynamic') }"
                                         class="form-control" id="dynamic" name="dynamic" required></textarea>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group news-img">
                                 <label for="dynamic" class="col-form-label">图片:
-                                    <button class="btn btn-outline-success btn-sm" v-if="images.length >0" @click="removeImage">移除全部图片</button>
+                                    <a class="text-info" v-if="images.length >0" @click="removeImage">移除全部图片</a>
                                     <!--<button class="btn btn-outline-success btn-sm" v-if="images.length >0" @click='uploadImage'>上传</button>-->
                                 </label>
                                 <ul>
@@ -103,26 +103,6 @@
             },
             removeImage: function (e) {
                 this.images = [];
-            },
-            uploadImage: function () {
-                return false;
-                var obj = {};
-                obj.images = this.images
-//                $.ajax({
-//                    type: 'post',
-//                    url: "upload.php",
-//                    data: obj,
-//                    dataType: "json",
-//                    success: function(data) {
-//                        if(data.status){
-//                            alert(data.msg);
-//                            return false;
-//                        }else{
-//                            alert(data.msg);
-//                            return false;
-//                        }
-//                    }
-//                });
             },
             updateNews() {
                 const formData = {

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model
 {
-    protected $fillable=['user_id','pic'];
+    protected $fillable=['user_id','shop_id','pic'];
 }
