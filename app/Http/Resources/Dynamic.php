@@ -19,7 +19,7 @@ class Dynamic extends JsonResource
             'userid'=>$this->user_id,
             'shop_id'=>$this->shop_id,
             'content'=>$this->content,
-            'pic'=>$this->pic,
+            'pic'=>json_decode($this->pic),
             'published_at'=>$this->published_at,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
