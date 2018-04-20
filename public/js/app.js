@@ -75146,7 +75146,6 @@ exports.push([module.i, "\n.mg-news-img {\n    background: #f5f8fa;\n}\n.mg-news
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(29);
 //
 //
 //
@@ -75305,7 +75304,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -75313,7 +75311,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             dynamic: [],
             pics: []
         };
+    },
+
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            this.axios.get('/api/v1/shops/' + this.$route.params.id).then(function (response) {
+                _this.shop = response.data;
+            });
+        }
     }
+    //        data(){
+    //            return {
+    //                shop: [],
+    //            }
+    //        },
+    //        created(){
+    //            this.fetchData()
+    //        },
+    //        watch: {
+    //            '$route': 'fetchData'
+    //        },
+    //        methods: {
+    //            fetchData(){
+    //                this.axios.get('/api/v1/shops/' + this.$route.params.id).then(response => {
+    //                    this.shop = response.data
+    //                })
+    //            }
+    //        }
 });
 
 /***/ }),

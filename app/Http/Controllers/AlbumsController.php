@@ -10,7 +10,7 @@ class AlbumsController extends Controller
 {
     public function index()
     {
-        $albums = Album::paginate(5)->orderBy('id', 'desc');
+        $albums = Album::paginate(9);
         return new AlbumCollection($albums);
     }
 

@@ -157,7 +157,6 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
     export default {
         data() {
             return{
@@ -165,7 +164,13 @@
                 pics:[]
             }
         },
-
+        methods: {
+            fetchData(){
+                this.axios.get('/api/v1/shops/' + this.$route.params.id).then(response => {
+                    this.shop = response.data
+                })
+            }
+        }
 //        data(){
 //            return {
 //                shop: [],
