@@ -10,7 +10,7 @@ class ShopsController extends Controller
 {
     public function index()
     {
-        $shops = Shop::with('user')->paginate(5);
+        $shops = Shop::with('user')->orderBy('id', 'desc')->paginate(5);
         return new ShopCollection($shops);
     }
 

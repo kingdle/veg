@@ -26,6 +26,9 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     Route::resource('/users','UsersController');
     Route::resource('/shops','ShopsController');
     Route::resource('/dynamics','DynamicsController');
+    Route::resource('/albums','AlbumsController');
+    Route::resource('/sorts','SortsController');
+    Route::resource('/orders','OrdersController');
     Route::post('/shop/avatar','ShopsController@changeAvatar')->middleware('auth:api');
 
 });

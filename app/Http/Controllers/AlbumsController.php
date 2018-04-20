@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Album;
+use App\Http\Resources\AlbumCollection;
 use Illuminate\Http\Request;
 
 class AlbumsController extends Controller
 {
     public function index()
     {
-        $shops = Shop::with('user')->paginate(5);
-        return new ShopCollection($shops);
+        $albums = Album::paginate(5)->orderBy('id', 'desc');
+        return new AlbumCollection($albums);
     }
 
-    public function show($id)
+    public function show($shop_id)
     {
-        $shop = Shop::find($id);
-        if (!$shop) {
+        $album = Album::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(8);
+        if (!$album) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
-        return new \App\Http\Resources\Shop($shop);
+        return new AlbumCollection($album);
+
     }
 }

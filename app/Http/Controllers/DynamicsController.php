@@ -12,13 +12,13 @@ class DynamicsController extends Controller
 {
     public function index()
     {
-        $dynamics = Dynamic::with('user')->paginate(5);
+        $dynamics = Dynamic::with('user')->orderBy('id', 'desc')->paginate(5);
         return new DynamicCollection($dynamics);
     }
 
     public function show($shop_id)
     {
-        $dynamics = Dynamic::where('shop_id', $shop_id)->paginate(5);
+        $dynamics = Dynamic::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(5);
         if (!$dynamics) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
@@ -41,7 +41,7 @@ class DynamicsController extends Controller
                 $data = base64_decode($img);
                 $destinationPath = './images/dynamics/';
                 $sqlPath = '/images/dynamics/';
-                $fileName = $userid . date('YmdHis') . uniqid() . '.jpg';
+                $fileName = $userid . uniqid() . '.jpg';
                 $success = file_put_contents($destinationPath . $fileName, $data);
                 $filePath[] = $sqlPath . $fileName;
                 $data = array();
