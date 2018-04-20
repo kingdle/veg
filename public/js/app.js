@@ -75146,6 +75146,8 @@ exports.push([module.i, "\n.mg-news-img {\n    background: #f5f8fa;\n}\n.mg-news
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NewsList__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NewsList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__NewsList__);
 //
 //
 //
@@ -75181,165 +75183,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            dynamic: [],
-            pics: []
-        };
-    },
-
-    methods: {
-        fetchData: function fetchData() {
-            var _this = this;
-
-            this.axios.get('/api/v1/shops/' + this.$route.params.id).then(function (response) {
-                _this.shop = response.data;
-            });
-        }
+    components: {
+        Dynamics: __WEBPACK_IMPORTED_MODULE_0__NewsList___default.a
     }
-    //        data(){
-    //            return {
-    //                shop: [],
-    //            }
-    //        },
-    //        created(){
-    //            this.fetchData()
-    //        },
-    //        watch: {
-    //            '$route': 'fetchData'
-    //        },
-    //        methods: {
-    //            fetchData(){
-    //                this.axios.get('/api/v1/shops/' + this.$route.params.id).then(response => {
-    //                    this.shop = response.data
-    //                })
-    //            }
-    //        }
 });
 
 /***/ }),
@@ -75357,221 +75206,7 @@ var render = function() {
           _c("div", { staticClass: "card-body mt-2" }, [
             _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "card-columns" }, [
-                _c("div", { staticClass: "card card-img" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "p-2" }, [
-                    _c("p", { staticClass: "card-text mt-2 mb-0" }, [
-                      _vm._v(
-                        "\n                                        我们有一个梦想，就是要 用科技创新农业，用智慧振兴中国，用智能改变世界。\n                                    "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _c("small", { staticClass: "text-muted" }, [
-                        _c(
-                          "svg",
-                          {
-                            attrs: {
-                              id: "i-clock",
-                              viewBox: "0 0 32 32",
-                              width: "10",
-                              height: "10",
-                              fill: "none",
-                              stroke: "currentcolor",
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                              "stroke-width": "2"
-                            }
-                          },
-                          [
-                            _c("circle", {
-                              attrs: { cx: "16", cy: "16", r: "14" }
-                            }),
-                            _vm._v(" "),
-                            _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm._v(
-                          "\n                                            3分钟以前\n                                        "
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card card-img" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "p-2" }, [
-                    _c("p", { staticClass: "card-text mt-2 mb-0" }, [
-                      _vm._v("生根发芽、茁壮成长")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _c("small", { staticClass: "text-muted" }, [
-                        _c(
-                          "svg",
-                          {
-                            attrs: {
-                              id: "i-clock",
-                              viewBox: "0 0 32 32",
-                              width: "10",
-                              height: "10",
-                              fill: "none",
-                              stroke: "currentcolor",
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                              "stroke-width": "2"
-                            }
-                          },
-                          [
-                            _c("circle", {
-                              attrs: { cx: "16", cy: "16", r: "14" }
-                            }),
-                            _vm._v(" "),
-                            _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
-                          ]
-                        ),
-                        _vm._v(
-                          "\n                                            2小时以前\n                                        "
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card card-img" }, [
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "p-2" }, [
-                    _c("p", { staticClass: "card-text mt-2 mb-0" }, [
-                      _vm._v(
-                        '\n                                        欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"苗果"，或者扫码找到我们。'
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _c("small", { staticClass: "text-muted" }, [
-                        _c(
-                          "svg",
-                          {
-                            attrs: {
-                              id: "i-clock",
-                              viewBox: "0 0 32 32",
-                              width: "10",
-                              height: "10",
-                              fill: "none",
-                              stroke: "currentcolor",
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                              "stroke-width": "2"
-                            }
-                          },
-                          [
-                            _c("circle", {
-                              attrs: { cx: "16", cy: "16", r: "14" }
-                            }),
-                            _vm._v(" "),
-                            _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
-                          ]
-                        ),
-                        _vm._v(
-                          "\n                                            1天前\n                                        "
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card card-img" }, [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "p-2" }, [
-                    _c("p", { staticClass: "card-text mt-2 mb-0" }, [
-                      _vm._v(
-                        "\n                                        我们有一个梦想，就是要 用科技创新农业，用智慧振兴中国，用智能改变世界。\n                                    "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _c("small", { staticClass: "text-muted" }, [
-                        _c(
-                          "svg",
-                          {
-                            attrs: {
-                              id: "i-clock",
-                              viewBox: "0 0 32 32",
-                              width: "10",
-                              height: "10",
-                              fill: "none",
-                              stroke: "currentcolor",
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                              "stroke-width": "2"
-                            }
-                          },
-                          [
-                            _c("circle", {
-                              attrs: { cx: "16", cy: "16", r: "14" }
-                            }),
-                            _vm._v(" "),
-                            _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
-                          ]
-                        ),
-                        _vm._v(
-                          "\n                                            3分钟以前\n                                        "
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card card-img" }, [
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "p-2" }, [
-                    _c("p", { staticClass: "card-text mt-2 mb-0" }, [
-                      _vm._v("生根发芽、茁壮成长")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _c("small", { staticClass: "text-muted" }, [
-                        _c(
-                          "svg",
-                          {
-                            attrs: {
-                              id: "i-clock",
-                              viewBox: "0 0 32 32",
-                              width: "10",
-                              height: "10",
-                              fill: "none",
-                              stroke: "currentcolor",
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                              "stroke-width": "2"
-                            }
-                          },
-                          [
-                            _c("circle", {
-                              attrs: { cx: "16", cy: "16", r: "14" }
-                            }),
-                            _vm._v(" "),
-                            _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
-                          ]
-                        ),
-                        _vm._v(
-                          "\n                                            2小时以前\n                                        "
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ])
+            _c("div", { staticClass: "row" }, [_c("dynamics")], 1)
           ])
         ])
       ])
@@ -75628,155 +75263,6 @@ var staticRenderFns = [
           ])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mg-news-img" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mg-news-img" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1hb3b4ca50i3jlc06b4ck38a9hbd4_900x554.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_7h03h4l99g62eeba2b9ll1hlj35jg_985x751.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1a032kbl0cdeg20lkl4jj4df546kb_1024x687.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3jk778442c3d752b7d841c46jdbed_1024x702.jpg_100x100.jpg"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mg-news-img" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7kk4g5ih206aj72caa91lkc41fgcj_1024x683.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_7gj32aif6hh05dhg82eicg4b6a3fl_400x600.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180414_43ga4khkh73lgal0dll92k5fjjig2_400x600.jpg_100x100.jpg"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mg-news-img" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mg-news-img" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1hb3b4ca50i3jlc06b4ck38a9hbd4_900x554.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_7h03h4l99g62eeba2b9ll1hlj35jg_985x751.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_1a032kbl0cdeg20lkl4jj4df546kb_1024x687.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3jk778442c3d752b7d841c46jdbed_1024x702.jpg_100x100.jpg"
-        }
-      })
     ])
   }
 ]
@@ -77555,6 +77041,409 @@ exports.push([module.i, "\n.news-add .modal-body ul {\n    list-style: none outs
 
 // exports
 
+
+/***/ }),
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */,
+/* 624 */,
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
+/* 630 */,
+/* 631 */,
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(639)
+}
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(641)
+/* template */
+var __vue_template__ = __webpack_require__(642)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/news/NewsList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1016fee6", Component.options)
+  } else {
+    hotAPI.reload("data-v-1016fee6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 639 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(640);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(34)("22c7a81a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1016fee6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewsList.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1016fee6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewsList.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 640 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(33)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.mg-news-img {\n    background: #f5f8fa;\n}\n.mg-news-img img {\n    width: 72px;\n    margin: 0 1px 1px 0;\n}\n.mg-news .card-img {\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:first-child {\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:last-child {\n    border-bottom-right-radius: 0.5rem !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 641 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/v1/dynamics/1').then(function (response) {
+            console.log(response.data);
+            _this.dynamics = response.data.data;
+        });
+    },
+    data: function data() {
+        return {
+            dynamics: []
+        };
+    }
+});
+
+/***/ }),
+/* 642 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "card-columns" },
+    _vm._l(_vm.dynamics, function(dynamic) {
+      return _c("div", { key: dynamic.id, staticClass: "card card-img" }, [
+        _vm._m(0, true),
+        _vm._v(" "),
+        _c("div", { staticClass: "p-2" }, [
+          _c(
+            "p",
+            { staticClass: "card-text mt-2 mb-0" },
+            [
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: { name: "dynamics", params: { id: dynamic.id } }
+                  }
+                },
+                [_vm._v(_vm._s(dynamic.content))]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _c("small", { staticClass: "text-muted" }, [
+              _c(
+                "svg",
+                {
+                  attrs: {
+                    id: "i-clock",
+                    viewBox: "0 0 32 32",
+                    width: "10",
+                    height: "10",
+                    fill: "none",
+                    stroke: "currentcolor",
+                    "stroke-linecap": "round",
+                    "stroke-linejoin": "round",
+                    "stroke-width": "2"
+                  }
+                },
+                [
+                  _c("circle", { attrs: { cx: "16", cy: "16", r: "14" } }),
+                  _vm._v(" "),
+                  _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                ]
+              ),
+              _vm._v(
+                "\n                    " +
+                  _vm._s(dynamic.published_at) +
+                  "\n                "
+              )
+            ])
+          ])
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mg-news-img" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
+        }
+      }),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
+        }
+      }),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
+        }
+      }),
+      _c("img", {
+        attrs: {
+          src:
+            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
+        }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1016fee6", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

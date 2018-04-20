@@ -19,6 +19,9 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        if (!$user) {
+            return response()->json(['status' => false, 'status_code' => '401']);
+        }
         return new \App\Http\Resources\User($user);
     }
 

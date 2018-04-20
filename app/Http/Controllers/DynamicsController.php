@@ -19,7 +19,7 @@ class DynamicsController extends Controller
     public function show($shop_id)
     {
         $dynamics = Dynamic::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(9);
-        if (!$dynamics) {
+        if ($dynamics->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
         return new DynamicCollection($dynamics);
