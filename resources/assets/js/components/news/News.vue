@@ -27,6 +27,7 @@
                             <div class="card-columns">
                                 <div class="card card-img">
                                     <div class="mg-news-img">
+                                        <!--<img v-for="(image,pics)" :src="dynamic.image" alt="">-->
                                         <img src="http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"><img
                                             src="http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"><img
                                             src="http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"><img
@@ -34,6 +35,7 @@
                                     </div>
                                     <div class="p-2">
                                         <p class="card-text mt-2 mb-0">
+                                            <!--{{ dynamic.content }} -->
                                             我们有一个梦想，就是要 用科技创新农业，用智慧振兴中国，用智能改变世界。
                                         </p>
                                         <p class="card-text">
@@ -45,6 +47,7 @@
                                                     <circle cx="16" cy="16" r="14"/>
                                                     <path d="M16 8 L16 16 20 20"/>
                                                 </svg>
+                                                <!--{{ dynamic.updated_at }}-->
                                                 3分钟以前
                                             </small>
                                         </p>
@@ -145,7 +148,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -157,14 +159,13 @@
 <script>
     import {mapState} from 'vuex'
     export default {
-        created(){
-            this.$store.dispatch('setAuthShop')
+        data() {
+            return{
+                dynamic:[],
+                pics:[]
+            }
         },
-        computed: {
-            ...mapState({
-                shop: state => state.AuthShop
-            })
-        },
+
 //        data(){
 //            return {
 //                shop: [],
@@ -195,9 +196,11 @@
         width: 72px;
         margin: 0 1px 1px 0;
     }
-.mg-news .card-img{
-    border-top-left-radius: 0.5rem !important;
-}
+
+    .mg-news .card-img {
+        border-top-left-radius: 0.5rem !important;
+    }
+
     .mg-news-img img:first-child {
         border-top-left-radius: 0.5rem !important;
     }

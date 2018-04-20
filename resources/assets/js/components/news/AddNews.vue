@@ -31,6 +31,7 @@
                             </div>
                             <div class="form-group news-img">
                                 <label for="dynamic" class="col-form-label">图片:
+                                    选中{{images.length}}张
                                     <a class="text-info" v-if="images.length >0" @click="removeImage">移除全部图片</a>
                                     <!--<button class="btn btn-outline-success btn-sm" v-if="images.length >0" @click='uploadImage'>上传</button>-->
                                 </label>
@@ -69,7 +70,7 @@
         data() {
             return {
                 dynamic: '',
-                images: []
+                images: [],
             }
         },
         methods: {

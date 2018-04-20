@@ -73636,6 +73636,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -73814,7 +73815,11 @@ var render = function() {
                           attrs: { for: "dynamic" }
                         },
                         [
-                          _vm._v("图片:\n                                "),
+                          _vm._v(
+                            "图片:\n                                选中" +
+                              _vm._s(_vm.images.length) +
+                              "张\n                                "
+                          ),
                           _vm.images.length > 0
                             ? _c(
                                 "a",
@@ -75130,7 +75135,7 @@ exports = module.exports = __webpack_require__(33)(false);
 
 
 // module
-exports.push([module.i, "\n.mg-news-img {\n        background: #f5f8fa;\n}\n.mg-news-img img {\n        width: 72px;\n        margin: 0 1px 1px 0;\n}\n.mg-news .card-img{\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:first-child {\n        border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:last-child {\n        border-bottom-right-radius: 0.5rem !important;\n}\n", ""]);
+exports.push([module.i, "\n.mg-news-img {\n    background: #f5f8fa;\n}\n.mg-news-img img {\n    width: 72px;\n    margin: 0 1px 1px 0;\n}\n.mg-news .card-img {\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:first-child {\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:last-child {\n    border-bottom-right-radius: 0.5rem !important;\n}\n", ""]);
 
 // exports
 
@@ -75142,8 +75147,8 @@ exports.push([module.i, "\n.mg-news-img {\n        background: #f5f8fa;\n}\n.mg-
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(29);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
+//
+//
 //
 //
 //
@@ -75303,33 +75308,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {
-        this.$store.dispatch('setAuthShop');
-    },
-
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])({
-        shop: function shop(state) {
-            return state.AuthShop;
-        }
-    }))
-    //        data(){
-    //            return {
-    //                shop: [],
-    //            }
-    //        },
-    //        created(){
-    //            this.fetchData()
-    //        },
-    //        watch: {
-    //            '$route': 'fetchData'
-    //        },
-    //        methods: {
-    //            fetchData(){
-    //                this.axios.get('/api/v1/shops/' + this.$route.params.id).then(response => {
-    //                    this.shop = response.data
-    //                })
-    //            }
-    //        }
+    data: function data() {
+        return {
+            dynamic: [],
+            pics: []
+        };
+    }
 });
 
 /***/ }),
@@ -75384,6 +75368,7 @@ var render = function() {
                             _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
                           ]
                         ),
+                        _vm._v(" "),
                         _vm._v(
                           "\n                                            3分钟以前\n                                        "
                         )
@@ -77494,12 +77479,12 @@ var isDefinedGlobally = function isDefinedGlobally() {
             var dispatch = _ref.dispatch;
 
             return axios.post('/api/v1/dynamics', formData).then(function (response) {
-                console.log(response.data);
+                // console.log(response.data)
                 $('#AddNewsModalCenter').modal('hide');
-                // dispatch('showNotification', {level: 'success', msg: '动态发布成功'})
+                dispatch('showNotification', { level: 'success', msg: '动态发布成功' });
             }).catch(function (errors) {
                 $('#AddNewsModalCenter').modal('hide');
-                // dispatch('showNotification', {level: 'error', msg: '动态发布成功'})
+                dispatch('showNotification', { level: 'error', msg: '动态发布失败' });
             });
         }
     }
