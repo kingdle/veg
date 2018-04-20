@@ -12,13 +12,13 @@ class DynamicsController extends Controller
 {
     public function index()
     {
-        $dynamics = Dynamic::with('user')->orderBy('id', 'desc')->paginate(5);
+        $dynamics = Dynamic::with('user')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
 
     public function show($shop_id)
     {
-        $dynamics = Dynamic::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(5);
+        $dynamics = Dynamic::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(9);
         if (!$dynamics) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }

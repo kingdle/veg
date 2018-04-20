@@ -12,7 +12,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = User::with('shop')->orderBy('id', 'desc')->paginate(5);
+        $users = User::with('shop')->orderBy('id', 'desc')->paginate(9);
         return new UserCollection($users);
     }
 

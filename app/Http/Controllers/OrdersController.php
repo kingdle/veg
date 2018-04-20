@@ -11,7 +11,7 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        $orders = Order::paginate(5);
+        $orders = Order::paginate(9);
         return new OrderCollection($orders);
     }
 
