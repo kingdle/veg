@@ -12,7 +12,7 @@ class DynamicsController extends Controller
 {
     public function index()
     {
-        $dynamics = Dynamic::with('user')->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
 
