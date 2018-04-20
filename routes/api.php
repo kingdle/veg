@@ -26,6 +26,7 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     Route::resource('/users','UsersController');
     Route::resource('/shops','ShopsController');
     Route::resource('/dynamics','DynamicsController');
+    Route::get('/dynamics-user','DynamicsController@user')->middleware('auth:api');
     Route::resource('/albums','AlbumsController');
     Route::resource('/sorts','SortsController');
     Route::resource('/orders','OrdersController');

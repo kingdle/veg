@@ -24,7 +24,15 @@ class DynamicsController extends Controller
         }
         return new DynamicCollection($dynamics);
     }
-
+    public function user()
+    {
+        $shopid = Auth::guard('api')->user()->shop->id;
+        $dynamics = Dynamic::where('shop_id', $shopid)->orderBy('id', 'desc')->paginate(9);
+        if ($dynamics->count() == 0) {
+            return response()->json(['status' => false, 'status_code' => '401']);
+        }
+        return new DynamicCollection($dynamics);
+    }
     public function store(Request $request, Dynamic $dynamic)
     {
         $content = $request->dynamic;

@@ -91,6 +91,12 @@ let routes = [
                 meta: {requiresAuth: true}
             },
             {
+                path: '/dynamic',
+                name: 'Dynamic',
+                component: require('./components/news/Index'),
+                meta: {requiresAuth: true}
+            },
+            {
                 path: '/home',
                 name: 'profile.Home',
                 component: require('./components/home/Home'),

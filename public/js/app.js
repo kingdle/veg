@@ -62297,6 +62297,11 @@ var routes = [{
         component: __webpack_require__(150),
         meta: { requiresAuth: true }
     }, {
+        path: '/dynamic',
+        name: 'Dynamic',
+        component: __webpack_require__(643),
+        meta: { requiresAuth: true }
+    }, {
         path: '/home',
         name: 'profile.Home',
         component: __webpack_require__(465),
@@ -77314,17 +77319,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/api/v1/dynamics/1').then(function (response) {
-            console.log(response.data);
+        axios.get('/api/v1/dynamics-user').then(function (response) {
             _this.dynamics = response.data.data;
         });
     },
@@ -77348,7 +77348,13 @@ var render = function() {
     { staticClass: "card-columns" },
     _vm._l(_vm.dynamics, function(dynamic) {
       return _c("div", { key: dynamic.id, staticClass: "card card-img" }, [
-        _vm._m(0, true),
+        _c(
+          "div",
+          { staticClass: "mg-news-img" },
+          _vm._l(dynamic.pic, function(image) {
+            return _c("img", { attrs: { src: image } })
+          })
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "p-2" }, [
           _c(
@@ -77358,9 +77364,7 @@ var render = function() {
               _c(
                 "router-link",
                 {
-                  attrs: {
-                    to: { name: "dynamics", params: { id: dynamic.id } }
-                  }
+                  attrs: { to: { name: "Dynamic", params: { id: dynamic.id } } }
                 },
                 [_vm._v(_vm._s(dynamic.content))]
               )
@@ -77403,45 +77407,154 @@ var render = function() {
     })
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mg-news-img" }, [
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_3g3eejlhkfd842g627fk5ef4d7gfh_950x629.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_0agf38037ji8jk1j6l7akj7ii2bf5_2048x1360.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_4ad38l7a9j49i28k8l793l174gc3g_600x450.jpg_100x100.jpg"
-        }
-      }),
-      _c("img", {
-        attrs: {
-          src:
-            "http://s3.mogucdn.com/mlcdn/bd3fc0/180415_72fg7d62k3b1275fa6k1j1219dgj5_1024x650.jpg_100x100.jpg"
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1016fee6", module.exports)
+  }
+}
+
+/***/ }),
+/* 643 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(644)
+/* template */
+var __vue_template__ = __webpack_require__(645)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/news/Index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-55fd9666", Component.options)
+  } else {
+    hotAPI.reload("data-v-55fd9666", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 644 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/posts').then(function (response) {
+            _this.posts = response.data.data;
+        });
+    },
+    data: function data() {
+        return {
+            posts: []
+        };
+    }
+});
+
+/***/ }),
+/* 645 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+      _c("div", { staticClass: "panel panel-default" }, [
+        _c("div", { staticClass: "panel-heading" }, [_vm._v("动态活跃度")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "panel-body" },
+          _vm._l(_vm.posts, function(post) {
+            return _c(
+              "div",
+              { key: post.id, staticClass: "bs-callout bs-callout-danger" },
+              [
+                _c(
+                  "h4",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: { name: "posts", params: { id: post.id } }
+                        }
+                      },
+                      [_vm._v(_vm._s(post.title))]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(post.body))])
+              ]
+            )
+          })
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-55fd9666", module.exports)
   }
 }
 
