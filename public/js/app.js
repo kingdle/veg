@@ -63815,6 +63815,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         cropSuccess: function cropSuccess(imgDataUrl, field) {
             console.log('-------- crop success --------');
+            console.log(imgDataUrl);
             this.imgDataUrl = imgDataUrl;
             //                this.shop.avatar = imgDataUrl;
         },
@@ -73696,6 +73697,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.$store.dispatch('addNewsRequest', formData).then(function (response) {
                 _this.$router.push({ name: 'profile.News' });
+                _this.dynamic = '';
+                _this.images = [];
             }).catch(function (error) {});
         }
     }
@@ -75193,6 +75196,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         Dynamics: __WEBPACK_IMPORTED_MODULE_0__NewsList___default.a
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/v1/dynamics-user').then(function (response) {
+            _this.dynamics = response.data.data;
+        });
+    },
+    data: function data() {
+        return {
+            dynamics: []
+        };
     }
 });
 
@@ -75211,7 +75226,12 @@ var render = function() {
           _c("div", { staticClass: "card-body mt-2" }, [
             _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [_c("dynamics")], 1)
+            _c(
+              "div",
+              { staticClass: "row" },
+              [_c("dynamics", { attrs: { dynamics: _vm.dynamics } })],
+              1
+            )
           ])
         ])
       ])
@@ -77321,18 +77341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        var _this = this;
-
-        axios.get('/api/v1/dynamics-user').then(function (response) {
-            _this.dynamics = response.data.data;
-        });
-    },
-    data: function data() {
-        return {
-            dynamics: []
-        };
-    }
+    props: ['dynamics']
 });
 
 /***/ }),

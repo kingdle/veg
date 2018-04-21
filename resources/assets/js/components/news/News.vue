@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="row">
-                                <dynamics></dynamics>
+                                <dynamics :dynamics="dynamics"></dynamics>
                         </div>
                     </div>
                 </div>
@@ -38,6 +38,16 @@
     export default {
         components:{
             Dynamics
+        },
+        mounted() {
+            axios.get('/api/v1/dynamics-user').then(response => {
+                this.dynamics = response.data.data
+            })
+        },
+        data() {
+            return{
+                dynamics:[]
+            }
         }
     }
 

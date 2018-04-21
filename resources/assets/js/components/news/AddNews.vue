@@ -112,6 +112,8 @@
                 }
                 this.$store.dispatch('addNewsRequest', formData).then(response => {
                     this.$router.push({name: 'profile.News'})
+                    this.dynamic=''
+                    this.images=[]
                 }).catch(error => {
 
                 })
