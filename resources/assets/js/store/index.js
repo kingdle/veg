@@ -10,7 +10,7 @@ import EditShop from './modules/edit-shop'
 import Notification from './modules/notification'
 
 import AddNews from './modules/add-news'
-
+import addDynamicRequest from './modules/add-dynamic'
 
 Vue.use(Vuex)
 
@@ -23,7 +23,8 @@ export default new Vuex.Store({
         EditPassword,
         EditShop,
         Notification,
-        AddNews
+        AddNews,
+        addDynamicRequest
     },
     strict: true
 })

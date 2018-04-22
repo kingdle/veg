@@ -7,6 +7,7 @@ use App\Http\Resources\DynamicCollection;
 use App\Dynamic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DynamicsController extends Controller
 {
@@ -24,6 +25,7 @@ class DynamicsController extends Controller
         }
         return new DynamicCollection($dynamics);
     }
+
     public function user()
     {
         $shopid = Auth::guard('api')->user()->shop->id;
@@ -33,6 +35,79 @@ class DynamicsController extends Controller
         }
         return new DynamicCollection($dynamics);
     }
+
+    public function newspost(Request $request, Album $album)
+    {
+        if (!$request->hasFile('file')) {
+            return response()->json([
+                'status'=>'false',
+                'status_code' => 404,
+                'message' => '服务器端错误，请重新上传',
+            ]);
+        }
+        $file = $request->file('file');
+        $userid = Auth::guard('api')->user()->id;
+        $shopid = Auth::guard('api')->user()->shop->id;
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();     // image/jpeg
+
+            // 上传文件
+            $filename = 'dynamics/' . 'MG' . uniqid() . '.' . $ext;
+            Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
+            $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
+            $album->user_id = $userid;
+            $album->shop_id = $shopid;
+            $album->pic = json_encode($filePath);
+            $album->save();
+            return response()->json([
+                'status'=>'true',
+                'status_code' => 200,
+                'message' => '上传成功',
+                'photo' => $filePath,
+                'name' => $originalName,
+            ]);
+        }else{
+            return response()->json([
+                'status'=>'false',
+                'status_code' => 500,
+                'message' => '服务器端错误，请重新上传',
+            ]);
+        }
+
+    }
+
+    public function news(Request $request, Dynamic $dynamic)
+    {
+        $imageurl = $request->imageurl;
+        $userid = Auth::guard('api')->user()->id;
+        $shopid = Auth::guard('api')->user()->shop->id;
+        $content = $request->dynamicContent;
+
+        $dynamic->user_id = $userid;
+        $dynamic->shop_id = $shopid;
+        $dynamic->content = $content;
+        $dynamic->pic = $imageurl;
+        $success = $dynamic->save();
+
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = '动态发布成功';
+            $data['url'] = $filePath;
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '501';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+
+    }
+
     public function store(Request $request, Dynamic $dynamic)
     {
         $content = $request->dynamic;
@@ -47,13 +122,14 @@ class DynamicsController extends Controller
                 $start = strpos($img, ',');
                 $img = substr($img, $start + 1);
                 $data = base64_decode($img);
-                $destinationPath = './images/dynamics/';
-                $sqlPath = '/images/dynamics/';
-                $fileName = $userid . uniqid() . '.jpg';
-                $success = file_put_contents($destinationPath . $fileName, $data);
-                $filePath[] = $sqlPath . $fileName;
+                $fileName = 'dynamics/' . 'MG' . uniqid() . '.jpg';
+                Storage::disk('upyun')->write($fileName, $data);
+                $filePathOne = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $fileName;
+                $filePath[] = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $fileName;
+//                $success = file_put_contents($destinationPath . $fileName, $data);
+//                $filePath[] = $sqlPath . $fileName;
                 $data = array();
-                Album::create(['user_id' => $userid, 'shop_id' => $shopid, 'pic' => json_encode($sqlPath . $fileName)]);
+                Album::create(['user_id' => $userid, 'shop_id' => $shopid, 'pic' => json_encode($filePathOne)]);
             }
         }
 
@@ -61,7 +137,7 @@ class DynamicsController extends Controller
         $dynamic->shop_id = $shopid;
         $dynamic->content = $content;
         $dynamic->pic = json_encode($filePath);
-        $dynamic->save();
+        $success=$dynamic->save();
 
         if ($success) {
             $data['status'] = true;
@@ -74,28 +150,6 @@ class DynamicsController extends Controller
             $data['msg'] = '系统繁忙，请售后再试';
             return json_encode($data);
         }
-//         这是postman多图上传的存储方式
-//        $file = $request->file('images');
-//        $filePath = [];
-//        if($file){
-//            foreach ($file as $key => $value) {
-//                if (!$value->isValid()) {
-//                    return $this->response->errorNotFound('图片上传失败，请重试');
-//                }
-//                if (!empty($value)) {
-//                    $allowed_extensions = ["png", "jpg", "jpeg", "gif"];
-//                    if ($value->getClientOriginalExtension() && !in_array($value->getClientOriginalExtension(), $allowed_extensions)) {
-//                        return $this->response->errorNotFound('您只能上传PNG、JPG或GIF格式的图片！');
-//                    }
-//                    $destinationPath = '/uploads/images/project/' . date("Ym", time()) . '/' . date("d", time());
-//                    $extension = $value->getClientOriginalExtension();
-//                    $fileName = date('YmdHis') . mt_rand(100, 999) . '.' . $extension;
-//                    $value->move(public_path() . $destinationPath, $fileName);
-//                    $filePath[] = $destinationPath . '/' . $fileName;
-//
-//                }
-//            }
-//        }
-//        $news->images = json_encode($filePath);
+
     }
 }

@@ -32,7 +32,7 @@
                                             查订单
                                         </router-link>
                                         </a>
-                                    <p class="mt-3 text-muted">每天发一条动态可以提高排名。</p>
+                                    <p class="mt-3 text-muted">经常发动态就是最好的营销。</p>
                                 </div>
                             </div>
 

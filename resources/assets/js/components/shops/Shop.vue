@@ -112,7 +112,7 @@
             },
             cropSuccess(imgDataUrl, field){
                 console.log('-------- crop success --------');
-                console.log(imgDataUrl)
+//                console.log(imgDataUrl)
                 this.imgDataUrl = imgDataUrl
 //                this.shop.avatar = imgDataUrl;
             },

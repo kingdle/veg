@@ -36048,6 +36048,8 @@ if (inBrowser && window.Vue) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_edit_shop__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_notification__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_add_news__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_add_dynamic__ = __webpack_require__(646);
+
 
 
 
@@ -36072,7 +36074,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         EditPassword: __WEBPACK_IMPORTED_MODULE_6__modules_edit_password__["a" /* default */],
         EditShop: __WEBPACK_IMPORTED_MODULE_7__modules_edit_shop__["a" /* default */],
         Notification: __WEBPACK_IMPORTED_MODULE_8__modules_notification__["a" /* default */],
-        AddNews: __WEBPACK_IMPORTED_MODULE_9__modules_add_news__["a" /* default */]
+        AddNews: __WEBPACK_IMPORTED_MODULE_9__modules_add_news__["a" /* default */],
+        addDynamicRequest: __WEBPACK_IMPORTED_MODULE_10__modules_add_dynamic__["a" /* default */]
     },
     strict: true
 }));
@@ -37468,7 +37471,6 @@ window.Vue = __webpack_require__(108);
 
 
 
-//
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 
@@ -63815,7 +63817,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         cropSuccess: function cropSuccess(imgDataUrl, field) {
             console.log('-------- crop success --------');
-            console.log(imgDataUrl);
+            //                console.log(imgDataUrl)
             this.imgDataUrl = imgDataUrl;
             //                this.shop.avatar = imgDataUrl;
         },
@@ -75143,7 +75145,7 @@ exports = module.exports = __webpack_require__(33)(false);
 
 
 // module
-exports.push([module.i, "\n.mg-news-img {\n    background: #f5f8fa;\n}\n.mg-news-img img {\n    width: 72px;\n    margin: 0 1px 1px 0;\n}\n.mg-news .card-img {\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:first-child {\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:last-child {\n    border-bottom-right-radius: 0.5rem !important;\n}\n", ""]);
+exports.push([module.i, "\n.mg-news-img {\n    background: #f5f8fa;\n}\n.mg-news-img img {\n    width: 72px;\n    margin: 0 1px 1px 0;\n}\n.mg-news .card-img {\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:first-child {\n    border-top-left-radius: 0.5rem !important;\n}\n.mg-news-img img:last-child {\n    border-bottom-right-radius: 0.5rem !important;\n}\n.mg-upload-image .el-upload--picture-card {\n    background-color: #fbfdff;\n    border: 1px dashed #c0ccda;\n    border-radius: 6px;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    width: 82px;\n    height: 82px;\n    line-height: 82px;\n    vertical-align: top;\n}\n.mg-upload-image .el-upload-list--picture-card .el-upload-list__item {\n    width: 82px;\n    height: 82px;\n}\n", ""]);
 
 // exports
 
@@ -75228,7 +75230,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "row" },
+              { staticClass: "row mt-3 border-top" },
               [_c("dynamics", { attrs: { dynamics: _vm.dynamics } })],
               1
             )
@@ -75725,7 +75727,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("p", { staticClass: "mt-3 text-muted" }, [
-                      _vm._v("每天发一条动态可以提高排名。")
+                      _vm._v("经常发动态就是最好的营销。")
                     ])
                   ]
                 )
@@ -77339,9 +77341,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['dynamics']
+    props: ['dynamics'],
+    data: function data() {
+        return {
+            dialogImageUrl: ''
+        };
+    },
+
+    methods: {
+        handlePreview: function handlePreview(image) {
+            this.dialogImageUrl = image;
+        }
+    }
 });
 
 /***/ }),
@@ -77354,69 +77385,150 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "card-columns" },
-    _vm._l(_vm.dynamics, function(dynamic) {
-      return _c("div", { key: dynamic.id, staticClass: "card card-img" }, [
-        _c(
-          "div",
-          { staticClass: "mg-news-img" },
-          _vm._l(dynamic.pic, function(image) {
-            return _c("img", { attrs: { src: image } })
-          })
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "p-2" }, [
+    { staticClass: "card-columns pt-3" },
+    [
+      _vm._l(_vm.dynamics, function(dynamic) {
+        return _c("div", { key: dynamic.id, staticClass: "card card-img" }, [
           _c(
-            "p",
-            { staticClass: "card-text mt-2 mb-0" },
-            [
-              _c(
-                "router-link",
-                {
-                  attrs: { to: { name: "Dynamic", params: { id: dynamic.id } } }
+            "div",
+            { staticClass: "mg-news-img" },
+            _vm._l(dynamic.pic, function(image) {
+              return _c("img", {
+                attrs: {
+                  src: image + "!mp.v100",
+                  "data-toggle": "modal",
+                  "data-target": ".dynamic-image-lg"
                 },
-                [_vm._v(_vm._s(dynamic.content))]
-              )
-            ],
-            1
+                on: {
+                  click: function($event) {
+                    _vm.handlePreview(image + "!mp.v1080")
+                  }
+                }
+              })
+            })
           ),
           _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [
-            _c("small", { staticClass: "text-muted" }, [
-              _c(
-                "svg",
-                {
-                  attrs: {
-                    id: "i-clock",
-                    viewBox: "0 0 32 32",
-                    width: "10",
-                    height: "10",
-                    fill: "none",
-                    stroke: "currentcolor",
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round",
-                    "stroke-width": "2"
-                  }
-                },
-                [
-                  _c("circle", { attrs: { cx: "16", cy: "16", r: "14" } }),
-                  _vm._v(" "),
-                  _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
-                ]
-              ),
-              _vm._v(
-                "\n                    " +
-                  _vm._s(dynamic.published_at) +
-                  "\n                "
-              )
+          _c("div", { staticClass: "p-2" }, [
+            _c(
+              "p",
+              { staticClass: "card-text mt-2 mb-0" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: { name: "Dynamic", params: { id: dynamic.id } }
+                    }
+                  },
+                  [_vm._v(_vm._s(dynamic.content))]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "card-text" }, [
+              _c("small", { staticClass: "text-muted" }, [
+                _c(
+                  "svg",
+                  {
+                    attrs: {
+                      id: "i-clock",
+                      viewBox: "0 0 32 32",
+                      width: "10",
+                      height: "10",
+                      fill: "none",
+                      stroke: "currentcolor",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2"
+                    }
+                  },
+                  [
+                    _c("circle", { attrs: { cx: "16", cy: "16", r: "14" } }),
+                    _vm._v(" "),
+                    _c("path", { attrs: { d: "M16 8 L16 16 20 20" } })
+                  ]
+                ),
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(dynamic.published_at) +
+                    "\n                "
+                )
+              ])
             ])
           ])
         ])
-      ])
-    })
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade dynamic-image-lg",
+          attrs: {
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "dynamicLargeImageLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-lg",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("img", {
+                    attrs: {
+                      width: "100%",
+                      src: _vm.dialogImageUrl,
+                      alt: "",
+                      "data-toggle": "modal",
+                      "data-target": ".dynamic-image-lg"
+                    }
+                  })
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ],
+    2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("图片预览")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -77566,6 +77678,26 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-55fd9666", module.exports)
   }
 }
+
+/***/ }),
+/* 646 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    actions: {
+        addDynamicRequest: function addDynamicRequest(_ref, formData) {
+            var dispatch = _ref.dispatch;
+
+            return axios.post('api/v1/news/addnews', formData).then(function (response) {
+                console.log(response.data);
+                dispatch('showNotification', { level: 'success', msg: '动态发布成功' });
+            }).catch(function (errors) {
+                dispatch('showNotification', { level: 'error', msg: '动态发布失败' });
+            });
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

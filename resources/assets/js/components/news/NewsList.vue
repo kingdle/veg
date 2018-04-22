@@ -1,8 +1,8 @@
 <template>
-    <div class="card-columns">
+    <div class="card-columns pt-3">
         <div v-for="dynamic in dynamics" :key="dynamic.id" class="card card-img">
             <div class="mg-news-img">
-                <img v-for="image in dynamic.pic" :src="image">
+                <img v-for="image in dynamic.pic" :src="image +'!mp.v100'" @click="handlePreview(image +'!mp.v1080')" data-toggle="modal" data-target=".dynamic-image-lg">
             </div>
             <div class="p-2">
                 <p class="card-text mt-2 mb-0">
@@ -22,11 +22,39 @@
                 </p>
             </div>
         </div>
+        <div class="modal fade dynamic-image-lg" tabindex="-1" role="dialog" aria-labelledby="dynamicLargeImageLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">图片预览</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img width="100%" :src="dialogImageUrl"
+                             alt=""  data-toggle="modal" data-target=".dynamic-image-lg">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 <script>
     export default {
-        props:['dynamics']
+        props:['dynamics'],
+        data() {
+            return {
+                dialogImageUrl: '',
+            }
+        },
+        methods:{
+            handlePreview(image) {
+                this.dialogImageUrl = image;
+            },
+        }
     }
 </script>
 <style>
