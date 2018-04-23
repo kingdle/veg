@@ -2,7 +2,7 @@
     <div class="mg-shop">
         <div class="row">
             <div class="col-md-12 px-0">
-                <div class="card flex-row mb-3">
+                <div class="card flex-row mb-3 border-0">
                     <div class="card-body mt-2">
                         <div class="row">
                             <div class="col-12">

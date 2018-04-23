@@ -28,7 +28,7 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     Route::resource('/dynamics','DynamicsController');
     Route::get('/dynamics-user','DynamicsController@user')->middleware('auth:api');
     Route::post('/news/addnews','DynamicsController@news')->middleware('auth:api');
-    Route::post('/news/addnewspost','DynamicsController@newspost')->middleware('auth:api');
+    Route::post('/news/image','DynamicsController@image')->middleware('auth:api');
     Route::resource('/albums','AlbumsController');
     Route::resource('/sorts','SortsController');
     Route::resource('/orders','OrdersController');

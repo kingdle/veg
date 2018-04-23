@@ -62251,14 +62251,14 @@ var routes = [{
     component: __webpack_require__(416),
     meta: { requiresGuest: true }
 }, {
-    path: '/confirm',
-    name: 'confirm',
-    component: __webpack_require__(424),
-    meta: {}
-}, {
     path: '/profile',
     component: __webpack_require__(427),
     children: [{
+        path: '/confirm',
+        name: 'confirm',
+        component: __webpack_require__(424),
+        meta: { requiresGuest: true }
+    }, {
         path: '',
         name: 'profile',
         component: __webpack_require__(443),
@@ -70937,7 +70937,7 @@ var render = function() {
   return _c("div", { staticClass: "mg-shop" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 px-0" }, [
-        _c("div", { staticClass: "card flex-row mb-3" }, [
+        _c("div", { staticClass: "card flex-row mb-3 border-0" }, [
           _c("div", { staticClass: "card-body mt-2" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-12" }, [
@@ -72128,7 +72128,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-md-8" }, [
           _c("div", { staticClass: "card card-default" }, [
             _c("div", { staticClass: "card-header" }, [
-              _c("h4", [_vm._v("新注册商户需要认证")])
+              _c("h4", [_vm._v("新注册商户需要上传简单资料就可以发动态了")])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
@@ -74173,7 +74173,7 @@ var render = function() {
   return _c("div", { staticClass: "mg-profile" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 px-0" }, [
-        _c("div", { staticClass: "card flex-row mb-3" }, [
+        _c("div", { staticClass: "card flex-row mb-3 border-0" }, [
           _c("div", { staticClass: "card-body mt-2" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-12" }, [
@@ -74840,7 +74840,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "mg-orders" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12 px-0" }, [
-          _c("div", { staticClass: "card flex-row mb-3" }, [
+          _c("div", { staticClass: "card flex-row mb-3 border-0" }, [
             _c("div", { staticClass: "card-body mt-2" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-12" }, [
@@ -75224,7 +75224,7 @@ var render = function() {
   return _c("div", { staticClass: "mg-news" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 px-0" }, [
-        _c("div", { staticClass: "card flex-row mb-3" }, [
+        _c("div", { staticClass: "card flex-row mb-3 border-0" }, [
           _c("div", { staticClass: "card-body mt-2" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -75267,7 +75267,7 @@ var staticRenderFns = [
             ),
             _vm._v(" "),
             _c("p", { staticClass: "mt-3 text-muted" }, [
-              _vm._v("经常发动态就是最好的营销,也会留下美好的回忆。")
+              _vm._v("在这留下美好的回忆。")
             ])
           ]
         )
@@ -77416,6 +77416,7 @@ var render = function() {
                 _c(
                   "router-link",
                   {
+                    staticClass: "text-info",
                     attrs: {
                       to: { name: "Dynamic", params: { id: dynamic.id } }
                     }

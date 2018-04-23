@@ -36,18 +36,19 @@ class DynamicsController extends Controller
         return new DynamicCollection($dynamics);
     }
 
-    public function newspost(Request $request, Album $album)
+    public function image(Request $request, Album $album)
     {
+        $file = $request->file('file');
+        $userid = Auth::guard('api')->user()->id;
+        $shopid = Auth::guard('api')->user()->shop->id;
+
         if (!$request->hasFile('file')) {
             return response()->json([
                 'status'=>'false',
                 'status_code' => 404,
-                'message' => '服务器端错误，请重新上传',
+                'message' => '未获取到图片，请重新上传',
             ]);
         }
-        $file = $request->file('file');
-        $userid = Auth::guard('api')->user()->id;
-        $shopid = Auth::guard('api')->user()->shop->id;
         if ($file->isValid()) {
             // 获取文件相关信息
             $originalName = $file->getClientOriginalName(); // 文件原名
@@ -67,7 +68,7 @@ class DynamicsController extends Controller
                 'status'=>'true',
                 'status_code' => 200,
                 'message' => '上传成功',
-                'photo' => $filePath,
+                'url' => $filePath,
                 'name' => $originalName,
             ]);
         }else{

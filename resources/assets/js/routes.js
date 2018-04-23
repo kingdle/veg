@@ -33,15 +33,15 @@ let routes = [
         meta: {requiresGuest: true}
     },
     {
-        path: '/confirm',
-        name: 'confirm',
-        component: require('./components/confirm/Email'),
-        meta: {}
-    },
-    {
         path: '/profile',
         component: require('./components/user/ProfileWrapper'),
         children: [
+            {
+                path: '/confirm',
+                name: 'confirm',
+                component: require('./components/confirm/Email'),
+                meta: {requiresGuest: true}
+            },
             {
                 path: '',
                 name: 'profile',

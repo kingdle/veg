@@ -2,7 +2,7 @@
     <div class="mg-news">
         <div class="row">
             <div class="col-md-12 px-0">
-                <div class="card flex-row mb-3">
+                <div class="card flex-row mb-3 border-0">
                     <div class="card-body mt-2">
                         <div class="row my-3">
                             <div class="col-sm-6 col-7">
@@ -10,7 +10,7 @@
                                      style="border-right:1px solid #eaeaea;">
                                     <a class="btn btn-success m-r-10 text-light" data-toggle="modal"
                                        data-target="#AddNewsModalCenter">发动态</a>
-                                    <p class="mt-3 text-muted">经常发动态就是最好的营销,也会留下美好的回忆。</p>
+                                    <p class="mt-3 text-muted">在这留下美好的回忆。</p>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-5">

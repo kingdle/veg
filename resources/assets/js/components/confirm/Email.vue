@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card card-default">
                     <div class="card-header">
-                        <h4>新注册商户需要认证</h4>
+                        <h4>新注册商户需要上传简单资料就可以发动态了</h4>
                     </div>
 
                     <div class="card-body">

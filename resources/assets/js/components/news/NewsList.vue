@@ -6,7 +6,7 @@
             </div>
             <div class="p-2">
                 <p class="card-text mt-2 mb-0">
-                    <router-link :to="{ name: 'Dynamic', params: { id: dynamic.id }}">{{ dynamic.content }}</router-link>
+                    <router-link :to="{ name: 'Dynamic', params: { id: dynamic.id }}" class="text-info">{{ dynamic.content }}</router-link>
                 </p>
                 <p class="card-text">
                     <small class="text-muted">
