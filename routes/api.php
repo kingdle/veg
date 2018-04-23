@@ -22,7 +22,7 @@ Route::post('/user/password/update','PasswordController@update')->middleware('au
 Route::post('/user/shop/update','ShopsController@update')->middleware('auth:api');
 
 
-Route::group(['prefix'=>'/v1','middleware' => ['cors', 'wechat.oauth']],function(){
+Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     Route::resource('/users','UsersController');
     Route::resource('/shops','ShopsController');
     Route::resource('/dynamics','DynamicsController');
@@ -33,15 +33,14 @@ Route::group(['prefix'=>'/v1','middleware' => ['cors', 'wechat.oauth']],function
     Route::resource('/sorts','SortsController');
     Route::resource('/orders','OrdersController');
     Route::post('/shop/avatar','ShopsController@changeAvatar')->middleware('auth:api');
-    Route::get('/wechat/user', function () {
-        $user = session('wechat.oauth_user'); // 拿到授权用户资料
-
-        dd($user);
-    });
 
 });
 
 
 Route::group(['prefix'=>'/v2','middleware' => ['cors', 'wechat.oauth']], function () {
+    Route::get('/wechat/user', function () {
+        $user = session('wechat.oauth_user'); // 拿到授权用户资料
 
+        dd($user);
+    });
 });
