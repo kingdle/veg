@@ -83,11 +83,13 @@ class DynamicsController extends Controller
 
     }
 
-    public function news(Request $request, Dynamic $dynamic)
+    public function images(Request $request, Dynamic $dynamic)
     {
         $imageurl = $request->imageurl;
-        $userid = Auth::guard('api')->user()->id;
-        $shopid = Auth::guard('api')->user()->shop->id;
+//        $userid = Auth::guard('api')->user()->id;
+//        $shopid = Auth::guard('api')->user()->shop->id;
+        $userid = $request->user_id;
+        $shopid = $request->shop_id;
         $content = $request->dynamicContent;
 
         $dynamic->user_id = $userid;
