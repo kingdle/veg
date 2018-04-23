@@ -99,16 +99,17 @@ class DynamicsController extends Controller
         $success = $dynamic->save();
 
         if ($success) {
-            $data['status'] = true;
-            $data['status_code'] = '200';
-            $data['msg'] = '动态发布成功';
-            $data['url'] = $filePath;
-            return json_encode($data);
+            return response()->json([
+                'status'=>'true',
+                'status_code' => 200,
+                'message' => '上传成功',
+            ]);
         } else {
-            $data['status'] = false;
-            $data['status_code'] = '501';
-            $data['msg'] = '系统繁忙，请售后再试';
-            return json_encode($data);
+            return response()->json([
+                'status'=>'false',
+                'status_code' => 501,
+                'message' => '服务器端错误',
+            ]);
         }
 
     }
