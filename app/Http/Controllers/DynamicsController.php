@@ -39,8 +39,10 @@ class DynamicsController extends Controller
     public function image(Request $request, Album $album)
     {
         $file = $request->file('file');
-        $userid = Auth::guard('api')->user()->id;
-        $shopid = Auth::guard('api')->user()->shop->id;
+//        $userid = Auth::guard('api')->user()->id;
+//        $shopid = Auth::guard('api')->user()->shop->id;
+        $userid = $request->user_id;
+        $shopid = $request->shop_id;
 
         if (!$request->hasFile('file')) {
             return response()->json([
