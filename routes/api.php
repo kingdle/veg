@@ -23,17 +23,31 @@ Route::post('/user/shop/update','ShopsController@update')->middleware('auth:api'
 
 
 Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
+    //users用户查询
     Route::resource('/users','UsersController');
+    //shops店铺查询
     Route::resource('/shops','ShopsController');
+    //shop店铺新增
     Route::resource('/shop','ShopsController')->middleware('auth:api');
+    Route::post('/shop/avatar','ShopsController@changeAvatar')->middleware('auth:api');
+    //dynamics动态查询
     Route::resource('/dynamics','DynamicsController');
+    //dynamics新增动态
     Route::get('/dynamics-user','DynamicsController@user')->middleware('auth:api');
     Route::post('/news/images','DynamicsController@images');
     Route::post('/news/image','DynamicsController@image');
+    //albums相册查询
     Route::resource('/albums','AlbumsController');
+    //sorts分类查询
     Route::resource('/sorts','SortsController');
+    //orders订单查询
     Route::resource('/orders','OrdersController');
-    Route::post('/shop/avatar','ShopsController@changeAvatar')->middleware('auth:api');
+    //prods商品分类查询
+    Route::resource('/prods','ProdsController');
+
+    //第三方登录
+    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
+    Route::post('authorizations','AuthorizationsController@store');
 
 });
 

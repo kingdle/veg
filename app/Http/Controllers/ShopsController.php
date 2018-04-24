@@ -53,7 +53,7 @@ class ShopsController extends Controller
         return response()->json([
             'status'=>'true',
             'status_code' => 200,
-            'message' => '上传成功',
+            'message' => '店铺创建成功',
         ]);
     }
 
