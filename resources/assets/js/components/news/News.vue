@@ -46,9 +46,10 @@
         },
         data() {
             return{
-                dynamics:[]
+                dynamics:[],
             }
-        }
+        },
+
     }
 
 </script>

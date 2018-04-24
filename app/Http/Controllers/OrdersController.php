@@ -15,8 +15,12 @@ class OrdersController extends Controller
         return new OrderCollection($orders);
     }
 
-    public function show()
+    public function show($id)
     {
-
+        $order = Order::find($id);
+        if (!$order) {
+            return response()->json(['status' => false, 'status_code' => '401']);
+        }
+        return new \App\Http\Resources\Order($order);
     }
 }

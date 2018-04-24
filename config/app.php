@@ -148,6 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
