@@ -68,10 +68,9 @@ class AuthorizationsController extends Controller
         }
         return response()->json([
             'status'=>'true',
-            'status_code' => 200,
             'message' => '微信登录成功',
             'token' => $user->id
-        ]);
+        ],200);
     }
     public function weappStore(WeappAuthorizationRequest $request)
     {
@@ -85,9 +84,8 @@ class AuthorizationsController extends Controller
         if (isset($data['errcode'])) {
             return response()->json([
                 'status'=>'false',
-                'status_code' => 401,
                 'message' => 'code已过期或不正确',
-            ]);
+            ],401);
         }
 
         //找到 openid 对应的用户
@@ -103,9 +101,8 @@ class AuthorizationsController extends Controller
             if (!$username) {
                 return response()->json([
                     'status'=>'false',
-                    'status_code' => 403,
                     'message' => '用户不存在',
-                ]);
+                ],403);
             }
 
             // 用户名可以是邮箱或电话
@@ -116,9 +113,8 @@ class AuthorizationsController extends Controller
             if (!auth()->attempt($credentials)) {
                 return response()->json([
                     'status'=>'false',
-                    'status_code' => 404,
                     'message' => '用户名或密码错误',
-                ]);
+                ],401);
             }
             // 获取对应的用户
             $user = User::where('phone', $credentials['phone'])->first();
@@ -140,11 +136,10 @@ class AuthorizationsController extends Controller
         $token = $user->createToken($user->weapp_openid)->accessToken;
 
         return response()->json([
-            'accessToken'=>$token,
+            'access_token'=>$token,
             'token_type'=>"Bearer",
             'expires_in' => '21600',
-            'status_code' => 201,
-        ]);
+        ],201);
 
 //        return response()->respondWithToken($token)->setStatusCode(201);
     }
@@ -174,18 +169,18 @@ class AuthorizationsController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
+            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
         ]);
     }
     public function update()
     {
-        $token = \Auth::guard('api')->refresh();
+        $token = Auth::guard('api')->refresh();
         return $this->respondWithToken($token);
     }
 
     public function destroy()
     {
-        \Auth::guard('api')->logout();
+        Auth::guard('api')->logout();
         return response()->noContent();
     }
 }
