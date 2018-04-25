@@ -21,7 +21,7 @@ class TokenProxy {
         }
         return response()->json([
             'status'  => false,
-            'message' => 'Credentials not match',
+            'message' => '用户名或密码不正确',
         ], 421);
     }
     public function refresh()

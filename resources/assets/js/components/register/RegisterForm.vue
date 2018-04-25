@@ -5,7 +5,7 @@
             <label for="phone" class="col-md-4 col-form-label text-md-right">手机号</label>
             <div class="col-md-6">
                 <input v-model="phone"
-                       v-validate data-vv-rules="required|numeric" data-vv-as="手机号"
+                       v-validate data-vv-rules="required|numeric|max:11|min:11" data-vv-as="手机号"
                        class="form-control"
                        :class="{'input': true, 'is-invalid': errors.has('phone') }"
                        id="phone" type="text" name="phone" value="" required autofocus>

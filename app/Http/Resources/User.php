@@ -20,6 +20,7 @@ class User extends JsonResource
             'phone'=>$this->phone,
             'email'=>$this->email,
             'avatar'=>$this->avatar,
+            'avatar_url'=>$this->avatar_url,
 //            'shop'=>new Shop($this->shop)
         ];
     }

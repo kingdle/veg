@@ -7,6 +7,7 @@ export default{
         phone: null,
         avatar: null,
         email: null,
+        avatar_url: null,
     },
     mutations: {
         [types.UPDATE_PROFILE_ID](state, payload) {
@@ -24,6 +25,9 @@ export default{
         [types.UPDATE_PROFILE_EMAIL](state, payload) {
             state.email = payload.value
         },
+        [types.UPDATE_PROFILE_AVATAR_URL](state, payload) {
+            state.avatar_url = payload.value
+        },
         [types.SET_AUTH_USER](state, payload) {
             state.authenticated = true
             state.id = payload.user.id
@@ -31,6 +35,7 @@ export default{
             state.phone = payload.user.phone
             state.avatar = payload.user.avatar
             state.email = payload.user.email
+            state.avatar_url = payload.user.avatar_url
         },
         [types.UNSET_AUTH_USER](state) {
             state.authenticated = false
@@ -39,6 +44,7 @@ export default{
             state.phone = null
             state.avatar = null
             state.email = null
+            state.avatar_url = null
         }
     },
     actions: {

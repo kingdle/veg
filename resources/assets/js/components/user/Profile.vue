@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="panel text-center set-up-icon">
-                                    <img class="rounded border-bottom user-avatar" :src=user.avatar>
+                                    <img class="rounded border-bottom user-avatar" :src="user.avatar_url">
                                     <div class="mc-image-uploader">
                                         微信头像
                                     </div>

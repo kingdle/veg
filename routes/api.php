@@ -45,9 +45,17 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     //prods商品分类查询
     Route::resource('/prods','ProdsController');
 
-    //第三方登录
+    //第三方登录(微信)
     Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
     Route::post('authorizations','AuthorizationsController@store');
+    // 小程序登录
+    Route::post('weapp/authorizations', 'AuthorizationsController@weappStore');
+    // 小程序注册
+    Route::post('weapp/users', 'UsersController@weappStore');
+    // 刷新token
+    Route::put('authorizations/current', 'AuthorizationsController@update');
+    // 删除token
+    Route::delete('authorizations/current', 'AuthorizationsController@destroy');
 
 });
 
