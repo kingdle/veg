@@ -38,7 +38,7 @@ class AuthorizationsController extends Controller
             $title = $request->title;
             $phone = $request->phone;
             $avatar = $request->avatar;
-
+            $nickname = $request->nickname;
 
             $is_phone = User::where('phone', $phone)->first();
             if ($is_phone) {
@@ -59,6 +59,7 @@ class AuthorizationsController extends Controller
                 'weixin_session_key' => $data['session_key'],
                 'phone' => $phone,
                 'avatar_url' => $avatar,
+                'nickname' => $nickname,
             ]);
             $userid = User::where('phone', $phone)->first()->id;
             $summary = $request->summary;
