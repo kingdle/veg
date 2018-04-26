@@ -21,7 +21,7 @@ Route::post('/user/profile/update','UsersController@update')->middleware('auth:a
 Route::post('/user/password/update','PasswordController@update')->middleware('auth:api');
 Route::post('/user/shop/update','ShopsController@update')->middleware('auth:api');
 
-
+//passport部分
 Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     //users用户查询
     Route::resource('/users','UsersController');
@@ -59,11 +59,15 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
 
 });
 
+//dingo部分
+$api = app('Dingo\Api\Routing\Router');
+$api->version('v2',function ($api) {
+    $api->post('/register','Auth\RegisterController@register');
+    $api->post('/login','Auth\LoginController@login');
+    $api->post('/logout','Auth\LoginController@logout');
+    $api->post('/token/refresh','Auth\LoginController@refresh');
 
-Route::group(['prefix'=>'/v2','middleware' => ['cors', 'wechat.oauth']], function () {
-    Route::get('/wechat/user', function () {
-        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+    $api->group(['middleware' => 'auth:api'], function($api){
 
-        dd($user);
     });
 });

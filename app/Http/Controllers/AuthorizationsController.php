@@ -8,25 +8,15 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\WeappAuthorizationRequest;
+use League\OAuth2\Server\AuthorizationServer;
 use Zend\Diactoros\Response as Psr7Response;
 use Psr\Http\Message\ServerRequestInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\AuthorizationServer;
 use App\Traits\PassportToken;
 
 class AuthorizationsController extends Controller
 {
     use PassportToken;
-
-    public function store(AuthorizationRequest $originRequest, AuthorizationServer $server, ServerRequestInterface $serverRequest)
-    {
-        try {
-            return $server->respondToAccessTokenRequest($serverRequest, new Psr7Response)->withStatus(201);
-        } catch(OAuthServerException $e) {
-            return $this->response->errorUnauthorized($e->getMessage());
-        }
-    }
-
     public function socialStore(Request $request,$type)
     {
         if (!in_array($type, ['weixin'])) {
@@ -149,7 +139,7 @@ class AuthorizationsController extends Controller
         $createToken->token->expires_at = Carbon::now()->addDays(15);
         $createToken->token->save();
 
-        $token = $user->createToken($user->weapp_openid)->accessToken;
+        $token = $createToken->accessToken;
 
         return response()->json([
             'access_token'=>$token,
@@ -159,26 +149,56 @@ class AuthorizationsController extends Controller
 
 //        return response()->respondWithToken($token)->setStatusCode(201);
     }
+    public function store(AuthorizationRequest $request)
+    {
+        $username = $request->phone;
 
+        filter_var($username, FILTER_VALIDATE_EMAIL) ?
+            $credentials['email'] = $username :
+            $credentials['phone'] = $username;
+
+        $credentials['password'] = $request->password;
+
+        if (!$token = Auth::guard('api')->attempt($credentials)) {
+            return response()->json([
+                'status'=>'false',
+                'status_code' => 404,
+                'message' => '用户名或密码错误',
+            ]);
+        }
+
+        return $this->respondWithToken($token)->setStatusCode(201);
+
+    }
     protected function respondWithToken($token)
     {
-        return response()->json([
+        return $this->response->array([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
+            'expires_in' => '21600'
         ]);
     }
     public function update()
     {
-        $token = Auth::guard('api')->user()->token()->refresh();
-        return $this->respondWithToken($token);
+        $user = Auth::guard('api')->user();
+        $createToken = $user->createToken($user->weapp_openid);
 
+        $createToken->token->expires_at = Carbon::now()->addDays(15);
+        $createToken->token->save();
+
+        $token = $createToken->accessToken;
+        return response()->json([
+            'access_token'=>$token,
+            'token_type'=>"Bearer",
+            'expires_in' => '21600',
+        ]);
     }
 
     public function destroy()
     {
         if (Auth::guard('api')->check()){
             Auth::guard('api')->user()->token()->revoke();
+
         }
         return response()->json([
             'status'=>'true',
