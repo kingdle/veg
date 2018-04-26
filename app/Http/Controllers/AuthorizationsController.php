@@ -8,9 +8,25 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\WeappAuthorizationRequest;
+use Zend\Diactoros\Response as Psr7Response;
+use Psr\Http\Message\ServerRequestInterface;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\AuthorizationServer;
+use App\Traits\PassportToken;
 
 class AuthorizationsController extends Controller
 {
+    use PassportToken;
+
+    public function store(AuthorizationRequest $originRequest, AuthorizationServer $server, ServerRequestInterface $serverRequest)
+    {
+        try {
+            return $server->respondToAccessTokenRequest($serverRequest, new Psr7Response)->withStatus(201);
+        } catch(OAuthServerException $e) {
+            return $this->response->errorUnauthorized($e->getMessage());
+        }
+    }
+
     public function socialStore(Request $request,$type)
     {
         if (!in_array($type, ['weixin'])) {
@@ -143,27 +159,7 @@ class AuthorizationsController extends Controller
 
 //        return response()->respondWithToken($token)->setStatusCode(201);
     }
-    public function store(AuthorizationRequest $request)
-    {
-        $username = $request->phone;
 
-        filter_var($username, FILTER_VALIDATE_EMAIL) ?
-            $credentials['email'] = $username :
-            $credentials['phone'] = $username;
-
-        $credentials['password'] = $request->password;
-
-        if (!$token = Auth::guard('api')->attempt($credentials)) {
-            return response()->json([
-                'status'=>'false',
-                'status_code' => 404,
-                'message' => '用户名或密码错误',
-            ]);
-        }
-
-        return $this->respondWithToken($token)->setStatusCode(201);
-
-    }
     protected function respondWithToken($token)
     {
         return response()->json([
@@ -174,13 +170,19 @@ class AuthorizationsController extends Controller
     }
     public function update()
     {
-        $token = Auth::guard('api')->refresh();
+        $token = Auth::guard('api')->user()->token()->refresh();
         return $this->respondWithToken($token);
+
     }
 
     public function destroy()
     {
-        Auth::guard('api')->logout();
-        return response()->noContent();
+        if (Auth::guard('api')->check()){
+            Auth::guard('api')->user()->token()->revoke();
+        }
+        return response()->json([
+            'status'=>'true',
+            'message' => '退出成功',
+        ],204);
     }
 }
