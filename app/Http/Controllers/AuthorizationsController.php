@@ -149,6 +149,85 @@ class AuthorizationsController extends Controller
 
 //        return response()->respondWithToken($token)->setStatusCode(201);
     }
+
+    public function weappRegister(WeappAuthorizationRequest $request)
+    {
+        $code = $request->code;
+        $title = $request->shopname;
+        $summary = $request->summary;
+        $address = $request->address;
+        $longitude = $request->longitude;
+        $latitude = $request->latitude;
+
+        // 根据 code 获取微信 openid 和 session_key
+        $miniProgram = \EasyWeChat::miniProgram();
+        $data = $miniProgram->auth->session($code);
+
+        // 如果结果错误，说明 code 已过期或不正确，返回 401 错误
+        if (isset($data['errcode'])) {
+            return response()->json([
+                'status'=>'false',
+                'message' => 'code已过期或不正确',
+            ],401);
+        }
+
+        //找到 openid 对应的用户
+        $user = User::where('weapp_openid', $data['openid'])->first();
+        //把session_key
+        $attributes['weixin_session_key'] = $data['session_key'];
+
+        // 未找到对应用户则新建用户
+        if (!$user) {
+            // 如果未提交用户名密码，403 错误提示
+            $phone = $request->phone;
+
+            if (!$username) {
+                return response()->json([
+                    'status'=>'false',
+                    'message' => '用户不存在',
+                ],403);
+            }
+
+            // 用户名可以是邮箱或电话
+            filter_var($username, FILTER_VALIDATE_EMAIL) ? $credentials['email'] = $username : $credentials['phone'] = $username;
+            $credentials['password'] = $request->password;
+
+            // 验证用户名和密码是否正确
+            if (!auth()->attempt($credentials)) {
+                return response()->json([
+                    'status'=>'false',
+                    'message' => '用户名或密码错误',
+                ],401);
+            }
+            // 获取对应的用户
+            $user = User::where('phone', $credentials['phone'])->first();
+            $attributes['weapp_openid'] = $data['openid'];
+        }
+
+        // 更新用户数据
+        $user->update($attributes);
+
+        // 为对应用户创建 JWT
+        // $token = Auth::guard('api')->fromUser($user);
+
+        // 直接创建token并设置有效期
+        $createToken = $user->createToken($user->weapp_openid);
+
+        $createToken->token->expires_at = Carbon::now()->addDays(15);
+        $createToken->token->save();
+
+        $token = $createToken->accessToken;
+
+        return response()->json([
+            'access_token'=>$token,
+            'token_type'=>"Bearer",
+            'expires_in' => '21600',
+        ],201);
+
+//        return response()->respondWithToken($token)->setStatusCode(201);
+    }
+
+
     public function store(AuthorizationRequest $request)
     {
         $username = $request->phone;

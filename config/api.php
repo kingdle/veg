@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'domain' => env('API_DOMAIN', 'APP_URL'),
+    'domain' => env('API_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +169,10 @@ return [
     */
 
     'auth' => [
-
+        'basic'=>function($app){
+            return new Dingo\Api\Auth\Provider\Basic($app['auth']);
+        },
+        'jwt' => 'Dingo\Api\Auth\Provider\JWT',
     ],
 
     /*

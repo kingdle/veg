@@ -61,13 +61,37 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
 
 //dingo部分
 $api = app('Dingo\Api\Routing\Router');
-$api->version('v2',function ($api) {
-    $api->post('/register','Auth\RegisterController@register');
-    $api->post('/login','Auth\LoginController@login');
-    $api->post('/logout','Auth\LoginController@logout');
-    $api->post('/token/refresh','Auth\LoginController@refresh');
 
-    $api->group(['middleware' => 'auth:api'], function($api){
+$api->version('v2', [
+    'namespace' => 'App\Http\Controllers\Api'
+], function ($api) {
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => config('api.rate_limits.sign.limit'),
+        'expires' => config('api.rate_limits.sign.expires'),
+    ], function ($api) {
+        $api->post('v2/weappRegister','AuthorizationsController@weappRegister');
 
+        $api->post('v2/logout','AuthorizationsController@destroy');
+        $api->post('v2/token/refresh','AuthorizationsController@update');
+
+        $api->post('v2/dynamics','DynamicsController@images');
+        $api->post('v2/dynamic','DynamicsController@image');
+
+        $api->post('v2/order','OrdersController@store');
+
+    });
+
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => config('api.rate_limits.access.limit'),
+        'expires' => config('api.rate_limits.access.expires'),
+    ], function ($api) {
+
+
+        // 需要 token 验证的接口
+        $api->group(['middleware' => 'api.auth'], function($api) {
+
+        });
     });
 });
