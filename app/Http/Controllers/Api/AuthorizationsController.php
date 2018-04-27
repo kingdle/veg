@@ -84,7 +84,7 @@ class AuthorizationsController extends Controller
             }
             $user = User::find($userid);
             $attributes['phone'] = $phone;
-            $attributes['is_active'] = 1;
+            $attributes['is_active'] = '1';
             // 更新用户数据
             $user->update($attributes);
             Shop::create([
