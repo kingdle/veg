@@ -6,18 +6,16 @@
                     <div class="card-body mt-2">
                         <div class="mg-business">
                             <div class="col-12 text-center">
-                                <div class="figure mr-4 text-right">
+                                <div class="figure mr-4 text-center">
                                     <div class="new-shops">
-                                        <img src="images-pc/mg-code-mp.jpg" width="80px">
+                                        <img src="images-pc/mg-code-mp.jpg">
                                     </div>
-                                    <h6 class="shop-title pt-2 mb-0">苗果小程序：</h6>
-                                    <div class="figure-caption font-weight-light text-lowercase pb-2">
-                                        入驻时间：
-                                    </div>
+                                    <h6 class="text-secondary pt-2 mb-0">扫这个码入驻</h6>
+
                                 </div>
                                 <div v-for="shop in shops" :key="shop.id" class="figure mr-4 text-center">
                                     <div class="contributor-pics">
-                                        <a href="">
+                                        <a href="#">
                                             <img :src="shop.avatar+'!mp.v100'"
                                                  width="80px">
                                         </a>
@@ -38,19 +36,14 @@
                 <div class="w-1200 pt-5 m-auto text-333 six"><h2 class=" text-center">
                     苗果在您身边</h2>
                     <p class="text-sm text-center letter-10  m-b-45">
-                        认真服务农业，在这个平台上您会得到所需的一切服务。</p>
+                        认真服务农业，。</p>
                     <div class="mt-5">
                         <div class="fl flex-4 text-center">
                             <a class="inline-block m-auto shop" href="#"><img
-                                    class="img" style="width:288px;"
-                                    src="https://s10.mogucdn.com/mlcdn/c45406/180408_47hd4lh9ee39l33bh0fkc02585al0_576x514.png"><img
                                     class="hoverImg" style="width:288px;"
-                                    src="https://s10.mogucdn.com/mlcdn/c45406/180408_1602hkc76j4lgf4ckfekd2g540311_576x514.png"><img
-                                    class="hoverImg" style="width:288px;"
-                                    src="https://s10.mogucdn.com/mlcdn/c45406/180330_1ccc75igb6ceeii6kb0ekcd9ce05e_576x514.png"><img
-                                    class="hoverImg" style="width:288px;"
-                                    src="https://s10.mogucdn.com/mlcdn/c45406/180330_8580h932ahf0b17cje6de3lahiggi_576x514.png"></a>
+                                    src="https://images.veg.kim/pc/home-mp-code.png">
                             </a>
+                            <h6 class="text-secondary pt-2 mb-0">扫这个码打开"苗果小程序"</h6>
                         </div>
                     </div>
                 </div>
@@ -123,11 +116,11 @@
     }
 
     .new-shops img{
-        height:80px;
-        weight:80px;
+        height:120px;
+        weight:120px;
         margin-right:10px;
-        border-radius: 10%;
-        box-shadow: 0 0 20px #e7e4e2 !important;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #d3e1d7 !important;
     }
     .shop-title {
         color: #f05d0d;

@@ -62761,7 +62761,7 @@ exports = module.exports = __webpack_require__(23)(false);
 
 
 // module
-exports.push([module.i, "\n.bd-callout {\n    border: 0px solid #eee;\n    border-left-color: #7bc276;\n    border-left-width: .1rem;\n    border-radius: .1rem;\n}\n.mg-home-top .card-title {\n    font-size: 12px;\n}\n.mg-home-top .card-text {\n    font-size: 30px;\n    font-weight: 700;\n}\n.mg-hello h2 {\n    font-weight: 200;\n}\n.mg-hello p {\n    text-indent: 2rem;\n}\n.mg-business .mg-img {\n    width: 200px;\n    height: 200px;\n}\n.verticalLine {\n    width: 1px;\n    height: 80px;\n    background: #E5E5E5;\n    float: left;\n}\n.contributor-pics img {\n    border-radius: 50%;\n    -webkit-box-shadow: 0 2px 15px #b1afad !important;\n            box-shadow: 0 2px 15px #b1afad !important;\n}\n.contributor-pics img:hover {\n    border-radius: 10%;\n    -webkit-box-shadow: 0 0 10px #b1afad !important;\n            box-shadow: 0 0 10px #b1afad !important;\n}\n.new-shops img{\n    height:80px;\n    weight:80px;\n    margin-right:10px;\n    border-radius: 10%;\n    -webkit-box-shadow: 0 0 20px #e7e4e2 !important;\n            box-shadow: 0 0 20px #e7e4e2 !important;\n}\n.shop-title {\n    color: #f05d0d;\n}\n", ""]);
+exports.push([module.i, "\n.bd-callout {\n    border: 0px solid #eee;\n    border-left-color: #7bc276;\n    border-left-width: .1rem;\n    border-radius: .1rem;\n}\n.mg-home-top .card-title {\n    font-size: 12px;\n}\n.mg-home-top .card-text {\n    font-size: 30px;\n    font-weight: 700;\n}\n.mg-hello h2 {\n    font-weight: 200;\n}\n.mg-hello p {\n    text-indent: 2rem;\n}\n.mg-business .mg-img {\n    width: 200px;\n    height: 200px;\n}\n.verticalLine {\n    width: 1px;\n    height: 80px;\n    background: #E5E5E5;\n    float: left;\n}\n.contributor-pics img {\n    border-radius: 50%;\n    -webkit-box-shadow: 0 2px 15px #b1afad !important;\n            box-shadow: 0 2px 15px #b1afad !important;\n}\n.contributor-pics img:hover {\n    border-radius: 10%;\n    -webkit-box-shadow: 0 0 10px #b1afad !important;\n            box-shadow: 0 0 10px #b1afad !important;\n}\n.new-shops img{\n    height:120px;\n    weight:120px;\n    margin-right:10px;\n    border-radius: 50%;\n    -webkit-box-shadow: 0 0 20px #d3e1d7 !important;\n            box-shadow: 0 0 20px #d3e1d7 !important;\n}\n.shop-title {\n    color: #f05d0d;\n}\n", ""]);
 
 // exports
 
@@ -62859,13 +62859,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -62908,7 +62901,7 @@ var render = function() {
                       { key: shop.id, staticClass: "figure mr-4 text-center" },
                       [
                         _c("div", { staticClass: "contributor-pics" }, [
-                          _c("a", { attrs: { href: "" } }, [
+                          _c("a", { attrs: { href: "#" } }, [
                             _c("img", {
                               attrs: {
                                 src: shop.avatar + "!mp.v100",
@@ -62958,24 +62951,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "figure mr-4 text-right" }, [
+    return _c("div", { staticClass: "figure mr-4 text-center" }, [
       _c("div", { staticClass: "new-shops" }, [
-        _c("img", { attrs: { src: "images-pc/mg-code-mp.jpg", width: "80px" } })
+        _c("img", { attrs: { src: "images-pc/mg-code-mp.jpg" } })
       ]),
       _vm._v(" "),
-      _c("h6", { staticClass: "shop-title pt-2 mb-0" }, [
-        _vm._v("苗果小程序：")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "figure-caption font-weight-light text-lowercase pb-2" },
-        [
-          _vm._v(
-            "\n                                    入驻时间：\n                                "
-          )
-        ]
-      )
+      _c("h6", { staticClass: "text-secondary pt-2 mb-0" }, [
+        _vm._v("扫这个码入驻")
+      ])
     ])
   },
   function() {
@@ -62990,9 +62973,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "text-sm text-center letter-10  m-b-45" }, [
-            _vm._v(
-              "\n                    认真服务农业，在这个平台上您会得到所需的一切服务。"
-            )
+            _vm._v("\n                    认真服务农业，。")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "mt-5" }, [
@@ -63005,39 +62986,16 @@ var staticRenderFns = [
                 },
                 [
                   _c("img", {
-                    staticClass: "img",
-                    staticStyle: { width: "288px" },
-                    attrs: {
-                      src:
-                        "https://s10.mogucdn.com/mlcdn/c45406/180408_47hd4lh9ee39l33bh0fkc02585al0_576x514.png"
-                    }
-                  }),
-                  _c("img", {
                     staticClass: "hoverImg",
                     staticStyle: { width: "288px" },
-                    attrs: {
-                      src:
-                        "https://s10.mogucdn.com/mlcdn/c45406/180408_1602hkc76j4lgf4ckfekd2g540311_576x514.png"
-                    }
-                  }),
-                  _c("img", {
-                    staticClass: "hoverImg",
-                    staticStyle: { width: "288px" },
-                    attrs: {
-                      src:
-                        "https://s10.mogucdn.com/mlcdn/c45406/180330_1ccc75igb6ceeii6kb0ekcd9ce05e_576x514.png"
-                    }
-                  }),
-                  _c("img", {
-                    staticClass: "hoverImg",
-                    staticStyle: { width: "288px" },
-                    attrs: {
-                      src:
-                        "https://s10.mogucdn.com/mlcdn/c45406/180330_8580h932ahf0b17cje6de3lahiggi_576x514.png"
-                    }
+                    attrs: { src: "https://images.veg.kim/pc/home-mp-code.png" }
                   })
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("h6", { staticClass: "text-secondary pt-2 mb-0" }, [
+                _vm._v('扫这个码打开"苗果小程序"')
+              ])
             ])
           ])
         ])
