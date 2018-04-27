@@ -64,6 +64,7 @@ class AuthorizationsController extends Controller
             $title = $request->title;
             $phone = $request->phone;
             $summary = $request->summary;
+            $cityInfo = $request->cityInfo;
             $address = $request->address;
             $longitude = $request->longitude;
             $latitude = $request->latitude;
@@ -92,6 +93,7 @@ class AuthorizationsController extends Controller
                 'title' => $title,
                 'summary' => $summary,
                 'avatar' => Auth::guard('api')->user()->avatar_url,
+                'cityInfo' => $cityInfo,
                 'address' => $address,
                 'longitude' => $longitude,
                 'latitude' => $latitude,
