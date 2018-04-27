@@ -84,6 +84,7 @@ class AuthorizationsController extends Controller
             }
             $user = User::find($userid);
             $attributes['phone'] = $phone;
+            $attributes['is_active'] = '1';
             // 更新用户数据
             $user->update($attributes);
             Shop::create([
@@ -98,6 +99,7 @@ class AuthorizationsController extends Controller
             return response()->json([
                 'status' => 'true',
                 'message' => '成功入驻',
+                'is_active'=>'1'
             ], 200);
         }
         return $this->response->errorUnauthorized('请重新打开苗果小程序授权后再申请入驻');
