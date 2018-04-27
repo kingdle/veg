@@ -11,7 +11,54 @@ use App\Http\Requests\Api\WeappAuthorizationRequest;
 
 class AuthorizationsController extends Controller
 {
-    public function weappRegister(WeappAuthorizationRequest $request)
+    public function weapplogin(Request $request)
+    {
+        $code = $request->code;
+        // 根据 code 获取微信 openid 和 session_key
+        $miniProgram = \EasyWeChat::miniProgram();
+        $data = $miniProgram->auth->session($code);
+
+        if (isset($data['errcode'])) {
+            return $this->response->errorUnauthorized('code已过期或不正确');
+        }
+        $weappOpenid = $data['openid'];
+        $weixinSessionKey = $data['session_key'];
+
+        //找到 openid 对应的用户
+        $user = User::where('weapp_openid', $weappOpenid)->first();
+        //把session_key
+        $attributes['weixin_session_key'] = $weixinSessionKey;
+        if (!$user) {
+            $nickname = $request->nickname;
+            $avatar = $request->avatar;
+            User::create([
+                'weapp_openid' => $weappOpenid,
+                'weixin_session_key' => $weixinSessionKey,
+                'is_active' => 0,
+                'avatar_url' => $avatar,
+                'nickname' => $nickname,
+            ]);
+            // 获取对应的用户
+            $user = User::where('weapp_openid', $weappOpenid)->first();
+            $attributes['weapp_openid'] = $weappOpenid;
+        }
+        // 更新用户数据
+        $user->update($attributes);
+        // 直接创建token并设置有效期
+        $createToken = $user->createToken($user->weapp_openid);
+        $createToken->token->expires_at = Carbon::now()->addDays(15);
+        $createToken->token->save();
+        $token = $createToken->accessToken;
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => "Bearer",
+            'expires_in' => '21600',
+            'is_active'=>'0'
+        ], 200);
+    }
+
+    public function weappRegister(Request $request)
     {
         $code = $request->code;
 
@@ -21,10 +68,11 @@ class AuthorizationsController extends Controller
 
         // 如果结果错误，说明 code 已过期或不正确，返回 401 错误
         if (isset($data['errcode'])) {
-            return response()->json([
-                'status' => 'false',
-                'message' => 'code已过期或不正确',
-            ], 401);
+            return $this->response->errorUnauthorized('code已过期或不正确');
+//            return response()->json([
+//                'status' => 'false',
+//                'message' => 'code已过期或不正确',
+//            ], 401);
         }
 
         //找到 openid 对应的用户
@@ -77,7 +125,7 @@ class AuthorizationsController extends Controller
             ]);
 
             // 获取对应的用户
-            $user = User::where('weapp_openid',$data['openid'])->first();
+            $user = User::where('weapp_openid', $data['openid'])->first();
             $attributes['weapp_openid'] = $data['openid'];
         }
 
@@ -104,22 +152,29 @@ class AuthorizationsController extends Controller
 
     public function update()
     {
-        $token = Auth::guard('api')->refresh();
-        return $this->respondWithToken($token);
+        $user = Auth::guard('api')->user();
+        $createToken = $user->createToken($user->weapp_openid);
+
+        $createToken->token->expires_at = Carbon::now()->addDays(15);
+        $createToken->token->save();
+
+        $token = $createToken->accessToken;
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => "Bearer",
+            'expires_in' => '21600',
+        ]);
     }
 
     public function destroy()
     {
-        Auth::guard('api')->logout();
-        return $this->response->noContent();
-    }
+        if (Auth::guard('api')->check()) {
+            Auth::guard('api')->user()->token()->revoke();
 
-    protected function respondWithToken($token)
-    {
-        return $this->response->array([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
-        ]);
+        }
+        return response()->json([
+            'status' => 'true',
+            'message' => '退出成功',
+        ], 204);
     }
 }

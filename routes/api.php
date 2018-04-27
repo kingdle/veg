@@ -70,6 +70,7 @@ $api->version('v2', [
         'limit' => config('api.rate_limits.sign.limit'),
         'expires' => config('api.rate_limits.sign.expires'),
     ], function ($api) {
+        $api->post('v2/weappLogin','AuthorizationsController@weappLogin');
         $api->post('v2/weappRegister','AuthorizationsController@weappRegister');
 
         $api->post('v2/logout','AuthorizationsController@destroy');
