@@ -58,6 +58,50 @@ class AuthorizationsController extends Controller
         ], 200);
     }
 
+    public function weappShopRegister(Request $request){
+        $userid = Auth::guard('api')->user()->id;
+        if($userid){
+            $title = $request->title;
+            $phone = $request->phone;
+            $summary = $request->summary;
+            $address = $request->address;
+            $longitude = $request->longitude;
+            $latitude = $request->latitude;
+
+            $is_phone = User::where('phone', $phone)->first();
+            if ($is_phone) {
+                return response()->json([
+                    'status' => 'false',
+                    'message' => '手机号已存在',
+                ], 403);
+            }
+            $is_shop = Shop::where('title', $title)->first();
+            if ($is_shop) {
+                return response()->json([
+                    'status' => 'false',
+                    'message' => '店铺名已存在',
+                ], 403);
+            }
+            $user = User::find($userid);
+            $attributes['phone'] = $phone;
+            // 更新用户数据
+            $user->update($attributes);
+            Shop::create([
+                'user_id' => $userid,
+                'title' => $title,
+                'summary' => $summary,
+                'avatar' => Auth::guard('api')->user()->avatar_url,
+                'address' => $address,
+                'longitude' => $longitude,
+                'latitude' => $latitude,
+            ]);
+            return response()->json([
+                'status' => 'true',
+                'message' => '成功入驻',
+            ], 200);
+        }
+        return $this->response->errorUnauthorized('请重新打开苗果小程序授权后再申请入驻');
+    }
     public function weappRegister(Request $request)
     {
         $code = $request->code;
