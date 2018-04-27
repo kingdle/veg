@@ -8,6 +8,7 @@ use App\Shop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\WeappAuthorizationRequest;
+use Illuminate\Support\Facades\Storage;
 
 class AuthorizationsController extends Controller
 {
@@ -60,6 +61,7 @@ class AuthorizationsController extends Controller
 
     public function weappShopRegister(Request $request){
         $userid = Auth::guard('api')->user()->id;
+        $avatar = Auth::guard('api')->user()->avatar_url;
         if($userid){
             $title = $request->title;
             $phone = $request->phone;
@@ -88,11 +90,18 @@ class AuthorizationsController extends Controller
             $attributes['is_active'] = '1';
             // 更新用户数据
             $user->update($attributes);
+
+            $avatarfile = file_get_contents($avatar);
+//            $file_extension = strtolower(substr(strrchr('http://veg.name/images-pc/mg-code-mp.jpg',"."),1));
+            $filename = 'avatars/'.$userid.'MG'.uniqid().'.png';
+            Storage::disk('upyun')->write($filename, $avatarfile);
+            $shopavatar=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
+
             Shop::create([
                 'user_id' => $userid,
                 'title' => $title,
                 'summary' => $summary,
-                'avatar' => Auth::guard('api')->user()->avatar_url,
+                'avatar' => $shopavatar,
                 'cityInfo' => $cityInfo,
                 'address' => $address,
                 'longitude' => $longitude,
