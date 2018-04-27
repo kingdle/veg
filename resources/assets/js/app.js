@@ -9,7 +9,8 @@ import store from './store/index';
 import App from './components/App';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-
+import moment from 'moment';
+import VueMoment from 'vue-moment';
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 
@@ -27,11 +28,15 @@ axios.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 Validator.localize('zh_CN', zh_CN);
-
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
 Vue.use(VueAxios, axios)
 // Vue.use(ElementUI);
+
+require('moment/locale/zh-cn')
+Vue.use(VueMoment, {
+    moment
+})
 
 Vue.component('app',App);
 

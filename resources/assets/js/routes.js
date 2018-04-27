@@ -20,12 +20,12 @@ let routes = [
         component: require('./components/shops/Shop'),
         meta: {requiresAuth: true}
     },
-    {
-        path: '/register',
-        name: 'register',
-        component: require('./components/register/Register'),
-        meta: {requiresGuest: true}
-    },
+    // {
+    //     path: '/register',
+    //     name: 'register',
+    //     component: require('./components/register/Register'),
+    //     meta: {requiresGuest: true}
+    // },
     {
         path: '/login',
         name: 'login',

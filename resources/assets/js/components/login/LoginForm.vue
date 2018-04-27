@@ -46,8 +46,14 @@
                         this.$store.dispatch('loginRequest', formData).then(response => {
                             this.$router.push({name: 'profile.Home'})
                         }).catch(error => {
+                            if (error.response.status === 401) {
+                                this.bag.add('password', '手机号不存在或密码错误', 'auth');
+                            }
+                            if (error.response.status === 402) {
+                                this.bag.add('password', '商家用户,请通过微信搜索"苗果"小程序登录', 'auth');
+                            }
                             if (error.response.status === 421) {
-                                this.bag.add('password', '用户名或密码错误', 'auth');
+                                this.bag.add('password', '手机号或密码错误', 'auth');
                             }
                         })
                     }

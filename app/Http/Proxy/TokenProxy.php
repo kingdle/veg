@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Proxy;
+use App\User;
+
 class TokenProxy {
     protected $http;
     /**
@@ -12,12 +14,25 @@ class TokenProxy {
     }
     public function login($phone, $password)
     {
-        if (auth()->attempt(['phone' => $phone, 'password' => $password])) {
+        if (auth()->attempt(['phone' => $phone, 'password' => $password,'is_active'=>'1'])) {
             return $this->proxy('password', [
                 'username' => $phone,
                 'password' => $password,
                 'scope'    => '',
             ]);
+        }
+        $is_phone = User::where('phone', $phone)->first();
+        if(!$is_phone){
+            return response()->json([
+                'status'  => false,
+                'message' => '手机号未注册或密码错误',
+            ], 401);
+        }
+        if($is_phone->is_active == 0){
+            return response()->json([
+                'status'  => false,
+                'message' => '商家用户，请通过微信搜索"苗果"小程序登录',
+            ], 402);
         }
         return response()->json([
             'status'  => false,

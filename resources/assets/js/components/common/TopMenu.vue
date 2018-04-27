@@ -18,9 +18,9 @@
                     <router-link v-if="!user.authenticated" to="/login" tag="li">
                         <a>登录</a>
                     </router-link>
-                    <router-link v-if="!user.authenticated" to="/register" tag="li">
-                        <a>注册</a>
-                    </router-link>
+                    <!--<router-link v-if="!user.authenticated" to="/register" tag="li">-->
+                        <!--<a>注册</a>-->
+                    <!--</router-link>-->
                     <router-link v-if="user.authenticated" :to="{name: 'profile.Home'}" tag="li">
                         <div class="btn-group">
                             <!--<img class="rounded border-bottom user-top-avatar" :src=user.avatar>-->

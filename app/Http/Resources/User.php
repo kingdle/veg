@@ -17,9 +17,9 @@ class User extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            'phone'=>$this->phone,
+            'phone'=>substr_replace($this->phone,'****',3,4),
             'email'=>$this->email,
-            'avatar'=>$this->avatar,
+//            'avatar'=>$this->avatar,
             'avatar_url'=>$this->avatar_url,
 //            'shop'=>new Shop($this->shop)
         ];

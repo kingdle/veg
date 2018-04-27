@@ -17,7 +17,7 @@
                             <circle cx="16" cy="16" r="14"/>
                             <path d="M16 8 L16 16 20 20"/>
                         </svg>
-                        {{ dynamic.published_at }}
+                        {{ dynamic.published_at | moment("from") }}
                     </small>
                 </p>
             </div>
