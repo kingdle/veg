@@ -21,6 +21,8 @@ class User extends JsonResource
             'email'=>$this->email,
 //            'avatar'=>$this->avatar,
             'avatar_url'=>$this->avatar_url,
+            'is_active'=>$this->is_active,
+            'is_admin'=>$this->is_admin,
 //            'shop'=>new Shop($this->shop)
         ];
     }

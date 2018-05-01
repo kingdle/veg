@@ -33,6 +33,9 @@ class User extends Authenticatable
     public function shop(){
         return $this->hasOne('App\Shop','user_id','id');
     }
+    public function seed(){
+        return $this->hasOne('App\Seed','user_id','id');
+    }
     public function dynamic(){
         return $this->hasMany('App\Dynamic','user_id','id');
     }

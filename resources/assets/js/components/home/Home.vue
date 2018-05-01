@@ -60,100 +60,15 @@
                                 <span class="vertical-middle">您周边的育苗场</span>
                             </div>
                             <div class="col-12 text-center">
-                                <figure class="figure mr-2 text-center">
+                                <div v-for="shop in shops" :key="shop.id" class="figure mr-4 text-center">
                                     <div class="contributor-pics">
-                                        <a href="">
-                                            <img :src=user.avatar width="64">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">水南苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars2.githubusercontent.com/u/2378022?v=4"
+                                        <a href="#">
+                                            <img :src="shop.avatar+'!mp.v100'"
                                                  width="64px">
                                         </a>
                                     </div>
-                                    <figcaption class="figure-caption">何家苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars0.githubusercontent.com/u/1499009?v=4"
-                                                 width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">董家稻庄苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars3.githubusercontent.com/u/270923?v=4" width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">水南苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars2.githubusercontent.com/u/8569015?v=4"
-                                                 width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">水南苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars1.githubusercontent.com/u/1858004?v=4"
-                                                 width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">北慈苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars2.githubusercontent.com/u/5693018?v=4"
-                                                 width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">北河崖苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars0.githubusercontent.com/u/15792249?v=4"
-                                                 width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">水南苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars2.githubusercontent.com/u/25668?v=4" width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">大伦苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars1.githubusercontent.com/u/523906?v=4" width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">南慈苗场</figcaption>
-                                </figure>
-                                <figure class="figure mr-2 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="">
-                                            <img src="https://avatars1.githubusercontent.com/u/523906?v=4" width="64px">
-                                        </a>
-                                    </div>
-                                    <figcaption class="figure-caption">南慈苗场</figcaption>
-                                </figure>
+                                    <h6 class="shop-title pt-2 mb-0">{{shop.title}}</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -234,6 +149,16 @@
             ...mapState({
                 user: state => state.AuthUser
             })
+        },
+        mounted() {
+            axios.get('/api/v1/shops').then(response => {
+                this.shops = response.data.data
+            })
+        },
+        data() {
+            return {
+                shops: [],
+            }
         },
 //        data(){
 //            return {

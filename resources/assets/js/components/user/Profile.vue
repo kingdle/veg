@@ -1,5 +1,7 @@
 <template>
     <div class="mg-profile">
+        <edit-profile-form></edit-profile-form>
+        <edit-password-form></edit-password-form>
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="card flex-row mb-3 border-0">
@@ -49,6 +51,9 @@
 </template>
 
 <script>
+    import EditProfileForm from './EditProfileForm.vue'
+    import EditPasswordForm from './../password/EditPasswordForm.vue'
+
     import {mapState} from 'vuex'
     export default {
         computed: {
@@ -56,5 +61,9 @@
                 user: state => state.AuthUser
             })
         },
+        components: {
+            EditProfileForm,
+            EditPasswordForm
+        }
     }
 </script>

@@ -1,5 +1,6 @@
 <template>
     <div class="mg-shop">
+        <edit-shop-form></edit-shop-form>
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="card flex-row mb-3 border-0">
@@ -79,6 +80,7 @@
 </template>
 
 <script>
+    import EditShopForm from './EditShopForm.vue'
     import {mapState} from 'vuex'
     import 'babel-polyfill'; // es6 shim
     import myUpload from 'vue-image-crop-upload';
@@ -104,7 +106,8 @@
             }
         },
         components: {
-            'my-upload': myUpload
+            'my-upload': myUpload,
+            EditShopForm,
         },
         methods: {
             toggleShow() {

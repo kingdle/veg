@@ -20,6 +20,7 @@ Route::post('/token/refresh','Auth\LoginController@refresh');
 Route::post('/user/profile/update','UsersController@update')->middleware('auth:api');
 Route::post('/user/password/update','PasswordController@update')->middleware('auth:api');
 Route::post('/user/shop/update','ShopsController@update')->middleware('auth:api');
+Route::post('/user/seed/update','SeedsController@update')->middleware('auth:api');
 
 //passport部分
 Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
@@ -44,6 +45,9 @@ Route::group(['prefix'=>'/v1','middleware' => 'cors'],function(){
     Route::resource('/orders','OrdersController');
     //prods商品分类查询
     Route::resource('/prods','ProdsController');
+
+    //seeds种子商家查询
+    Route::resource('/seeds','SeedsController')->middleware('auth:api');
 
     //第三方登录(微信)
     Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');

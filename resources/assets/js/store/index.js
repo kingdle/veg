@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import AuthUser from './modules/auth-user'
 import AuthShop from './modules/auth-shop'
+import AuthSeed from './modules/auth-seed'
 import Login from './modules/login'
 import EditProfile from './modules/edit-profile'
 import EditPassword from './modules/edit-password'
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     modules: {
         AuthUser,
         AuthShop,
+        AuthSeed,
         Login,
         EditProfile,
         EditPassword,

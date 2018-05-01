@@ -20,12 +20,12 @@ let routes = [
         component: require('./components/shops/Shop'),
         meta: {requiresAuth: true}
     },
-    // {
-    //     path: '/register',
-    //     name: 'register',
-    //     component: require('./components/register/Register'),
-    //     meta: {requiresGuest: true}
-    // },
+    {
+        path: '/register',
+        name: 'register',
+        component: require('./components/register/Register'),
+        meta: {requiresGuest: true}
+    },
     {
         path: '/login',
         name: 'login',
@@ -100,6 +100,18 @@ let routes = [
                 path: '/home',
                 name: 'profile.Home',
                 component: require('./components/home/Home'),
+                meta: {requiresAuth: true}
+            },
+            {
+                path: '/seed',
+                name: 'profile.Seed',
+                component: require('./components/seeds/Index'),
+                meta: {requiresAuth: true}
+            },
+            {
+                path: '/seed/:id',
+                name: 'profile.editSeed',
+                component: require('./components/seeds/Seed'),
                 meta: {requiresAuth: true}
             }
         ],

@@ -6,13 +6,13 @@
                     <div class="card-body mt-2">
                         <div class="mg-business">
                             <div class="col-12 text-center">
-                                <div class="figure mr-4 text-center">
-                                    <div class="new-shops">
-                                        <img src="images-pc/mg-code-mp.jpg">
-                                    </div>
-                                    <h6 class="text-secondary pt-2 mb-0">扫这个码入驻</h6>
+                                <!--<div class="figure mr-4 text-center">-->
+                                    <!--<div class="new-shops">-->
+                                        <!--<img src="images-pc/mg-code-mp.jpg">-->
+                                    <!--</div>-->
+                                    <!--<h6 class="text-secondary pt-2 mb-0">扫这个码入驻</h6>-->
 
-                                </div>
+                                <!--</div>-->
                                 <div v-for="shop in shops" :key="shop.id" class="figure mr-4 text-center">
                                     <div class="contributor-pics">
                                         <a href="#">
@@ -33,17 +33,18 @@
         </div>
         <div class="row">
             <div class="col-12 w-100per m-b-100 overflow-auto">
-                <div class="w-1200 pt-5 m-auto text-333 six"><h2 class=" text-center">
-                    苗果在您身边</h2>
+                <div class="w-1200 py-5 m-auto">
+                    <h2 class=" text-center">
+                    苗果服务在您身边</h2>
                     <p class="text-sm text-center letter-10  m-b-45">
-                        认真服务农业，。</p>
-                    <div class="mt-5">
+                        专业的种苗交易平台，基于微信小程序。</p>
+                    <div class="my-5">
                         <div class="fl flex-4 text-center">
                             <a class="inline-block m-auto shop" href="#"><img
                                     class="hoverImg" style="width:288px;"
-                                    src="https://images.veg.kim/pc/home-mp-code.png">
+                                    src="https://images.veg.kim/pc/home-code.png">
                             </a>
-                            <h6 class="text-secondary pt-2 mb-0">扫这个码打开"苗果小程序"</h6>
+                            <h6 class="text-secondary pt-2 mb-0">微信扫这个码就能找到我们</h6>
                         </div>
                     </div>
                 </div>
@@ -119,10 +120,10 @@
         height:120px;
         weight:120px;
         margin-right:10px;
-        border-radius: 50%;
+        border-radius: 10%;
         box-shadow: 0 0 20px #d3e1d7 !important;
     }
     .shop-title {
-        color: #f05d0d;
+        color: #35393c;
     }
 </style>
