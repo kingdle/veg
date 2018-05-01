@@ -111383,13 +111383,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    created: function created() {
-        this.$store.dispatch('setAuthSeed');
+    data: function data() {
+        return {
+            seeds: [],
+            newSeed: [{ title: '', username: '', phone: '', email: '', address: '', web_url: '', remark: '' }]
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/v1/seeds').then(function (response) {
+            _this.seeds = response.data.data;
+        });
     },
 
     computed: {
@@ -111406,15 +111432,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        updateSeed: function updateSeed() {
-            var _this = this;
+        updateSeed: function updateSeed(index, seed) {
+            var _this2 = this;
 
-            var formData = {
-                phone: this.phone
-            };
-            this.$store.dispatch('updateSeedRequest', formData).then(function (response) {
-                _this.$router.push({ name: 'profile.Seed' });
-            }).catch(function (error) {});
+            this.axios.post('/api/v1/seeds/' + seed.id).then(function (response) {
+                console.log(response.data);
+                _this2.seeds.splice(index, 1);
+            });
         }
     }
 });
@@ -111469,32 +111493,168 @@ var render = function() {
                       class: { "has-error": _vm.errors.has("name") }
                     },
                     [
-                      _c("textarea", {
+                      _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.phone,
-                            expression: "phone"
-                          },
-                          { name: "validate", rawName: "v-validate" }
+                            value: _vm.newSeed.title,
+                            expression: "newSeed.title"
+                          }
                         ],
                         staticClass: "form-control",
-                        attrs: {
-                          "data-vv-rules": "required",
-                          "data-vv-as": "介绍",
-                          rows: "5",
-                          id: "phone",
-                          name: "phone",
-                          required: ""
-                        },
-                        domProps: { value: _vm.phone },
+                        attrs: { type: "text", placeholder: "公司名" },
+                        domProps: { value: _vm.newSeed.title },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.phone = $event.target.value
+                            _vm.$set(_vm.newSeed, "title", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newSeed.username,
+                            expression: "newSeed.username"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "联系人" },
+                        domProps: { value: _vm.newSeed.username },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newSeed,
+                              "username",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newSeed.phone,
+                            expression: "newSeed.phone"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "手机" },
+                        domProps: { value: _vm.newSeed.phone },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.newSeed, "phone", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newSeed.email,
+                            expression: "newSeed.email"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "邮箱" },
+                        domProps: { value: _vm.newSeed.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.newSeed, "email", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newSeed.address,
+                            expression: "newSeed.address"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "地址" },
+                        domProps: { value: _vm.newSeed.address },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newSeed,
+                              "address",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newSeed.web_url,
+                            expression: "newSeed.web_url"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "网站" },
+                        domProps: { value: _vm.newSeed.web_url },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newSeed,
+                              "web_url",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newSeed.remark,
+                            expression: "newSeed.remark"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", placeholder: "备注" },
+                        domProps: { value: _vm.newSeed.remark },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.newSeed, "remark", $event.target.value)
                           }
                         }
                       }),
@@ -111537,11 +111697,9 @@ var staticRenderFns = [
         "h5",
         { staticClass: "modal-title", attrs: { id: "seedModalLongTitle" } },
         [
-          _c(
-            "label",
-            { staticClass: "control-label", attrs: { for: "name" } },
-            [_vm._v("新增电话")]
-          )
+          _c("label", { staticClass: "control-label" }, [
+            _vm._v("修改商户信息")
+          ])
         ]
       ),
       _vm._v(" "),

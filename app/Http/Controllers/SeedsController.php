@@ -44,7 +44,15 @@ class SeedsController extends Controller
     public function update($id)
     {
         $seed = Seed::find($id);
-        $seed->is_active = !$seed->is_active;
+        $seed->title = $request->get('title');
+        $seed->username = $request->get('username');
+        $seed->content = $request->get('content');
+        $seed->content = $request->get('content');
+        $seed->phone = $request->get('phone');
+        $seed->email = $request->get('email');
+        $seed->address = $request->get('address');
+        $seed->web_url = $request->get('web_url');
+        $seed->remark = $request->get('remark');
         $seed->save();
         return $seed;
     }

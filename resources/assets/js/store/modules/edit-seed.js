@@ -1,7 +1,7 @@
 export default {
     actions: {
         updateSeedRequest({dispatch}, formData) {
-            return axios.post('/api/user/seed/update', formData).then(response => {
+            return axios.post('/api/user/seed/'+seed.id+'/edit', formData).then(response => {
                 $('#SeedModalCenter').modal('hide')
                 dispatch('showNotification', {level: 'success', msg: '资料更新成功'})
             }).catch(errors => {

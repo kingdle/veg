@@ -55,7 +55,7 @@ class AuthorizationsController extends Controller
             'access_token' => $token,
             'token_type' => "Bearer",
             'expires_in' => '21600',
-            'is_active'=>'0'
+            'is_active'=>$user->is_active
         ], 200);
     }
 
