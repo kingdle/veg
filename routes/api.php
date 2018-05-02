@@ -80,6 +80,8 @@ $api->version('v2', [
         $api->post('v2/logout', 'AuthorizationsController@destroy');
         $api->post('v2/token/refresh', 'AuthorizationsController@update');
 
+        $api->post('v2/getwxuserinfo', 'WxxcxController@getWxUserInfo');
+
         $api->get('v2/shop', 'ShopsController@weshow')->middleware('auth:api');
         $api->post('v2/shop', 'ShopsController@weupdate')->middleware('auth:api');
     });

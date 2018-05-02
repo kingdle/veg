@@ -108821,6 +108821,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(759)
+}
 var normalizeComponent = __webpack_require__(6)
 /* script */
 var __vue_script__ = __webpack_require__(732)
@@ -108829,7 +108833,7 @@ var __vue_template__ = __webpack_require__(736)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -108871,6 +108875,39 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditSeedForm_vue__ = __webpack_require__(733);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EditSeedForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__EditSeedForm_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -109556,6 +109593,8 @@ var render = function() {
             _c("div", { staticClass: "card-body mt-2" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-sm-12" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
                   _c(
                     "table",
                     {
@@ -109785,10 +109824,10 @@ var render = function() {
                                 })
                               ]),
                               _vm._v(" "),
-                              _vm._m(0)
+                              _vm._m(1)
                             ]),
                             _vm._v(" "),
-                            _vm._m(1)
+                            _vm._m(2)
                           ]),
                           _vm._v(" "),
                           _c(
@@ -109832,7 +109871,7 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                            删除\n                                        "
+                                          "\n                                                删除\n                                            "
                                         )
                                       ]
                                     ),
@@ -109849,7 +109888,7 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                            修改\n                                        "
+                                          "\n                                                修改\n                                            "
                                         )
                                       ]
                                     )
@@ -109865,7 +109904,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(2)
+              _vm._m(3)
             ])
           ])
         ])
@@ -109875,6 +109914,79 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", { attrs: { "data-id": "238" } }, [
+        _c("div", { staticClass: "DiscussionListItem Slidable" }, [
+          _c(
+            "div",
+            { staticClass: "DiscussionListItem-content Slidable-content" },
+            [
+              _c("img", {
+                staticClass: "DiscussionListItem-author",
+                attrs: {
+                  src:
+                    "http://discuss.laravel-admin.org/assets/avatars/3paqdfzjzq2oalx6.png"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "DiscussionListItem-main" }, [
+                _c("h3", { staticClass: "DiscussionListItem-title" }, [
+                  _vm._v("表单多选保存后再编辑无法显示")
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "DiscussionListItem-info" }, [
+                  _c("li", { staticClass: "item-tags" }, [
+                    _c("span", { staticClass: "TagsLabel " }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "TagLabel  colored",
+                          staticStyle: {
+                            color: "rgb(255, 199, 87)",
+                            "background-color": "rgb(255, 199, 87)"
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "TagLabel-text" }, [
+                            _vm._v("数据表单")
+                          ])
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "item-terminalPost" }, [
+                    _c("span", [
+                      _c("span", { staticClass: "username" }, [
+                        _vm._v("ali18298262660")
+                      ]),
+                      _vm._v(" started "),
+                      _c(
+                        "time",
+                        {
+                          attrs: {
+                            pubdate: "true",
+                            datetime: "2018-04-17T16:25:19+08:00",
+                            title: "Tuesday, April 17, 2018 4:25 PM",
+                            "data-humantime": "true"
+                          }
+                        },
+                        [_vm._v("15 days ago")]
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -109927,7 +110039,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "Showing\n                                51 to 57 of 57 entries\n                            "
+              "\n                                Showing\n                                51 to 57 of 57 entries\n                            "
             )
           ]
         )
@@ -111756,6 +111868,49 @@ var isDefinedGlobally = function isDefinedGlobally() {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 756 */,
+/* 757 */,
+/* 758 */,
+/* 759 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(760);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(26)("8fc5ddd4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-60a0cdbe\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Index.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-60a0cdbe\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 760 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(25)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.DiscussionListItem {\n    position: relative;\n    margin-right: -15px;\n    padding-right: 25px;\n    padding-left: 15px;\n    margin-left: -15px;\n    border-radius: 4px;\n    -webkit-transition: background .2s;\n    transition: background .2s;\n}\n.DiscussionListItem-author {\n    width: 43px;\n    height: 43px;\n    border-radius: 43px;\n    font-size: 18px;\n    line-height: 36px;\n    float: left;\n    margin-left: -52px;\n}\n.DiscussionListItem-content {\n    padding-left: 52px;\n    padding-right: 80px;\n}\n.DiscussionListItem-title {\n    margin: 0 0 3px;\n    line-height: 1.3;\n    font-size:1.2rem;\n    color: #111;\n    font-weight: normal;\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n.DiscussionListItem-info {\n    list-style-type: none;\n    padding: 0;\n    margin: 0;\n    font-size: 14px;\n}\n.DiscussionListItem-info > .item-tags {\n    margin-right: 0;\n    position: absolute;\n    right: 80px;\n    top: 23px;\n    max-width: 150px;\n    white-space: nowrap;\n    overflow: hidden;\n    transition: max-width .2s ease-in-out, -webkit-mask-image .2s;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

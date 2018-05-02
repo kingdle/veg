@@ -149,6 +149,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
+        Iwanli\Wxxcx\WxxcxServiceProvider::class,
         /*
          * Package Service Providers...
          */
