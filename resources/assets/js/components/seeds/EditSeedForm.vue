@@ -12,34 +12,40 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="updateSeed(newSeed)">
-                        <div class="form-group" :class="{'has-error' : errors.has('name') }">
-                            <input class="form-control"
-                                   v-model="newSeed.title"
-                                   type="text" placeholder="公司名">
-                            <input class="form-control"
-                                   v-model="newSeed.username"
-                                   type="text" placeholder="联系人">
-                            <input class="form-control"
-                                   v-model="newSeed.phone"
-                                   type="text" placeholder="手机">
-                            <input class="form-control"
-                                   v-model="newSeed.email"
-                                   type="text" placeholder="邮箱">
-                            <input class="form-control"
-                                   v-model="newSeed.address"
-                                   type="text" placeholder="地址">
-                            <input class="form-control"
-                                   v-model="newSeed.web_url"
-                                   type="text" placeholder="网站">
-                            <input class="form-control"
-                                   v-model="newSeed.remark"
-                                   type="text" placeholder="备注">
-                            <span class="help-block" v-show="errors.has('phone')">{{errors.first('phone')}}</span>
+                    <form @submit.prevent="updateSeed(newSeed)" data-parsley-validate="" novalidate="">
+                        <div class="form-group row" :class="{'has-error' : errors.has('name') }">
+                            <label for="title" class="col-3 col-lg-2 col-form-label text-right">公司名</label>
+                            <div class="col-9 col-lg-10">
+                                <input id="title" class="form-control"
+                                       v-model="title"
+                                       type="text" placeholder="公司名">
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">确定修改</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <div class="form-group row" :class="{'has-error' : errors.has('name') }">
+                            <label for="username" class="col-3 col-lg-2 col-form-label text-right">联系人</label>
+                            <div class="col-9 col-lg-10">
+                                <input id="username" v-model="username" type="password" required="" placeholder="Password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row" :class="{'has-error' : errors.has('name') }">
+                            <label for="phone" class="col-3 col-lg-2 col-form-label text-right">电话</label>
+                            <div class="col-9 col-lg-10">
+                                <input id="phone" type="url" required="" parsley-type="url" placeholder="URL" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row pt-2 pt-sm-5 mt-1">
+                            <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
+                                <label class="be-checkbox custom-control custom-checkbox">
+                                    苗果信息为您服务！
+                                </label>
+                                <span class="help-block" v-show="errors.has('phone')">{{errors.first('phone')}}</span>
+                            </div>
+                            <div class="col-sm-6 pl-0">
+                                <p class="text-right">
+                                    <button type="submit" class="btn btn-success">确定修改</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                </p>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -52,18 +58,33 @@
     import jwtToken from './../../helpers/jwt'
     import {ErrorBag} from 'vee-validate';
     import * as types from './../../store/mutation-type'
+    import {mapState} from 'vuex'
     export default {
         created() {
-            this.$store.dispatch('setAuthShop');
+            this.$store.dispatch('setAuthSeed');
         },
         computed: {
-            summary: {
+            ...mapState({
+                user: state => state.AuthSeed
+            }),
+            title: {
                 get() {
-                    return this.$store.state.AuthShop.summary;
+                    return this.$store.state.AuthSeed.title;
                 },
                 set(value) {
                     this.$store.commit({
-                        type: types.UPDATE_SHOP_SUMMARY,
+                        type: types.UPDATE_SEED_TITLE,
+                        value: value
+                    })
+                }
+            },
+            username: {
+                get() {
+                    return this.$store.state.AuthSeed.username;
+                },
+                set(value) {
+                    this.$store.commit({
+                        type: types.UPDATE_SEED_USERNAME,
                         value: value
                     })
                 }
@@ -82,14 +103,7 @@
         },
         methods: {
             updateSeed() {
-                const formData = {
-                    summary: this.summary,
-                }
-                this.$store.dispatch('updateSeedRequest', formData).then(response => {
-                    this.$router.push({name: 'profile.Shop'})
-                }).catch(error => {
 
-                })
             }
         }
     }
