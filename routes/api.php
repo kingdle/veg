@@ -23,31 +23,31 @@ Route::post('/user/shop/update', 'ShopsController@update')->middleware('auth:api
 Route::post('/user/seed/update', 'SeedsController@update')->middleware('auth:api');
 
 //passport部分
-Route::group(['prefix' => '/v1', 'middleware' => 'cors', 'middleware' => 'auth:api'], function () {
+Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //users用户查询
-    Route::resource('/users', 'UsersController');
+    Route::resource('/users', 'UsersController')->middleware('auth:api');
     //shops店铺查询
     Route::resource('/shops', 'ShopsController');
     //shop店铺新增
-    Route::resource('/shop', 'ShopsController');
-    Route::post('/shop/avatar', 'ShopsController@changeAvatar');
+    Route::resource('/shop', 'ShopsController')->middleware('auth:api');
+    Route::post('/shop/avatar', 'ShopsController@changeAvatar')->middleware('auth:api');
     //dynamics动态查询
     Route::resource('/dynamics', 'DynamicsController');
     //dynamics新增动态
-    Route::get('/dynamics-user', 'DynamicsController@user');
-    Route::post('/news/images', 'DynamicsController@images');
-    Route::post('/news/image', 'DynamicsController@image');
+    Route::get('/dynamics-user', 'DynamicsController@user')->middleware('auth:api');
+    Route::post('/news/images', 'DynamicsController@images')->middleware('auth:api');
+    Route::post('/news/image', 'DynamicsController@image')->middleware('auth:api');
     //albums相册查询
-    Route::resource('/albums', 'AlbumsController');
+    Route::resource('/albums', 'AlbumsController')->middleware('auth:api');
     //sorts分类查询
-    Route::resource('/sorts', 'SortsController');
+    Route::resource('/sorts', 'SortsController')->middleware('auth:api');
     //orders订单查询
-    Route::resource('/orders', 'OrdersController');
+    Route::resource('/orders', 'OrdersController')->middleware('auth:api');
     //prods商品分类查询
-    Route::resource('/prods', 'ProdsController');
+    Route::resource('/prods', 'ProdsController')->middleware('auth:api');
 
     //seeds种子商家查询
-    Route::resource('/seeds', 'SeedsController');
+    Route::resource('/seeds', 'SeedsController')->middleware('auth:api');
 
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');

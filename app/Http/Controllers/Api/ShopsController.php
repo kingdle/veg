@@ -28,15 +28,14 @@ class ShopsController extends Controller
             $filename = 'avatars/'.$userid.'MG'.uniqid().'.'.$avatar->getClientOriginalExtension();
             Storage::disk('upyun')->writeStream($filename, fopen($avatar->getRealPath(), 'r'));
             $filePath=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
+            $attributes['avatar'] = $filePath;
         }
-
         //把session_key
         $attributes['summary'] = $request->summary;
         $attributes['villageInfo'] = $request->villageInfo;
         $attributes['longitude'] = $request->longitude;
         $attributes['latitude'] = $request->latitude;
         $attributes['address'] = $request->address;
-        $attributes['avatar'] = $filePath;
         // 更新用户数据
         $shop->update($attributes);
         return response()->json([
