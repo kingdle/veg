@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\User;
 use Iwanli\Wxxcx\Wxxcx;
 use Illuminate\Http\Request;
 use Auth;
@@ -24,7 +25,7 @@ class WxxcxController extends Controller
      */
     public function getWxUserInfo()
     {
-//        $weappOpenid = Auth::guard('api')->user()->weapp_openid;
+        $userid = Auth::guard('api')->user()->id;
 //        $weixinSessionKey = Auth::guard('api')->user()->weixin_session_key;
         //code 在小程序端使用 wx.login 获取
         $code = request('code', '');
@@ -37,6 +38,13 @@ class WxxcxController extends Controller
         $userInfo = $this->wxxcx->getLoginInfo($code);
 
         //获取解密后的用户信息
-        return $this->wxxcx->getUserInfo($encryptedData, $iv);
+        $wxinfo=$this->wxxcx->getUserInfo($encryptedData, $iv);
+
+        $user = User::find($userid);
+        $attributes['phone'] = $wxinfo['phoneNumber'];
+        // 更新用户数据
+        $user->update($attributes);
+
+        return $wxinfo;
     }
 }
