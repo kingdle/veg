@@ -69,6 +69,7 @@ class AuthorizationsController extends Controller
             $summary = $request->summary;
             $cityInfo = $request->cityInfo;
             $address = $request->address;
+            $villageInfo = $request->villageInfo;
             $longitude = $request->longitude;
             $latitude = $request->latitude;
 
@@ -105,6 +106,7 @@ class AuthorizationsController extends Controller
                 'avatar' => $shopavatar,
                 'cityInfo' => $cityInfo,
                 'address' => $address,
+                'villageInfo' => $villageInfo,
                 'longitude' => $longitude,
                 'latitude' => $latitude,
             ]);
@@ -170,6 +172,7 @@ class AuthorizationsController extends Controller
             $userid = User::where('phone', $phone)->first()->id;
             $summary = $request->summary;
             $address = $request->address;
+            $villageInfo = $request->villageInfo;
             $longitude = $request->longitude;
             $latitude = $request->latitude;
             Shop::create([
@@ -178,6 +181,7 @@ class AuthorizationsController extends Controller
                 'summary' => $summary,
                 'avatar' => $avatar,
                 'address' => $address,
+                'villageInfo' => $villageInfo,
                 'longitude' => $longitude,
                 'latitude' => $latitude,
             ]);
