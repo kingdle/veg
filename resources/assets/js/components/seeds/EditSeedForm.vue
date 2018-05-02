@@ -53,20 +53,21 @@
     import {ErrorBag} from 'vee-validate';
     import * as types from './../../store/mutation-type'
     export default {
-        data(){
-            return {
-                seeds:[],
-                newSeed:[
-                    {title:'',username:'',phone:'',email:'',address:'',web_url:'',remark:''}
-                ]
-            }
-        },
-        mounted() {
-            axios.get('/api/v1/seeds/:id').then(response => {
-                this.seeds = response.data.data
-            })
+        created() {
+            this.$store.dispatch('setAuthShop');
         },
         computed: {
+            summary: {
+                get() {
+                    return this.$store.state.AuthShop.summary;
+                },
+                set(value) {
+                    this.$store.commit({
+                        type: types.UPDATE_SHOP_SUMMARY,
+                        value: value
+                    })
+                }
+            },
             phone: {
                 get() {
                     return this.$store.state.AuthSeed.phone;
@@ -80,10 +81,14 @@
             },
         },
         methods: {
-            updateSeed(index,seed){
-                axios.post('/api/v1/seeds/'+ seed.id).then(response =>{
-                    console.log(response.data)
-                    this.seeds.splice(index,1)
+            updateSeed() {
+                const formData = {
+                    summary: this.summary,
+                }
+                this.$store.dispatch('updateSeedRequest', formData).then(response => {
+                    this.$router.push({name: 'profile.Shop'})
+                }).catch(error => {
+
                 })
             }
         }
