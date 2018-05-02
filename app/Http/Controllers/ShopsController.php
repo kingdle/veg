@@ -23,6 +23,7 @@ class ShopsController extends Controller
         }
         return new \App\Http\Resources\Shop($shop);
     }
+
     public function store(Request $request, Shop $shop)
     {
         if (!$request->hasFile('avatar')) {

@@ -109359,9 +109359,9 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             id: "username",
-                            type: "password",
+                            type: "text",
                             required: "",
-                            placeholder: "Password"
+                            placeholder: "联系人"
                           },
                           domProps: { value: _vm.username },
                           on: {
@@ -109394,7 +109394,35 @@ var render = function() {
                         [_vm._v("电话")]
                       ),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _c("div", { staticClass: "col-9 col-lg-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.phone,
+                              expression: "phone"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "phone",
+                            type: "text",
+                            required: "",
+                            "parsley-type": "url",
+                            placeholder: "电话"
+                          },
+                          domProps: { value: _vm.phone },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.phone = $event.target.value
+                            }
+                          }
+                        })
+                      ])
                     ]
                   ),
                   _vm._v(" "),
@@ -109434,7 +109462,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(1)
                   ])
                 ]
               )
@@ -109473,23 +109501,6 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-9 col-lg-10" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          id: "phone",
-          type: "url",
-          required: "",
-          "parsley-type": "url",
-          placeholder: "URL"
-        }
-      })
     ])
   },
   function() {

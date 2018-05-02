@@ -22,6 +22,7 @@ class Shop extends JsonResource
             'avatar'=>$this->avatar,
             'cityInfo'=>$this->cityInfo,
             'address'=>$this->address,
+            'villageInfo'=>$this->villageInfo,
             'longitude'=>$this->longitude,
             'latitude'=>$this->latitude,
             'pic_count'=>$this->pic_count,

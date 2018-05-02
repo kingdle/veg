@@ -24,13 +24,13 @@
                         <div class="form-group row" :class="{'has-error' : errors.has('name') }">
                             <label for="username" class="col-3 col-lg-2 col-form-label text-right">联系人</label>
                             <div class="col-9 col-lg-10">
-                                <input id="username" v-model="username" type="password" required="" placeholder="Password" class="form-control">
+                                <input id="username" v-model="username" type="text" required="" placeholder="联系人" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row" :class="{'has-error' : errors.has('name') }">
                             <label for="phone" class="col-3 col-lg-2 col-form-label text-right">电话</label>
                             <div class="col-9 col-lg-10">
-                                <input id="phone" type="url" required="" parsley-type="url" placeholder="URL" class="form-control">
+                                <input id="phone" v-model="phone" type="text" required="" parsley-type="url" placeholder="电话" class="form-control">
                             </div>
                         </div>
                         <div class="row pt-2 pt-sm-5 mt-1">
