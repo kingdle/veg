@@ -46,6 +46,6 @@ class WxxcxController extends Controller
 //        // 更新用户数据
 //        $user->update($attributes);
 
-        return $wxinfo->get('phoneNumber');;
+        return $wxinfo;
     }
 }
