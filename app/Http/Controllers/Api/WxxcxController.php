@@ -25,7 +25,7 @@ class WxxcxController extends Controller
      */
     public function getWxUserInfo()
     {
-        $userid = Auth::guard('api')->user()->id;
+
 //        $weixinSessionKey = Auth::guard('api')->user()->weixin_session_key;
         //code 在小程序端使用 wx.login 获取
         $code = request('code', '');
@@ -41,10 +41,11 @@ class WxxcxController extends Controller
         //获取解密后的用户信息
         $wxinfo=$this->wxxcx->getUserInfo($encryptedData, $iv);
 
-        $user = User::find($userid);
-        $attributes['phone'] = $wxinfo['phoneNumber'];
-        // 更新用户数据
-        $user->update($attributes);
+//        $userid = Auth::guard('api')->user()->id;
+//        $user = User::find($userid);
+//        $attributes['phone'] = $wxinfo['phoneNumber'];
+//        // 更新用户数据
+//        $user->update($attributes);
 
         return $wxinfo;
     }
