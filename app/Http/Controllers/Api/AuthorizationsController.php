@@ -55,8 +55,7 @@ class AuthorizationsController extends Controller
             'access_token' => $token,
             'token_type' => "Bearer",
             'expires_in' => '21600',
-            'userid'=>$user->id,
-            'is_active'=>$user->is_active
+            'data'=>$user
         ], 200);
     }
 
@@ -113,7 +112,8 @@ class AuthorizationsController extends Controller
             return response()->json([
                 'status' => 'true',
                 'message' => '成功入驻',
-                'is_active'=>'1'
+                'is_active'=>'1',
+                'data'=>$user
             ], 200);
         }
         return $this->response->errorUnauthorized('请重新打开苗果小程序授权后再申请入驻');
@@ -207,6 +207,7 @@ class AuthorizationsController extends Controller
             'access_token' => $token,
             'token_type' => "Bearer",
             'expires_in' => '21600',
+            'data'=>$user
         ], 200);
 
 //        return response()->respondWithToken($token)->setStatusCode(201);
@@ -225,6 +226,7 @@ class AuthorizationsController extends Controller
             'access_token' => $token,
             'token_type' => "Bearer",
             'expires_in' => '21600',
+            'data'=>$user
         ]);
     }
 

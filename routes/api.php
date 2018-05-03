@@ -84,5 +84,7 @@ $api->version('v2', [
 
         $api->get('v2/shop', 'ShopsController@weshow')->middleware('auth:api');
         $api->post('v2/shop', 'ShopsController@weupdate')->middleware('auth:api');
+
+        $api->post('v2/user', 'UsersController@weupdate')->middleware('auth:api');
     });
 });

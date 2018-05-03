@@ -42,6 +42,7 @@ class ShopsController extends Controller
             'status'=>'true',
             'status_code' => 200,
             'message' => '店铺信息更新成功',
+            'data'=>$shop
         ]);
     }
 }
