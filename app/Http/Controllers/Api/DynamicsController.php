@@ -72,7 +72,7 @@ class DynamicsController extends Controller
             return response()->json([
                 'status'=>'true',
                 'status_code' => 200,
-                'message' => '上传成功',
+                'message' => '动态发布成功',
             ]);
         } else {
             return response()->json([
