@@ -65,7 +65,7 @@ class DynamicsController extends Controller
         $dynamic->user_id = $userId;
         $dynamic->shop_id = $shopId;
         $dynamic->content = $content;
-        $dynamic->pic = $imageUrl;
+        $dynamic->pic = json_encode($imageUrl);
         $success = $dynamic->save();
 
         if ($success) {
