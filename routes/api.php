@@ -82,9 +82,12 @@ $api->version('v2', [
 
         $api->post('v2/getwxuserinfo', 'WxxcxController@getWxUserInfo');
 
-        $api->get('v2/shop', 'ShopsController@weshow')->middleware('auth:api');
-        $api->post('v2/shop', 'ShopsController@weupdate')->middleware('auth:api');
+        $api->get('v2/shop', 'ShopsController@weShow')->middleware('auth:api');
+        $api->post('v2/shop', 'ShopsController@weUpdate')->middleware('auth:api');
 
-        $api->post('v2/user', 'UsersController@weupdate')->middleware('auth:api');
+        $api->post('v2/user', 'UsersController@weUpdate')->middleware('auth:api');
+
+        $api->post('v2/dynamic/upload', 'DynamicsController@uploadImage')->middleware('auth:api');
+        $api->post('v2/dynamic/create', 'DynamicsController@weCreate')->middleware('auth:api');
     });
 });

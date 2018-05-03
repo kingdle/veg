@@ -64,7 +64,7 @@ class AuthorizationsController extends Controller
         $avatar = Auth::guard('api')->user()->avatar_url;
         if($userid){
             $title = $request->title;
-            $phone = $request->phone;
+//            $phone = $request->phone;
             $summary = $request->summary;
             $cityInfo = $request->cityInfo;
             $address = $request->address;
@@ -72,13 +72,13 @@ class AuthorizationsController extends Controller
             $longitude = $request->longitude;
             $latitude = $request->latitude;
 
-            $is_phone = User::where('phone', $phone)->first();
-            if ($is_phone) {
-                return response()->json([
-                    'status' => 'false',
-                    'message' => '手机号已存在',
-                ], 403);
-            }
+//            $is_phone = User::where('phone', $phone)->first();
+//            if ($is_phone) {
+//                return response()->json([
+//                    'status' => 'false',
+//                    'message' => '手机号已存在',
+//                ], 403);
+//            }
             $is_shop = Shop::where('title', $title)->first();
             if ($is_shop) {
                 return response()->json([
@@ -87,7 +87,7 @@ class AuthorizationsController extends Controller
                 ], 403);
             }
             $user = User::find($userid);
-            $attributes['phone'] = $phone;
+//            $attributes['phone'] = $phone;
             $attributes['is_active'] = '1';
             // 更新用户数据
             $user->update($attributes);
@@ -112,8 +112,6 @@ class AuthorizationsController extends Controller
             return response()->json([
                 'status' => 'true',
                 'message' => '成功入驻',
-                'is_active'=>'1',
-                'data'=>$user
             ], 200);
         }
         return $this->response->errorUnauthorized('请重新打开苗果小程序授权后再申请入驻');

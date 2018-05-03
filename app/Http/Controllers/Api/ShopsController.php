@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Storage;
 
 class ShopsController extends Controller
 {
-    public function weshow()
+    public function weShow()
     {
-        $shopid=request()->user()->shop->id;
-        $shop = Shop::find($shopid);
+        $shopId=request()->user()->shop->id;
+        $shop = Shop::find($shopId);
         if (!$shop) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
         return new \App\Http\Resources\Shop($shop);
     }
-    public function weupdate(Request $request)
+    public function weUpdate(Request $request)
     {
-        $userid=request()->user()->id;
-        $shopid=request()->user()->shop->id;
-        $shop = Shop::find($shopid);
+        $userId=request()->user()->id;
+        $shopId=request()->user()->shop->id;
+        $shop = Shop::find($shopId);
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
-            $filename = 'avatars/'.$userid.'MG'.uniqid().'.'.$avatar->getClientOriginalExtension();
+            $filename = 'avatars/'.$userId.'MG'.uniqid().'.'.$avatar->getClientOriginalExtension();
             Storage::disk('upyun')->writeStream($filename, fopen($avatar->getRealPath(), 'r'));
             $filePath=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
             $attributes['avatar'] = $filePath;

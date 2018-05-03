@@ -25,7 +25,7 @@ class UsersController extends Controller
         return new \App\Http\Resources\User($user);
     }
 
-    public function weupdate(Request $request)
+    public function weUpdate(Request $request)
     {
         $userid=request()->user()->id;
         $user = User::find($userid);
