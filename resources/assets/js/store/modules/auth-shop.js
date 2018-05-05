@@ -12,12 +12,16 @@ export default{
         pic_count: null,
         dynamic_count: null,
         address: null,
+        villageInfo: null,
         published_at: null,
         code: null
     },
     mutations: {
         [types.UPDATE_SHOP_SUMMARY](state, payload) {
             state.summary = payload.value
+        },
+        [types.UPDATE_SHOP_VILLAGEINFO](state, payload) {
+            state.villageInfo = payload.value
         },
         [types.SET_AUTH_SHOP](state, payload) {
             state.authenticated = true,
@@ -31,6 +35,7 @@ export default{
             state.pic_count = payload.shop.pic_count
             state.dynamic_count = payload.shop.dynamic_count
             state.address = payload.shop.address
+            state.villageInfo = payload.shop.villageInfo
             state.published_at = payload.shop.published_at
             state.code = payload.shop.code
         }

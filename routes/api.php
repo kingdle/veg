@@ -54,6 +54,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //统计
     Route::get('/count','CountController@count')->middleware('auth:api');
 
+    Route::get('weapp/code','WeChatController@index');
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
 //    Route::post('authorizations','AuthorizationsController@store');

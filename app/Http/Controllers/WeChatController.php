@@ -17,4 +17,13 @@ class WeChatController extends Controller
 
         return $app->server->serve();
     }
+    public function index(){
+        $app = \EasyWeChat::miniProgram(); // 小程序
+        $response = $app->app_code->get('/public', [
+            'width' => 600,
+            //...
+        ]);
+        $filename = $response->saveAs('/public', 'appcode.png');
+        return $filename;
+    }
 }

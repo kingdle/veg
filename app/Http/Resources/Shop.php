@@ -63,6 +63,7 @@ class Shop extends JsonResource
             'pic_count'=>$this->pic_count,
             'dynamic_count'=>$this->dynamic_count,
             'published_at'=>$this->published_at,
+            'updated_at'=>$this->updated_at,
             'code'=>$this->code,
             'user'=>new User($this->user),
             'distance'=>$distance

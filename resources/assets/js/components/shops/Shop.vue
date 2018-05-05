@@ -43,22 +43,21 @@
                                                 修改
                                             </button>
                                         </li>
-                                        <li class="b-b p-b-20 p-t-20">
-                                            <p class="set-up-item-label text-secondary">性质</p>
-                                            <p class="set-up-item-content">{{ shop.property }}</p>
-
-                                        </li>
+                                        <!--<li class="b-b p-b-20 p-t-20">-->
+                                            <!--<p class="set-up-item-label text-secondary">性质</p>-->
+                                            <!--<p class="set-up-item-content">{{ shop.property }}</p>-->
+                                        <!--</li>-->
                                         <li class="b-b p-b-20 p-t-20">
                                             <p class="set-up-item-label text-secondary">照片数</p>
-                                            <p class="set-up-item-content">{{ shop.pic_count }}</p>
+                                            <p class="set-up-item-content">{{mgCharts.albumsCount}}</p>
                                         </li>
                                         <li class="b-b p-b-20 p-t-20">
                                             <p class="set-up-item-label text-secondary">动态数</p>
-                                            <p class="set-up-item-content">{{ shop.dynamic_count }}</p>
+                                            <p class="set-up-item-content">{{mgCharts.dynamicsCount}}</p>
                                         </li>
                                         <li class="b-b p-b-20 p-t-20">
                                             <p class="set-up-item-label text-secondary">地址：</p>
-                                            <p class="set-up-item-content">{{ shop.address }}</p>
+                                            <p class="set-up-item-content">{{ shop.address }} {{ shop.villageInfo }}</p>
                                         </li>
                                         <li class="b-b p-b-20 p-t-20">
                                             <p class="set-up-item-label text-secondary">您的苗果小程序码</p>
@@ -102,8 +101,14 @@
                 headers: {
                     Authorization:'Bearer '+window.localStorage.getItem('jwt_token')
                 },
-                imgDataUrl:''
+                imgDataUrl:'',
+                mgCharts:{"albumsCount":'',"dynamicsCount":'',"ordersCount":''},
             }
+        },
+        mounted() {
+            axios.get('/api/v1/count').then(response => {
+                this.mgCharts = response.data
+            })
         },
         components: {
             'my-upload': myUpload,
