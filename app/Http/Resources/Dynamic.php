@@ -15,8 +15,6 @@ class Dynamic extends JsonResource
     public function toArray($request)
     {
         $shop=new Shop($this->shop);
-        
-
         return [
             'id'=>$this->id,
             'userid'=>$this->user_id,

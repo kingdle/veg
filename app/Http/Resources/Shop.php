@@ -15,7 +15,17 @@ class Shop extends JsonResource
      */
     public function toArray($request)
     {
-        $unit = 2;
+        /**
+         * 计算两点地理坐标之间的距离
+         * @param  Decimal $longitude1 起点经度
+         * @param  Decimal $latitude1  起点纬度
+         * @param  Decimal $longitude2 终点经度
+         * @param  Decimal $latitude2  终点纬度
+         * @param  Int     $unit       单位 1:米 2:公里
+         * @param  Int     $decimal    精度 保留小数位数
+         * @return Decimal
+         */
+        $unit = 1;
         $decimal = 0;
         $latitude1 = $request->latitude;
         $latitude2 = $this->latitude;
@@ -30,9 +40,13 @@ class Shop extends JsonResource
         $a = $radLat1 - $radLat2;
         $b = $radLng1 - $radLng2;
         $distance = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
-        $distance = $distance * $EARTH_RADIUS * 1000;
-        if ($unit == 2) {
+        $distance = $distance * $EARTH_RADIUS*1000;
+        if($distance>1000){
             $distance = $distance / 1000;
+            $distance = round($distance, $decimal)."公里";
+        }else{
+            $distance = $distance / 100;
+            $distance = round($distance, $decimal)."米";
         }
 
         return [
@@ -51,7 +65,7 @@ class Shop extends JsonResource
             'published_at'=>$this->published_at,
             'code'=>$this->code,
             'user'=>new User($this->user),
-            'distance'=>round($distance, $decimal)
+            'distance'=>$distance
         ];
     }
 }
