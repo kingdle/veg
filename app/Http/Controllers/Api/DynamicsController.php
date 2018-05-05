@@ -81,6 +81,38 @@ class DynamicsController extends Controller
                 'message' => '服务器端错误',
             ]);
         }
+    }
+    public function upFile(Request $request, Album $album) {
+        if (!$request->hasFile('file')) {
+            return response()->json([], 500, '无法获取上传文件');
+        }
+        $file = $request->file('file');
+        $userId = Auth::guard('api')->user()->id;
+        $shopId = Auth::guard('api')->user()->shop->id;
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();     // image/jpeg
 
+            // 上传文件
+            $filename = 'dynamics/' . 'MG' . uniqid() . '.' . $ext;
+            Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
+            $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
+            $album->user_id = $userId;
+            $album->shop_id = $shopId;
+            $album->pic = json_encode($filePath);
+            $album->save();
+            return response()->json([
+                'status_code' => 200,
+                'message' => 'success',
+                'photo' => $filePath,
+                'name' => $originalName,
+            ]);
+
+        } else {
+            return response()->json([], 500, '文件未通过验证');
+        }
     }
 }

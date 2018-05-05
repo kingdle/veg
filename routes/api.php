@@ -28,6 +28,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::resource('/users', 'UsersController')->middleware('auth:api');
     //shops店铺查询
     Route::resource('/shops', 'ShopsController');
+    Route::post('/shop/distance', 'ShopsController@distance');
     //shop店铺新增
     Route::resource('/shop', 'ShopsController')->middleware('auth:api');
     Route::post('/shop/avatar', 'ShopsController@changeAvatar')->middleware('auth:api');
@@ -48,6 +49,9 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
 
     //seeds种子商家查询
     Route::resource('/seeds', 'SeedsController')->middleware('auth:api');
+
+    //统计
+    Route::get('/count','CountController@count')->middleware('auth:api');
 
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
@@ -89,5 +93,6 @@ $api->version('v2', [
 
         $api->post('v2/dynamic/upload', 'DynamicsController@uploadImage')->middleware('auth:api');
         $api->post('v2/dynamic/create', 'DynamicsController@weCreate')->middleware('auth:api');
+        $api->post('v2/dynamic/upfile', 'DynamicsController@upFile')->middleware('auth:api');
     });
 });

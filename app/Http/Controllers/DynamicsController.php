@@ -28,8 +28,8 @@ class DynamicsController extends Controller
 
     public function user()
     {
-        $shopid = Auth::guard('api')->user()->shop->id;
-        $dynamics = Dynamic::where('shop_id', $shopid)->orderBy('id', 'desc')->paginate(9);
+        $shopId = Auth::guard('api')->user()->shop->id;
+        $dynamics = Dynamic::where('shop_id', $shopId)->orderBy('id', 'desc')->paginate(9);
         if ($dynamics->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
@@ -39,10 +39,10 @@ class DynamicsController extends Controller
     public function image(Request $request, Album $album)
     {
         $file = $request->file('file');
-//        $userid = Auth::guard('api')->user()->id;
-//        $shopid = Auth::guard('api')->user()->shop->id;
-        $userid = $request->user_id;
-        $shopid = $request->shop_id;
+//        $userId = Auth::guard('api')->user()->id;
+//        $shopId = Auth::guard('api')->user()->shop->id;
+        $userId = $request->user_id;
+        $shopId = $request->shop_id;
 
         if (!$request->hasFile('file')) {
             return response()->json([
@@ -62,8 +62,8 @@ class DynamicsController extends Controller
             $filename = 'dynamics/' . 'MG' . uniqid() . '.' . $ext;
             Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
             $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
-            $album->user_id = $userid;
-            $album->shop_id = $shopid;
+            $album->user_id = $userId;
+            $album->shop_id = $shopId;
             $album->pic = json_encode($filePath);
             $album->save();
             return response()->json([
@@ -86,14 +86,14 @@ class DynamicsController extends Controller
     public function images(Request $request, Dynamic $dynamic)
     {
         $imageurl = $request->imageurl;
-//        $userid = Auth::guard('api')->user()->id;
-//        $shopid = Auth::guard('api')->user()->shop->id;
-        $userid = $request->user_id;
-        $shopid = $request->shop_id;
+//        $userId = Auth::guard('api')->user()->id;
+//        $shopId = Auth::guard('api')->user()->shop->id;
+        $userId = $request->user_id;
+        $shopId = $request->shop_id;
         $content = $request->dynamicContent;
 
-        $dynamic->user_id = $userid;
-        $dynamic->shop_id = $shopid;
+        $dynamic->user_id = $userId;
+        $dynamic->shop_id = $shopId;
         $dynamic->content = $content;
         $dynamic->pic = $imageurl;
         $success = $dynamic->save();
@@ -117,8 +117,8 @@ class DynamicsController extends Controller
     public function store(Request $request, Dynamic $dynamic)
     {
         $content = $request->dynamic;
-        $userid = Auth::guard('api')->user()->id;
-        $shopid = Auth::guard('api')->user()->shop->id;
+        $userId = Auth::guard('api')->user()->id;
+        $shopId = Auth::guard('api')->user()->shop->id;
 
         $img = $request->images;
         $filePath = [];
@@ -135,12 +135,12 @@ class DynamicsController extends Controller
 //                $success = file_put_contents($destinationPath . $fileName, $data);
 //                $filePath[] = $sqlPath . $fileName;
                 $data = array();
-                Album::create(['user_id' => $userid, 'shop_id' => $shopid, 'pic' => json_encode($filePathOne)]);
+                Album::create(['user_id' => $userId, 'shop_id' => $shopId, 'pic' => json_encode($filePathOne)]);
             }
         }
 
-        $dynamic->user_id = $userid;
-        $dynamic->shop_id = $shopid;
+        $dynamic->user_id = $userId;
+        $dynamic->shop_id = $shopId;
         $dynamic->content = $content;
         $dynamic->pic = json_encode($filePath);
         $success=$dynamic->save();

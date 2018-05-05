@@ -30,25 +30,39 @@
 
                             </div>
                             <div class="form-group news-img">
-                                <label for="dynamic" class="col-form-label">图片:
-                                    选中{{images.length}}张
-                                    <a class="text-info" v-if="images.length >0" @click="removeImage">移除全部图片</a>
-                                    <!--<button class="btn btn-outline-success btn-sm" v-if="images.length >0" @click='uploadImage'>上传</button>-->
-                                </label>
-                                <ul>
-                                        <li v-if="images.length >0" v-for="(key,image) in images">
-                                            <img class="border" :src="key"/>
-                                            <a href="#" class="text-danger close" aria-label="Close"
-                                               style="position: absolute;" @click='delImage(image)'>
-                                                <span class="btn-close">&times;</span>
-                                            </a>
-                                        </li>
-                                    <li class="addPic" @click="addPic">
-                                        <img class="" src="/images-pc/upload.png"/>
-                                    </li>
-                                    <input type="file" @change="onFileChange" multiple style="display: none;">
+                                <label for="dynamic" class="col-form-label">图片:（最多9张）</label>
+                                <el-upload
+                                        class="mg-upload-image"
+                                        :action="uploadAction"
+                                        list-type="picture-card"
+                                        multiple
+                                        :limit="9"
+                                        :on-exceed="handleExceed"
+                                        :on-success="handleSuccess"
+                                        :headers="headers"
+                                        :file-list="fileList">
+                                    <i class="el-icon-plus"></i>
+                                </el-upload>
 
-                                </ul>
+                                <!--<label for="dynamic" class="col-form-label">图片:-->
+                                    <!--选中{{images.length}}张-->
+                                    <!--<a class="text-info" v-if="images.length >0" @click="removeImage">移除全部图片</a>-->
+                                    <!--&lt;!&ndash;<button class="btn btn-outline-success btn-sm" v-if="images.length >0" @click='uploadImage'>上传</button>&ndash;&gt;-->
+                                <!--</label>-->
+                                <!--<ul>-->
+                                        <!--<li v-if="images.length >0" v-for="(key,image) in images">-->
+                                            <!--<img class="border" :src="key"/>-->
+                                            <!--<a href="#" class="text-danger close" aria-label="Close"-->
+                                               <!--style="position: absolute;" @click='delImage(image)'>-->
+                                                <!--<span class="btn-close">&times;</span>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                    <!--<li class="addPic" @click="addPic">-->
+                                        <!--<img class="" src="/images-pc/upload.png"/>-->
+                                    <!--</li>-->
+                                    <!--<input type="file" @change="onFileChange" multiple style="display: none;">-->
+
+                                <!--</ul>-->
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">确定</button>
@@ -65,108 +79,172 @@
 <script>
     import jwtToken from './../../helpers/jwt'
     import {ErrorBag} from 'vee-validate';
-    import * as types from './../../store/mutation-type'
+//    import * as types from './../../store/mutation-type'
     export default {
         data() {
             return {
                 dynamic: '',
-                images: [],
+                dynamics:[],
+                fileList: [],
+                dialogImageUrl: '',
+                dialogVisible: false,
+                uploadAction:'/api/v2/dynamic/upfile',
+                headers: {
+                    Authorization: 'Bearer ' + window.localStorage.getItem('jwt_token')
+                },
+                imageUrl:[]
             }
         },
         methods: {
-            addPic(e){
-                e.preventDefault();
-                $('input[type=file]').trigger('click');
-                return false;
+            handleSuccess(response){
+                this.filesUrl = response.photo
+                this.imageUrl.push(this.filesUrl)
             },
-            onFileChange(e) {
-                var files = e.target.files || e.dataTransfer.files;
-                if (!files.length)return;
-                this.createImage(files);
+            handleBefore(){
+                return this.files.length === 9 ? false : true // 只让它上传一张
             },
-            createImage(file) {
-                if (typeof FileReader === 'undefined') {
-                    return false;
-                }
-                var image = new Image();
-                var vm = this;
-                var leng = file.length;
-                for (var i = 0; i < leng; i++) {
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file[i]);
-                    reader.onload = function (e) {
-                        vm.images.push(e.target.result);
-                    };
-                }
+            handleRemove(file, fileList) {
+                console.log(file);
             },
-            delImage: function (index) {
-                this.images.splice(index, 1);
+            handlePreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
             },
-            removeImage: function (e) {
-                this.images = [];
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 9 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
             },
+
             updateNews() {
+
                 const formData = {
-                    dynamic: this.dynamic,
-                    images:this.images
+                    dynamicContent: this.dynamic,
+                    imageUrl: this.imageUrl
                 }
                 this.$store.dispatch('addNewsRequest', formData).then(response => {
                     this.$router.push({name: 'profile.News'})
-                    this.dynamic=''
-                    this.images=[]
+                    this.dynamic = ''
+                    this.fileList = []
+                    this.imageUrl = []
                 }).catch(error => {
 
                 })
             }
+//            addPic(e){
+//                e.preventDefault();
+//                $('input[type=file]').trigger('click');
+//                return false;
+//            },
+//            onFileChange(e) {
+//                var files = e.target.files || e.dataTransfer.files;
+//                if (!files.length)return;
+//                this.createImage(files);
+//            },
+//            createImage(file) {
+//                if (typeof FileReader === 'undefined') {
+//                    return false;
+//                }
+//                var image = new Image();
+//                var vm = this;
+//                var leng = file.length;
+//                for (var i = 0; i < leng; i++) {
+//                    var reader = new FileReader();
+//                    reader.readAsDataURL(file[i]);
+//                    reader.onload = function (e) {
+//                        vm.images.push(e.target.result);
+//                    };
+//                }
+//            },
+//            delImage: function (index) {
+//                this.images.splice(index, 1);
+//            },
+//            removeImage: function (e) {
+//                this.images = [];
+//            },
+//            updateNews() {
+//                const formData = {
+//                    dynamic: this.dynamic,
+//                    images:this.images
+//                }
+//                this.$store.dispatch('addNewsRequest', formData).then(response => {
+//                    this.$router.push({name: 'profile.News'})
+//                    this.dynamic=''
+//                    this.images=[]
+//                }).catch(error => {
+//
+//                })
+//            }
         }
     }
 </script>
 <style>
-    .news-add .modal-body ul {
-        list-style: none outside none;
-        margin: 0;
-        padding: 0;
+    .mg-news-img img:first-child {
+        border-top-left-radius: 0.5rem !important;
     }
 
-    .news-add .modal-body li {
-        margin: 0 10px;
-        display: inline;
+    .mg-news-img img:last-child {
+        border-bottom-right-radius: 0.5rem !important;
     }
 
-    .news-add .modal-body img {
-        width: 72px;
-        height: 72px;
-        margin: auto;
-        display: inline;
-        margin-bottom: 10px;
+    .mg-upload-image .el-upload--picture-card {
+        background-color: #fbfdff;
+        border: 1px dashed #c0ccda;
+        border-radius: 6px;
+        box-sizing: border-box;
+        width: 82px;
+        height: 82px;
+        line-height: 82px;
+        vertical-align: top;
     }
 
-    .news-add .modal-body .btn-close {
-        position: absolute;
-        z-index: 999;
-        top: -4px;
-        right: -4px;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: #D50000 !important;
-        color: #fff;
-        font-size: 12px;
-        text-align: center;
-        cursor: pointer;
+    .mg-upload-image .el-upload-list--picture-card .el-upload-list__item {
+        width: 82px;
+        height: 82px;
     }
+    /*.news-add .modal-body ul {*/
+        /*list-style: none outside none;*/
+        /*margin: 0;*/
+        /*padding: 0;*/
+    /*}*/
 
-    .news-add .modal-body li {
-        margin: 0 5px 0 0;
-        display: inline;
-    }
+    /*.news-add .modal-body li {*/
+        /*margin: 0 10px;*/
+        /*display: inline;*/
+    /*}*/
 
-    .news-add .modal-body li img {
-        border-radius: 5px;
-    }
-    .news-add .modal-body .addPic img{
-        align-content: center;
-        width: 72px;
-        height: 72px;
-    }
+    /*.news-add .modal-body img {*/
+        /*width: 72px;*/
+        /*height: 72px;*/
+        /*margin: auto;*/
+        /*display: inline;*/
+        /*margin-bottom: 10px;*/
+    /*}*/
+
+    /*.news-add .modal-body .btn-close {*/
+        /*position: absolute;*/
+        /*z-index: 999;*/
+        /*top: -4px;*/
+        /*right: -4px;*/
+        /*width: 14px;*/
+        /*height: 14px;*/
+        /*border-radius: 50%;*/
+        /*background: #D50000 !important;*/
+        /*color: #fff;*/
+        /*font-size: 12px;*/
+        /*text-align: center;*/
+        /*cursor: pointer;*/
+    /*}*/
+
+    /*.news-add .modal-body li {*/
+        /*margin: 0 5px 0 0;*/
+        /*display: inline;*/
+    /*}*/
+
+    /*.news-add .modal-body li img {*/
+        /*border-radius: 5px;*/
+    /*}*/
+    /*.news-add .modal-body .addPic img{*/
+        /*align-content: center;*/
+        /*width: 72px;*/
+        /*height: 72px;*/
+    /*}*/
 </style>

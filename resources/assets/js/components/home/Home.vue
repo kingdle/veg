@@ -12,12 +12,12 @@
                             <div class="col-sm-4 col-12 mg-home-top">
                                 <div class="row text-center" style="white-space:nowrap;">
                                     <div class="col pt-2">
-                                        <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">订单数</h5>
-                                        <p class="card-text text-secondary" style="white-space:nowrap;">10</p>
+                                        <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">相片数</h5>
+                                        <p class="card-text text-secondary" style="white-space:nowrap;">{{mgCharts.albumsCount}}</p>
                                     </div>
                                     <div class="col pt-2">
                                         <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">动态数</h5>
-                                        <p class="card-text text-secondary" style="white-space:nowrap;">6</p>
+                                        <p class="card-text text-secondary" style="white-space:nowrap;">{{mgCharts.dynamicsCount}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -117,10 +117,10 @@
                         <div class="input-group">
                             <textarea class="form-control bd-callout lead"
                                       rows="3"
-                                      placeholder="创新驱动价值，欢迎提意见。"
+                                      placeholder="创新驱动价值，欢迎提意见。好想法被采纳，会有报酬的"
                                       aria-label="With textarea"></textarea>
                             <div class="input-group-append">
-                                <button class="btn btn-success" type="button">想法</button>
+                                <button class="btn btn-success" type="button">提交<br>想法</button>
                             </div>
                         </div>
                     </div>
@@ -154,10 +154,14 @@
             axios.get('/api/v1/shops').then(response => {
                 this.shops = response.data.data
             })
+            axios.get('/api/v1/count').then(response => {
+                this.mgCharts = response.data
+            })
         },
         data() {
             return {
                 shops: [],
+                mgCharts:{"albumsCount":'',"dynamicsCount":'',"ordersCount":''},
             }
         },
 //        data(){

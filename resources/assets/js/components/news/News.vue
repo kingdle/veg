@@ -14,6 +14,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 col-5">
+
                                 <div class="p-0 text-center">
                                     <img class="text-algin"
                                          src="/images-pc/mg-code-mp.jpg" alt="苗果"
@@ -49,7 +50,9 @@
                 dynamics:[],
             }
         },
+        methods: {
 
+        },
     }
 
 </script>
@@ -67,27 +70,5 @@
         border-top-left-radius: 0.5rem !important;
     }
 
-    .mg-news-img img:first-child {
-        border-top-left-radius: 0.5rem !important;
-    }
 
-    .mg-news-img img:last-child {
-        border-bottom-right-radius: 0.5rem !important;
-    }
-
-    .mg-upload-image .el-upload--picture-card {
-        background-color: #fbfdff;
-        border: 1px dashed #c0ccda;
-        border-radius: 6px;
-        box-sizing: border-box;
-        width: 82px;
-        height: 82px;
-        line-height: 82px;
-        vertical-align: top;
-    }
-
-    .mg-upload-image .el-upload-list--picture-card .el-upload-list__item {
-        width: 82px;
-        height: 82px;
-    }
 </style>
