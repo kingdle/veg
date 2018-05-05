@@ -16,6 +16,11 @@ class DynamicsController extends Controller
         $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
+    public function distance(Request $request)
+    {
+        $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->paginate(9);
+        return new DynamicCollection($dynamics);
+    }
 
     public function show($shop_id)
     {

@@ -34,6 +34,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/shop/avatar', 'ShopsController@changeAvatar')->middleware('auth:api');
     //dynamics动态查询
     Route::resource('/dynamics', 'DynamicsController');
+    Route::post('/dynamic/distance', 'DynamicsController@distance');
     //dynamics新增动态
     Route::get('/dynamics-user', 'DynamicsController@user')->middleware('auth:api');
     Route::post('/news/images', 'DynamicsController@images')->middleware('auth:api');
