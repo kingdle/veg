@@ -12,7 +12,7 @@ export default {
         // },
         addNewsRequest({dispatch}, formData) {
             return axios.post('/api/v2/dynamic/create', formData).then(response => {
-                // console.log(response.data)
+                console.log(response.data)
                 $('#AddNewsModalCenter').modal('hide')
                 dispatch('showNotification', {level: 'success', msg: '动态发布成功'})
             }).catch(errors => {

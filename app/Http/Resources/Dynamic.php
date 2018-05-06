@@ -15,6 +15,7 @@ class Dynamic extends JsonResource
     public function toArray($request)
     {
         $shop=new Shop($this->shop);
+//        $tags=new TagCollection($this->tags);
         return [
             'id'=>$this->id,
             'userid'=>$this->user_id,
@@ -28,6 +29,7 @@ class Dynamic extends JsonResource
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
             'shop'=>$shop,
+            'tags'=>$this->tags,
         ];
     }
 }

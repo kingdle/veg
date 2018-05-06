@@ -2,13 +2,25 @@
     <div class="card-columns pt-3">
         <div v-for="dynamic in dynamics" :key="dynamic.id" class="card card-img">
             <div class="mg-news-img">
-                <img v-for="image in dynamic.pic" :src="image +'!mp.v100'" @click="handlePreview(image +'!mp.v1080')" data-toggle="modal" data-target=".dynamic-image-lg">
+                <img v-for="image in dynamic.pic" :src="image +'!mp.v100'" @click="handlePreview(image +'!mp.v1080')"
+                     data-toggle="modal" data-target=".dynamic-image-lg">
             </div>
             <div class="p-2">
                 <p class="card-text mt-2 mb-0">
-                    <router-link :to="{ name: 'Dynamic', params: { id: dynamic.id }}" class="text-info">{{ dynamic.content }}</router-link>
+                    <router-link :to="{ name: 'Dynamic', params: { id: dynamic.id }}" class="text-info">{{
+                        dynamic.content }}
+                    </router-link>
                 </p>
                 <p class="card-text">
+
+                    <small class="text-muted" v-for="tag in dynamic.tags">
+                        <svg id="i-tag" viewBox="0 0 32 32" width="10" height="10" fill="none" stroke="currentcolor"
+                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <circle cx="24" cy="8" r="2"/>
+                            <path d="M2 18 L18 2 30 2 30 14 14 30 Z"/>
+                        </svg>
+                        {{tag.name}}
+                    </small>
                     <small class="text-muted">
                         <svg id="i-clock" viewBox="0 0 32 32" width="10" height="10" fill="none"
                              stroke="currentcolor" stroke-linecap="round"
@@ -22,7 +34,8 @@
                 </p>
             </div>
         </div>
-        <div class="modal fade dynamic-image-lg" tabindex="-1" role="dialog" aria-labelledby="dynamicLargeImageLabel" aria-hidden="true">
+        <div class="modal fade dynamic-image-lg" tabindex="-1" role="dialog" aria-labelledby="dynamicLargeImageLabel"
+             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -33,7 +46,7 @@
                     </div>
                     <div class="modal-body">
                         <img width="100%" :src="dialogImageUrl"
-                             alt=""  data-toggle="modal" data-target=".dynamic-image-lg">
+                             alt="" data-toggle="modal" data-target=".dynamic-image-lg">
                     </div>
 
                 </div>
@@ -44,13 +57,13 @@
 </template>
 <script>
     export default {
-        props:['dynamics'],
+        props: ['dynamics'],
         data() {
             return {
                 dialogImageUrl: '',
             }
         },
-        methods:{
+        methods: {
             handlePreview(image) {
                 this.dialogImageUrl = image;
             },

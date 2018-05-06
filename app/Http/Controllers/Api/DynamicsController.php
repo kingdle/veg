@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Album;
 use App\Dynamic;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -57,6 +58,7 @@ class DynamicsController extends Controller
 
     public function weCreate(Request $request, Dynamic $dynamic)
     {
+        $tags=$this->normalizeTopic($request->get('tags'));
         $imageUrl = $request->imageUrl;
         $userId = Auth::guard('api')->user()->id;
         $shopId = Auth::guard('api')->user()->shop->id;
@@ -67,7 +69,7 @@ class DynamicsController extends Controller
         $dynamic->content = $content;
         $dynamic->pic = json_encode($imageUrl);
         $success = $dynamic->save();
-
+        $dynamic->tags()->attach($tags);
         if ($success) {
             return response()->json([
                 'status'=>'true',
@@ -114,5 +116,19 @@ class DynamicsController extends Controller
         } else {
             return response()->json([], 500, '文件未通过验证');
         }
+    }
+    private function normalizeTopic(array $tags){
+        $ids = Tag::pluck('id');
+
+        $ids = collect($tags)->map(function ($tag) use ($ids) {
+            if (is_numeric($tag) && $ids->contains($tag)) {
+                return (int) $tag;
+            }
+
+            return Tag::firstOrCreate(['name' => $tag])->id;
+        })->toArray();
+
+        Tag::whereIn('id', $ids)->increment('dynamics_count');
+        return $ids;
     }
 }

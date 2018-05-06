@@ -48,9 +48,8 @@
                                 <label class="col-form-label">标签:（最多10个）
                                 </label>
                                 <el-select
-                                        v-model="value10"
+                                        v-model="tags"
                                         name="tags"
-                                        multiple-limit="10"
                                         multiple
                                         filterable
                                         remote
@@ -58,10 +57,10 @@
                                         default-first-option
                                         placeholder="请选择标签">
                                     <el-option
-                                            v-for="item in options5"
-                                            :key="item.value"
-                                            :label="item.label"
-                                            :value="item.value">
+                                            v-for="item in options"
+                                            :key="item.id"
+                                            :label="item.name"
+                                            :value="item.id">
                                     </el-option>
                                 </el-select>
                             </div>
@@ -80,32 +79,28 @@
 <script>
     import jwtToken from './../../helpers/jwt'
     import {ErrorBag} from 'vee-validate';
-//    import * as types from './../../store/mutation-type'
+    //    import * as types from './../../store/mutation-type'
     export default {
         data() {
             return {
                 dynamic: '',
-                dynamics:[],
+                dynamics: [],
                 fileList: [],
                 dialogImageUrl: '',
                 dialogVisible: false,
-                uploadAction:'/api/v2/dynamic/upfile',
+                uploadAction: '/api/v2/dynamic/upfile',
                 headers: {
                     Authorization: 'Bearer ' + window.localStorage.getItem('jwt_token')
                 },
-                imageUrl:[],
-                options5: [{
-                    value: 'HTML',
-                    label: 'HTML'
-                }, {
-                    value: 'CSS',
-                    label: 'CSS'
-                }, {
-                    value: 'JavaScript',
-                    label: 'JavaScript'
-                }],
-                value10: []
+                imageUrl: [],
+                options: [],
+                tags: []
             }
+        },
+        mounted() {
+            axios.get('/api/v1/tags').then(response => {
+                this.options = response.data
+            })
         },
         methods: {
             handleSuccess(response){
@@ -130,13 +125,15 @@
 
                 const formData = {
                     dynamicContent: this.dynamic,
-                    imageUrl: this.imageUrl
+                    imageUrl: this.imageUrl,
+                    tags: this.tags,
                 }
                 this.$store.dispatch('addNewsRequest', formData).then(response => {
                     this.$router.push({name: 'profile.News'})
                     this.dynamic = ''
                     this.fileList = []
                     this.imageUrl = []
+                    this.tags = []
                 }).catch(error => {
 
                 })
@@ -169,7 +166,8 @@
         width: 82px;
         height: 82px;
     }
-    .tags .el-select{
+
+    .tags .el-select {
         display: block;
     }
 </style>

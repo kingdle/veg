@@ -11,7 +11,7 @@ class TagsController extends Controller
     public function index(Request $request)
     {
         $tags = Tag::select(['id','name'])
-            ->where('name','like','%'.$request->query('q').'%')->get();
+            ->where('name','like','%'.$request->query('q').'%')->orderBy('dynamics_count', 'desc')->get();
         return new TagCollection($tags);
     }
 
