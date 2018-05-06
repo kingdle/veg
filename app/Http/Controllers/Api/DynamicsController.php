@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Album;
 use App\Dynamic;
+use App\Sort;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,7 +59,8 @@ class DynamicsController extends Controller
 
     public function weCreate(Request $request, Dynamic $dynamic)
     {
-        $tags=$this->normalizeTopic($request->get('tags'));
+        $tags=$this->normalizeTag($request->get('tags'));
+        $sorts=$this->normalizeSort($request->get('sorts'));
         $imageUrl = $request->imageUrl;
         $userId = Auth::guard('api')->user()->id;
         $shopId = Auth::guard('api')->user()->shop->id;
@@ -70,6 +72,7 @@ class DynamicsController extends Controller
         $dynamic->pic = json_encode($imageUrl);
         $success = $dynamic->save();
         $dynamic->tags()->attach($tags);
+        $dynamic->sorts()->attach($sorts);
         if ($success) {
             return response()->json([
                 'status'=>'true',
@@ -117,7 +120,7 @@ class DynamicsController extends Controller
             return response()->json([], 500, '文件未通过验证');
         }
     }
-    private function normalizeTopic(array $tags){
+    private function normalizeTag(array $tags){
         $ids = Tag::pluck('id');
 
         $ids = collect($tags)->map(function ($tag) use ($ids) {
@@ -130,5 +133,19 @@ class DynamicsController extends Controller
 
         Tag::whereIn('id', $ids)->increment('dynamics_count');
         return $ids;
+    }
+    private function normalizeSort(array $sorts){
+        $so = Sort::pluck('id');
+
+        $so = collect($sorts)->map(function ($sort) use ($so) {
+            if (is_numeric($sort) && $so->contains($sort)) {
+                return (int) $sort;
+            }
+
+            return Sort::firstOrCreate(['name' => $sort])->id;
+        })->toArray();
+
+        Sort::whereIn('id', $so)->increment('hot');
+        return $so;
     }
 }

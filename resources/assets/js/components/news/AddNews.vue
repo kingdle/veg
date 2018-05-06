@@ -45,7 +45,26 @@
                                 </el-upload>
                             </div>
                             <div class="form-group tags">
-                                <label class="col-form-label">标签:（最多10个）
+                                <label class="col-form-label">分类:（建议最多3个）
+                                </label>
+                                <el-select
+                                        v-model="sorts"
+                                        name="sorts"
+                                        multiple
+                                        filterable
+                                        remote
+                                        default-first-option
+                                        placeholder="请选择标签">
+                                    <el-option
+                                            v-for="item in options2"
+                                            :key="item.id"
+                                            :label="item.name"
+                                            :value="item.id">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                            <div class="form-group tags">
+                                <label class="col-form-label">标签:（建议最多6个）
                                 </label>
                                 <el-select
                                         v-model="tags"
@@ -94,12 +113,17 @@
                 },
                 imageUrl: [],
                 options: [],
-                tags: []
+                tags: [],
+                sorts: [],
+                options2: []
             }
         },
         mounted() {
             axios.get('/api/v1/tags').then(response => {
                 this.options = response.data
+            })
+            axios.get('/api/v1/sorts').then(response => {
+                this.options2 = response.data
             })
         },
         methods: {
@@ -127,6 +151,7 @@
                     dynamicContent: this.dynamic,
                     imageUrl: this.imageUrl,
                     tags: this.tags,
+                    sorts: this.sorts,
                 }
                 this.$store.dispatch('addNewsRequest', formData).then(response => {
                     this.$router.push({name: 'profile.News'})
@@ -134,6 +159,7 @@
                     this.fileList = []
                     this.imageUrl = []
                     this.tags = []
+                    this.sorts = []
                 }).catch(error => {
 
                 })

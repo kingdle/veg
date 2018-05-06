@@ -17,4 +17,7 @@ class Dynamic extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class,'dynamic_tag')->withTimestamps();
     }
+    public function sorts(){
+        return $this->belongsToMany(Sort::class,'dynamic_sort')->withTimestamps();
+    }
 }
