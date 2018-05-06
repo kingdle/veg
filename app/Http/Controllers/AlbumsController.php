@@ -16,7 +16,7 @@ class AlbumsController extends Controller
 
     public function show($shop_id)
     {
-        $album = Album::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(9);
+        $album = Album::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(28);
         if ($album->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
