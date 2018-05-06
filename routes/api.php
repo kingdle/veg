@@ -42,11 +42,14 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //albums相册查询
     Route::resource('/albums', 'AlbumsController')->middleware('auth:api');
     //sorts分类查询
-    Route::resource('/sorts', 'SortsController')->middleware('auth:api');
+    Route::resource('/sorts', 'SortsController');
     //orders订单查询
     Route::resource('/orders', 'OrdersController')->middleware('auth:api');
     //prods商品分类查询
     Route::resource('/prods', 'ProdsController')->middleware('auth:api');
+
+    //tags商品标签查询
+    Route::resource('/tags', 'TagsController')->middleware('auth:api');
 
     //seeds种子商家查询
     Route::resource('/seeds', 'SeedsController')->middleware('auth:api');

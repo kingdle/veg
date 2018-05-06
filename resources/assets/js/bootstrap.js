@@ -5,6 +5,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('./select2.min');
 } catch (e) {}
 
 window.axios = require('axios');

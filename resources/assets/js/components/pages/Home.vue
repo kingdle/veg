@@ -22,7 +22,7 @@
                                     </div>
                                     <h6 class="shop-title pt-2 mb-0">{{shop.title}}</h6>
                                     <div class="figure-caption font-weight-light text-lowercase pb-2">
-                                        {{shop.published_at | moment("from") }}
+                                        {{shop.updated_at.date | moment("from") }} 来过
                                     </div>
                                 </div>
                             </div>

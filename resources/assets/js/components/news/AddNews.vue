@@ -43,26 +43,27 @@
                                         :file-list="fileList">
                                     <i class="el-icon-plus"></i>
                                 </el-upload>
-
-                                <!--<label for="dynamic" class="col-form-label">图片:-->
-                                    <!--选中{{images.length}}张-->
-                                    <!--<a class="text-info" v-if="images.length >0" @click="removeImage">移除全部图片</a>-->
-                                    <!--&lt;!&ndash;<button class="btn btn-outline-success btn-sm" v-if="images.length >0" @click='uploadImage'>上传</button>&ndash;&gt;-->
-                                <!--</label>-->
-                                <!--<ul>-->
-                                        <!--<li v-if="images.length >0" v-for="(key,image) in images">-->
-                                            <!--<img class="border" :src="key"/>-->
-                                            <!--<a href="#" class="text-danger close" aria-label="Close"-->
-                                               <!--style="position: absolute;" @click='delImage(image)'>-->
-                                                <!--<span class="btn-close">&times;</span>-->
-                                            <!--</a>-->
-                                        <!--</li>-->
-                                    <!--<li class="addPic" @click="addPic">-->
-                                        <!--<img class="" src="/images-pc/upload.png"/>-->
-                                    <!--</li>-->
-                                    <!--<input type="file" @change="onFileChange" multiple style="display: none;">-->
-
-                                <!--</ul>-->
+                            </div>
+                            <div class="form-group tags">
+                                <label class="col-form-label">标签:（最多10个）
+                                </label>
+                                <el-select
+                                        v-model="value10"
+                                        name="tags"
+                                        multiple-limit="10"
+                                        multiple
+                                        filterable
+                                        remote
+                                        allow-create
+                                        default-first-option
+                                        placeholder="请选择标签">
+                                    <el-option
+                                            v-for="item in options5"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">确定</button>
@@ -92,7 +93,18 @@
                 headers: {
                     Authorization: 'Bearer ' + window.localStorage.getItem('jwt_token')
                 },
-                imageUrl:[]
+                imageUrl:[],
+                options5: [{
+                    value: 'HTML',
+                    label: 'HTML'
+                }, {
+                    value: 'CSS',
+                    label: 'CSS'
+                }, {
+                    value: 'JavaScript',
+                    label: 'JavaScript'
+                }],
+                value10: []
             }
         },
         methods: {
@@ -129,50 +141,7 @@
 
                 })
             }
-//            addPic(e){
-//                e.preventDefault();
-//                $('input[type=file]').trigger('click');
-//                return false;
-//            },
-//            onFileChange(e) {
-//                var files = e.target.files || e.dataTransfer.files;
-//                if (!files.length)return;
-//                this.createImage(files);
-//            },
-//            createImage(file) {
-//                if (typeof FileReader === 'undefined') {
-//                    return false;
-//                }
-//                var image = new Image();
-//                var vm = this;
-//                var leng = file.length;
-//                for (var i = 0; i < leng; i++) {
-//                    var reader = new FileReader();
-//                    reader.readAsDataURL(file[i]);
-//                    reader.onload = function (e) {
-//                        vm.images.push(e.target.result);
-//                    };
-//                }
-//            },
-//            delImage: function (index) {
-//                this.images.splice(index, 1);
-//            },
-//            removeImage: function (e) {
-//                this.images = [];
-//            },
-//            updateNews() {
-//                const formData = {
-//                    dynamic: this.dynamic,
-//                    images:this.images
-//                }
-//                this.$store.dispatch('addNewsRequest', formData).then(response => {
-//                    this.$router.push({name: 'profile.News'})
-//                    this.dynamic=''
-//                    this.images=[]
-//                }).catch(error => {
-//
-//                })
-//            }
+
         }
     }
 </script>
@@ -200,51 +169,7 @@
         width: 82px;
         height: 82px;
     }
-    /*.news-add .modal-body ul {*/
-        /*list-style: none outside none;*/
-        /*margin: 0;*/
-        /*padding: 0;*/
-    /*}*/
-
-    /*.news-add .modal-body li {*/
-        /*margin: 0 10px;*/
-        /*display: inline;*/
-    /*}*/
-
-    /*.news-add .modal-body img {*/
-        /*width: 72px;*/
-        /*height: 72px;*/
-        /*margin: auto;*/
-        /*display: inline;*/
-        /*margin-bottom: 10px;*/
-    /*}*/
-
-    /*.news-add .modal-body .btn-close {*/
-        /*position: absolute;*/
-        /*z-index: 999;*/
-        /*top: -4px;*/
-        /*right: -4px;*/
-        /*width: 14px;*/
-        /*height: 14px;*/
-        /*border-radius: 50%;*/
-        /*background: #D50000 !important;*/
-        /*color: #fff;*/
-        /*font-size: 12px;*/
-        /*text-align: center;*/
-        /*cursor: pointer;*/
-    /*}*/
-
-    /*.news-add .modal-body li {*/
-        /*margin: 0 5px 0 0;*/
-        /*display: inline;*/
-    /*}*/
-
-    /*.news-add .modal-body li img {*/
-        /*border-radius: 5px;*/
-    /*}*/
-    /*.news-add .modal-body .addPic img{*/
-        /*align-content: center;*/
-        /*width: 72px;*/
-        /*height: 72px;*/
-    /*}*/
+    .tags .el-select{
+        display: block;
+    }
 </style>

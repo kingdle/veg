@@ -150,6 +150,7 @@ return [
         JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
         Iwanli\Wxxcx\WxxcxServiceProvider::class,
+        Overtrue\LaravelWeChat\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -211,6 +212,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'EasyWeChat' => Overtrue\LaravelWeChat\Facade::class,
 
     ],
 

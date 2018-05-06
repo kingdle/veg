@@ -10,7 +10,7 @@ class WeChatController extends Controller
     public function serve()
     {
 
-        $app = app('wechat.official_account');
+        $app = app('wechat.official_account.mini_program');
         $app->server->push(function($message){
             return "欢迎关注 overtrue！";
         });
@@ -18,12 +18,9 @@ class WeChatController extends Controller
         return $app->server->serve();
     }
     public function index(){
-        $app = \EasyWeChat::miniProgram(); // 小程序
-        $response = $app->app_code->get('/public', [
-            'width' => 600,
-            //...
-        ]);
-        $filename = $response->saveAs('/public', 'appcode.png');
-        return $filename;
+        $app = app('wechat.mini_program.default');
+        $result = $app->app_code->get('foo', 6 * 24 * 3600);
+        return $result->toArray();
+
     }
 }
