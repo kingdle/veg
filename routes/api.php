@@ -97,7 +97,7 @@ $api->version('v2', [
 
         $api->post('v2/user', 'UsersController@weUpdate')->middleware('auth:api');
 
-        $api->get('v2/dynamic/index', 'DynamicsController@weIndex')->middleware('auth:api');
+        $api->post('v2/dynamic/index', 'DynamicsController@weIndex')->middleware('auth:api');
         $api->post('v2/dynamic/upload', 'DynamicsController@uploadImage')->middleware('auth:api');
         $api->post('v2/dynamic/create', 'DynamicsController@weCreate')->middleware('auth:api');
         $api->post('v2/dynamic/upfile', 'DynamicsController@upFile')->middleware('auth:api');

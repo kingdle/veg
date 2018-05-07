@@ -13,11 +13,37 @@ use Illuminate\Support\Facades\Storage;
 
 class DynamicsController extends Controller
 {
-    public function weIndex()
+    public function weIndex(Request $request)
     {
-        $dynamics = Sort::find()->dynamics()->get();
-        return $dynamics;
+        $sortId = $request->sortId;
+
+        if ($sortId) {
+            $parent = Sort::find($sortId);
+            $parentId = $parent->parent_id;
+            if ($parentId != '0') {
+                $dynamics = Dynamic::join('dynamic_sort', 'dynamics.id', '=', 'dynamic_sort.dynamic_id')
+                    ->where('dynamic_sort.sort_id', '=', $sortId)
+                    ->paginate(9);
+                return new DynamicCollection($dynamics);
+            }
+            if($parentId == '0'){
+                $sortIds=Sort::where('parent_id','=',$parent->id)->select('id')->get();
+//                return $sortIds;
+
+                foreach ($sortIds as $sortId){
+                    $sId[]=$sortId->id;
+                }
+                $dynamics = Dynamic::join('dynamic_sort', 'dynamics.id', '=', 'dynamic_sort.dynamic_id')
+                    ->wherein('dynamic_sort.sort_id', $sId)
+                    ->paginate(9);
+                return new DynamicCollection($dynamics);
+            }
+        }
+
+        $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->paginate(9);
+        return new DynamicCollection($dynamics);
     }
+
     public function uploadImage(Request $request, Album $album)
     {
         $file = $request->file('file');
@@ -26,7 +52,7 @@ class DynamicsController extends Controller
 
         if (!$request->hasFile('file')) {
             return response()->json([
-                'status'=>'false',
+                'status' => 'false',
                 'status_code' => 404,
                 'message' => '未获取到图片，上传失败',
             ]);
@@ -47,15 +73,15 @@ class DynamicsController extends Controller
             $album->pic = json_encode($filePath);
             $album->save();
             return response()->json([
-                'status'=>'true',
+                'status' => 'true',
                 'status_code' => 200,
                 'message' => '上传成功',
                 'url' => $filePath,
                 'name' => $originalName,
             ]);
-        }else{
+        } else {
             return response()->json([
-                'status'=>'false',
+                'status' => 'false',
                 'status_code' => 500,
                 'message' => '服务器端错误，请重新上传',
             ]);
@@ -75,30 +101,32 @@ class DynamicsController extends Controller
         $dynamic->content = $content;
         $dynamic->pic = json_encode($imageUrl);
         $success = $dynamic->save();
-        if($request->get('tags')){
-            $tags=$this->normalizeTag($request->get('tags'));
+        if ($request->get('tags')) {
+            $tags = $this->normalizeTag($request->get('tags'));
             $dynamic->tags()->attach($tags);
         }
-        if($request->get('sorts')){
-            $sorts=$this->normalizeSort($request->get('sorts'));
+        if ($request->get('sorts')) {
+            $sorts = $this->normalizeSort($request->get('sorts'));
             $dynamic->sorts()->attach($sorts);
         }
 
         if ($success) {
             return response()->json([
-                'status'=>'true',
+                'status' => 'true',
                 'status_code' => 200,
                 'message' => '动态发布成功',
             ]);
         } else {
             return response()->json([
-                'status'=>'false',
+                'status' => 'false',
                 'status_code' => 501,
                 'message' => '服务器端错误',
             ]);
         }
     }
-    public function upFile(Request $request, Album $album) {
+
+    public function upFile(Request $request, Album $album)
+    {
         if (!$request->hasFile('file')) {
             return response()->json([], 500, '无法获取上传文件');
         }
@@ -131,12 +159,14 @@ class DynamicsController extends Controller
             return response()->json([], 500, '文件未通过验证');
         }
     }
-    private function normalizeTag(array $tags){
+
+    private function normalizeTag(array $tags)
+    {
         $ids = Tag::pluck('id');
 
         $ids = collect($tags)->map(function ($tag) use ($ids) {
             if (is_numeric($tag) && $ids->contains($tag)) {
-                return (int) $tag;
+                return (int)$tag;
             }
 
             return Tag::firstOrCreate(['name' => $tag])->id;
@@ -145,12 +175,14 @@ class DynamicsController extends Controller
         Tag::whereIn('id', $ids)->increment('dynamics_count');
         return $ids;
     }
-    private function normalizeSort(array $sorts){
+
+    private function normalizeSort(array $sorts)
+    {
         $so = Sort::pluck('id');
 
         $so = collect($sorts)->map(function ($sort) use ($so) {
             if (is_numeric($sort) && $so->contains($sort)) {
-                return (int) $sort;
+                return (int)$sort;
             }
 
             return Sort::firstOrCreate(['name' => $sort])->id;
