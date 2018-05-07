@@ -28,13 +28,18 @@ class DynamicsController extends Controller
             }
             if($parentId == '0'){
                 $sortIds=Sort::where('parent_id','=',$parent->id)->select('id')->get();
-//                return $sortIds;
-
                 foreach ($sortIds as $sortId){
                     $sId[]=$sortId->id;
                 }
-                $dynamics = Dynamic::join('dynamic_sort', 'dynamics.id', '=', 'dynamic_sort.dynamic_id')
-                    ->wherein('dynamic_sort.sort_id', $sId)
+                $dss=Dynamic::join('dynamic_sort', 'dynamics.id', '=', 'dynamic_sort.dynamic_id')
+                    ->whereIn('dynamic_sort.sort_id', $sId)
+                    ->select('dynamic_id')
+                    ->distinct()
+                    ->get();
+                foreach ($dss as $ds){
+                    $d[]=$ds->dynamic_id;
+                }
+                $dynamics = Dynamic::whereIn('id', $d)
                     ->paginate(9);
                 return new DynamicCollection($dynamics);
             }
