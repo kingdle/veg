@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Storage;
 
 class DynamicsController extends Controller
 {
-
+    public function weIndex()
+    {
+        $dynamics = Sort::find()->dynamics()->get();
+        return $dynamics;
+    }
     public function uploadImage(Request $request, Album $album)
     {
         $file = $request->file('file');
