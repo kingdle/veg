@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Album;
 use App\Dynamic;
+use App\Http\Resources\DynamicCollection;
 use App\Sort;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DynamicsController extends Controller
 {
+
     public function uploadImage(Request $request, Album $album)
     {
         $file = $request->file('file');
@@ -59,8 +61,6 @@ class DynamicsController extends Controller
 
     public function weCreate(Request $request, Dynamic $dynamic)
     {
-return $request->get('sorts');
-
         $imageUrl = $request->imageUrl;
         $userId = Auth::guard('api')->user()->id;
         $shopId = Auth::guard('api')->user()->shop->id;

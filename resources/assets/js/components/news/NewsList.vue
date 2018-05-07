@@ -12,7 +12,12 @@
                     </router-link>
                 </p>
                 <p class="card-text">
-
+                    <small class="text-muted" v-for="sort in dynamic.sorts">
+                        <svg id="i-menu" viewBox="0 0 32 32" width="10" height="10" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path d="M4 8 L28 8 M4 16 L28 16 M4 24 L28 24" />
+                        </svg>
+                        {{sort.title}}
+                    </small>
                     <small class="text-muted" v-for="tag in dynamic.tags">
                         <svg id="i-tag" viewBox="0 0 32 32" width="10" height="10" fill="none" stroke="currentcolor"
                              stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
