@@ -122,7 +122,7 @@
             axios.get('/api/v1/tags').then(response => {
                 this.options = response.data
             })
-            axios.get('/api/v1/sorts').then(response => {
+            axios.get('/api/v1/sort/all').then(response => {
                 this.options2 = response.data
             })
         },

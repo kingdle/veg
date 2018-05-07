@@ -43,6 +43,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::resource('/albums', 'AlbumsController')->middleware('auth:api');
     //sorts分类查询
     Route::resource('/sorts', 'SortsController');
+    Route::get('/sort/all', 'SortsController@sorts');
     //orders订单查询
     Route::resource('/orders', 'OrdersController')->middleware('auth:api');
     //prods商品分类查询
