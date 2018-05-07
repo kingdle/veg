@@ -59,8 +59,8 @@ class DynamicsController extends Controller
 
     public function weCreate(Request $request, Dynamic $dynamic)
     {
-        $tags=$this->normalizeTag($request->get('tags'));
-        $sorts=$this->normalizeSort($request->get('sorts'));
+
+
         $imageUrl = $request->imageUrl;
         $userId = Auth::guard('api')->user()->id;
         $shopId = Auth::guard('api')->user()->shop->id;
@@ -71,8 +71,15 @@ class DynamicsController extends Controller
         $dynamic->content = $content;
         $dynamic->pic = json_encode($imageUrl);
         $success = $dynamic->save();
-        $dynamic->tags()->attach($tags);
-        $dynamic->sorts()->attach($sorts);
+        if($request->get('tags')){
+            $tags=$this->normalizeTag($request->get('tags'));
+            $dynamic->tags()->attach($tags);
+        }
+        if($request->get('sorts')){
+            $sorts=$this->normalizeSort($request->get('sorts'));
+            $dynamic->sorts()->attach($sorts);
+        }
+
         if ($success) {
             return response()->json([
                 'status'=>'true',
