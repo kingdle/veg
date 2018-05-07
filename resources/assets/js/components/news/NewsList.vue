@@ -2,7 +2,7 @@
     <div class="card-columns pt-3">
         <div v-for="dynamic in dynamics" :key="dynamic.id" class="card card-img">
             <div class="mg-news-img">
-                <img v-for="image in dynamic.pic" :src="image +'!mp.v100'" @click="handlePreview(image +'!mp.v1080')"
+                <img v-for="image in dynamic.pic" :src="image +'!mp.v200'" @click="handlePreview(image +'!mp.v1080')"
                      data-toggle="modal" data-target=".dynamic-image-lg">
             </div>
             <div class="p-2">
@@ -81,7 +81,7 @@
     }
 
     .mg-news-img img {
-        width: 72px;
+        width: 80px;
         margin: 0 1px 1px 0;
     }
 

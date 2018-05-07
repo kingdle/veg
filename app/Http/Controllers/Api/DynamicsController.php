@@ -21,27 +21,38 @@ class DynamicsController extends Controller
             $parent = Sort::find($sortId);
             $parentId = $parent->parent_id;
             if ($parentId != '0') {
-                $dynamics = Dynamic::join('dynamic_sort', 'dynamics.id', '=', 'dynamic_sort.dynamic_id')
+                $dynamics = Dynamic::with('sorts')->join('dynamic_sort', 'dynamics.id', '=', 'dynamic_sort.dynamic_id')
                     ->where('dynamic_sort.sort_id', '=', $sortId)
-                    ->paginate(9);
-                return new DynamicCollection($dynamics);
-            }
-            if($parentId == '0'){
-                $sortIds=Sort::where('parent_id','=',$parent->id)->select('id')->get();
-                foreach ($sortIds as $sortId){
-                    $sId[]=$sortId->id;
+                    ->select('dynamic_id')
+                    ->distinct()
+                    ->get();
+                if ($dynamics->count() > 0) {
+                    foreach ($dynamics as $dynamic) {
+                        $dynamicsP[] = $dynamic->dynamic_id;
+                    }
+                    $dynamics = Dynamic::whereIn('id', $dynamicsP)->orderBy('id', 'desc')
+                        ->paginate(9);
+                    return new DynamicCollection($dynamics);
                 }
-                $dss=Dynamic::join('dynamic_sort', 'dynamics.id', '=', 'dynamic_sort.dynamic_id')
+            }
+            if ($parentId == '0') {
+                $sortIds = Sort::where('parent_id', '=', $parent->id)->select('id')->get();
+                foreach ($sortIds as $sortId) {
+                    $sId[] = $sortId->id;
+                }
+                $dss = Dynamic::join('dynamic_sort', 'dynamics.id', '=', 'dynamic_sort.dynamic_id')
                     ->whereIn('dynamic_sort.sort_id', $sId)
                     ->select('dynamic_id')
                     ->distinct()
                     ->get();
-                foreach ($dss as $ds){
-                    $d[]=$ds->dynamic_id;
+                if ($dss->count() > 0) {
+                    foreach ($dss as $ds) {
+                        $d[] = $ds->dynamic_id;
+                    }
+                    $dynamics = Dynamic::whereIn('id', $d)->orderBy('id', 'desc')
+                        ->paginate(9);
+                    return new DynamicCollection($dynamics);
                 }
-                $dynamics = Dynamic::whereIn('id', $d)
-                    ->paginate(9);
-                return new DynamicCollection($dynamics);
             }
         }
 
