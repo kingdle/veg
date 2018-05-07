@@ -59,7 +59,7 @@ class DynamicsController extends Controller
 
     public function weCreate(Request $request, Dynamic $dynamic)
     {
-
+return $request->get('sorts');
 
         $imageUrl = $request->imageUrl;
         $userId = Auth::guard('api')->user()->id;

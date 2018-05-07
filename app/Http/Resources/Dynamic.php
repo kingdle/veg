@@ -30,6 +30,7 @@ class Dynamic extends JsonResource
             'updated_at'=>$this->updated_at,
             'shop'=>$shop,
             'tags'=>$this->tags,
+            'sorts'=>$this->sorts,
         ];
     }
 }
