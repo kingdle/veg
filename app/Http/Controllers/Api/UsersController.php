@@ -29,14 +29,22 @@ class UsersController extends Controller
     {
         $userid=request()->user()->id;
         $user = User::find($userid);
-        $attributes['phone'] = $request->phoneNumber;
-        // 更新用户数据
-        $user->update($attributes);
+        if($user->phone !=''){
+            $attributes['phone'] = $request->phoneNumber;
+            // 更新用户数据
+            $user->update($attributes);
+            return response()->json([
+                'status'=>'true',
+                'status_code' => 200,
+                'message' => '手机更新成功',
+                'data'=>$user
+            ]);
+        }
         return response()->json([
-            'status'=>'true',
-            'status_code' => 200,
-            'message' => '手机更新成功',
-            'data'=>$user
+            'status' => 'false',
+            'status_code' => 404,
+            'message' => '手机号已存在',
         ]);
+
     }
 }
