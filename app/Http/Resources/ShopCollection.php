@@ -22,6 +22,8 @@ class ShopCollection extends ResourceCollection
             'status'=>'success',
             'status_code'=>'200',
             'slogan'=>Config::find('1'),
+            'slide'=>json_decode(Config::find('1')->slide),
+            'notice'=>json_decode(Config::find('1')->notice),
         ];
     }
 }

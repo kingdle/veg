@@ -20,9 +20,9 @@ class CreateConfigsTable extends Migration
             $table->string('prefix')->default('veg_')->comment('前缀');
             $table->string('title')->nullable()->comment('标题');
             $table->string('slogan')->nullable()->unique()->comment('宣传语');
-            $table->string('slide')->nullable()->unique()->comment('焦点图片');
-            $table->string('notice')->nullable()->unique()->comment('公告');
-            $table->string('admission')->nullable()->unique()->comment('入驻');
+            $table->text('slide')->nullable()->comment('焦点图片');
+            $table->text('notice')->nullable()->comment('公告');
+            $table->string('admission')->nullable()->comment('入驻');
             $table->timestamps();
         });
     }
