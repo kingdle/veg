@@ -1,5 +1,51 @@
 <template>
     <div class="mg-orders">
+        <add-order></add-order>
+        <div class="row">
+            <div class="col-md-12 px-0">
+                <div class="card flex-row mb-3">
+                    <div class="card-body mt-2">
+                        <div class="title">
+                            <span class="text-success text-bold m-r-5">|</span>
+                            <span class="vertical-middle">订单统计</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-12 mg-home-top">
+                                <div class="row text-center" style="white-space:nowrap;">
+                                    <div class="col pt-2">
+                                        <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">订单数</h5>
+                                        <p class="card-text text-secondary" style="white-space:nowrap;">190</p>
+                                    </div>
+                                    <div class="col pt-2">
+                                        <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">总金额</h5>
+                                        <p class="card-text text-secondary" style="white-space:nowrap;">12.34万</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-7">
+                                <div class="text-center mt-3 px-2"
+                                     style="border-right:1px solid #eaeaea;border-left:1px solid #eaeaea">
+                                    <a href="#" class="btn btn-success " data-toggle="modal"
+                                       data-target="#AddOrdersModalCenter">新建订单</a>
+                                    <p class="mt-3 text-muted">经常发动态就是最好的营销。</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-5">
+                                <div class="p-0 text-center" style="">
+                                    <img class="text-algin"
+                                         src="/images-pc/mg-code-mp.jpg" alt="苗果"
+                                         width="90"
+                                         height="90">
+                                    <p class="card-title text-muted">您的苗果小程序码</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="card flex-row mb-3 border-0">
@@ -11,76 +57,16 @@
                                         <p class="vertical-middle">
                                             <span class="text-success text-bold m-r-5">|</span>
                                             订单列表
+                                            <mark>农户通过微信的"苗果"小程序发来订单需求，您需要尽快联系农户，并填写发送给农户确认，本订单才生效。</mark>
+
                                         </p>
-                                        <h1 class="text-info text-center">订单服务正在开发中，预计5月中旬上线，可以方便管理订单</h1>
-                                        <mark>农户通过微信的"苗果"小程序发来订单需求，您需要尽快联系农户，并填写发送给农户确认，本订单才生效。</mark>
                                     </div>
-                                    <div class="row">
-                                        <table class="table table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">订单状态</th>
-                                                <th scope="col">菜苗</th>
-                                                <th scope="col">数量（棵）</th>
-                                                <th scope="col">农户</th>
-                                                <th scope="col">下单时间</th>
-                                                <th scope="col">送苗时间</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>待处理</td>
-                                                <td>西红柿 齐达利</td>
-                                                <td>4000</td>
-                                                <td>@伦清风</td>
-                                                <td>1分钟前</td>
-                                                <td>2018年7月20日上午</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>已发农户，待确认</td>
-                                                <td>西红柿 齐达利</td>
-                                                <td>4000</td>
-                                                <td>@伦清风</td>
-                                                <td>5分钟前</td>
-                                                <td>2018年7月21日上午</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>订单已生效</td>
-                                                <td>辣椒</td>
-                                                <td>6000</td>
-                                                <td>@王大明</td>
-                                                <td>10分钟前</td>
-                                                <td>2018年7月22日上午</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">4</th>
-                                                <td>订单已生效</td>
-                                                <td>西红柿 齐达利</td>
-                                                <td>2000</td>
-                                                <td>@伦清风</td>
-                                                <td>20天前</td>
-                                                <td>2018年7月30日下午</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="body-container">
+                                        <div class="my-3 border-top">
+                                            <orders :orders="orders"></orders>
+                                        </div>
+
                                     </div>
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">首页</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">下一页</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
                             </div>
                         </div>
@@ -92,16 +78,27 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+    import Orders from './OrdersList'
+    import AddOrder from './AddOrders'
     export default {
-        created(){
-            this.$store.dispatch('setAuthShop')
+        components:{
+            Orders,
+            AddOrder
         },
-        computed: {
-            ...mapState({
-                shop: state => state.AuthShop
+        mounted() {
+            axios.get('/api/v1/orders').then(response => {
+                this.orders = response.data.data
             })
         },
+        data() {
+            return{
+                orders:[],
+            }
+        },
+        methods: {
+
+        },
+
 //        data(){
 //            return {
 //                shop: [],
@@ -123,6 +120,4 @@
     }
 
 </script>
-<style>
 
-</style>

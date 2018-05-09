@@ -186,44 +186,5 @@
 
 </script>
 <style>
-    .bd-callout {
-        border: 0px solid #eee;
-        border-left-color: #7bc276;
-        border-left-width: .1rem;
-        border-radius: .1rem;
-    }
 
-    .mg-home-top .card-title {
-        font-size: 12px;
-    }
-
-    .mg-home-top .card-text {
-        font-size: 30px;
-        font-weight: 700;
-    }
-
-    .mg-hello h2 {
-        font-weight: 200;
-    }
-
-    .mg-hello p {
-        text-indent: 2rem;
-    }
-
-    .mg-business .mg-img {
-        width: 200px;
-        height: 200px;
-    }
-
-    .verticalLine {
-        width: 1px;
-        height: 80px;
-        background: #E5E5E5;
-        float: left;
-    }
-
-    .contributor-pics img {
-        border-radius: 50%;
-        box-shadow: 0 0 20px #e4e8eb !important;
-    }
 </style>

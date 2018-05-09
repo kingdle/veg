@@ -7,6 +7,7 @@ use App\Shop;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ShopsController extends Controller
@@ -19,8 +20,13 @@ class ShopsController extends Controller
 
     public function distance(Request $request)
     {
-        $shops = Shop::with('user')->orderBy('id', 'desc')->paginate(9);
+        $lat = $request->latitude;
+        $lng = $request->longitude;
+        $shops = Shop::where("property",'!=','0')
+            ->selectRaw('id,summary,title,avatar,cityInfo,address,villageInfo,code,longitude,latitude,acos(cos(' . $lat . '*pi()/180 )*cos(latitude*pi()/180)*cos(' . $lng . '*pi()/180 -longitude*pi()/180)+sin(' . $lat . '*pi()/180 )*sin(latitude*pi()/180))*6370996.81  as distance')  //使用原生sql
+            ->orderby("distance","asc")->get();
         return new ShopCollection($shops);
+
     }
 
     public function show($id)

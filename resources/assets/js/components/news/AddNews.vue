@@ -14,7 +14,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form @submit.prevent="updateNews">
+                        <form @submit.prevent="addNews">
                             <div class="form-group" :class="{'has-error' : errors.has('dynamic') }">
                                 <label for="dynamic" class="col-form-label">文字:
                                     <span class="help-block mr-2"
@@ -145,7 +145,7 @@
                 this.$message.warning(`当前限制选择 9 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
             },
 
-            updateNews() {
+            addNews() {
 
                 const formData = {
                     dynamicContent: this.dynamic,
