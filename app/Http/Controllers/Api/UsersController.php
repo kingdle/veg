@@ -27,24 +27,23 @@ class UsersController extends Controller
 
     public function weUpdate(Request $request)
     {
-        $userid=request()->user()->id;
+        $userid = request()->user()->id;
         $user = User::find($userid);
-        if($user->phone !=''){
-            $attributes['phone'] = $request->phoneNumber;
-            // 更新用户数据
-            $user->update($attributes);
-            return response()->json([
-                'status'=>'true',
-                'status_code' => 200,
-                'message' => '手机更新成功',
-                'data'=>$user
-            ]);
-        }
+        $attributes['phone'] = $request->phoneNumber;
+        // 更新用户数据
+        $user->update($attributes);
         return response()->json([
-            'status' => 'false',
-            'status_code' => 404,
-            'message' => '号码已存在',
+            'status' => 'true',
+            'status_code' => 200,
+            'message' => '手机更新成功',
+            'data' => $user
         ]);
+//
+//        return response()->json([
+//            'status' => 'false',
+//            'status_code' => 404,
+//            'message' => '号码已存在',
+//        ]);
 
     }
 }

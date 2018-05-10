@@ -58,6 +58,10 @@ class AuthorizationsController extends Controller
             'data'=>$user
         ], 200);
     }
+    public function getwxacode(Request $request){
+        $user = Auth::guard('api')->user();
+
+    }
 
     public function weappShopRegister(Request $request){
         $userid = Auth::guard('api')->user()->id;
