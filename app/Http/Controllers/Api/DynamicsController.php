@@ -34,6 +34,11 @@ class DynamicsController extends Controller
                         ->paginate(9);
                     return new DynamicCollection($dynamics);
                 }
+                return response()->json([
+                    'status' => 'false',
+                    'status_code' => 502,
+                    'message' => '分类内容为空',
+                ]);
             }
             if ($parentId == '0') {
                 $sortIds = Sort::where('parent_id', '=', $parent->id)->select('id')->get();

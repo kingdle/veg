@@ -43,7 +43,7 @@ class UsersController extends Controller
         return response()->json([
             'status' => 'false',
             'status_code' => 404,
-            'message' => '手机号已存在',
+            'message' => '号码已存在',
         ]);
 
     }
