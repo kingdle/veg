@@ -4,6 +4,8 @@ namespace App\Http\Resources;
 
 use Dingo\Api\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class Shop extends JsonResource
 {
@@ -48,7 +50,12 @@ class Shop extends JsonResource
             $distance = $distance / 100;
             $distance = round($distance, $decimal)."米";
         }
-
+        $favorites=Auth::user()->favorites()->pluck('shop_id')->ToArray();
+        if (in_array($this->id, $favorites)) {
+            $favorite=1;
+        }else{
+            $favorite=0;
+        }
         return [
             'id'=>$this->id,
             'userid'=>$this->user_id,
@@ -66,7 +73,8 @@ class Shop extends JsonResource
             'updated_at'=>$this->updated_at,
             'code'=>$this->code,
             'user'=>new User($this->user),
-            'distance'=>$distance
+            'distance'=>$distance,
+            'favorite'=>$favorite
         ];
     }
 }
