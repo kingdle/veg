@@ -50,8 +50,8 @@ class ShopsController extends Controller
         $userId=request()->user()->id;
         $shopId=request()->user()->shop->id;
         $shop = Shop::find($shopId);
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
+        if ($request->hasFile('file')) {
+            $avatar = $request->file('file');
             $filename = 'avatars/'.$userId.'MG'.uniqid().'.'.$avatar->getClientOriginalExtension();
             Storage::disk('upyun')->writeStream($filename, fopen($avatar->getRealPath(), 'r'));
             $filePath=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
