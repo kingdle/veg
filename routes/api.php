@@ -27,7 +27,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //users用户查询
     Route::resource('/users', 'UsersController')->middleware('auth:api');
     //shops店铺查询
-    Route::resource('/shops', 'ShopsController')->middleware('auth:api');
+    Route::resource('/shops', 'ShopsController');
     Route::post('/shop/distance', 'ShopsController@distance');
     //shop店铺新增
     Route::resource('/shop', 'ShopsController')->middleware('auth:api');
