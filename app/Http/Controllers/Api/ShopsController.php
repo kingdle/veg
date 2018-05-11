@@ -61,7 +61,7 @@ class ShopsController extends Controller
                 'status'=>'true',
                 'status_code' => 200,
                 'message' => '店铺头像更新成功',
-                'data'=>json_decode($shop->avatar)
+                'data'=>json_decode($filePath)
             ]);
         }
         return response()->json([
