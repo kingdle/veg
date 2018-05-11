@@ -91,6 +91,7 @@ $api->version('v2', [
         $api->post('v2/token/refresh', 'AuthorizationsController@update');
 
         $api->post('v2/getwxuserinfo', 'WxxcxController@getWxUserInfo');
+        $api->post('v2/getQrcode', 'WxxcxController@getQrcode')->middleware('auth:api');
 
         $api->get('v2/shop', 'ShopsController@weShow')->middleware('auth:api');
         $api->post('v2/shop', 'ShopsController@weUpdate')->middleware('auth:api');
