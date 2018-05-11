@@ -57,12 +57,7 @@ class ShopsController extends Controller
             $filePath=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
             $attributes['avatar'] = $filePath;
             $shop->update($attributes);
-            return response()->json([
-                'status'=>'true',
-                'status_code' => 200,
-                'message' => '店铺头像更新成功',
-                'data'=>json_decode($filePath)
-            ]);
+            return $filePath;
         }
         return response()->json([
             'status'=>'false',
