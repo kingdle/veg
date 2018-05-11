@@ -50,12 +50,15 @@ class Shop extends JsonResource
             $distance = $distance / 100;
             $distance = round($distance, $decimal)."米";
         }
-        $favorites=Auth::user()->favorites()->pluck('shop_id')->ToArray();
-        if (in_array($this->id, $favorites)) {
-            $favorite=1;
-        }else{
-            $favorite=0;
-        }
+//        if(Auth::user()){
+//            $favorites=Auth::user()->favorites()->pluck('shop_id')->ToArray();
+//            if (in_array($this->id, $favorites)) {
+//                $favorite=1;
+//            }else{
+//                $favorite=0;
+//            }
+//        }
+
         return [
             'id'=>$this->id,
             'userid'=>$this->user_id,
