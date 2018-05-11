@@ -45,4 +45,29 @@ class ShopsController extends Controller
             'data'=>$shop
         ]);
     }
+    public function weShopAvatar(Request $request)
+    {
+        $userId=request()->user()->id;
+        $shopId=request()->user()->shop->id;
+        $shop = Shop::find($shopId);
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = 'avatars/'.$userId.'MG'.uniqid().'.'.$avatar->getClientOriginalExtension();
+            Storage::disk('upyun')->writeStream($filename, fopen($avatar->getRealPath(), 'r'));
+            $filePath=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
+            $attributes['avatar'] = $filePath;
+            $shop->update($attributes);
+            return response()->json([
+                'status'=>'true',
+                'status_code' => 200,
+                'message' => '店铺头像更新成功',
+                'data'=>$shop->avatar
+            ]);
+        }
+        return response()->json([
+            'status'=>'false',
+            'status_code' => 403,
+            'message' => '店铺头像更新失败',
+        ],403);
+    }
 }

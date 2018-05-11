@@ -50,6 +50,9 @@ class User extends Authenticatable
 
         return self::where($credentials)->first();
     }
+    public function favorites(){
+        return $this->belongsToMany(Shop::class,'favorites')->withTimestamps();
+    }
 //    public function toArray()
 //    {
 //        return ['username'=>$this->name];

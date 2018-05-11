@@ -54,7 +54,49 @@ class WxxcxController extends Controller
         $url =  config('wxxcx.qrcode_url');
         return $data = $this->curl_get($url);
     }
+//手动生成小程序码
+    public function ManualQrcode(Request $request) {
+//        header('content-type:image/gif');
+        header('content-type:image/png');//格式自选，不同格式貌似加载速度略有不同，想加载更快可选择jpg
+        //header('content-type:image/jpg');
+        $shopId = $request->shopidoooo;
+        $shop=Shop::find($shopId);
+        if($shop){
+            if(!$shop->code){
+                $access = json_decode($this->get_access_token(),true);
+                $access_token= $access['access_token'];
+                $url = config('wxxcx.getwxacodeunlimit_url') . $access_token;
+                $data='{"width":"430","auto_color":true,"path":"pages/detail/detail?id='.$shopId.'"}';
+                $da = $this->api_notice_increment($url,$data);
+                if (!$da) {
+                    return response()->json([
+                        'status' => 'false',
+                        'message' => '二维码生成失败',
+                    ], 403);
+                }
+                $filename = 'qrcode/'.$shopId.'MG'.uniqid().'.png';
+                Storage::disk('upyun')->write($filename, $da);
+                $shopCode=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
 
+                $attributes['code'] = $shopCode;
+                $shop->update($attributes);
+
+                return response()->json([
+                    'status' => 'true',
+                    'message' => '小程序码生成成功',
+                    'code'=>$shopCode
+                ], 200);
+            }
+            return response()->json([
+                'status' => 'false',
+                'message' => '二维码已存在',
+            ], 403);
+        }
+        return response()->json([
+            'status' => 'false',
+            'message' => '店铺不存在',
+        ], 403);
+    }
     //获得二维码
     public function getQrcode() {
 //        header('content-type:image/gif');

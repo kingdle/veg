@@ -59,6 +59,10 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::get('/count','CountController@count')->middleware('auth:api');
 
     Route::get('weapp/code','WeChatController@index');
+
+    //苗场收藏
+    Route::resource('/favorite', 'Api\FavoritesController')->middleware('auth:api');
+
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
 //    Route::post('authorizations','AuthorizationsController@store');
@@ -92,15 +96,19 @@ $api->version('v2', [
 
         $api->post('v2/getwxuserinfo', 'WxxcxController@getWxUserInfo');
         $api->post('v2/getQrcode', 'WxxcxController@getQrcode')->middleware('auth:api');
+        $api->post('v2/ManualQrcode', 'WxxcxController@ManualQrcode')->middleware('auth:api');
 
         $api->get('v2/shop', 'ShopsController@weShow')->middleware('auth:api');
         $api->post('v2/shop', 'ShopsController@weUpdate')->middleware('auth:api');
+        $api->post('v2/weShopAvatar', 'ShopsController@weShopAvatar')->middleware('auth:api');
 
         $api->post('v2/user', 'UsersController@weUpdate')->middleware('auth:api');
+
 
         $api->post('v2/dynamic/index', 'DynamicsController@weIndex')->middleware('auth:api');
         $api->post('v2/dynamic/upload', 'DynamicsController@uploadImage')->middleware('auth:api');
         $api->post('v2/dynamic/create', 'DynamicsController@weCreate')->middleware('auth:api');
         $api->post('v2/dynamic/upfile', 'DynamicsController@upFile')->middleware('auth:api');
+
     });
 });
