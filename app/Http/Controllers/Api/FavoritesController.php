@@ -12,8 +12,7 @@ use Auth;
 class FavoritesController extends Controller
 {
     public function index(){
-        $favorites=Auth::user()->favorites();
-        return $favorites;
+       return Auth::user()->favorites()->pluck('shop_id');
     }
     public function store(Request $request){
         $userId=Shop::where('id',$request->get('shop_id'))->first()->user_id;
