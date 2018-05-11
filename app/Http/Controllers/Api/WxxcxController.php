@@ -61,31 +61,36 @@ class WxxcxController extends Controller
         header('content-type:image/png');//格式自选，不同格式貌似加载速度略有不同，想加载更快可选择jpg
         //header('content-type:image/jpg');
         $shopId = Auth::guard('api')->user()->shop->id;
-        $access = json_decode($this->get_access_token(),true);
-        $access_token= $access['access_token'];
-        $url = config('wxxcx.getwxacodeunlimit_url') . $access_token;
-        $data='{"width":"430","auto_color":true,"path":"pages/detail/detail?id='.$shopId.'"}';
-        $da = $this->api_notice_increment($url,$data);
-        if (!$da) {
-            return response()->json([
-                'status' => 'false',
-                'message' => '二维码生成失败',
-            ], 403);
-        }
-        $filename = 'qrcode/'.$shopId.'MG'.uniqid().'.png';
-        Storage::disk('upyun')->write($filename, $da);
-        $shopCode=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
-
         $shop=Shop::find($shopId);
-        $attributes['code'] = $shopCode;
-        $shop->update($attributes);
+        if(!$shop->code){
+            $access = json_decode($this->get_access_token(),true);
+            $access_token= $access['access_token'];
+            $url = config('wxxcx.getwxacodeunlimit_url') . $access_token;
+            $data='{"width":"430","auto_color":true,"path":"pages/detail/detail?id='.$shopId.'"}';
+            $da = $this->api_notice_increment($url,$data);
+            if (!$da) {
+                return response()->json([
+                    'status' => 'false',
+                    'message' => '二维码生成失败',
+                ], 403);
+            }
+            $filename = 'qrcode/'.$shopId.'MG'.uniqid().'.png';
+            Storage::disk('upyun')->write($filename, $da);
+            $shopCode=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
 
+            $attributes['code'] = $shopCode;
+            $shop->update($attributes);
+
+            return response()->json([
+                'status' => 'true',
+                'message' => '小程序码生成成功',
+                'code'=>$shopCode
+            ], 200);
+        }
         return response()->json([
-            'status' => 'true',
-            'message' => '小程序码生成成功',
-            'code'=>$shopCode
-        ], 200);
-        //这里强调显示二维码可以直接写该访问路径，同时也可以使用curl保存到本地，详细用法可以加群或者加我扣扣
+            'status' => 'false',
+            'message' => '二维码已存在',
+        ], 403);
     }
     function api_notice_increment($url, $data){
         $ch = curl_init();
