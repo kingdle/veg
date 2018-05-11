@@ -77,7 +77,6 @@ class Shop extends JsonResource
             'code'=>$this->code,
             'user'=>new User($this->user),
             'distance'=>$distance,
-            'favorite'=>$favorite
         ];
     }
 }
