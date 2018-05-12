@@ -1,44 +1,13 @@
 <template>
     <div class="home">
         <div class="row">
-            <div class="col-md-12 px-0">
-                <div class="flex-md-row mb-3">
-                    <div class="card-body mt-2">
-                        <div class="mg-business">
-                            <div class="col-12 text-center">
-                                <!--<div class="figure mr-4 text-center">-->
-                                    <!--<div class="new-shops">-->
-                                        <!--<img src="images-pc/mg-code-mp.jpg">-->
-                                    <!--</div>-->
-                                    <!--<h6 class="text-secondary pt-2 mb-0">扫这个码入驻</h6>-->
-
-                                <!--</div>-->
-                                <div v-for="shop in shops" :key="shop.id" class="figure mr-4 text-center">
-                                    <div class="contributor-pics">
-                                        <a href="#">
-                                            <img :src="shop.avatar+'!mp.v100'"
-                                                 width="80px">
-                                        </a>
-                                    </div>
-                                    <h6 class="shop-title pt-2 mb-0">{{shop.title}}</h6>
-                                    <div class="figure-caption font-weight-light text-lowercase pb-2">
-                                        {{shop.updated_at.date | moment("from") }} 来过
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-12 w-100per m-b-100 overflow-auto">
                 <div class="w-1200 py-5 m-auto">
                     <h2 class=" text-center">
-                    苗果服务在您身边</h2>
+                        苗果服务在您身边</h2>
                     <p class="text-sm text-center letter-10  m-b-45">
                         专业种苗订购平台，交易的是服务，收获的是财富。</p>
-                    <div class="my-5">
+                    <div class="my-0">
                         <div class="fl flex-4 text-center">
                             <a class="inline-block m-auto shop" href="#"><img
                                     class="hoverImg" style="width:288px;"
@@ -50,6 +19,46 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 px-0">
+                <div class="flex-md-row mb-3">
+                    <div class="card-body mt-2">
+                        <div class="mg-business">
+                            <div class="col-12 text-center">
+                                <!--<div class="figure mr-4 text-center">-->
+                                <!--<div class="new-shops">-->
+                                <!--<img src="images-pc/mg-code-mp.jpg">-->
+                                <!--</div>-->
+                                <!--<h6 class="text-secondary pt-2 mb-0">扫这个码入驻</h6>-->
+
+                                <!--</div>-->
+                                <div class="mr-4 text-center">
+                                    <div class="code-pics">
+                                        <ul>
+                                            <li v-for="shop in shops" :key="shop.id">
+                                                <a href="#" @mouseenter="showActive(shop.id)"
+                                                   @mouseleave="showActive(0)">
+                                                    <img :src="shop.avatar+'!mp.v200'" width="100px">
+                                                    <img v-show="active === shop.id" class="hide_tab"
+                                                         :src="shop.code+'!mp.v200'" width="100px">
+                                                </a>
+                                                <h6 class="shop-title pt-2 mb-0">{{shop.title}}</h6>
+                                                <p class="figure-caption font-weight-light text-lowercase pb-2">
+                                                    {{shop.updated_at.date | moment("from") }} 来过
+                                                </p>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -58,6 +67,7 @@
         data() {
             return {
                 shops: [],
+                active: 0
             }
         },
         mounted() {
@@ -65,65 +75,52 @@
                 this.shops = response.data.data
             })
         },
+        methods: {
+            showActive(index) {
+                this.active = index;
+            }
+        }
 
 
     }
 </script>
+
 <style>
-    .bd-callout {
-        border: 0px solid #eee;
-        border-left-color: #7bc276;
-        border-left-width: .1rem;
-        border-radius: .1rem;
+    .shop-title{
+        width: 120px;
+        height: 28px;
+        line-height: 28px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-
-    .mg-home-top .card-title {
-        font-size: 12px;
-    }
-
-    .mg-home-top .card-text {
-        font-size: 30px;
-        font-weight: 700;
-    }
-
-    .mg-hello h2 {
-        font-weight: 200;
-    }
-
-    .mg-hello p {
-        text-indent: 2rem;
-    }
-
-    .mg-business .mg-img {
-        width: 200px;
-        height: 200px;
-    }
-
-    .verticalLine {
-        width: 1px;
-        height: 80px;
-        background: #E5E5E5;
-        float: left;
-    }
-
-    .contributor-pics img {
+    .code-pics img {
         border-radius: 50%;
-        box-shadow: 0 2px 15px #b1afad !important;
+        box-shadow: 0 0 20px #e4e8eb !important;
     }
-
-    .contributor-pics img:hover {
-        border-radius: 10%;
-        box-shadow: 0 0 10px #b1afad !important;
+    .code-pics {
+        float: right;
     }
-
-    .new-shops img{
-        height:120px;
-        weight:120px;
-        margin-right:10px;
-        border-radius: 10%;
-        box-shadow: 0 0 20px #d3e1d7 !important;
+    .code-pics ul {
+        margin-left: 1px;
+        padding-left:0px !important;
     }
-    .shop-title {
-        color: #35393c;
+    .code-pics ul li {
+        display: inline-block;
+        margin: 20px 10px;
+        width: 100px;
+        height: 100px;
+    }
+    .code-pics ul li a {
+        position: relative;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+    }
+    .hide_tab {
+        position: absolute;
+        bottom: 0;
+        z-index:999;
+        margin-left: -50px;
     }
 </style>
