@@ -118,7 +118,7 @@ class DynamicsController extends Controller
         if($request->dynamicContent){
             $content = $request->dynamicContent;
         }else{
-            $content = Auth::guard('api')->user()->shop->address;
+            $content = '';
         }
 
         $dynamic->user_id = $userId;
