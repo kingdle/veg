@@ -115,7 +115,11 @@ class DynamicsController extends Controller
         $imageUrl = $request->imageUrl;
         $userId = Auth::guard('api')->user()->id;
         $shopId = Auth::guard('api')->user()->shop->id;
-        $content = $request->dynamicContent;
+        if($request->dynamicContent){
+            $content = $request->dynamicContent;
+        }else{
+            $content = Auth::guard('api')->user()->shop->address;
+        }
 
         $dynamic->user_id = $userId;
         $dynamic->shop_id = $shopId;
