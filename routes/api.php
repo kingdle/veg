@@ -40,7 +40,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/news/images', 'DynamicsController@images')->middleware('auth:api');
     Route::post('/news/image', 'DynamicsController@image')->middleware('auth:api');
     //albums相册查询
-    Route::resource('/albums', 'AlbumsController')->middleware('auth:api');
+    Route::resource('/albums', 'AlbumsController');
     //sorts分类查询
     Route::resource('/sorts', 'SortsController');
     Route::get('/sort/all', 'SortsController@sorts');
