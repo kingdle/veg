@@ -21,6 +21,5 @@ class AlbumsController extends Controller
             return response()->json(['status' => false, 'status_code' => '401']);
         }
         return new AlbumCollection($album);
-
     }
 }

@@ -14,7 +14,7 @@ class AddAddressToSeedsTable extends Migration
     public function up()
     {
         Schema::table('seeds', function (Blueprint $table) {
-            $table->text('string')->default(NULL)->after('phone')->comment('地址');
+            $table->text('address')->default(NULL)->after('phone')->comment('地址');
         });
     }
 

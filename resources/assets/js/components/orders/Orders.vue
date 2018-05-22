@@ -35,7 +35,7 @@
                             <div class="col-sm-4 col-5">
                                 <div class="p-0 text-center" style="">
                                     <img class="text-algin"
-                                         src="/images-pc/mg-code-mp.jpg" alt="苗果"
+                                         :src="yourshop.code" alt=""
                                          width="90"
                                          height="90">
                                     <p class="card-title text-muted">您的苗果小程序码</p>
@@ -78,9 +78,18 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     import Orders from './OrdersList'
     import AddOrder from './AddOrders'
     export default {
+        created(){
+            this.$store.dispatch('setAuthShop')
+        },
+        computed: {
+            ...mapState({
+                yourshop: state => state.AuthShop
+            })
+        },
         components:{
             Orders,
             AddOrder

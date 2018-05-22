@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Album;
 use App\Dynamic;
 use App\Http\Resources\DynamicCollection;
+use App\Shop;
 use App\Sort;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -93,6 +94,7 @@ class DynamicsController extends Controller
             $album->shop_id = $shopId;
             $album->pic = json_encode($filePath);
             $album->save();
+            Shop::where('id', $shopId)->increment('pic_count');//图片数加1
             return response()->json([
                 'status' => 'true',
                 'status_code' => 200,
@@ -136,6 +138,7 @@ class DynamicsController extends Controller
         }
 
         if ($success) {
+            Shop::where('id', $shopId)->increment('dynamic_count');//动态数加1
             return response()->json([
                 'status' => 'true',
                 'status_code' => 200,

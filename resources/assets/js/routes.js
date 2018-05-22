@@ -113,7 +113,19 @@ let routes = [
                 name: 'profile.editSeed',
                 component: require('./components/seeds/Seed'),
                 meta: {requiresAuth: true}
-            }
+            },
+            {
+                path: '/seller',
+                name: 'profile.Seller',
+                component: require('./components/sellers/Index'),
+                meta: {requiresAuth: true}
+            },
+            {
+                path: '/buyer',
+                name: 'profile.Buyer',
+                component: require('./components/buyers/Index'),
+                meta: {requiresAuth: true}
+            },
         ],
         meta: {requiresAuth: true}
     }

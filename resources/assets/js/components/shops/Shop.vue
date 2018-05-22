@@ -62,7 +62,7 @@
                                         <li class="b-b p-b-20 p-t-20">
                                             <p class="set-up-item-label text-secondary">您的苗果小程序码</p>
                                             <p class="set-up-item-content">
-                                                <img class="m-3 mx-5" src="/images-pc/mg-code-mp.jpg" alt="苗果"
+                                                <img class="m-3 mx-5" :src="shop.code" alt="苗果"
                                                      width="120"
                                                      height="120">
                                             </p>

@@ -39,7 +39,7 @@
                             <div class="col-sm-4 col-5">
                                 <div class="p-0 text-center" style="">
                                     <img class="text-algin"
-                                         src="/images-pc/mg-code-mp.jpg" alt="苗果"
+                                         :src="yourshop.code" alt=""
                                          width="90"
                                          height="90">
                                     <p class="card-title text-muted">您的苗果小程序码</p>
@@ -143,11 +143,13 @@
     import {mapState} from 'vuex'
     export default {
         created(){
-            this.$store.dispatch('setAuthUser')
+            this.$store.dispatch('setAuthUser'),
+            this.$store.dispatch('setAuthShop')
         },
         computed: {
             ...mapState({
-                user: state => state.AuthUser
+                user: state => state.AuthUser,
+                yourshop: state => state.AuthShop
             })
         },
         mounted() {
