@@ -17,7 +17,6 @@ class AuthorizationsController extends Controller
         $code = $request->code;
         // 根据 code 获取微信 openid 和 session_key
         $miniProgram = \EasyWeChat::miniProgram();
-
         $data = $miniProgram->auth->session($code);
 
         if (isset($data['errcode'])) {
@@ -31,8 +30,12 @@ class AuthorizationsController extends Controller
         $user = User::where('weapp_openid', $weappOpenid)->first();
         //把session_key
         $attributes['weixin_session_key'] = $weixinSessionKey;
-        $attributes['nickname'] = $nickname;
-        $attributes['weixin_avatar_url'] = $avatar;
+        if($avatar){
+            $attributes['avatar'] = $avatar;
+        }
+        if($nickname){
+            $attributes['nickname'] = $nickname;
+        }
         if (!$user) {
             User::create([
                 'weapp_openid' => $weappOpenid,
