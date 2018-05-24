@@ -6,7 +6,7 @@
                     <h2 class=" text-center">
                         苗果服务在您身边</h2>
                     <p class="text-sm text-center letter-10  m-b-45">
-                        专业种苗订购平台，交易的是服务，收获的是财富。</p>
+                        专业种苗服务平台，探索农业生产数据，赋予农户辨别市场变化的能力。</p>
                     <div class="my-0">
                         <div class="fl flex-4 text-center">
                             <a class="inline-block m-auto shop" href="#"><img
