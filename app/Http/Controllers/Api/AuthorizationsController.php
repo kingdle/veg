@@ -24,18 +24,18 @@ class AuthorizationsController extends Controller
         }
         $weappOpenid = $data['openid'];
         $weixinSessionKey = $data['session_key'];
-        $nickname = $request->nickname;
-        $avatar = $request->avatar;
+//        $nickname = $request->nickname;
+//        $avatar = $request->avatar;
         //找到 openid 对应的用户
         $user = User::where('weapp_openid', $weappOpenid)->first();
         //把session_key
         $attributes['weixin_session_key'] = $weixinSessionKey;
-        if($avatar){
-            $attributes['avatar'] = $avatar;
-        }
-        if($nickname){
-            $attributes['nickname'] = $nickname;
-        }
+//        if($avatar){
+//            $attributes['avatar'] = $avatar;
+//        }
+//        if($nickname){
+//            $attributes['nickname'] = $nickname;
+//        }
         if (!$user) {
             User::create([
                 'weapp_openid' => $weappOpenid,
