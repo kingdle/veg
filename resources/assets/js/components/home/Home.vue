@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="card flex-row mb-3">
@@ -13,11 +13,13 @@
                                 <div class="row text-center" style="white-space:nowrap;">
                                     <div class="col pt-2">
                                         <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">相片数</h5>
-                                        <p class="card-text text-secondary" style="white-space:nowrap;">{{mgCharts.albumsCount}}</p>
+                                        <p class="card-text text-secondary" style="white-space:nowrap;">
+                                            {{mgCharts.albumsCount}}</p>
                                     </div>
                                     <div class="col pt-2">
                                         <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">动态数</h5>
-                                        <p class="card-text text-secondary" style="white-space:nowrap;">{{mgCharts.dynamicsCount}}</p>
+                                        <p class="card-text text-secondary" style="white-space:nowrap;">
+                                            {{mgCharts.dynamicsCount}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -28,10 +30,11 @@
                                     <a href="#" class="btn btn-success " data-toggle="modal"
                                        data-target="#AddNewsModalCenter">发动态</a>
                                     <a href="#">
-                                        <router-link :to="{name: 'profile.Orders'}" class="btn btn-success" activeClass="active" exact>
+                                        <router-link :to="{name: 'profile.Orders'}" class="btn btn-success"
+                                                     activeClass="active" exact>
                                             查订单
                                         </router-link>
-                                        </a>
+                                    </a>
                                     <p class="mt-3 text-muted">经常发动态就是最好的营销。</p>
                                 </div>
                             </div>
@@ -64,10 +67,12 @@
                                     <div class="contributor-pics">
                                         <a href="#">
                                             <img :src="shop.avatar+'!mp.v100'"
-                                                 width="64px">
+                                                 width="64px"
+                                                 :alt="shop.title"
+                                                 :title="shop.title">
                                         </a>
                                     </div>
-                                    <h6 class="shop-title pt-2 mb-0">{{shop.title}}</h6>
+                                    <h6 class="shop-title pt-2 mb-0" :title="shop.title">{{shop.title}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -114,15 +119,18 @@
             <div class="col-md-12 px-0">
                 <div class="card flex-md-row mb-3">
                     <div class="card-body mt-2">
-                        <div class="input-group">
+                        <form @submit.prevent="sendMessage">
+                            <div class="input-group">
                             <textarea class="form-control bd-callout lead"
+                                      v-model="messageContent" id="messageContent"
                                       rows="3"
                                       placeholder="创新驱动价值，欢迎提意见。好想法被采纳，会有报酬的"
                                       aria-label="With textarea"></textarea>
-                            <div class="input-group-append">
-                                <button class="btn btn-success" type="button">提交<br>想法</button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-success" type="submit">提交<br>想法</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <img class="m-3 mx-5 flex-auto d-none d-md-block" src="/images-pc/mg-code-mp.jpg" alt="苗果"
                          width="110"
@@ -144,7 +152,7 @@
     export default {
         created(){
             this.$store.dispatch('setAuthUser'),
-            this.$store.dispatch('setAuthShop')
+                this.$store.dispatch('setAuthShop')
         },
         computed: {
             ...mapState({
@@ -163,30 +171,33 @@
         data() {
             return {
                 shops: [],
-                mgCharts:{"albumsCount":'',"dynamicsCount":'',"ordersCount":''},
+                mgCharts: {"albumsCount": '', "dynamicsCount": '', "ordersCount": ''},
+                messageContent: ''
             }
         },
-//        data(){
-//            return {
-//                shop: [],
-//            }
-//        },
-//        created(){
-//            this.fetchData()
-//        },
-//        watch: {
-//            '$route': 'fetchData'
-//        },
-//        methods: {
-//            fetchData(){
-//                this.axios.get('/api/v1/shops/' + this.$route.params.id).then(response => {
-//                    this.shop = response.data
-//                })
-//            }
-//        }
+        methods: {
+            sendMessage(){
+                let formData = {
+                    messageContent: this.messageContent,
+                }
+                this.$store.dispatch('sendMessageRequest', formData).then(response => {
+                    this.$router.push({name: 'profile.Home'})
+                    this.messageContent = ''
+                }).catch(error => {
+
+                })
+            }
+        }
     }
 
 </script>
 <style>
-
+    .shop-title{
+        width: 80px;
+        height: 28px;
+        line-height: 28px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>

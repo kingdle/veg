@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <div class="notification">
             <transition name="fade" mode="in-out">
-                <div class="hidden" :class="notificationLevel"
+                <div class="hidden"
+                     :class="notificationLevel"
                      v-if="msg"
                      @click="hideNotification()">
                 </div>
@@ -18,7 +19,7 @@
         computed: {
             ...mapState({
                 level: state => state.Notification.level,
-                msg: state => state.Notification.msg
+                msg: state => state.Notification.msg,
             }),
             notificationLevel() {
                 this.$notify({

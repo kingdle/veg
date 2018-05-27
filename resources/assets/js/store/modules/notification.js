@@ -3,7 +3,7 @@ import * as types from './../mutation-type'
 export default {
     state: {
         level: 'success', // info error
-        msg: null
+        msg: null,
     },
     mutations: {
         [types.SHOW_NOTIFICATION](state, payload) {

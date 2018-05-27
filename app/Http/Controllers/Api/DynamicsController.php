@@ -142,13 +142,13 @@ class DynamicsController extends Controller
             return response()->json([
                 'status' => 'true',
                 'status_code' => 200,
-                'message' => '动态发布成功',
+                'message' => '动态发布成功'.date("h:i:s"),
             ]);
         } else {
             return response()->json([
                 'status' => 'false',
                 'status_code' => 501,
-                'message' => '服务器端错误',
+                'message' => '服务器端错误'.date("h:i:s"),
             ]);
         }
     }

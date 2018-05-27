@@ -40,9 +40,11 @@
                                                    @mouseleave="showActive(0)">
                                                     <img :src="shop.avatar+'!mp.v200'" width="100px">
                                                     <img v-show="active === shop.id" class="hide_tab"
-                                                         :src="shop.code+'!mp.v200'" width="100px">
+                                                         :src="shop.code+'!mp.v200'" width="100px"
+                                                         :alt="shop.title"
+                                                         :title="shop.title">
                                                 </a>
-                                                <h6 class="shop-title pt-2 mb-0">{{shop.title}}</h6>
+                                                <h6 class="shop-title pt-2 mb-0" :title="shop.title">{{shop.title}}</h6>
                                                 <p class="figure-caption font-weight-light text-lowercase pb-2">
                                                     {{shop.updated_at.date | moment("from") }} 来过
                                                 </p>

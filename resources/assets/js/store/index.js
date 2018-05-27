@@ -12,6 +12,7 @@ import Notification from './modules/notification'
 
 import AddNews from './modules/add-news'
 import addDynamicRequest from './modules/add-dynamic'
+import sendMessageRequest from './modules/send-message'
 
 Vue.use(Vuex)
 
@@ -26,7 +27,8 @@ export default new Vuex.Store({
         EditShop,
         Notification,
         AddNews,
-        addDynamicRequest
+        addDynamicRequest,
+        sendMessageRequest
     },
     strict: true
 })

@@ -24,6 +24,7 @@ Route::post('/user/seed/update', 'SeedsController@update')->middleware('auth:api
 
 //passport部分
 Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
+    Route::resource('/messages', 'MessagesController')->middleware('auth:api');
     //users用户查询
     Route::resource('/users', 'UsersController')->middleware('auth:api');
     //shops店铺查询
