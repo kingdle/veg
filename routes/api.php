@@ -38,6 +38,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/dynamic/distance', 'DynamicsController@distance');
     //dynamics新增动态
     Route::get('/dynamics-user', 'DynamicsController@user')->middleware('auth:api');
+    Route::get('/dynamics-lists', 'DynamicsController@lists')->middleware('auth:api');
     Route::post('/news/images', 'DynamicsController@images')->middleware('auth:api');
     Route::post('/news/image', 'DynamicsController@image')->middleware('auth:api');
     //albums相册查询

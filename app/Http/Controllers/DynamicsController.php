@@ -39,6 +39,17 @@ class DynamicsController extends Controller
             return response()->json(['status' => false, 'status_code' => '401']);
         }
         return new DynamicCollection($dynamics);
+
+
+    }
+    public function lists()
+    {
+        $shopId = Auth::guard('api')->user()->shop->id;
+        $dynamics = Dynamic::where('shop_id', $shopId)->orderBy('id', 'desc')->paginate(9);
+        if ($dynamics->count() == 0) {
+            return response()->json(['status' => false, 'status_code' => '401']);
+        }
+        return new DynamicCollection($dynamics);
     }
 
     public function image(Request $request, Album $album)
