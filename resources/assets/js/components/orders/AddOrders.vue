@@ -33,7 +33,7 @@
                                     <el-option
                                             v-for="tag in tags"
                                             :key="tag.id"
-                                            :label="tag.name"
+                                            :label="tag.name +'('+ tag.bio+')'"
                                             :value="tag.id">
                                     </el-option>
                                 </el-select>
