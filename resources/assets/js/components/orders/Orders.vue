@@ -15,11 +15,15 @@
                                 <div class="row text-center" style="white-space:nowrap;">
                                     <div class="col pt-2">
                                         <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">订单数</h5>
-                                        <p class="card-text text-secondary" style="white-space:nowrap;">190</p>
+                                        <p class="card-text text-secondary" style="white-space:nowrap;">
+                                            {{OrderCharts.ordersCount}}
+                                        </p>
                                     </div>
                                     <div class="col pt-2">
-                                        <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">总金额</h5>
-                                        <p class="card-text text-secondary" style="white-space:nowrap;">12.34万</p>
+                                        <h5 class="card-title text-muted pt-2 mb-0" style="white-space:nowrap;">苗子数</h5>
+                                        <p class="card-text text-secondary" style="white-space:nowrap;">
+                                            {{OrderCharts.seedCount}}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -144,6 +148,9 @@
                 this.orders = response.data.data
                 this.pagination = response.data.meta
             })
+            axios.get('/api/v1/countOrder').then(response => {
+                this.OrderCharts = response.data
+            })
         },
         data() {
             return{
@@ -156,6 +163,7 @@
                     current_page: 1
                 },
                 offset: 9,
+                OrderCharts: {"ordersCount": '', "seedCount": ''},
             }
         },
         methods: {

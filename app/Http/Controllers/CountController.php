@@ -24,4 +24,17 @@ class CountController extends Controller
         ];
         return json_encode($mgChart);
     }
+    public function countOrder()
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $ordersCount = Order::latest()->where('to_user_id', $userId)->count();//订单总数
+        $seedCount = Order::latest()->where('to_user_id', $userId)->sum('count');//苗子总数
+//        $moneyCount = Order::latest()->where('user_id', $userId)->count();//订单总金额
+
+        $orderChart = [
+            'ordersCount' => $ordersCount,
+            'seedCount' => $seedCount,
+        ];
+        return json_encode($orderChart);
+    }
 }
