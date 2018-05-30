@@ -1,54 +1,69 @@
 <template>
     <div class="news-add">
         <div class="modal bd-example-modal-lg" id="AddOrdersModalCenter" tabindex="-1" role="dialog"
-             aria-labelledby="ShopModalCenterTitle"
              aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="AddOrdersModalLongTitle">
-                            <label for="dynamic" class="control-label">新建订单</label>
+                            <label class="control-label">新建订单</label>
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <el-form ref="form" :inline="true" :model="form" label-width="80px">
+                    <div class="modal-body tags">
+                        <el-form ref="addForm" :model="addForm" label-width="80px" size="medium">
                             <el-form-item label="农户姓名">
-                                <el-input v-model="form.name"></el-input>
+                                <el-input v-model="addForm.userName"></el-input>
                             </el-form-item>
                             <el-form-item label="电话">
-                                <el-input v-model="form.phone"></el-input>
+                                <el-input v-model="addForm.userPhone"></el-input>
                             </el-form-item>
-                            <el-form-item label="种苗品种">
-                                <el-input v-model="form.vegName"></el-input>
+                            <el-form-item label="苗子品种">
+                                <el-select
+                                        v-model="selectTags"
+                                        name="selectTags"
+                                        :readonly="true"
+                                        filterable
+                                        remote
+                                        allow-create
+                                        default-first-option
+                                        placeholder="请选择或新建品种">
+                                    <el-option
+                                            v-for="tag in tags"
+                                            :key="tag.id"
+                                            :label="tag.name"
+                                            :value="tag.id">
+                                    </el-option>
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="数量">
-                                <el-input v-model="form.count"></el-input>
+                                <el-slider
+                                        v-model="addForm.seedCount"
+                                        :max="80000"
+                                        :step="100"
+                                        show-input>
+                                </el-slider>
                             </el-form-item>
-
-                            <el-form-item label="送苗时间">
-                                <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-                                </el-col>
-                                <el-col class="line" :span="2">-</el-col>
-                                <el-col :span="11">
-                                    <el-time-picker type="fixed-time" placeholder="选择时间" v-model="form.time1" style="width: 100%;"></el-time-picker>
-                                </el-col>
+                            <el-form-item label="送苗日期">
+                                <el-date-picker
+                                        v-model="addForm.sendDate"
+                                        type="daterange"
+                                        start-placeholder="最晚育苗日期"
+                                        end-placeholder="送苗日期"
+                                        :default-time="['00:00:00', '23:59:59']">
+                                </el-date-picker>
                             </el-form-item>
                             <el-form-item label="地址">
-                                <el-input v-model="form.address"></el-input>
+                                <el-input v-model="addForm.userAddress" id="maplocation" :readonly="true" data-toggle="modal" data-target="#SelectLocationModalCenter"></el-input>
                             </el-form-item>
-                            <el-form-item label="状态">
-                                <el-radio-group v-model="form.state">
-                                    <el-radio label="未送苗"></el-radio>
-                                    <el-radio label="移送苗"></el-radio>
-                                </el-radio-group>
+                            <el-form-item label="是否送苗">
+                                <el-switch v-model="addForm.orderState"></el-switch>
                             </el-form-item>
                             <el-form-item>
                                 <el-button type="primary" @click="addOrders">立即创建</el-button>
-                                <el-button>取消</el-button>
+                                <el-button data-dismiss="modal">取消</el-button>
                             </el-form-item>
                         </el-form>
                     </div>
@@ -56,38 +71,45 @@
             </div>
         </div>
     </div>
-
 </template>
 <script>
     import jwtToken from './../../helpers/jwt'
-    import {ErrorBag} from 'vee-validate';
-    //    import * as types from './../../store/mutation-type'
+    import {ErrorBag} from 'vee-validate'
+
     export default {
         data() {
             return {
-                form: {
-                    name: '',
-                    vegName: '',
-                    date1: '',
-                    time1:'',
-                    count: '',
-                    phone: '',
-                    address: '',
-                    state: ''
-                }
+                addForm: {},
+                selectTags: [],
+                tags: [],
+                max: '',
             }
         },
+
         mounted() {
             axios.get('/api/v1/tags').then(response => {
-                this.options = response.data
-            })
-            axios.get('/api/v1/sort/all').then(response => {
-                this.options2 = response.data
+                this.tags = response.data
             })
         },
         methods: {
             addOrders() {
-                console.log('submit!');
+                const formData = {
+                    name: this.addForm.userName,
+                    phone: this.addForm.userPhone,
+                    tags: this.selectTags,
+                    count: this.addForm.seedCount,
+                    sendDate: this.addForm.sendDate,
+                    address: document.getElementById("maplocation").value,
+                    state: this.addForm.orderState,
+                }
+                console.log(formData)
+                this.$store.dispatch('addOrdersRequest', formData).then(response => {
+                    this.$router.push({name: 'profile.Orders'})
+//                    this.addForm = {}
+//                    this.selectTags = []
+                }).catch(error => {
+
+                })
             }
         }
     }
@@ -119,5 +141,81 @@
 
     .tags .el-select {
         display: block;
+    }
+
+    .el-date-table td.current:not(.disabled) span {
+        color: #fff;
+        background-color: #f06307;
+    }
+
+    .el-date-table td.today span {
+        color: #f06307;
+        font-weight: 700;
+    }
+
+    .el-radio__input.is-checked .el-radio__inner {
+        border-color: #f06307;
+        background: #f06307;
+    }
+
+    .el-radio__input.is-checked + .el-radio__label {
+        color: #f06307;
+    }
+
+    .el-button--primary {
+        color: #fff;
+        background-color: #f06307;
+        border-color: #f06307;
+    }
+
+    .tags .el-select {
+        display: block;
+    }
+
+    .el-slider__bar {
+        background-color: #f06307;
+    }
+
+    .el-slider__button {
+        border: 2px solid #f06307;
+        background-color: #fff;
+    }
+
+    .el-switch.is-checked .el-switch__core {
+        border-color: #f06307;
+        background-color: #f06307;
+    }
+
+    .el-range-editor.is-active, .el-range-editor.is-active:hover {
+        border-color: #f06307;
+    }
+
+    .el-select .el-input.is-focus .el-input__inner {
+        border-color: #f06307;
+    }
+
+    .el-input__inner:focus {
+        border-color: #f06307;
+        outline: 0;
+    }
+
+    .el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
+        color: #f06307;
+        background-color: #fff;
+    }
+
+    .el-select-dropdown__item.selected {
+        color: #f06307;
+        font-weight: 700;
+    }
+
+    .el-date-table td.end-date span, .el-date-table td.start-date span {
+        background-color: #f06307;
+    }
+
+    .el-button:focus, .el-button:hover {
+        background: #28a745 !important;
+        border-color: #28a745 !important;
+        color: #fff;
     }
 </style>

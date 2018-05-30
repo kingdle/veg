@@ -14,6 +14,8 @@ import AddNews from './modules/add-news'
 import addDynamicRequest from './modules/add-dynamic'
 import sendMessageRequest from './modules/send-message'
 
+import AddOrders from './modules/add-orders'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -27,6 +29,7 @@ export default new Vuex.Store({
         EditShop,
         Notification,
         AddNews,
+        AddOrders,
         addDynamicRequest,
         sendMessageRequest
     },

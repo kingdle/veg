@@ -1,6 +1,7 @@
 <template>
     <div class="mg-orders">
         <add-order></add-order>
+        <select-location></select-location>
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="card flex-row mb-3">
@@ -57,15 +58,34 @@
                                         <p class="vertical-middle">
                                             <span class="text-success text-bold m-r-5">|</span>
                                             订单列表
-                                            <mark>农户通过微信的"苗果"小程序发来订单需求，您需要尽快联系农户，并填写发送给农户确认，本订单才生效。</mark>
-
+                                            <mark>农户在访问"苗果"小程序时，会看到自己在您的苗场订购的苗子订单数量和品种。</mark>
                                         </p>
                                     </div>
                                     <div class="body-container">
                                         <div class="my-3 border-top">
                                             <orders :orders="orders"></orders>
                                         </div>
-
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-center">
+                                                <li class="page-item" v-if="pagination.current_page > 1">
+                                                    <a class="page-link" href="#" aria-label="Previous"
+                                                       @click.prevent="changePage(pagination.current_page - 1)">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item" v-for="page in pagesNumber"
+                                                    :class="[ page == isActived ? 'active' : '']">
+                                                    <a class="page-link" href="#"
+                                                       @click.prevent="changePage(page)">{{ page }}</a>
+                                                </li>
+                                                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                                                    <a class="page-link" href="#" aria-label="Next"
+                                                       @click.prevent="changePage(pagination.current_page + 1)">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
@@ -81,6 +101,8 @@
     import {mapState} from 'vuex'
     import Orders from './OrdersList'
     import AddOrder from './AddOrders'
+    import SelectLocation from './SelectLocation'
+
     export default {
         created(){
             this.$store.dispatch('setAuthShop')
@@ -88,24 +110,61 @@
         computed: {
             ...mapState({
                 yourshop: state => state.AuthShop
-            })
+            }),
+            isActived: function () {
+                return this.pagination.current_page;
+            },
+            pagesNumber: function () {
+                if (!this.pagination.to) {
+                    return [];
+                }
+                var from = this.pagination.current_page - this.offset;
+                if (from < 1) {
+                    from = 1;
+                }
+                var to = from + (this.offset * 2);
+                if (to >= this.pagination.last_page) {
+                    to = this.pagination.last_page;
+                }
+                var pagesArray = [];
+                while (from <= to) {
+                    pagesArray.push(from);
+                    from++;
+                }
+                return pagesArray;
+            }
         },
         components:{
             Orders,
-            AddOrder
+            AddOrder,
+            SelectLocation
         },
         mounted() {
-            axios.get('/api/v1/orders').then(response => {
+            axios.get('/api/v1/orders-lists').then(response => {
                 this.orders = response.data.data
+                this.pagination = response.data.meta
             })
         },
         data() {
             return{
                 orders:[],
+                pagination: {
+                    total: 0,
+                    per_page: 0,
+                    from: 0,
+                    to: 0,
+                    current_page: 1
+                },
+                offset: 9,
             }
         },
         methods: {
-
+            changePage: function (page) {
+                this.pagination.current_page = page;
+                axios.get('/api/v1/orders-lists?page='+page).then(response => {
+                    this.orders = response.data.data
+                })
+            }
         },
 
 //        data(){
@@ -129,4 +188,27 @@
     }
 
 </script>
-
+<style>
+    .page-item.active .page-link {
+        z-index: 1;
+        color: #fff;
+        background-color: #f06307;
+        border-color: #f06307;
+    }
+    .page-link {
+        position: relative;
+        display: block;
+        padding: 0.5rem 0.75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #f06307;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+    .page-link:hover {
+        color: #f06307;
+        text-decoration: none;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+</style>

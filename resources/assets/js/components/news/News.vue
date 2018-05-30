@@ -27,27 +27,27 @@
                         <div class="row my-3 border-top">
                             <dynamics :dynamics="dynamics"></dynamics>
                         </div>
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item" v-if="pagination.current_page > 1">
-                                        <a class="page-link" href="#" aria-label="Previous"
-                                           @click.prevent="changePage(pagination.current_page - 1)">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item" v-for="page in pagesNumber"
-                                        :class="[ page == isActived ? 'active' : '']">
-                                        <a class="page-link" href="#"
-                                           @click.prevent="changePage(page)">{{ page }}</a>
-                                    </li>
-                                    <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                                        <a class="page-link" href="#" aria-label="Next"
-                                           @click.prevent="changePage(pagination.current_page + 1)">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item" v-if="pagination.current_page > 1">
+                                    <a class="page-link" href="#" aria-label="Previous"
+                                       @click.prevent="changePage(pagination.current_page - 1)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" v-for="page in pagesNumber"
+                                    :class="[ page == isActived ? 'active' : '']">
+                                    <a class="page-link" href="#"
+                                       @click.prevent="changePage(page)">{{ page }}</a>
+                                </li>
+                                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                                    <a class="page-link" href="#" aria-label="Next"
+                                       @click.prevent="changePage(pagination.current_page + 1)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

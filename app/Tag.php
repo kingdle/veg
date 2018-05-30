@@ -10,4 +10,5 @@ class Tag extends Model
     public function dynamics(){
         return $this->belongsToMany(Dynamic::class,'dynamic_tag')->withTimestamps();
     }
+
 }

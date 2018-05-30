@@ -17,7 +17,7 @@ class Tag extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-//            'bio' => $this->bio,
+            'bio' => $this->bio,
 //            'pic' => $this->pic,
 //            'dynamics_count' => $this->dynamics_count,
 //            'followers_count' => $this->followers_count,
