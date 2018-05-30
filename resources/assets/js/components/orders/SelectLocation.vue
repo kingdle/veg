@@ -49,7 +49,7 @@
                         key: "SJOBZ-NNBCJ-ZIDFT-K74JD-RVKE6-AEFXX", //key为自己向腾讯地图申请的密钥
                         get_poi: 0
                     };
-                    var url = "http://apis.map.qq.com/ws/geocoder/v1/?";
+                    var url = "https://apis.map.qq.com/ws/geocoder/v1/?";
                     data.output = "jsonp";
                     $.ajax({
                         type: "get",
