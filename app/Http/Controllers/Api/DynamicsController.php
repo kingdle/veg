@@ -31,7 +31,7 @@ class DynamicsController extends Controller
                     foreach ($dynamics as $dynamic) {
                         $dynamicsP[] = $dynamic->dynamic_id;
                     }
-                    $dynamics = Dynamic::whereIn('id', $dynamicsP)->orderBy('id', 'desc')
+                    $dynamics = Dynamic::whereIn('id', $dynamicsP)->where('is_hidden','=','F')->orderBy('id', 'desc')
                         ->paginate(9);
                     return new DynamicCollection($dynamics);
                 }
@@ -55,14 +55,14 @@ class DynamicsController extends Controller
                     foreach ($dss as $ds) {
                         $d[] = $ds->dynamic_id;
                     }
-                    $dynamics = Dynamic::whereIn('id', $d)->orderBy('id', 'desc')
+                    $dynamics = Dynamic::whereIn('id', $d)->where('is_hidden','=','F')->orderBy('id', 'desc')
                         ->paginate(9);
                     return new DynamicCollection($dynamics);
                 }
             }
         }
 
-        $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop')->where('is_hidden','=','F')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
 
