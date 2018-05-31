@@ -162,7 +162,7 @@
                     to: 0,
                     current_page: 1
                 },
-                offset: 9,
+                offset: 20,
                 OrderCharts: {"ordersCount": '', "seedCount": ''},
             }
         },

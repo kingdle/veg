@@ -19,7 +19,7 @@ class OrdersController extends Controller
     public function lists()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('tag')->where('to_user_id', $userId)->orderBy('id', 'desc')->paginate(9);
+        $orders = Order::with('tag')->where('to_user_id', $userId)->orderBy('end_at', 'desc')->paginate(20);
         if ($orders->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
