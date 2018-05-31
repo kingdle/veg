@@ -13,13 +13,13 @@ class OrdersController extends Controller
     public function index()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('user')->where('to_user_id','=',$userId)->orderBy('end_at', 'desc')->paginate(20);
+        $orders = Order::with('user')->where('to_user_id','=',$userId)->orderBy('end_at', 'desc')->paginate(9);
         return new OrderCollection($orders);
     }
     public function lists()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('tag')->where('to_user_id', $userId)->orderBy('end_at', 'desc')->paginate(20);
+        $orders = Order::with('tag')->where('to_user_id', $userId)->orderBy('end_at', 'desc')->paginate(9);
         if ($orders->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
