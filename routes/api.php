@@ -49,6 +49,10 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //orders订单查询
     Route::resource('/orders', 'OrdersController')->middleware('auth:api');
     Route::get('/orders-lists', 'OrdersController@lists')->middleware('auth:api');
+    Route::post('/orders/buyerCreate', 'OrdersController@buyerCreate')->middleware('auth:api');
+    Route::post('/orders/sellerCreate', 'OrdersController@sellerCreate')->middleware('auth:api');
+    Route::post('/orders/sellerTransport', 'OrdersController@sellerTransport')->middleware('auth:api');
+
     //prods商品分类查询
     Route::resource('/prods', 'ProdsController')->middleware('auth:api');
 
