@@ -128,6 +128,9 @@ class OrdersController extends Controller
         if($request->name){
             $attributes['name'] =$request->name;
         }
+        if($request->count){
+            $attributes['count'] =$request->count;
+        }
         if($request->tags){
             $attributes['tag_id']=$request->tags;
         }
