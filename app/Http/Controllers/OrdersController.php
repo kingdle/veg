@@ -17,6 +17,11 @@ class OrdersController extends Controller
         $orders = Order::with('user')->where('to_user_id','=',$userId)->orderBy('end_at', 'desc')->paginate(9);
         return new OrderCollection($orders);
     }
+    public function buyerList(){
+        $userId = Auth::guard('api')->user()->id;
+        $orders = Order::where('user_id', $userId)->orderBy('end_at', 'desc')->paginate(9);
+        return new OrderCollection($orders);
+    }
     public function lists()
     {
         $userId = Auth::guard('api')->user()->id;
@@ -180,4 +185,5 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
 }
