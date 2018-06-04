@@ -16,7 +16,8 @@
             <tbody>
             <tr v-for="order in orders" :key="order.id">
                 <th scope="row">{{order.id}}</th>
-                <td>{{order.name}}</td>
+                <td v-if="order.name !== ''">{{order.name}}</td>
+                <td v-else-if="order.name === ''">{{order.nickname}}</td>
                 <td>{{order.phone}}</td>
                 <td>
                     <span v-if="order.tag_id === '0'">未选择品种</span>

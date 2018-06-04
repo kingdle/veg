@@ -119,5 +119,7 @@ $api->version('v2', [
         $api->post('v2/dynamic/create', 'DynamicsController@weCreate')->middleware('auth:api');
         $api->post('v2/dynamic/upfile', 'DynamicsController@upFile')->middleware('auth:api');
 
+        //模板消息
+        $api->post('v2/send', 'TemplateController@send')->middleware('auth:api');
     });
 });

@@ -14,12 +14,12 @@ class OrdersController extends Controller
     public function index()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('user')->where('to_user_id','=',$userId)->orderBy('end_at', 'desc')->paginate(9);
+        $orders = Order::with('user')->where('to_user_id','=',$userId)->orderBy('id', 'desc')->paginate(9);
         return new OrderCollection($orders);
     }
     public function buyerList(){
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::where('user_id', $userId)->orderBy('end_at', 'desc')->paginate(9);
+        $orders = Order::where('user_id', $userId)->orderBy('id', 'desc')->paginate(9);
         return new OrderCollection($orders);
     }
     public function lists()
