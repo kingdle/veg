@@ -14,7 +14,6 @@ class TagsController extends Controller
             ->where('name','like','%'.$request->query('q').'%')->orderBy('dynamics_count', 'desc')->get();
         return new TagCollection($tags);
     }
-
     public function show($id)
     {
         $tag = Tag::find($id)->get();

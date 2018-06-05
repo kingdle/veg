@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\OrderCollection;
 use App\Order;
 use App\Shop;
+use App\Tag;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -53,7 +54,7 @@ class OrdersController extends Controller
             $order->latitude=$foo[4];
         }
         if($request->tags){
-            $order->tag_id=$request->tags;
+            $order->tag_id=$this->normalizeTag($request->tags)['0'];
         }
         if($request->sendDate){
             $order->start_at=substr($request->sendDate['0'],0,10);
@@ -132,7 +133,8 @@ class OrdersController extends Controller
             $attributes['count'] =$request->count;
         }
         if($request->tags){
-            $attributes['tag_id']=$request->tags;
+            $attributes['tag_id']=$this->normalizeTag($request->get('tags'));
+            $order->tags()->attach($tags);
         }
         if($request->start_at){
             $attributes['start_at']=$request->start_at;
@@ -187,6 +189,19 @@ class OrdersController extends Controller
             $data['name'] = $order->name;
             return json_encode($data);
         }
+    }
+    private function normalizeTag($tags)
+    {
+        $ids = Tag::pluck('id');
+
+        $ids = collect($tags)->map(function ($tag) use ($ids) {
+            if (is_numeric($tag) && $ids->contains($tag)) {
+                return (int)$tag;
+            }
+            return Tag::firstOrCreate(['name' => $tag])->id;
+        });
+        Tag::whereIn('id', $ids)->increment('dynamics_count');
+        return $ids;
     }
 
 }
