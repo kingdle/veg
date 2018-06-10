@@ -23,6 +23,13 @@
             color: #f06307;
             margin: 30px 0;
         }
+        .explain h2 {
+            color: #4f5356;
+        }
+        .explain p {
+            font-size: 18px;
+            color: #4f5356;
+        }
     </style>
 </head>
 <body>
@@ -33,7 +40,7 @@
                 <a href="/" class="navbar-brand" exact>
                     <img src="/images-pc/logo-pc.png" alt="苗果" width="110" height="42">
                 </a>
-                <span>更多服务加载中...</span>
+                <span><img src="https://images.veg.kim/pc/Spinner-1s-200px.gif" alt="loading" width="42" height="42"></span>
             </div>
         </div>
     </nav>
@@ -45,12 +52,18 @@
                 </h2>
 
             <div class="my-0">
-                <div class="fl flex-4 text-center">
+                <div class="fl flex-4 text-center explain">
                     <a class="inline-block m-auto shop" href="#"><img
                                 class="hoverImg" style="width:288px;"
                                 src="https://images.veg.kim/pc/home-code-big.png">
                     </a>
-                    <h6 class="text-secondary pt-2 mb-0">微信扫这个码就能迅速找到我们</h6>
+                    <h5 class="text-secondary pt-2 mb-0">微信扫一扫</h5>
+                    <h2 class="pt-5 mx-5 text-center">
+                        专业种苗共享服务平台
+                    </h2>
+                    <p class="text-center mx-5 mt-3">
+                        充分利用微信在农户中的普及率，帮助育苗厂建立与农户直接互动连接，全面赋能苗场微信运营能力，搭建用户共享桥梁。
+                    </p>
                 </div>
             </div>
         </div>
