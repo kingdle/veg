@@ -7,6 +7,7 @@
     <title>苗果小程序</title>
     {{--<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">--}}
     {{--<link rel="stylesheet" href="https://images.veg.kim/css/element-ui.css">--}}
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&libraries=place"></script>
     <link rel="stylesheet" href="/css/app.css">
     <style media="screen" type="text/css">
         #appLoading {

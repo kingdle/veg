@@ -26,7 +26,6 @@ class ShopsController extends Controller
             ->selectRaw('id,summary,title,avatar,cityInfo,address,villageInfo,code,longitude,latitude,acos(cos(' . $lat . '*pi()/180 )*cos(latitude*pi()/180)*cos(' . $lng . '*pi()/180 -longitude*pi()/180)+sin(' . $lat . '*pi()/180 )*sin(latitude*pi()/180))*6370996.81  as distance')  //使用原生sql
             ->orderby("distance","asc")->paginate(12);
         return new ShopCollection($shops);
-
     }
 
     public function show($id)

@@ -1,45 +1,102 @@
 <template>
     <div class="mg-order-list">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">序号</th>
-                <th scope="col">农户</th>
-                <th scope="col">电话</th>
-                <th scope="col">苗子品种</th>
-                <th scope="col">数量(株)</th>
-                <th scope="col">育-送苗时间</th>
-                <th scope="col">地址</th>
-                <th scope="col">是否送苗</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="order in orders" :key="order.id">
-                <th scope="row">{{order.id}}</th>
-                <td v-if="order.name !== ''">{{order.name}}</td>
-                <td v-else-if="order.name === ''">{{order.nickname}}</td>
-                <td>{{order.phone}}</td>
-                <td>
-                    <span v-if="order.tag_id === '0'">未选择品种</span>
-                    <span v-else>
-                        {{order.tag.name}}({{order.tag.bio}})
-                    </span>
-                </td>
-                <td>{{order.count}}</td>
-                <td>{{order.start_at | moment("YYYY年M月D日")}}-{{order.end_at | moment("M月D日")}}</td>
-                <td>{{order.address}}，{{order.villageInfo}}</td>
-                <td>{{order.state}}</td>
-            </tr>
-            </tbody>
-        </table>
+        <el-table
+                :data="orders"
+                :default-sort = "{prop: 'orders'}"
+        >
+            <el-table-column
+                    prop="id"
+                    label="序号"
+                    sortable
+                    width="80">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="姓名"
+                    sortable
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="phone"
+                    label="电话"
+                    sortable
+                    width="140">
+            </el-table-column>
+            <el-table-column
+                    prop="tag.name"
+                    label="苗子品种"
+                    sortable
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop='start_at'
+                    label="最晚育苗日期"
+                    sortable
+                    :formatter="dateFormat"
+                    width="140">
+            </el-table-column>
+            <el-table-column
+                    prop="end_at"
+                    label="送苗日期"
+                    sortable
+                    :formatter="dateFormat"
+                    width="120">
+            </el-table-column>
+
+            <el-table-column
+                    prop="address + villageInfo"
+                    label="地址"
+                    sortable
+                    >
+            </el-table-column>
+            <el-table-column
+                    prop="villageInfo"
+                    label="村"
+                    sortable
+                    width="120"
+            >
+            </el-table-column>
+            <el-table-column
+                    prop="state"
+                    label="是否送苗"
+                    sortable
+                    :formatter="switchFormat"
+                    width="100">
+            </el-table-column>
+
+        </el-table>
+
     </div>
 </template>
 <script>
     export default {
         props: ['orders'],
+        methods: {
+            dateFormat:function(row, column) {
+                var date = row[column.property];
+                if (date == undefined) {
+                    return "";
+                }
+                return date.substring(0,10);
+            },
+            switchFormat:function(row, column) {
+                var switchs = row[column.property];
+                if (switchs === '0') {
+                    return "未送苗";
+                }
+                return '已送苗';
+            },
+        }
     }
 </script>
 <style>
+    .el-table .warning-row {
+        background: oldlace;
+    }
+
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
     .mg-news-img {
         background: #f5f8fa;
     }
