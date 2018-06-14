@@ -14,7 +14,7 @@ class AddNicknameToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('nickname')->nullable()->after('name');
+            $table->string('nickname')->nullable()->after('name')->comment('昵称');
         });
     }
 

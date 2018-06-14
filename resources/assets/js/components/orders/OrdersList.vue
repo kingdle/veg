@@ -1,70 +1,5 @@
 <template>
-    <div class="mg-order-list">
-        <el-table
-                :data="orders"
-                :default-sort = "{prop: 'orders'}"
-        >
-            <el-table-column
-                    prop="id"
-                    label="序号"
-                    sortable
-                    width="80">
-            </el-table-column>
-            <el-table-column
-                    prop="name"
-                    label="姓名"
-                    sortable
-                    width="120">
-            </el-table-column>
-            <el-table-column
-                    prop="phone"
-                    label="电话"
-                    sortable
-                    width="140">
-            </el-table-column>
-            <el-table-column
-                    prop="tag.name"
-                    label="苗子品种"
-                    sortable
-                    width="120">
-            </el-table-column>
-            <el-table-column
-                    prop='start_at'
-                    label="最晚育苗日期"
-                    sortable
-                    :formatter="dateFormat"
-                    width="140">
-            </el-table-column>
-            <el-table-column
-                    prop="end_at"
-                    label="送苗日期"
-                    sortable
-                    :formatter="dateFormat"
-                    width="120">
-            </el-table-column>
-
-            <el-table-column
-                    prop="address + villageInfo"
-                    label="地址"
-                    sortable
-                    >
-            </el-table-column>
-            <el-table-column
-                    prop="villageInfo"
-                    label="村"
-                    sortable
-                    width="120"
-            >
-            </el-table-column>
-            <el-table-column
-                    prop="state"
-                    label="是否送苗"
-                    sortable
-                    :formatter="switchFormat"
-                    width="100">
-            </el-table-column>
-
-        </el-table>
+    <div>
 
     </div>
 </template>
@@ -72,20 +7,7 @@
     export default {
         props: ['orders'],
         methods: {
-            dateFormat:function(row, column) {
-                var date = row[column.property];
-                if (date == undefined) {
-                    return "";
-                }
-                return date.substring(0,10);
-            },
-            switchFormat:function(row, column) {
-                var switchs = row[column.property];
-                if (switchs === '0') {
-                    return "未送苗";
-                }
-                return '已送苗';
-            },
+
         }
     }
 </script>
@@ -97,6 +19,7 @@
     .el-table .success-row {
         background: #f0f9eb;
     }
+
     .mg-news-img {
         background: #f5f8fa;
     }
@@ -126,12 +49,8 @@
         background-color: #f5f5f5;
     }
 
-    .mg-order-list {
-        text-align: center;
+    .el-button + .el-button {
+        margin-left: 0px;
+        margin-top: 3px;
     }
-
-    .border {
-        border: 1px solid #dee2e6 !important;
-    }
-
 </style>

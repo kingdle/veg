@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id')->comment('用户ID');
             $table->string('prod_id')->nullable()->comment('产品ID');
             $table->string('count')->default(1)->comment('数量');
-            $table->decimal('price')->nullable()->comment('总价');
+            $table->decimal('price')->nullable()->comment('参考价');
             $table->string('name')->nullable()->comment('收货人');
             $table->string('address')->nullable()->comment('收货地址');
             $table->string('phone')->nullable()->comment('手机');

@@ -18,6 +18,7 @@
             return {}
         },
         mounted() {
+
             TMap('SJOBZ-NNBCJ-ZIDFT-K74JD-RVKE6-AEFXX').then(qq => {
                 var citylocation, map, marker = null;
                 var searchService, markers = [];
@@ -33,7 +34,8 @@
                     //通过mapTypeId来设置卫星地图样式
                     mapTypeId: qq.maps.MapTypeId.HYBRID,
                     center: center,
-                    zoom: 13
+                    zoom: 13,
+                    maxZoom:16,
                 });
                 //获取城市列表接口设置中心点
                 citylocation = new qq.maps.CityService({
@@ -48,9 +50,14 @@
                 qq.maps.event.addListener(map, 'click', function (e) {
                     var lat = e.latLng.getLat().toFixed(5);
                     var lng = e.latLng.getLng().toFixed(5);
+                    var anchor = new qq.maps.Point(20, 20),
+                        size = new qq.maps.Size(32, 32),
+                        origin = new qq.maps.Point(0, 0),
+                        icon = new qq.maps.MarkerImage('images-pc/map-seedling.png', size, origin, anchor);
                     var marker = new qq.maps.Marker({
                         position: e.latLng,
-                        map: map
+                        map: map,
+                        icon: icon,
                     });
                     var data = {
                         location: lat + ',' + lng,
@@ -90,7 +97,11 @@
                 qq.maps.event.addListener(ap, "confirm", function(res){
                     searchService.search(res.value);
                 });
+
             });
+
+        },
+        components: {
 
         },
         methods: {

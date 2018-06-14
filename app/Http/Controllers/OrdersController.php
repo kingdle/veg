@@ -15,18 +15,18 @@ class OrdersController extends Controller
     public function index()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('user')->where('to_user_id','=',$userId)->orderBy('id', 'desc')->paginate(9);
+        $orders = Order::with('user')->where('to_user_id','=',$userId)->where('is_del', '=','F')->orderBy('id', 'desc')->paginate(9);
         return new OrderCollection($orders);
     }
     public function buyerList(){
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::where('user_id', $userId)->orderBy('id', 'desc')->paginate(9);
+        $orders = Order::where('user_id', $userId)->where('is_del', '=','F')->orderBy('id', 'desc')->paginate(9);
         return new OrderCollection($orders);
     }
     public function lists()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('tag')->where('to_user_id', $userId)->orderBy('id', 'desc')->paginate(9);
+        $orders = Order::with('tag')->where('to_user_id', $userId)->where('is_del', '=','F')->orderBy('id', 'desc')->paginate(9);
         if ($orders->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
@@ -61,11 +61,13 @@ class OrdersController extends Controller
             $order->end_at=substr($request->sendDate['1'],0,10);
         }
         $success=$order->save();
+        $orders = Order::with('tag')->where('to_user_id', $userId)->where('is_del', '=','F')->orderBy('id', 'desc')->paginate(9);
         if ($success) {
             $data['status'] = true;
             $data['status_code'] = '200';
             $data['msg'] = '订单新建成功';
             $data['name'] = $request->name;
+            $data['order']=$orders;
             return json_encode($data);
         } else {
             $data['status'] = false;
@@ -74,6 +76,58 @@ class OrdersController extends Controller
             $data['name'] = $request->name;
             return json_encode($data);
         }
+    }
+    public function edit(Request $request){
+        $order = Order::where('id', $request->id)->first();
+        $attributes['name'] =$request->name;
+        $success=$order->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = $order->id.'订单编辑成功';
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+    }
+    public function updatePayment(Request $request){
+        $order = Order::where('id', $request->id)->first();
+        $attributes['payment'] =$request->payment;
+        $attributes['payment_at'] =now();
+        $success=$order->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = $order->id.'付款状态更新成功';
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+
+    }
+    public function updateState(Request $request){
+        $order = Order::where('id', $request->id)->first();
+        $attributes['state'] =$request->state;
+        $attributes['state_at'] =now();
+        $success=$order->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = $order->id.'送苗状态更新成功';
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+
     }
     public function buyerCreate(Request $request,Order $order){
         $userId = Auth::guard('api')->user()->id;
@@ -145,7 +199,7 @@ class OrdersController extends Controller
         if($request->note_sell){
             $attributes['note_sell']=$request->note_sell;
         }
-        $attributes['state'] = '1';
+        $attributes['state'] = '0';
         $success=$order->update($attributes);
 
         if ($success) {
@@ -173,7 +227,7 @@ class OrdersController extends Controller
         }
         $order = Order::where('id', $request->id)->first();
 
-        $attributes['state'] = '2';
+        $attributes['state'] = '1';
         $success=$order->update($attributes);
         if ($success) {
             //短信提醒农户"苗场已根据您的需要填写了订单，请打开苗果小程序确认订单。"
@@ -187,6 +241,24 @@ class OrdersController extends Controller
             $data['status_code'] = '501';
             $data['msg'] = '系统繁忙，请售后再试';
             $data['name'] = $order->name;
+            return json_encode($data);
+        }
+    }
+    public function destroy($id){
+        $order = Order::where('id', $id)->first();
+        $attributes['is_del'] ='T';
+        $attributes['deleted_at'] =now();
+        $success=$order->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = '删除成功';
+            $data['order'] = $order;
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
             return json_encode($data);
         }
     }
