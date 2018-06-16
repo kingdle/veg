@@ -13,17 +13,7 @@
 <script>
     import {TMap} from './../../locale/TMap'
     export default {
-        data() {
-        },
-        mounted() {
 
-        },
-        components: {
-
-        },
-        methods: {
-
-        }
     }
 </script>
 <style>

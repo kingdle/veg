@@ -654,7 +654,6 @@
                 this.EditAddress = (row.longitude != null) ? (row.address + ',' + row.villageInfo + ',' + row.cityInfo + ',' + row.longitude + ',' + row.latitude) : ''
             },
             checkLocation(index, row){
-                console.log(row.longitude + ',' + row.latitude)
                 if(row.longitude != ''){
                     var LatE=row.longitude
                     var LogE=row.latitude
