@@ -80,41 +80,41 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 px-0">
-                <div class="card flex-md-row mb-3">
-                    <div class="card-body mt-2">
-                        <div class="mg-hello p-2">
-                            <h5>老乡，您好!</h5>
-                            <p class="mb-0 mt-3">
-                                习主席说过：要让居民望得见山、看得见水、记得住乡愁。
-                            </p>
-                            <hr class="my-2">
-                            <p>
-                                每个人都有一份乡愁！而我们终于有机会来到家乡，编织梦想。战略家马云说过"梦想一定要有，万一实现了呢"，还有一句关于农业的"只有农村富，中国才会富，只有乡村强，中国才会强，只有乡村振兴，中国才会振兴"。
-                                我们有一个梦想，就是要
-                                <mark class="alert-success alert-link font-weight-bold">
-                                    用科技创新农业，用智慧振兴中国，用智能改变世界。
-                                </mark>
-                            <p>在这个平台上您会得到所需的一切服务，只要您有创新的想法，我们就能在平台上为您实现。请多多帮助小<a
-                                    href="https://veg.kim" target="_blank"
-                                    class="alert-success alert-link">
-                                苗果
-                            </a>，我们会在您的呵护下生根发芽、茁壮成长，谢谢。
-                            </p>
-                            <p>
-                                欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"<a href="https://veg.kim" target="_blank"
-                                                                      class="alert-success alert-link">苗果</a>"，或者扫码找到我们。
-                            </p>
-                            </p>
-                            <p>
-                                ~~好了，就从苗开始，
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-12 px-0">-->
+                <!--<div class="card flex-md-row mb-3">-->
+                    <!--<div class="card-body mt-2">-->
+                        <!--<div class="mg-hello p-2">-->
+                            <!--<h5>老乡，您好!</h5>-->
+                            <!--<p class="mb-0 mt-3">-->
+                                <!--习主席说过：要让居民望得见山、看得见水、记得住乡愁。-->
+                            <!--</p>-->
+                            <!--<hr class="my-2">-->
+                            <!--<p>-->
+                                <!--每个人都有一份乡愁！而我们终于有机会来到家乡，编织梦想。战略家马云说过"梦想一定要有，万一实现了呢"，还有一句关于农业的"只有农村富，中国才会富，只有乡村强，中国才会强，只有乡村振兴，中国才会振兴"。-->
+                                <!--我们有一个梦想，就是要-->
+                                <!--<mark class="alert-success alert-link font-weight-bold">-->
+                                    <!--用科技创新农业，用智慧振兴中国，用智能改变世界。-->
+                                <!--</mark>-->
+                            <!--<p>在这个平台上您会得到所需的一切服务，只要您有创新的想法，我们就能在平台上为您实现。请多多帮助小<a-->
+                                    <!--href="https://veg.kim" target="_blank"-->
+                                    <!--class="alert-success alert-link">-->
+                                <!--苗果-->
+                            <!--</a>，我们会在您的呵护下生根发芽、茁壮成长，谢谢。-->
+                            <!--</p>-->
+                            <!--<p>-->
+                                <!--欢迎使用专业的种苗交易平台，目前我们上线了微信小程序，请通过微信搜索"<a href="https://veg.kim" target="_blank"-->
+                                                                      <!--class="alert-success alert-link">苗果</a>"，或者扫码找到我们。-->
+                            <!--</p>-->
+                            <!--</p>-->
+                            <!--<p>-->
+                                <!--~~好了，就从苗开始，-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="card flex-md-row mb-3">

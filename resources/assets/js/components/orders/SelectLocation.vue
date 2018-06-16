@@ -7,7 +7,6 @@
                 <p class="mt-2" style="color: #fff">输入地址，敲回车键定位</p>
             </div>
             <div id="MapContainer"></div>
-
         </div>
     </div>
 </template>
@@ -18,7 +17,6 @@
             return {}
         },
         mounted() {
-
             TMap('SJOBZ-NNBCJ-ZIDFT-K74JD-RVKE6-AEFXX').then(qq => {
                 var citylocation, map, marker = null;
                 var searchService, markers = [];
@@ -38,11 +36,11 @@
                     maxZoom:16,
                 });
                 //获取城市列表接口设置中心点
-                citylocation = new qq.maps.CityService({
-                    complete: function (result) {
-                        map.setCenter(result.detail.latLng);
-                    }
-                });
+//                citylocation = new qq.maps.CityService({
+//                    complete: function (result) {
+//                        map.setCenter(result.detail.latLng);
+//                    }
+//                });
                 //调用searchLocalCity();方法    根据用户IP查询城市信息。
 //                citylocation.searchLocalCity();
 

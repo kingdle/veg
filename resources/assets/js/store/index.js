@@ -8,6 +8,9 @@ import Login from './modules/login'
 import EditProfile from './modules/edit-profile'
 import EditPassword from './modules/edit-password'
 import EditShop from './modules/edit-shop'
+
+import EditOrder from './modules/edit-order'
+
 import Notification from './modules/notification'
 
 import AddNews from './modules/add-news'
@@ -24,6 +27,7 @@ export default new Vuex.Store({
         AuthShop,
         AuthSeed,
         Login,
+        EditOrder,
         EditProfile,
         EditPassword,
         EditShop,

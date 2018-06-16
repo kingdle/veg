@@ -10,7 +10,7 @@ export default {
                 dispatch('showNotification', {level: 'error', msg: '订单创建失败'+myDate.toLocaleTimeString()})
             })
         },
-        updateOrders({dispatch}, formData){
+        editOrderRequest({dispatch}, formData){
             // return axios.get('/api/v1/orders/'+ +'/edit', formData).then(response => {
             //     dispatch('showNotification', {level: 'success', msg: response.data.msg+'-'+myDate.toLocaleTimeString()})
             // }).catch(errors => {

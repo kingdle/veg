@@ -55,6 +55,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/orders/sellerTransport', 'OrdersController@sellerTransport')->middleware('auth:api');
     Route::post('/orders/updateState', 'OrdersController@updateState')->middleware('auth:api');
     Route::post('/orders/updatePayment', 'OrdersController@updatePayment')->middleware('auth:api');
+    Route::post('/orders/updateOrder', 'OrdersController@updateOrder')->middleware('auth:api');
     //prods商品分类查询
     Route::resource('/prods', 'ProdsController')->middleware('auth:api');
 

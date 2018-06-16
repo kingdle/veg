@@ -1,6 +1,6 @@
 <template>
     <div class="mg-orders">
-        <edit-order></edit-order>
+        <!--<edit-order></edit-order>-->
         <div class="modal bd-example-modal-lg" id="AddOrdersModalCenter" tabindex="-1" role="dialog"
              aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -63,7 +63,11 @@
                                         type="daterange"
                                         start-placeholder="最晚育苗日期"
                                         end-placeholder="送苗日期"
-                                        :default-time="['00:00:00', '23:59:59']">
+                                        format="yyyy 年 MM 月 dd 日"
+                                        value-format="yyyy-MM-dd"
+                                        align="left"
+                                        :picker-options="pickerOptions2"
+                                >
                                 </el-date-picker>
                             </el-form-item>
                             <el-form-item label="是否送苗" size="mini" class="is-state">
@@ -99,7 +103,122 @@
                 </div>
             </div>
         </div>
+        <div class="modal bd-example-modal-lg" id="editOrderModalCenter" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editOrderModalLongTitle">
+                            <label class="control-label">
+                                编辑订单
+                            </label>
+
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body tags">
+                        <el-form ref="editForm" :model="editForm" label-width="80px" size="medium">
+                            <el-form-item label="订单号">
+                                <el-input v-model="editForm.id"
+                                          placeholder="订单号不可修改"
+                                          :disabled="true">
+                                </el-input>
+                            </el-form-item>
+                            <el-form-item label="农户姓名">
+                                <el-input v-model="editForm.name"
+                                          placeholder="农户通过苗果小程序发送来的订单，姓名为微信昵称"></el-input>
+                            </el-form-item>
+                            <el-form-item label="电话">
+                                <el-input v-model="editForm.phone"
+                                          placeholder="默认为农户注册微信时的手机号"></el-input>
+                            </el-form-item>
+                            <el-form-item label="苗子品种">
+                                <el-select
+                                        v-model="editSelectTags"
+                                        name="editSelectTags"
+                                        :readonly="true"
+                                        filterable
+                                        remote
+                                        allow-create
+                                        default-first-option
+                                        placeholder="请选择或新建品种">
+                                    <el-option
+                                            v-for="tag in tags"
+                                            :key="tag.id"
+                                            :label="tag.name +'('+ tag.bio+')'"
+                                            :value="tag.id">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="数量(株)">
+                                <el-input-number
+                                        v-model="editForm.counts"
+                                        :max="80000"
+                                        :step="100"
+                                        label="描述文字"
+                                        size="mini">
+                                </el-input-number>
+                            </el-form-item>
+                            <el-form-item label="单价(元)">
+                                <el-input-number
+                                        v-model="editForm.unit_price"
+                                        size="mini"
+                                        :precision="2"
+                                        :step="0.1"
+                                        :min="0">
+                                </el-input-number>
+                            </el-form-item>
+                            <el-form-item label="送苗日期" size="mini">
+                                <el-date-picker
+                                        v-model="editSendDate"
+                                        type="daterange"
+                                        start-placeholder="最晚育苗日期"
+                                        end-placeholder="送苗日期"
+                                        format="yyyy 年 MM 月 dd 日"
+                                        value-format="yyyy-MM-dd"
+                                >
+                                </el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="是否送苗" size="mini" class="is-state">
+                                <el-switch v-model="editForm.state"
+                                           active-value="1"
+                                           inactive-value="0"
+                                           active-color="#B1AFAD"
+                                           inactive-color="#87CC82"
+                                           active-text="已送苗"
+                                           inactive-text="未送苗"></el-switch>
+                            </el-form-item>
+                            <el-form-item label="是否付款" size="mini" class="is-payment">
+                                <el-switch v-model="editForm.payment"
+                                           active-value="1"
+                                           inactive-value="0"
+                                           active-color="#B1AFAD"
+                                           inactive-color="#f06307"
+                                           active-text="已付款"
+                                           inactive-text="未付款"></el-switch>
+                            </el-form-item>
+                            <el-form-item label="地址">
+                                <el-input v-model="EditAddress"
+                                          placeholder="请填写完表单后再选择地址"
+                                          id="editMapLocation"
+                                          @click.native.prevent="setLocation()"
+                                          :readonly="true" data-toggle="modal"
+                                          data-target="#EditLocationModalCenter"></el-input>
+                            </el-form-item>
+
+                            <el-form-item>
+                                <el-button type="primary" @click="updateOrder">确定更新</el-button>
+                                <el-button type="info" data-dismiss="modal">取消</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <select-location></select-location>
+        <edit-location></edit-location>
         <div class="row">
             <div class="col-md-12 px-0">
                 <div class="card flex-row mb-3">
@@ -137,11 +256,11 @@
 
                             <div class="col-sm-4 col-5">
                                 <div class="p-0 text-center" style="">
-                                    <img class="text-algin"
-                                         :src="yourshop.code" alt=""
-                                         width="90"
-                                         height="90">
-                                    <p class="card-title text-muted">您的苗果小程序码</p>
+                                    <!--<img class="text-algin"-->
+                                    <!--:src="yourshop.code" alt=""-->
+                                    <!--width="90"-->
+                                    <!--height="90">-->
+                                    <!--<p class="card-title text-muted">您的苗果小程序码</p>-->
                                 </div>
                             </div>
                         </div>
@@ -194,14 +313,14 @@
                                                 >
                                                 </el-table-column>
                                                 <el-table-column
-                                                        prop="tag.name"
+                                                        prop="tags.name"
                                                         label="苗子品种"
                                                         sortable
                                                         width="110"
                                                 >
                                                 </el-table-column>
                                                 <el-table-column
-                                                        prop="count"
+                                                        prop="counts"
                                                         label="数量(株)"
                                                         sortable
                                                         width="100"
@@ -217,7 +336,6 @@
                                                         prop='start_at'
                                                         label="育苗日期"
                                                         sortable
-                                                        :formatter="dateFormat"
                                                         width="110"
                                                 >
                                                 </el-table-column>
@@ -225,7 +343,6 @@
                                                         prop="end_at"
                                                         label="送苗日期"
                                                         sortable
-                                                        :formatter="dateFormat"
                                                         width="110"
                                                 >
                                                 </el-table-column>
@@ -234,8 +351,14 @@
                                                         sortable
                                                 >
                                                     <template slot-scope="scope">
-                                                        <i class="el-icon-location-outline"></i>
                                                         <span style="margin-left: 3px">{{ scope.row.address }}，{{ scope.row.villageInfo }}</span>
+                                                        <el-button type="text"
+                                                                   class="checkLocation-button"
+                                                                   icon="el-icon-location-outline"
+                                                                   data-toggle="modal"
+                                                                   data-target="#EditLocationModalCenter"
+                                                                   @click.native.prevent="checkLocation(scope.$index, scope.row)">
+                                                        </el-button>
                                                     </template>
                                                 </el-table-column>
                                                 <el-table-column
@@ -344,19 +467,62 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
-//    import Orders from './OrdersList'
-    import EditOrder from './EditOrder'
+    //    import Orders from './OrdersList'
+    //    import EditOrder from './EditOrder'
     import SelectLocation from './SelectLocation'
+    import EditLocation from './EditLocation'
 
     export default {
-        created(){
-            this.$store.dispatch('setAuthShop')
+        data() {
+            return {
+                orders: [],
+                pagination: {
+                    total: 0,
+                    per_page: 0,
+                    from: 0,
+                    to: 0,
+                    current_page: 1
+                },
+                offset: 9,
+                OrderCharts: {"ordersCount": '', "seedCount": ''},
+                addForm: {UnitPrice: '1.00',},
+                editForm: {},
+                editSendDate: [],
+                selectTags: [],
+                editSelectTags: [],
+                EditAddress:'',
+                tags: [],
+                max: '',
+                pickerOptions2: {
+                    shortcuts: [{
+                        text: '三周后',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            end.setTime(start.getTime() + 3600 * 1000 * 24 * 21);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '一个月后',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            end.setTime(start.getTime() + 3600 * 1000 * 24 * 30);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '两个月后',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            end.setTime(start.getTime() + 3600 * 1000 * 24 * 60);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }]
+                },
+            }
         },
         computed: {
-            ...mapState({
-                yourshop: state => state.AuthShop
-            }),
             isActived: function () {
                 return this.pagination.current_page;
             },
@@ -380,11 +546,20 @@
                 return pagesArray;
             }
         },
+        watch: {
+            editSendDate(value) {
+                this.editSendDate = value;
+            },
+            EditAddress(value) {
+                this.EditAddress = value;
+            }
+        },
         components: {
 //            Orders,
 //            AddOrder,
-            EditOrder,
-            SelectLocation
+//            EditOrder,
+            SelectLocation,
+            EditLocation
         },
         mounted() {
             axios.get('/api/v1/orders-lists').then(response => {
@@ -398,25 +573,7 @@
                 this.tags = response.data
             })
         },
-        data() {
-            return {
-                orders: [],
-                pagination: {
-                    total: 0,
-                    per_page: 0,
-                    from: 0,
-                    to: 0,
-                    current_page: 1
-                },
-                offset: 9,
-                OrderCharts: {"ordersCount": '', "seedCount": ''},
-                addForm: {UnitPrice: '1.00',},
-                selectTags: [],
-                tags: [],
-                max: '',
 
-            }
-        },
         methods: {
             changePage: function (page) {
                 this.pagination.current_page = page;
@@ -424,13 +581,14 @@
                     this.orders = response.data.data
                 })
             },
-            dateFormat: function (row, column) {
-                var date = row[column.property];
-                if (date == undefined) {
-                    return "";
-                }
-                return date.substring(0, 10);
-            },
+
+//            dateFormat: function (row, column) {
+//                var date = row[column.property];
+//                if (date == undefined) {
+//                    return "";
+//                }
+//                return date.substring(0, 10);
+//            },
             switchFormat: function (row, column) {
                 var switchs = row[column.property];
                 if (switchs === '0') {
@@ -454,28 +612,186 @@
                 }
                 return row.address + '，' + row.villageInfo;
             },
-            handleEdit(index, row) {
-                console.log(index, row);
+            addOrders() {
                 const formData = {
                     name: this.addForm.userName,
                     phone: this.addForm.userPhone,
                     tags: this.selectTags,
-                    count: this.addForm.seedCount,
+                    counts: this.addForm.seedCount,
                     unit_price: this.addForm.UnitPrice,
                     sendDate: this.addForm.sendDate,
                     address: document.getElementById("maplocation").value,
                     state: this.addForm.orderState,
                     payment: this.addForm.orderPayment,
                 }
-                this.$store.dispatch('updateOrders', formData).then(response => {
-                    this.$router.push({name: 'profile.Orders'})
-                }).catch(error => {
+                axios.post('/api/v1/orders', formData).then(response => {
+                    this.orders = response.data.order
+                    $('#AddOrdersModalCenter').modal('hide')
+                    axios.get('/api/v1/countOrder').then(response => {
+                        this.OrderCharts = response.data
+                    })
+                })
+                //这种方式也可以新增，发动态提醒
+//                this.$store.dispatch('addOrdersRequest', formData).then(response => {
+//                    this.orders = response.data.order.data
+////                    this.$router.push({name: 'profile.Orders',})
+////                    this.addForm = {}
+////                    this.selectTags = []
+//                }).catch(error => {
+//
+//                })
+            },
+            handleEdit(index, row) {
+                this.editForm.id = row.id
+                this.editForm.name = row.name
+                this.editForm.phone = row.phone
+                this.editSelectTags = (row.tags != null) ? row.tags.id : ''
+                this.editForm.counts = row.counts
+                this.editForm.unit_price = row.unit_price
+                this.editSendDate = row.sendDate
+                this.editForm.state = row.state
+                this.editForm.payment = row.payment
+                this.EditAddress = (row.longitude != null) ? (row.address + ',' + row.villageInfo + ',' + row.cityInfo + ',' + row.longitude + ',' + row.latitude) : ''
+            },
+            checkLocation(index, row){
+                console.log(row.longitude + ',' + row.latitude)
+                if(row.longitude != ''){
+                    var LatE=row.longitude
+                    var LogE=row.latitude
+                }
+                if(row.longitude == ''){
+                    LatE=36.83360736034709
+                    LogE=118.9683723449707
+                }
+                var center=new qq.maps.LatLng(LatE, LogE)
+                var myOptions = {
+                    zoom: 16,
+                    center: center,
+                    mapTypeId: qq.maps.MapTypeId.HYBRID,
+                    maxZoom:16,
+                }
+                var map = new qq.maps.Map(document.getElementById("EditMapContainer"), myOptions);
+                var anchor = new qq.maps.Point(20, 20),
+                    size = new qq.maps.Size(32, 32),
+                    origin = new qq.maps.Point(0, 0),
+                    icond = new qq.maps.MarkerImage('images-pc/map-seedling-decolorization.png', size, origin, anchor);
+                var marker = new qq.maps.Marker({
+                    //设置Marker的位置坐标
+                    position: center,
+                    //设置显示Marker的地图
+                    map: map,
+                    icon:icond
+                });
+            },
+            setLocation(){
+                console.log(document.getElementById("editMapLocation").value)
+                if(document.getElementById("editMapLocation").value != ''){
+                    var editMapLocation=document.getElementById("editMapLocation").value;
+                    var resultE=editMapLocation.split(",");
+                    var LatE=resultE[3]
+                    var LogE=resultE[4]
+                }
+                if(document.getElementById("editMapLocation").value == ''){
+                    LatE=36.83360736034709
+                    LogE=118.9683723449707
+                }
+                var center=new qq.maps.LatLng(LatE, LogE)
+                var myOptions = {
+                    zoom: 15,
+                    center: center,
+                    mapTypeId: qq.maps.MapTypeId.HYBRID,
+                    maxZoom:16,
+                }
+                var map = new qq.maps.Map(document.getElementById("EditMapContainer"), myOptions);
+                var anchor = new qq.maps.Point(20, 20),
+                    size = new qq.maps.Size(32, 32),
+                    origin = new qq.maps.Point(0, 0),
+                    icond = new qq.maps.MarkerImage('images-pc/map-seedling-decolorization.png', size, origin, anchor);
+                var marker = new qq.maps.Marker({
+                    //设置Marker的位置坐标
+                    position: center,
+                    //设置显示Marker的地图
+                    map: map,
+                    icon:icond
+                });
+                //绑定单击事件添加参数
+                qq.maps.event.addListener(map, 'click', function (e) {
+                    var lat = e.latLng.getLat().toFixed(5);
+                    var lng = e.latLng.getLng().toFixed(5);
+                    var anchor = new qq.maps.Point(20, 20),
+                        size = new qq.maps.Size(32, 32),
+                        origin = new qq.maps.Point(0, 0),
+                        icon = new qq.maps.MarkerImage('images-pc/map-seedling.png', size, origin, anchor);
+                    var marker = new qq.maps.Marker({
+                        position: e.latLng,
+                        map: map,
+                        icon: icon,
+                    });
+                    var data = {
+                        location: lat + ',' + lng,
+                        key: "SJOBZ-NNBCJ-ZIDFT-K74JD-RVKE6-AEFXX", //key为自己向腾讯地图申请的密钥
+                        get_poi: 0
+                    };
+                    var url = "https://apis.map.qq.com/ws/geocoder/v1/?";
+                    data.output = "jsonp";
+                    $.ajax({
+                        type: "get",
+                        dataType: 'jsonp',
+                        data: data,
+                        jsonp: "callback",
+                        jsonpCallback: "QQmap",
+                        url: url,
+                        success: function (res) {
+                            var add_info = res;
+                            var maplocation = add_info.result.address + add_info.result.address_reference.town.title + ',' + add_info.result.address_reference.landmark_l2.title + add_info.result.address_reference.landmark_l2._dir_desc + ',' + add_info.result.address_component.city + ',' + lat + ',' + lng;
+//                            var locations = maplocation.split(',');
+                            document.getElementById("editMapLocation").value = maplocation
+                        },
+                        error: function (err) {
+                            alert("服务端错误，请刷新浏览器后重试")
+                        }
+                    });
+                    $('#EditLocationModalCenter').modal('hide')
 
+                })
+                var aps = new qq.maps.place.Autocomplete(document.getElementById('placeEdit'));
+                //调用Poi检索类。用于进行本地检索、周边检索等服务。
+                var searchService = new qq.maps.SearchService({
+                    map : map
+                });
+                //添加监听事件
+                qq.maps.event.addListener(aps, "confirm", function(res){
+                    searchService.search(res.value);
+                });
+            },
+            updateOrder(){
+                const formData = {
+                    id: this.editForm.id,
+                    name: this.editForm.name,
+                    phone: this.editForm.phone,
+                    tags: this.editSelectTags,
+                    counts: this.editForm.counts,
+                    unit_price: this.editForm.unit_price,
+                    sendDate: this.editSendDate,
+                    states: this.editForm.state,
+                    payment: this.editForm.payment,
+                    address: document.getElementById("editMapLocation").value,
+                }
+                console.log(formData)
+                axios.post('/api/v1/orders/updateOrder', formData).then(response => {
+                    this.orders = response.data.order
+                    $('#editOrderModalCenter').modal('hide')
+                    axios.get('/api/v1/countOrder').then(response => {
+                        this.OrderCharts = response.data
+                    })
                 })
             },
             handleDelete(index, row) {
                 axios.delete('/api/v1/orders/' + row.id).then(response => {
                     this.orders.splice(index, 1)
+                    axios.get('/api/v1/countOrder').then(response => {
+                        this.OrderCharts = response.data
+                    })
                 })
             },
             updatePayment(index, row) {
@@ -494,7 +810,7 @@
             },
             updateState(index, row) {
                 const formData = {
-                    state   : row.state,
+                    state: row.state,
                     id: row.id,
                 }
                 this.$store.dispatch('updateStateRequest', formData).then(response => {
@@ -505,31 +821,6 @@
             },
             filterTag(value, row) {
                 return row.state === value;
-            },
-            addOrders() {
-                const formData = {
-                    name: this.addForm.userName,
-                    phone: this.addForm.userPhone,
-                    tags: this.selectTags,
-                    count: this.addForm.seedCount,
-                    unit_price: this.addForm.UnitPrice,
-                    sendDate: this.addForm.sendDate,
-                    address: document.getElementById("maplocation").value,
-                    state: this.addForm.orderState,
-                    payment: this.addForm.orderPayment,
-                }
-                axios.post('/api/v1/orders', formData).then(response => {
-                    this.orders = response.data.order.data
-                    $('#AddOrdersModalCenter').modal('hide')
-                })
-//                this.$store.dispatch('addOrdersRequest', formData).then(response => {
-//                    this.orders = response.data.order.data
-////                    this.$router.push({name: 'profile.Orders',})
-////                    this.addForm = {}
-////                    this.selectTags = []
-//                }).catch(error => {
-//
-//                })
             }
         }
     }
@@ -713,5 +1004,8 @@
         background: #28a745 !important;
         border-color: #28a745 !important;
         color: #fff;
+    }
+    .checkLocation-button{
+        padding: 2px !important;
     }
 </style>
