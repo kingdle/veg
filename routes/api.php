@@ -49,6 +49,9 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //orders订单查询
     Route::resource('/orders', 'OrdersController')->middleware('auth:api');
     Route::get('/orders-lists', 'OrdersController@lists')->middleware('auth:api');
+    Route::post('/orders-list-size', 'OrdersController@listSize')->middleware('auth:api');
+    Route::post('/orders-list-query', 'OrdersController@queryList')->middleware('auth:api');
+    Route::post('/orders-list-result', 'OrdersController@queryResult')->middleware('auth:api');
     Route::get('/buyerList', 'OrdersController@buyerList')->middleware('auth:api');
     Route::post('/orders/buyerCreate', 'OrdersController@buyerCreate')->middleware('auth:api');
     Route::post('/orders/sellerCreate', 'OrdersController@sellerCreate')->middleware('auth:api');

@@ -31,11 +31,85 @@ class OrdersController extends Controller
         $userId = Auth::guard('api')->user()->id;
         $orders = Order::with('tag')->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         if ($orders->count() == 0) {
-            return response()->json(['status' => false, 'status_code' => '401']);
+            $data['status'] = false;
+            $data['status_code'] = '401';
+            $data['msg'] = '订单为空';
+            $data['data'] = [];
+            $data['links'] = '';
+            $data['meta'] = [
+                'current_page' => 0,
+                'from' => 0,
+                'last_page' => 0,
+                'path' => '',
+                'per_page' => 9,
+                'to' => 0,
+                'total' => 0
+            ];
+            return json_encode($data);
         }
         return new OrderCollection($orders);
     }
+    public function listSize(Request $request)
+    {
+        $pagination= $request->pagination;
+        $userId = Auth::guard('api')->user()->id;
+        $orders = Order::with('tag')->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate($pagination?$pagination:9);
+        if ($orders->count() == 0) {
+            $data['status'] = false;
+            $data['status_code'] = '401';
+            $data['msg'] = '订单为空';
+            $data['data'] = [];
+            $data['links'] = '';
+            $data['meta'] = [
+                'current_page' => 0,
+                'from' => 0,
+                'last_page' => 0,
+                'path' => '',
+                'per_page' => 9,
+                'to' => 0,
+                'total' => 0
+            ];
+            return json_encode($data);
+        }
+        return new OrderCollection($orders);
+    }
+    public function queryList()
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $orders = Order::where('to_user_id', $userId)->where('name', '!=', '')->where('is_del', '=', 'F')->orderBy('id', 'desc')->get(['name','address']);
+        $multiplied = $orders->map(function ($item, $key) {
+            return [
+                'value'=>$item->name,
+            ];
+        })->all();
+        return $multiplied;
+    }
+    public function queryResult(Request $request)
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $name = $request->name;
+        $nickname=$request->nickname;
+        $orders = Order::where('to_user_id', $userId)->where('name','like','%'.$name.'%')->where('name', '!=', '')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);;
+        if ($orders->count() == 0) {
+            $data['status'] = false;
+            $data['status_code'] = '401';
+            $data['msg'] = '订单为空';
+            $data['data'] = [];
+            $data['links'] = '';
+            $data['meta'] = [
+                'current_page' => 0,
+                'from' => 0,
+                'last_page' => 0,
+                'path' => '',
+                'per_page' => 9,
+                'to' => 0,
+                'total' => 0
+            ];
+            return json_encode($data);
+        }
+        return new OrderCollection($orders);
 
+    }
     public function show($id)
     {
         $order = Order::find($id);
@@ -72,7 +146,6 @@ class OrdersController extends Controller
             $data['status_code'] = '200';
             $data['msg'] = '订单新建成功';
             $data['name'] = $request->name;
-            $data['order'] = $this->lists();
             return json_encode($data);
         } else {
             $data['status'] = false;
@@ -88,10 +161,10 @@ class OrdersController extends Controller
         $order = Order::where('id', $request->id)->first();
         $attributes['name'] = $request->name;
         $attributes['phone'] = $request->phone;
-        if($request->counts){
+        if ($request->counts) {
             $attributes['counts'] = $request->counts;
-        }else{
-            $attributes['counts']='0';
+        } else {
+            $attributes['counts'] = '0';
         }
         $attributes['unit_price'] = $request->unit_price;
         $attributes['state'] = $request->states;
@@ -117,7 +190,6 @@ class OrdersController extends Controller
             $data['status'] = true;
             $data['status_code'] = '200';
             $data['msg'] = $order->id . '订单编辑成功';
-            $data['order'] = $this->lists();
             return json_encode($data);
         } else {
             $data['status'] = false;

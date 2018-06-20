@@ -276,11 +276,65 @@
                             <div class="col-12">
                                 <div class="header-text-container">
                                     <div class="mb-3">
-                                        <p class="vertical-middle">
-                                            <span class="text-success text-bold m-r-5">|</span>
-                                            订单列表
-                                            <mark>农户在访问"苗果"小程序时，会看到自己在您的苗场订购的苗子订单数量和品种。</mark>
-                                        </p>
+                                        <el-row>
+                                            <el-col :span="2">
+                                                <p class="vertical-middle">
+                                                    <span class="text-success text-bold m-r-5">|</span>
+                                                    订单列表
+                                                    <!--<mark>农户在访问"苗果"小程序时，会看到自己在您的苗场订购的苗子订单数量和品种。</mark>-->
+                                                </p>
+
+                                            </el-col>
+                                            <el-col :span="22">
+                                                <div class="block">
+                                                    <el-autocomplete
+                                                            v-model="stateName"
+                                                            :fetch-suggestions="querySearchAsync"
+                                                            placeholder="农户姓名查询"
+                                                            @select="handleSelect"
+                                                            size="small"
+                                                            prefix-icon="el-icon-search"
+                                                    ></el-autocomplete>
+                                                    <el-autocomplete
+                                                            v-model="statePhone"
+                                                            :fetch-suggestions="querySearchAsync"
+                                                            placeholder="手机查询"
+                                                            @select="handleSelect"
+                                                            size="small"
+                                                            prefix-icon="el-icon-phone-outline"
+                                                    ></el-autocomplete>
+                                                    <el-autocomplete
+                                                            v-model="stateTag"
+                                                            :fetch-suggestions="querySearchAsync"
+                                                            placeholder="苗子品种查询"
+                                                            @select="handleSelect"
+                                                            size="small"
+                                                            prefix-icon="el-icon-document"
+                                                    ></el-autocomplete>
+                                                    <el-autocomplete
+                                                            v-model="stateAddress"
+                                                            :fetch-suggestions="querySearchAsync"
+                                                            placeholder="地址查询"
+                                                            @select="handleSelect"
+                                                            size="small"
+                                                            prefix-icon="el-icon-location-outline"
+                                                    ></el-autocomplete>
+                                                    <el-date-picker
+                                                            v-model="stateStart"
+                                                            type="date"
+                                                            size="small"
+                                                            placeholder="最晚播种日期">
+                                                    </el-date-picker>
+                                                    <el-date-picker
+                                                            v-model="stateEnd"
+                                                            type="date"
+                                                            size="small"
+                                                            placeholder="送苗日期">
+                                                    </el-date-picker>
+                                                </div>
+
+                                            </el-col>
+                                        </el-row>
                                     </div>
                                     <div class="body-container">
                                         <div class="my-3 border-top">
@@ -432,28 +486,16 @@
                                                 </el-table-column>
                                             </el-table>
                                         </div>
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination justify-content-center">
-                                                <li class="page-item" v-if="pagination.current_page > 1">
-                                                    <a class="page-link" href="#" aria-label="Previous"
-                                                       @click.prevent="changePage(pagination.current_page - 1)">
-                                                        <span aria-hidden="true">&laquo;</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item" v-for="page in pagesNumber"
-                                                    :class="[ page == isActived ? 'active' : '']">
-                                                    <a class="page-link" href="#"
-                                                       @click.prevent="changePage(page)">{{ page }}</a>
-                                                </li>
-                                                <li class="page-item"
-                                                    v-if="pagination.current_page < pagination.last_page">
-                                                    <a class="page-link" href="#" aria-label="Next"
-                                                       @click.prevent="changePage(pagination.current_page + 1)">
-                                                        <span aria-hidden="true">&raquo;</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
+                                        <el-pagination
+                                                @size-change="handleSizeChange"
+                                                @current-change="handleCurrentChange"
+                                                :current-page="currentPage"
+                                                :page-sizes="[9, 20, 100, 300]"
+                                                :page-size="9"
+                                                :pager-count="pagerCount"
+                                                layout="total, sizes, prev, pager, next, jumper"
+                                                :total="pagination.total">
+                                        </el-pagination>
                                     </div>
 
                                 </div>
@@ -483,6 +525,7 @@
                     to: 0,
                     current_page: 1
                 },
+                currentPage: 1,
                 offset: 9,
                 OrderCharts: {"ordersCount": '', "seedCount": ''},
                 addForm: {UnitPrice: '1.00',},
@@ -490,9 +533,12 @@
                 editSendDate: [],
                 selectTags: [],
                 editSelectTags: [],
-                EditAddress:'',
+                EditAddress: '',
                 tags: [],
                 max: '',
+                selectQuery: '',
+                queryOrder: '',
+                selectClassify: '',
                 pickerOptions2: {
                     shortcuts: [{
                         text: '三周后',
@@ -520,6 +566,18 @@
                         }
                     }]
                 },
+                pagerCount: 5,
+                restaurants: [],
+                stateName: '',
+                statePhone: '',
+                stateNickname: '',
+                stateTag: '',
+                stateAddress: '',
+                stateStart: '',
+                stateEnd: '',
+                stateState: '',
+                statePayment: '',
+                timeout: null
             }
         },
         computed: {
@@ -544,7 +602,7 @@
                     from++;
                 }
                 return pagesArray;
-            }
+            },
         },
         watch: {
             editSendDate(value) {
@@ -572,6 +630,8 @@
             axios.get('/api/v1/tags').then(response => {
                 this.tags = response.data
             })
+            this.restaurants = this.loadAll()
+            console.log(this.restaurants)
         },
 
         methods: {
@@ -581,7 +641,24 @@
                     this.orders = response.data.data
                 })
             },
-
+            handleSizeChange(pageSize) {
+                this.pagination.per_page = pageSize
+                const formData = {
+                    pagination: pageSize,
+                }
+                axios.post('/api/v1/orders-list-size', formData).then(response => {
+                    this.orders = response.data.data
+                })
+            },
+            handleCurrentChange(val) {
+                this.pagination.current_page = val;
+                const formData = {
+                    pagination: this.pagination.per_page,
+                }
+                axios.post('/api/v1/orders-list-size?page=' + val,formData).then(response => {
+                    this.orders = response.data.data
+                })
+            },
 //            dateFormat: function (row, column) {
 //                var date = row[column.property];
 //                if (date == undefined) {
@@ -624,8 +701,13 @@
                     state: this.addForm.orderState,
                     payment: this.addForm.orderPayment,
                 }
+                console.log(this.currentPage)
                 axios.post('/api/v1/orders', formData).then(response => {
-                    this.orders = response.data.order
+//                    this.orders = response.data.order
+                    this.currentPage = 1
+                    axios.get('/api/v1/orders-lists?page' +this.currentPage).then(response => {
+                        this.orders = response.data.data
+                    })
                     $('#AddOrdersModalCenter').modal('hide')
                     axios.get('/api/v1/countOrder').then(response => {
                         this.OrderCharts = response.data
@@ -654,20 +736,20 @@
                 this.EditAddress = (row.longitude != null) ? (row.address + ',' + row.villageInfo + ',' + row.cityInfo + ',' + row.longitude + ',' + row.latitude) : ''
             },
             checkLocation(index, row){
-                if(row.longitude != ''){
-                    var LatE=row.longitude
-                    var LogE=row.latitude
+                if (row.longitude != '') {
+                    var LatE = row.longitude
+                    var LogE = row.latitude
                 }
-                if(row.longitude == ''){
-                    LatE=36.83360736034709
-                    LogE=118.9683723449707
+                if (row.longitude == '') {
+                    LatE = 36.83360736034709
+                    LogE = 118.9683723449707
                 }
-                var center=new qq.maps.LatLng(LatE, LogE)
+                var center = new qq.maps.LatLng(LatE, LogE)
                 var myOptions = {
                     zoom: 16,
                     center: center,
                     mapTypeId: qq.maps.MapTypeId.HYBRID,
-                    maxZoom:16,
+                    maxZoom: 16,
                 }
                 var map = new qq.maps.Map(document.getElementById("EditMapContainer"), myOptions);
                 var anchor = new qq.maps.Point(20, 20),
@@ -679,27 +761,27 @@
                     position: center,
                     //设置显示Marker的地图
                     map: map,
-                    icon:icond
+                    icon: icond
                 });
             },
             setLocation(){
                 console.log(document.getElementById("editMapLocation").value)
-                if(document.getElementById("editMapLocation").value != ''){
-                    var editMapLocation=document.getElementById("editMapLocation").value;
-                    var resultE=editMapLocation.split(",");
-                    var LatE=resultE[3]
-                    var LogE=resultE[4]
+                if (document.getElementById("editMapLocation").value != '') {
+                    var editMapLocation = document.getElementById("editMapLocation").value;
+                    var resultE = editMapLocation.split(",");
+                    var LatE = resultE[3]
+                    var LogE = resultE[4]
                 }
-                if(document.getElementById("editMapLocation").value == ''){
-                    LatE=36.83360736034709
-                    LogE=118.9683723449707
+                if (document.getElementById("editMapLocation").value == '') {
+                    LatE = 36.83360736034709
+                    LogE = 118.9683723449707
                 }
-                var center=new qq.maps.LatLng(LatE, LogE)
+                var center = new qq.maps.LatLng(LatE, LogE)
                 var myOptions = {
                     zoom: 15,
                     center: center,
                     mapTypeId: qq.maps.MapTypeId.HYBRID,
-                    maxZoom:16,
+                    maxZoom: 16,
                 }
                 var map = new qq.maps.Map(document.getElementById("EditMapContainer"), myOptions);
                 var anchor = new qq.maps.Point(20, 20),
@@ -711,7 +793,7 @@
                     position: center,
                     //设置显示Marker的地图
                     map: map,
-                    icon:icond
+                    icon: icond
                 });
                 //绑定单击事件添加参数
                 qq.maps.event.addListener(map, 'click', function (e) {
@@ -756,10 +838,10 @@
                 var aps = new qq.maps.place.Autocomplete(document.getElementById('placeEdit'));
                 //调用Poi检索类。用于进行本地检索、周边检索等服务。
                 var searchService = new qq.maps.SearchService({
-                    map : map
+                    map: map
                 });
                 //添加监听事件
-                qq.maps.event.addListener(aps, "confirm", function(res){
+                qq.maps.event.addListener(aps, "confirm", function (res) {
                     searchService.search(res.value);
                 });
             },
@@ -776,9 +858,10 @@
                     payment: this.editForm.payment,
                     address: document.getElementById("editMapLocation").value,
                 }
-                console.log(formData)
                 axios.post('/api/v1/orders/updateOrder', formData).then(response => {
-                    this.orders = response.data.order
+                    axios.get('/api/v1/orders-lists?page=' + this.pagination.current_page).then(response => {
+                        this.orders = response.data.data
+                    })
                     $('#editOrderModalCenter').modal('hide')
                     axios.get('/api/v1/countOrder').then(response => {
                         this.OrderCharts = response.data
@@ -820,6 +903,42 @@
             },
             filterTag(value, row) {
                 return row.state === value;
+            },
+            loadAll() {
+                return [
+//                    { "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号" },
+//                    { "value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号" },
+//                    { "value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
+//                    { "value": "泷千家(天山西路店)", "address": "天山西路438号" },
+//                    { "value": "胖仙女纸杯蛋糕（上海凌空店）", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101" },
+//                    { "value": "贡茶", "address": "上海市长宁区金钟路633号" },
+                    axios.post('/api/v1/orders-list-query').then(response => {
+                        this.restaurants = response.data
+                    })
+                ]
+            },
+            querySearchAsync(queryString, cb) {
+                var restaurants = this.restaurants;
+                var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+
+                clearTimeout(this.timeout);
+                this.timeout = setTimeout(() => {
+                    cb(results);
+                }, 3000 * Math.random());
+            },
+            createStateFilter(queryString) {
+                return (state) => {
+                    return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+                };
+            },
+            handleSelect(item) {
+                const formData = {
+                    name: item.value,
+                }
+                axios.post('/api/v1/orders-list-result',formData).then(response => {
+                    this.orders = response.data.data
+                    this.pagination = response.data.meta
+                })
             }
         }
     }
@@ -1004,7 +1123,17 @@
         border-color: #28a745 !important;
         color: #fff;
     }
-    .checkLocation-button{
+
+    .checkLocation-button {
         padding: 2px !important;
     }
+
+    .selectClassify .el-select .el-input {
+        width: 130px;
+    }
+
+    .input-with-select .el-input-group__prepend {
+        background-color: #fff;
+    }
+
 </style>
