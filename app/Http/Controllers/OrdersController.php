@@ -76,7 +76,7 @@ class OrdersController extends Controller
     public function queryList()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::where('to_user_id', $userId)->where('name', '!=', '')->where('is_del', '=', 'F')->orderBy('id', 'desc')->get(['name','address']);
+        $orders = Order::where('to_user_id', $userId)->where('name', '!=', '')->where('is_del', '=', 'F')->distinct()->get(['name']);
         $multiplied = $orders->map(function ($item, $key) {
             return [
                 'value'=>$item->name,
@@ -84,12 +84,39 @@ class OrdersController extends Controller
         })->all();
         return $multiplied;
     }
+    public function queryPhone()
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $orders = Order::where('to_user_id', $userId)->where('phone', '!=', '')->where('is_del', '=', 'F')->distinct()->get(['phone']);
+        return $orders;
+    }
+    public function queryAddress()
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $orders = Order::where('to_user_id', $userId)->where('villageInfo', '!=', '')->where('is_del', '=', 'F')->distinct()->get(['villageInfo']);
+        return $orders;
+    }
     public function queryResult(Request $request)
     {
         $userId = Auth::guard('api')->user()->id;
-        $name = $request->name;
-        $nickname=$request->nickname;
-        $orders = Order::where('to_user_id', $userId)->where('name','like','%'.$name.'%')->where('name', '!=', '')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);;
+        if($request->name){
+            $orders = Order::where('to_user_id', $userId)->where('name','like','%'.$request->name.'%')->orwhere('nickname','like','%'.$request->name.'%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        }
+        if($request->phone){
+            $orders = Order::where('to_user_id', $userId)->where('phone','=',$request->phone)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        }
+        if($request->villageInfo){
+            $orders = Order::where('to_user_id', $userId)->where('villageInfo','like','%'.$request->villageInfo.'%')->orwhere('address','like','%'.$request->villageInfo.'%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        }
+        if($request->start_at){
+            $orders = Order::where('to_user_id', $userId)->where('start_at','like','%'.$request->start_at.'%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        }
+        if($request->end_at){
+            $orders = Order::where('to_user_id', $userId)->where('end_at','like','%'.$request->end_at.'%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        }
+        if($request->tag_id){
+            $orders = Order::where('to_user_id', $userId)->where('tag_id','=',$request->tag_id)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        }
         if ($orders->count() == 0) {
             $data['status'] = false;
             $data['status_code'] = '401';

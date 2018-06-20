@@ -61,7 +61,7 @@
                                 <el-date-picker
                                         v-model="addForm.sendDate"
                                         type="daterange"
-                                        start-placeholder="最晚育苗日期"
+                                        start-placeholder="最晚播种日期"
                                         end-placeholder="送苗日期"
                                         format="yyyy 年 MM 月 dd 日"
                                         value-format="yyyy-MM-dd"
@@ -295,41 +295,83 @@
                                                             size="small"
                                                             prefix-icon="el-icon-search"
                                                     ></el-autocomplete>
-                                                    <el-autocomplete
+                                                    <el-select
                                                             v-model="statePhone"
-                                                            :fetch-suggestions="querySearchAsync"
+                                                            name="statePhone"
+                                                            :readonly="true"
+                                                            filterable
+                                                            remote
+                                                            allow-create
+                                                            default-first-option
                                                             placeholder="手机查询"
-                                                            @select="handleSelect"
+                                                            @change="queryPhones"
                                                             size="small"
-                                                            prefix-icon="el-icon-phone-outline"
-                                                    ></el-autocomplete>
-                                                    <el-autocomplete
+                                                            icon="el-icon-document">
+                                                        <el-option
+                                                                v-for="phones in queryPhone"
+                                                                :key="phones.phone"
+                                                                :label="phones.phone"
+                                                                :value="phones.phone"
+                                                        >
+                                                        </el-option>
+                                                    </el-select>
+                                                    <el-select
                                                             v-model="stateTag"
-                                                            :fetch-suggestions="querySearchAsync"
+                                                            name="stateTag"
+                                                            :readonly="true"
+                                                            filterable
+                                                            remote
+                                                            allow-create
+                                                            default-first-option
                                                             placeholder="苗子品种查询"
-                                                            @select="handleSelect"
+                                                            @change="queryTags"
                                                             size="small"
-                                                            prefix-icon="el-icon-document"
-                                                    ></el-autocomplete>
-                                                    <el-autocomplete
-                                                            v-model="stateAddress"
-                                                            :fetch-suggestions="querySearchAsync"
+                                                            icon="el-icon-document">
+                                                        <el-option
+                                                                v-for="tag in tags"
+                                                                :key="tag.id"
+                                                                :label="tag.name +'('+ tag.bio+')'"
+                                                                :value="tag.id"
+                                                                >
+                                                        </el-option>
+                                                    </el-select>
+                                                    <el-select
+                                                            v-model="stateVillageInfo"
+                                                            name="stateVillageInfo"
+                                                            :readonly="true"
+                                                            filterable
+                                                            remote
+                                                            allow-create
+                                                            default-first-option
                                                             placeholder="地址查询"
-                                                            @select="handleSelect"
+                                                            @change="queryAddress"
                                                             size="small"
-                                                            prefix-icon="el-icon-location-outline"
-                                                    ></el-autocomplete>
+                                                            prefix-icon="el-icon-location-outline">
+                                                        <el-option
+                                                                v-for="address in queryVillageInfo"
+                                                                :key="address.villageInfo"
+                                                                :label="address.villageInfo"
+                                                                :value="address.villageInfo"
+                                                        >
+                                                        </el-option>
+                                                    </el-select>
                                                     <el-date-picker
                                                             v-model="stateStart"
                                                             type="date"
                                                             size="small"
-                                                            placeholder="最晚播种日期">
+                                                            placeholder="最晚播种日期"
+                                                            @change="queryStartAt"
+                                                            format="yyyy 年 MM 月 dd 日"
+                                                            value-format="yyyy-MM-dd">
                                                     </el-date-picker>
                                                     <el-date-picker
                                                             v-model="stateEnd"
                                                             type="date"
                                                             size="small"
-                                                            placeholder="送苗日期">
+                                                            placeholder="送苗日期"
+                                                            @change="queryEndAt"
+                                                            format="yyyy 年 MM 月 dd 日"
+                                                            value-format="yyyy-MM-dd">
                                                     </el-date-picker>
                                                 </div>
 
@@ -567,17 +609,20 @@
                     }]
                 },
                 pagerCount: 5,
-                restaurants: [],
+                queryName: [],
                 stateName: '',
+                queryPhone: [],
                 statePhone: '',
+                queryNickname: [],
                 stateNickname: '',
+                queryTag: [],
                 stateTag: '',
-                stateAddress: '',
+                queryVillageInfo: [],
+                stateVillageInfo: '',
                 stateStart: '',
                 stateEnd: '',
-                stateState: '',
-                statePayment: '',
-                timeout: null
+                timeout: null,
+
             }
         },
         computed: {
@@ -630,8 +675,13 @@
             axios.get('/api/v1/tags').then(response => {
                 this.tags = response.data
             })
-            this.restaurants = this.loadAll()
-            console.log(this.restaurants)
+            axios.get('/api/v1/orders-query-phone').then(response => {
+                this.queryPhone = response.data
+            })
+            axios.get('/api/v1/orders-query-address').then(response => {
+                this.queryVillageInfo = response.data
+            })
+            this.queryName = this.loadAll()
         },
 
         methods: {
@@ -730,7 +780,9 @@
                 this.editSelectTags = (row.tags != null) ? row.tags.id : ''
                 this.editForm.counts = row.counts
                 this.editForm.unit_price = row.unit_price
-                this.editSendDate = row.sendDate
+                if(row.sendDate['0'] !== ''){
+                    this.editSendDate = row.sendDate
+                }
                 this.editForm.state = row.state
                 this.editForm.payment = row.payment
                 this.EditAddress = (row.longitude != null) ? (row.address + ',' + row.villageInfo + ',' + row.cityInfo + ',' + row.longitude + ',' + row.latitude) : ''
@@ -906,25 +958,19 @@
             },
             loadAll() {
                 return [
-//                    { "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号" },
-//                    { "value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号" },
-//                    { "value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
-//                    { "value": "泷千家(天山西路店)", "address": "天山西路438号" },
-//                    { "value": "胖仙女纸杯蛋糕（上海凌空店）", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101" },
-//                    { "value": "贡茶", "address": "上海市长宁区金钟路633号" },
                     axios.post('/api/v1/orders-list-query').then(response => {
-                        this.restaurants = response.data
+                        this.queryName = response.data
                     })
                 ]
             },
             querySearchAsync(queryString, cb) {
-                var restaurants = this.restaurants;
-                var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+                var queryName = this.queryName;
+                var results = queryString ? queryName.filter(this.createStateFilter(queryString)) : queryName;
 
                 clearTimeout(this.timeout);
                 this.timeout = setTimeout(() => {
                     cb(results);
-                }, 3000 * Math.random());
+                }, 1000 * Math.random());
             },
             createStateFilter(queryString) {
                 return (state) => {
@@ -939,7 +985,71 @@
                     this.orders = response.data.data
                     this.pagination = response.data.meta
                 })
-            }
+            },
+            queryTags(val) {
+                console.log(val)
+                const formData = {
+                    tag_id: val,
+                }
+                axios.post('/api/v1/orders-list-result',formData).then(response => {
+                    this.orders = response.data.data
+                    this.pagination = response.data.meta
+                })
+            },
+            queryPhones(val) {
+                console.log(val)
+                const formData = {
+                    phone: val,
+                }
+                axios.post('/api/v1/orders-list-result',formData).then(response => {
+                    this.orders = response.data.data
+                    this.pagination = response.data.meta
+                })
+            },
+            queryAddress(val) {
+                console.log(val)
+                const formData = {
+                    villageInfo: val,
+                }
+                axios.post('/api/v1/orders-list-result',formData).then(response => {
+                    this.orders = response.data.data
+                    this.pagination = response.data.meta
+                })
+            },
+            queryStartAt(val) {
+                console.log(val)
+                if(val == null){
+                    axios.get('/api/v1/orders-lists').then(response => {
+                        this.orders = response.data.data
+                        this.pagination = response.data.meta
+                    })
+                }else{
+                    const formData = {
+                        start_at: val,
+                    }
+                    axios.post('/api/v1/orders-list-result',formData).then(response => {
+                        this.orders = response.data.data
+                        this.pagination = response.data.meta
+                    })
+                }
+            },
+            queryEndAt(val) {
+                console.log(val)
+                if(val == null){
+                    axios.get('/api/v1/orders-lists').then(response => {
+                        this.orders = response.data.data
+                        this.pagination = response.data.meta
+                    })
+                }else{
+                    const formData = {
+                        end_at: val,
+                    }
+                    axios.post('/api/v1/orders-list-result',formData).then(response => {
+                        this.orders = response.data.data
+                        this.pagination = response.data.meta
+                    })
+                }
+            },
         }
     }
 
