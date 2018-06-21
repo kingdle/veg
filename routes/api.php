@@ -119,6 +119,7 @@ $api->version('v2', [
         $api->post('v2/weShopAvatar', 'ShopsController@weShopAvatar')->middleware('auth:api');
 
         $api->post('v2/user', 'UsersController@weUpdate')->middleware('auth:api');
+        $api->post('v2/userPasswordUpdate', 'UsersController@userPasswordUpdate')->middleware('auth:api');
 
 
         $api->post('v2/dynamic/index', 'DynamicsController@weIndex')->middleware('auth:api');

@@ -6,15 +6,24 @@
                     <login-form></login-form>
                 </div>
             </div>
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+                <p class="mb-5 text-muted">备案号：鲁ICP备18010028号-1</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     import LoginForm from './LoginForm'
+    import LoginCode from './LoginCode'
     export default{
         components:{
-            LoginForm
+            LoginForm,
+            LoginCode
         }
     }
 </script>

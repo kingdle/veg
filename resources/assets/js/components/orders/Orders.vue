@@ -250,7 +250,7 @@
                                      style="border-right:1px solid #eaeaea;border-left:1px solid #eaeaea">
                                     <a href="#" class="btn btn-success " data-toggle="modal"
                                        data-target="#AddOrdersModalCenter">新建订单</a>
-                                    <p class="mt-3 text-muted">经常发动态就是最好的营销。</p>
+                                    <p class="mt-3 text-muted">订单会自动提醒。</p>
                                 </div>
                             </div>
 
@@ -1245,5 +1245,15 @@
     .input-with-select .el-input-group__prepend {
         background-color: #fff;
     }
-
+    .el-pager li.active {
+        color: #f06307;
+        cursor: default;
+    }
+    .el-pager li:hover {
+        color: #f06307;
+        cursor: default;
+    }
+    .el-pagination button:hover {
+        color: #f06307;
+    }
 </style>

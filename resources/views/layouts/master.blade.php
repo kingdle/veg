@@ -42,6 +42,7 @@
                     <img src="/images-pc/logo-pc.png" alt="苗果" width="110" height="42">
                 </a>
                 <span><img src="https://images.veg.kim/pc/Spinner-1s-200px.gif" alt="loading" width="42" height="42"></span>
+                <span style="color:#8a8e91">服务加载中...</span>
             </div>
         </div>
     </nav>
@@ -63,7 +64,7 @@
                         专业种苗共享服务平台
                     </h2>
                     <p class="text-center mx-5 mt-3">
-                        充分利用微信在农户中的普及率，帮助育苗厂建立与农户直接互动连接，全面赋能苗场微信运营能力，搭建用户共享桥梁。
+                        充分利用微信在农户中的普及率，帮助育苗厂建立与农户直接互动连接，全面赋能苗厂微信运营能力，搭建用户共享桥梁。
                     </p>
                 </div>
             </div>

@@ -46,4 +46,26 @@ class UsersController extends Controller
 //        ]);
 
     }
+    public function userPasswordUpdate(Request $request)
+    {
+        $userid = request()->user()->id;
+        $user = User::find($userid);
+        if ($user->is_active == '1') {
+            $attributes['password'] = Hash::make($request->password);
+            // 更新用户数据
+            $user->update($attributes);
+            return response()->json([
+                'status' => 'true',
+                'status_code' => 200,
+                'message' => '密码更新成功',
+            ]);
+        }
+        if ($user->is_active == '0') {
+            return response()->json([
+                'status'=>'false',
+                'status_code' => 404,
+                'message' => '仅苗厂可修改PC端密码',
+            ]);
+        }
+    }
 }

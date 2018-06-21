@@ -6,7 +6,7 @@
                     <h2 class=" text-center">
                         苗果服务在您身边</h2>
                     <p class="text-sm text-center letter-10  m-b-45">
-                        专业种苗服务平台，探索农业生产数据，赋予农户辨别市场变化的能力。</p>
+                        专业种苗服务平台，全面赋能苗厂微信运营能力。</p>
                     <div class="my-0">
                         <div class="fl flex-4 text-center">
                             <a class="inline-block m-auto shop" href="#"><img
@@ -60,6 +60,12 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+                <p class="mb-5 text-muted">备案号：鲁ICP备18010028号-1</p>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -88,7 +94,7 @@
 </script>
 
 <style>
-    .shop-title{
+    .shop-title {
         width: 120px;
         height: 28px;
         line-height: 28px;
@@ -96,33 +102,39 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
     .code-pics img {
         border-radius: 50%;
         box-shadow: 0 0 20px #e4e8eb !important;
     }
+
     .code-pics {
         float: right;
     }
+
     .code-pics ul {
         margin-left: 1px;
-        padding-left:0px !important;
+        padding-left: 0px !important;
     }
+
     .code-pics ul li {
         display: inline-block;
         margin: 20px 10px;
         width: 100px;
         height: 100px;
     }
+
     .code-pics ul li a {
         position: relative;
         display: inline-block;
         width: 100px;
         height: 100px;
     }
+
     .hide_tab {
         position: absolute;
         bottom: 0;
-        z-index:999;
+        z-index: 999;
         margin-left: -50px;
     }
 </style>

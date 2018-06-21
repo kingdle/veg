@@ -16,7 +16,9 @@
             <div class="" id="app-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <router-link v-if="!user.authenticated" to="/login" tag="li">
-                        <a>登录</a>
+                        <button type="button" class="btn btn-success btn-sm user-top-phone" data-placement="bottom" title="控制台">
+                            <span>登录</span>
+                        </button>
                     </router-link>
                     <!--<router-link v-if="!user.authenticated" to="/register" tag="li">-->
                         <!--<a>注册</a>-->
