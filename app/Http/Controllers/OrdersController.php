@@ -344,8 +344,7 @@ class OrdersController extends Controller
             $attributes['total_price'] =  $request->unit_price * $request->counts;
         }
         if ($request->tag_id) {
-            $attributes['tag_id'] = $this->normalizeTag($request->get('tag_id'))['0'];
-            $order->tags()->attach($tags);
+            $attributes['tag_id'] = $request->get('tag_id');
         }
         if ($request->start_at) {
             $attributes['start_at'] = $request->start_at;
