@@ -68,4 +68,28 @@ class UsersController extends Controller
             ]);
         }
     }
+    public function userPasswordUpdateAdmin(Request $request)
+    {
+        $userid = request()->user()->id;
+        $user = User::find($userid);
+        if ($user->is_admin == '1') {
+            $userUpdate = User::find($request->id);
+            $attributes['password'] = Hash::make($request->password);
+            // 更新用户数据
+            $userUpdate->update($attributes);
+            return response()->json([
+                'status' => 'true',
+                'status_code' => 200,
+                'message' => '密码更新成功',
+                'data'=>$userUpdate
+            ]);
+        }
+        if ($user->is_admin == '0') {
+            return response()->json([
+                'status'=>'false',
+                'status_code' => 404,
+                'message' => '没有权限',
+            ]);
+        }
+    }
 }

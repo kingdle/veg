@@ -47,7 +47,7 @@ class Order extends JsonResource
             'rate_seller'=>$this->rate_seller,
             'is_del'=>$this->is_del,
             'deleted_at'=>$this->deleted_at,
-            'created_at'=>$this->created_at,
+            'created_at'=>$this->created_at->format('Y年m月d日H点i分'),
             'update_at'=>$this->update_at,
         ];
     }

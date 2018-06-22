@@ -58,13 +58,13 @@
         methods: {
             register(){
                 let formData = {
-                    phone:this.phone,
-                    password:this.password
+                    phone: this.phone,
+                    password: this.password
                 }
-                axios.post('/api/register',formData).then(response =>{
-                    this.$router.push({name:'confirm'})
+                axios.post('/api/register', formData).then(response => {
+                    this.$router.push({name: 'confirm'})
 
-            })
+                })
             }
         }
     }

@@ -126,7 +126,7 @@
                                           :disabled="true">
                                 </el-input>
                             </el-form-item>
-                            <el-form-item label="农户姓名">
+                            <el-form-item label="真实姓名">
                                 <el-input v-model="editForm.name"
                                           placeholder="农户通过苗果小程序发送来的订单，姓名为微信昵称"></el-input>
                             </el-form-item>
@@ -668,6 +668,7 @@
             axios.get('/api/v1/orders-lists').then(response => {
                 this.orders = response.data.data
                 this.pagination = response.data.meta
+                console.log(this.orders)
             })
             axios.get('/api/v1/countOrder').then(response => {
                 this.OrderCharts = response.data
