@@ -35,13 +35,13 @@ class Order extends JsonResource
             'latitude'=>$this->latitude,
             'phone'=>$this->phone,
             'state'=>$this->state,
-            'state_at'=>$this->state_at->format('Y年m月d日H点i分'),
+            'state_at'=>$this->state_at,
             'payment'=>$this->payment,
-            'payment_at'=>$this->payment_at->format('Y年m月d日H点i分'),
+            'payment_at'=>$this->payment_at,
             'is_confirm'=>$this->is_confirm,
-            'buyer_at'=>$this->buyer_at->format('Y年m月d日H点i分'),
-            'seller_at'=>$this->seller_at->format('Y年m月d日H点i分'),
-            'buyer_confirm_at'=>$this->buyer_confirm_at->format('Y年m月d日H点i分'),
+            'buyer_at'=>$this->buyer_at,
+            'seller_at'=>$this->seller_at,
+            'buyer_confirm_at'=>$this->buyer_confirm_at,
             'start_at'=>substr($this->start_at,0,10),
             'end_at'=>substr($this->end_at,0,10),
             'sendDate'=>[substr($this->start_at,0,10),substr($this->end_at,0,10)],
@@ -52,7 +52,7 @@ class Order extends JsonResource
             'is_del'=>$this->is_del,
             'deleted_at'=>$this->deleted_at,
             'created_at'=>$this->created_at->format('Y年m月d日H点i分'),
-            'update_at'=>$this->update_at,
+            'update_at'=>$this->update_at->format('Y年m月d日H点i分'),
         ];
     }
 }
