@@ -304,9 +304,11 @@ class OrdersController extends Controller
             $order->note_buy = $request->note_buy;
         }
         $order->state = '0';
+        $order->is_confirm = '0';
+        $order->buyer_at = now();
         $success = $order->save();
         if ($success) {
-            //短信提醒苗场"农户新建订单，请打开苗果小程序与农户取得联系，并填写订单。"
+            //短信提醒苗场"农户新建订单，请打开苗果小程序与农户取得联系，并填写订单合同。"
             $data['status'] = true;
             $data['status_code'] = '200';
             $data['msg'] = '农户订单新建成功';
@@ -364,10 +366,12 @@ class OrdersController extends Controller
             $attributes['note_sell'] = $request->note_sell;
         }
         $attributes['state'] = '0';
+        $attributes['is_confirm'] = '1';
+        $attributes['seller_at'] = now();
         $success = $order->update($attributes);
 
         if ($success) {
-            //短信提醒农户"苗场已根据您的需要填写了订单，请打开苗果小程序确认订单。"
+            //短信提醒农户"您订购的**株**苗子，订单合同已拟定，请打开苗果小程序确认订单合同。"
             $data['status'] = true;
             $data['status_code'] = '200';
             $data['msg'] = '苗厂订单编辑成功';
@@ -379,7 +383,29 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+    public function buyerConfirm(Request $request)
+    {
+        $order = Order::where('id', $request->id)->first();
+        if ($request->note_buy) {
+            $attributes['note_buy'] = $request->note_buy;
+        }
+        $attributes['is_confirm'] = '2';
+        $attributes['buyer_confirm_at'] = now();
+        $success = $order->update($attributes);
+        if ($success) {
+            //短信提醒苗厂"农户已确认订单合同，请于**日期提供**种苗。"
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = $order->id . ' 农户确认订单成功';
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
 
+    }
     public function sellerTransport(Request $request)
     {
         if (!$request->id) {
@@ -392,6 +418,7 @@ class OrdersController extends Controller
         $order = Order::where('id', $request->id)->first();
 
         $attributes['state'] = '1';
+
         $success = $order->update($attributes);
         if ($success) {
             //短信提醒农户"苗场已根据您的需要填写了订单，请打开苗果小程序确认订单。"
