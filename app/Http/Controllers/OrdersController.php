@@ -159,6 +159,9 @@ class OrdersController extends Controller
             $order->longitude = $foo[3];
             $order->latitude = $foo[4];
         }
+        if ($request->unit_price && $request->counts) {
+            $order->total_price =  $request->unit_price * $request->counts;
+        }
         if ($request->tags) {
             $order->tag_id = $this->normalizeTag($request->tags)['0'];
         }
@@ -194,6 +197,9 @@ class OrdersController extends Controller
             $attributes['counts'] = '0';
         }
         $attributes['unit_price'] = $request->unit_price;
+        if ($request->unit_price && $request->counts) {
+            $attributes['total_price'] =  $request->unit_price * $request->counts;
+        }
         $attributes['state'] = $request->states;
         $attributes['payment'] = $request->payment;
         if ($request->tags) {
@@ -328,11 +334,17 @@ class OrdersController extends Controller
         if ($request->name) {
             $attributes['name'] = $request->name;
         }
-        if ($request->count) {
-            $attributes['count'] = $request->count;
+        if ($request->counts) {
+            $attributes['counts'] = $request->counts;
         }
-        if ($request->tags) {
-            $attributes['tag_id'] = $this->normalizeTag($request->get('tags'));
+        if ($request->unit_price) {
+            $attributes['unit_price'] = $request->unit_price;
+        }
+        if ($request->unit_price && $request->counts) {
+            $attributes['total_price'] =  $request->unit_price * $request->counts;
+        }
+        if ($request->tag_id) {
+            $attributes['tag_id'] = $this->normalizeTag($request->get('tag_id'))['0'];
             $order->tags()->attach($tags);
         }
         if ($request->start_at) {
@@ -340,6 +352,14 @@ class OrdersController extends Controller
         }
         if ($request->end_at) {
             $attributes['end_at'] = $request->end_at;
+        }
+        if ($request->state) {
+            $attributes['state'] = $request->state;
+            $attributes['state_at'] = now();
+        }
+        if ($request->payment) {
+            $attributes['payment'] = $request->payment;
+            $attributes['payment_at'] = now();
         }
         if ($request->note_sell) {
             $attributes['note_sell'] = $request->note_sell;
@@ -351,14 +371,12 @@ class OrdersController extends Controller
             //短信提醒农户"苗场已根据您的需要填写了订单，请打开苗果小程序确认订单。"
             $data['status'] = true;
             $data['status_code'] = '200';
-            $data['msg'] = '苗场订单编辑成功';
-            $data['name'] = $request->name;
+            $data['msg'] = '苗厂订单编辑成功';
             return json_encode($data);
         } else {
             $data['status'] = false;
             $data['status_code'] = '501';
-            $data['msg'] = '系统繁忙，请售后再试';
-            $data['name'] = $request->name;
+            $data['msg'] = '系统繁忙，请稍后再试';
             return json_encode($data);
         }
     }
