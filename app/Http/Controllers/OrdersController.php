@@ -15,21 +15,21 @@ class OrdersController extends Controller
     public function index()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('user')->where('to_user_id', '=', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        $orders = Order::with('user')->where('to_user_id', '=', $userId)->orwhere('user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         return new OrderCollection($orders);
     }
 
     public function buyerList()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::where('user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        $orders = Order::where('user_id', $userId)->orwhere('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         return new OrderCollection($orders);
     }
 
     public function lists()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('tag')->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        $orders = Order::with('tag')->where('to_user_id', $userId)->orwhere('user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         if ($orders->count() == 0) {
             $data['status'] = false;
             $data['status_code'] = '401';
