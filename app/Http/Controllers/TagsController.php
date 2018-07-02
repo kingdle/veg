@@ -26,4 +26,10 @@ class TagsController extends Controller
         $tag->fill($request->all());
         $tag->save();
     }
+    public function search(Request $request)
+    {
+        $tags = Tag::select(['id','name','bio'])
+            ->where('name','like','%'.$request->q.'%')->orwhere('bio','like','%'.$request->q.'%')->orderBy('dynamics_count', 'desc')->get();
+        return new TagCollection($tags);
+    }
 }

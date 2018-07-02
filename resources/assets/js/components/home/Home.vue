@@ -200,4 +200,15 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .contributor-pics img{
+        -webkit-transition: 0.4s;
+        -webkit-transition: -webkit-transform 0.4s ease-out;
+        transition: transform 0.4s ease-out;
+        -moz-transition: -moz-transform 0.4s ease-out;
+    }
+    .contributor-pics img:hover{
+        transform: rotateZ(360deg);
+        -webkit-transform: rotateZ(360deg);
+        -moz-transform: rotateZ(360deg);
+    }
 </style>

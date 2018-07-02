@@ -67,7 +67,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
 
     //tags商品标签查询
     Route::resource('/tags', 'TagsController')->middleware('auth:api');
-
+    Route::post('/tag/search', 'TagsController@search')->middleware('auth:api');
     //seeds种子商家查询
     Route::resource('/seeds', 'SeedsController')->middleware('auth:api');
 
