@@ -45,4 +45,7 @@ class Order extends Model
     public function tag(){
         return $this->belongsTo('App\Tag','tag_id');
     }
+    public function prod(){
+        return $this->belongsTo('App\Prod','prod_id');
+    }
 }
