@@ -12,7 +12,7 @@ class ProdsController extends Controller
     public function index()
     {
         $shopId = Auth::guard('api')->user()->shop->id;
-        $prods = Prod::where('shop_id',$shopId)->orwhere('shop_id','187')->orderBy('likes_count', 'desc')->get();
+        $prods = Prod::where('shop_id',$shopId)->orwhere('shop_id','187')->orderBy('updated_at', 'desc')->orderBy('likes_count', 'desc')->get();
         return new ProdCollection($prods);
     }
 
@@ -24,6 +24,11 @@ class ProdsController extends Controller
         }
         return new \App\Http\Resources\Order($prod);
     }
+    public function store(Request $request,Tag $tag){
+        $tag->fill($request->all());
+        $tag->save();
+    }
+
     public function search(Request $request)
     {
         $prods = Prod::select(['sort_id','title','introduce'])
