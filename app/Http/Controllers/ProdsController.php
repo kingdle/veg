@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProdCollection;
 use App\Prod;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProdsController extends Controller
 {
     public function index()
     {
-        $prods = Prod::paginate(9);
+        $shopId = Auth::guard('api')->user()->shop->id;
+        $prods = Prod::where('shop_id',$shopId)->orwhere('shop_id','187')->orderBy('likes_count', 'desc')->get();
         return new ProdCollection($prods);
     }
 
