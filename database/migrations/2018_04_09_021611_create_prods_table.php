@@ -20,7 +20,7 @@ class CreateProdsTable extends Migration
             $table->string('title')->nullable()->comment('商品名');
             $table->string('introduce')->nullable()->comment('介绍');
             $table->string('pic')->nullable()->comment('图片');
-            $table->decimal('unit_prince')->nullable()->comment('单价');
+            $table->decimal('unit_price')->nullable()->comment('单价');
             $table->integer('comments_count')->default(0)->comment('评论数');
             $table->integer('likes_count')->default(0)->comment('点赞数');
             $table->integer('followers_count')->default(0)->comment('收藏数');

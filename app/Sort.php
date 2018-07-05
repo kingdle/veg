@@ -10,4 +10,7 @@ class Sort extends Model
     public function dynamics(){
         return $this->belongsToMany(Dynamic::class,'dynamic_sort')->withTimestamps();
     }
+    public function prod(){
+        return $this->belongsTo('App\Prod','prod_id');
+    }
 }
