@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Sort;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Order extends JsonResource
@@ -14,12 +15,14 @@ class Order extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id'=>$this->id,
             'user_id'=>$this->user_id,
             'to_user_id'=>$this->to_user_id,
             'prod_id'=>$this->prod_id,
             'prod'=>$this->prod,
+            'sort'=>Sort::find($this->prod['sort_id'])['title'],
             'tag_id'=>$this->tag_id,
             'tags'=>$this->tag,
             'counts'=>$this->counts,
