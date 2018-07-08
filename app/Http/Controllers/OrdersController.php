@@ -185,7 +185,46 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+    public function weStore(Request $request, Order $order)
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $order->fill($request->all());
+        $order->to_user_id = $userId;
 
+        if ($request->address) {
+            $foo = explode(',', $request->address);
+            $order->address = $foo[0];
+            $order->cityInfo = $foo[2];
+            $order->villageInfo = $foo[1];
+            $order->longitude = $foo[3];
+            $order->latitude = $foo[4];
+        }
+        if ($request->unit_price && $request->counts) {
+            $order->total_price =  $request->unit_price * $request->counts;
+        }
+        if ($request->prod_id) {
+            $order->prod_id =$request->prod_id;
+        }
+        if ($request->end_at) {
+            $order->start_at = date("Y-m-d",strtotime("-40 day",strtotime($request->end_at)));
+            $order->end_at = $request->end_at;
+        }
+        $success = $order->save();
+
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = '订单新建成功';
+            $data['name'] = $request->name;
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '501';
+            $data['msg'] = '系统繁忙，请售后再试';
+            $data['name'] = $request->name;
+            return json_encode($data);
+        }
+    }
     public function updateOrder(Request $request)
     {
         $order = Order::where('id', $request->id)->first();
