@@ -190,7 +190,9 @@ class OrdersController extends Controller
         $userId = Auth::guard('api')->user()->id;
         $order->fill($request->all());
         $order->to_user_id = $userId;
-
+        if ($request->name) {
+            $order->name =$request->name;
+        }
         if ($request->address) {
             $foo = explode(',', $request->address);
             $order->address = $foo[0];
