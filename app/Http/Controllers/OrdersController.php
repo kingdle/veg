@@ -207,6 +207,9 @@ class OrdersController extends Controller
         if ($request->prod_id) {
             $order->prod_id =$request->prod_id;
         }
+        if ($request->note_sell) {
+            $order->note_sell =$request->note_sell;
+        }
         if ($request->end_at) {
             $order->start_at = date("Y-m-d",strtotime("-40 day",strtotime($request->end_at)));
             $order->end_at = $request->end_at;
