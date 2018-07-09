@@ -6,6 +6,7 @@ use App\Http\Resources\ProdCollection;
 use App\Prod;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProdsController extends Controller
 {
@@ -34,5 +35,69 @@ class ProdsController extends Controller
         $prods = Prod::select(['sort_id','title','introduce'])
             ->where('title','like','%'.$request->q.'%')->orwhere('bio','like','%'.$request->q.'%')->orderBy('likes_count', 'desc')->get();
         return new ProdCollection($prods);
+    }
+    public function uploadImage(Request $request)
+    {
+        if (!$request->hasFile('file')) {
+            return response()->json([], 500, '无法获取上传文件');
+        }
+        $file = $request->file('file');
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();     // image/jpeg
+
+            // 上传文件
+            $filename = 'seedling/' . 'MG' . uniqid() . '.' . $ext;
+            Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
+            $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
+
+            return response()->json([
+                'status_code' => 200,
+                'message' => 'success',
+                'photo' => $filePath,
+                'name' => $originalName,
+            ]);
+
+        } else {
+            return response()->json([], 500, '文件未通过验证');
+        }
+    }
+    public function createProduct(Request $request,Prod $prod)
+    {
+        $shopId = Auth::guard('api')->user()->shop->id;
+       if($request->pic){
+           $prod->pic =$request->pic;
+       }
+        if ($request->sort_id) {
+            $prod->sort_id =$request->sort_id;
+        }
+        if ($request->title) {
+            $prod->title =$request->title;
+        }
+        if ($request->introduce) {
+            $prod->introduce =$request->introduce;
+        }
+        if ($request->unit_price) {
+            $prod->unit_price =  $request->unit_price;
+        }
+        $prod->shop_id =$shopId;
+        $success = $prod->save();
+        if ($success) {
+            return response()->json([
+                'status' => 'true',
+                'status_code' => 200,
+                'message' => '品种添加成功',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 501,
+                'message' => '服务器端错误'.date("h:i:s"),
+            ]);
+        }
+
     }
 }
