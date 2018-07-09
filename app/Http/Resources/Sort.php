@@ -16,6 +16,7 @@ class Sort extends JsonResource
     {
         return [
             'id' => $this->id,
+            'parent_id'=>$this->parent_id,
             'name' => $this->title,
             'icon' => $this->icon,
             'hot' => $this->hot,
