@@ -46,6 +46,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //sorts分类查询
     Route::resource('/sorts', 'SortsController');
     Route::get('/sort/all', 'SortsController@sorts');
+    Route::get('/sort/we-index', 'SortsController@weIndex');
     //orders订单查询
     Route::resource('/orders', 'OrdersController')->middleware('auth:api');
     Route::get('/orders-lists', 'OrdersController@lists')->middleware('auth:api');
