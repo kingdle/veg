@@ -156,8 +156,8 @@ class OrdersController extends Controller
             $order->address = $foo[0];
             $order->cityInfo = $foo[2];
             $order->villageInfo = $foo[1];
-            $order->longitude = $foo[3];
-            $order->latitude = $foo[4];
+            $order->latitude = $foo[3];
+            $order->longitude = $foo[4];
         }
         if ($request->unit_price && $request->counts) {
             $order->total_price =  $request->unit_price * $request->counts;
@@ -198,8 +198,8 @@ class OrdersController extends Controller
             $order->address = $foo[0];
             $order->cityInfo = $foo[2];
             $order->villageInfo = $foo[1];
-            $order->longitude = $foo[3];
-            $order->latitude = $foo[4];
+            $order->latitude = $foo[3];
+            $order->longitude = $foo[4];
         }
         if ($request->unit_price && $request->counts) {
             $order->total_price =  $request->unit_price * $request->counts;
@@ -279,6 +279,48 @@ class OrdersController extends Controller
     public function edit(Request $request)
     {
 
+    }
+    //苗场订单未送苗、未付款listSeller
+    public function listSeller()
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $orders = Order::where('to_user_id', $userId)->where('state', '!=', '1')->where('payment', '!=', '1')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($orders->count()) {
+            return new OrderCollection($orders);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '404';
+            $data['msg'] = '订单为空';
+            return json_encode($data);
+        }
+    }
+    //已送苗列表listState
+    public function listState()
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $orders = Order::where('to_user_id', '=', $userId)->where('state', 1)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($orders->count()) {
+            return new OrderCollection($orders);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '404';
+            $data['msg'] = '送苗订单为空';
+            return json_encode($data);
+        }
+    }
+    //已付款列表listPayment
+    public function listPayment()
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $orders = Order::where('to_user_id', '=', $userId)->where('payment', 1)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($orders->count()) {
+            return new OrderCollection($orders);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '404';
+            $data['msg'] = '送苗订单为空';
+            return json_encode($data);
+        }
     }
 
     public function updatePayment(Request $request)

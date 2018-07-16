@@ -30,7 +30,6 @@ class Order extends JsonResource
             'unit_price'=>$this->unit_price,
             'total_price'=>$this->total_price,
             'name'=>$this->name,
-            'value'=>$this->name,
             'nickname'=>$this->nickname,
             'address'=>$this->address,
             'cityInfo'=>$this->cityInfo,
