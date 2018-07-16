@@ -21,6 +21,7 @@ class Order extends Model
         'villageInfo',
         'longitude',
         'latitude',
+        'is_true_location',
         'phone',
         'state',
         'state_at',

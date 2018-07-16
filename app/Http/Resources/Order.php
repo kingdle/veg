@@ -36,6 +36,7 @@ class Order extends JsonResource
             'villageInfo'=>$this->villageInfo,
             'longitude'=>$this->longitude,
             'latitude'=>$this->latitude,
+            'is_true_location'=>$this->is_true_location,
             'phone'=>$this->phone,
             'state'=>$this->state,
             'state_at'=>$this->state_at,
