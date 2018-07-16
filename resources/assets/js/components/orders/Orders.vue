@@ -822,8 +822,8 @@
                 if (document.getElementById("editMapLocation").value != '') {
                     var editMapLocation = document.getElementById("editMapLocation").value;
                     var resultE = editMapLocation.split(",");
-                    var LatE = resultE[3]
-                    var LogE = resultE[4]
+                    var LatE = resultE[4]
+                    var LogE = resultE[3]
                 }
                 if (document.getElementById("editMapLocation").value == '') {
                     LatE = 36.83360736034709
