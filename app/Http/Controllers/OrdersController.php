@@ -543,7 +543,7 @@ class OrdersController extends Controller
     }
     public function weDestroy(Request $request)
     {
-        return $request;
+        $id= $request->id;
         $order = Order::where('id', $id)->first();
         $attributes['is_del'] = 'T';
         $attributes['deleted_at'] = now();
