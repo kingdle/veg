@@ -531,7 +531,7 @@ class OrdersController extends Controller
         if ($success) {
             $data['status'] = true;
             $data['status_code'] = '200';
-            $data['msg'] = '删除成功';
+            $data['msg'] = '取消成功';
             $data['order'] = $order;
             return json_encode($data);
         } else {
@@ -541,7 +541,26 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
-
+    public function weDestroy(Request $request)
+    {
+        return $request;
+        $order = Order::where('id', $id)->first();
+        $attributes['is_del'] = 'T';
+        $attributes['deleted_at'] = now();
+        $success = $order->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = '取消成功';
+            $data['order'] = $order;
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+    }
     private function normalizeTag($tags)
     {
         $ids = Tag::pluck('id');
