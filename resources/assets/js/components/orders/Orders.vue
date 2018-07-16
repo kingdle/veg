@@ -790,8 +790,8 @@
             },
             checkLocation(index, row){
                 if (row.longitude != '') {
-                    var LatE = row.longitude
-                    var LogE = row.latitude
+                    var LatE = row.latitude
+                    var LogE = row.longitude
                 }
                 if (row.longitude == '') {
                     LatE = 36.83360736034709
