@@ -326,6 +326,7 @@ class OrdersController extends Controller
     public function updatePayment(Request $request)
     {
         $order = Order::where('id', $request->id)->first();
+        $attributes['state'] = '2';
         $attributes['payment'] = $request->payment;
         $attributes['payment_at'] = now();
         $success = $order->update($attributes);
