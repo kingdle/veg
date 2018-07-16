@@ -29,11 +29,18 @@ class CountController extends Controller
         $userId = Auth::guard('api')->user()->id;
         $ordersCount = Order::latest()->where('to_user_id', $userId)->where('is_del', '=','F')->count();//订单总数
         $seedCount = Order::latest()->where('to_user_id', $userId)->where('is_del', '=','F')->sum('counts');//苗子总数
+
+        $ordersList = Order::latest()->where('to_user_id', $userId)->where('state','0')->where('payment','0')->where('is_del', '=','F')->count();//未送苗及未收款总数
+        $ordersSend = Order::latest()->where('to_user_id', $userId)->where('state','1')->where('is_del', '=','F')->count();//已送苗总数
+        $ordersPayment = Order::latest()->where('to_user_id', $userId)->where('payment','1')->where('is_del', '=','F')->count();//已收款总数
 //        $moneyCount = Order::latest()->where('user_id', $userId)->count();//订单总金额
 
         $orderChart = [
             'ordersCount' => $ordersCount,
             'seedCount' => $seedCount,
+            'orderList' =>$ordersList,
+            'ordersSend' => $ordersSend,
+            'payment' => $ordersPayment
         ];
         return json_encode($orderChart);
     }
