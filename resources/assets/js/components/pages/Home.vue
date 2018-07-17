@@ -32,8 +32,10 @@
                                 <!--<h6 class="text-secondary pt-2 mb-0">扫这个码入驻</h6>-->
 
                                 <!--</div>-->
-                                <div class="mr-4 text-center">
-                                    <div class="code-pics">
+                                <h3 class=" text-center">
+                                    活跃的育苗厂</h3>
+                                <div class="col-12 mr-4 text-center">
+                                    <div class="code-pics text-center">
                                         <ul>
                                             <li v-for="shop in shops" :key="shop.id">
                                                 <a href="#" @mouseenter="showActive(shop.id)"
@@ -102,14 +104,17 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
+    .code-pics{
+        width:96%;
+        left:50%
+    }
     .code-pics img {
         border-radius: 50%;
         box-shadow: 0 0 20px #e4e8eb !important;
     }
 
     .code-pics {
-        float: right;
+        /*float: right;*/
     }
 
     .code-pics ul {

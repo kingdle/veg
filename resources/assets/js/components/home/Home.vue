@@ -60,7 +60,7 @@
                         <div class="mg-business">
                             <div class="mb-3">
                                 <span class="text-success text-bold m-r-5">|</span>
-                                <span class="vertical-middle">您周边的育苗场</span>
+                                <span class="vertical-middle">活跃的苗厂</span>
                             </div>
                             <div class="col-12 text-center">
                                 <div v-for="shop in shops" :key="shop.id" class="figure mr-4 text-center">

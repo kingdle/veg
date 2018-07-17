@@ -14,7 +14,7 @@ class ShopsController extends Controller
 {
     public function index()
     {
-        $shops = Shop::with('user')->orderBy('updated_at', 'desc')->get();
+        $shops = Shop::with('user')->orderBy('updated_at', 'desc')->paginate(16);
         return new ShopCollection($shops);
     }
 
