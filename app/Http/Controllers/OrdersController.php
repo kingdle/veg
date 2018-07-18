@@ -298,7 +298,7 @@ class OrdersController extends Controller
     public function listState()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::where('to_user_id', '=', $userId)->where('state', 1)->where('is_del', '=', 'F')->orderBy('update_at', 'desc')->paginate(9);
+        $orders = Order::where('to_user_id', '=', $userId)->where('state', 1)->where('is_del', '=', 'F')->orderBy('updated_at', 'desc')->paginate(9);
         if ($orders->count()) {
             return new OrderCollection($orders);
         } else {
@@ -312,7 +312,7 @@ class OrdersController extends Controller
     public function listPayment()
     {
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::where('to_user_id', '=', $userId)->where('payment', 1)->where('is_del', '=', 'F')->orderBy('update_at', 'desc')->paginate(9);
+        $orders = Order::where('to_user_id', '=', $userId)->where('payment', 1)->where('is_del', '=', 'F')->orderBy('updated_at', 'desc')->paginate(9);
         if ($orders->count()) {
             return new OrderCollection($orders);
         } else {
