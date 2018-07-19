@@ -192,8 +192,8 @@ class OrdersController extends Controller
         $userId = Auth::guard('api')->user()->id;
         $shopId = Auth::guard('api')->user()->shop->id;
         $order->fill($request->all());
-        $order->to_user_id = $shopId;
-        $order->shop_id = $userId;
+        $order->to_user_id = $userId;
+        $order->shop_id = $shopId;
         if ($request->name) {
             $order->name =$request->name;
         }
