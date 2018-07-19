@@ -149,8 +149,10 @@ class OrdersController extends Controller
     public function store(Request $request, Order $order)
     {
         $userId = Auth::guard('api')->user()->id;
+        $shopId = Auth::guard('api')->user()->shop->id;
         $order->fill($request->all());
         $order->to_user_id = $userId;
+        $order->shop_id = $shopId;
         if ($request->address) {
             $foo = explode(',', $request->address);
             $order->address = $foo[0];
@@ -188,8 +190,10 @@ class OrdersController extends Controller
     public function weStore(Request $request, Order $order)
     {
         $userId = Auth::guard('api')->user()->id;
+        $shopId = Auth::guard('api')->user()->shop->id;
         $order->fill($request->all());
-        $order->to_user_id = $userId;
+        $order->to_user_id = $shopId;
+        $order->shop_id = $userId;
         if ($request->name) {
             $order->name =$request->name;
         }

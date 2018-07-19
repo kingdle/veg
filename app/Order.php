@@ -8,6 +8,7 @@ class Order extends Model
 {
     protected $fillable=[
         'user_id',
+        'shop_id',
         'to_user_id',
         'prod_id',
         'tag_id',

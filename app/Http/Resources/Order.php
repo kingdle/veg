@@ -19,6 +19,7 @@ class Order extends JsonResource
         return [
             'id'=>$this->id,
             'user_id'=>$this->user_id,
+            'shop_id'=>$this->shop_id,
             'to_user_id'=>$this->to_user_id,
             'prod_id'=>$this->prod_id,
             'prod'=>$this->prod,
