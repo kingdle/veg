@@ -399,6 +399,7 @@ class OrdersController extends Controller
         $attributes['villageInfo'] = $request->name;
         $attributes['longitude'] = $request->longitude;
         $attributes['latitude'] = $request->latitude;
+        $attributes['is_true_location'] = '0';
         $success = $order->update($attributes);
         if ($success) {
             $data['status'] = true;
