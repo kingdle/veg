@@ -392,7 +392,27 @@ class OrdersController extends Controller
         }
 
     }
+    public function updateLocation(Request $request)
+    {
+        $order = Order::where('id', $request->id)->first();
+        $attributes['address'] = $request->address;
+        $attributes['villageInfo'] = $request->name;
+        $attributes['longitude'] = $request->longitude;
+        $attributes['latitude'] = $request->latitude;
+        $success = $order->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = $order->id . '位置更新成功';
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
 
+    }
     public function buyerCreate(Request $request, Order $order)
     {
         $userId = Auth::guard('api')->user()->id;

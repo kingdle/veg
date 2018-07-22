@@ -33,6 +33,7 @@ class CountController extends Controller
         $ordersList = Order::latest()->where('to_user_id', $userId)->where('state','0')->where('payment','0')->where('is_del', '=','F')->count();//未送苗及未收款总数
         $ordersSend = Order::latest()->where('to_user_id', $userId)->where('state','1')->where('is_del', '=','F')->count();//已送苗总数
         $ordersPayment = Order::latest()->where('to_user_id', $userId)->where('payment','1')->where('is_del', '=','F')->count();//已收款总数
+
 //        $moneyCount = Order::latest()->where('user_id', $userId)->count();//订单总金额
 
         $orderChart = [

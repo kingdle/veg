@@ -65,6 +65,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/orders/updateState', 'OrdersController@updateState')->middleware('auth:api');
     Route::post('/orders/updatePayment', 'OrdersController@updatePayment')->middleware('auth:api');
     Route::post('/orders/updateOrder', 'OrdersController@updateOrder')->middleware('auth:api');
+    Route::post('/orders/updateLocation', 'OrdersController@updateLocation')->middleware('auth:api');
     Route::post('/orders/weDestroy', 'OrdersController@weDestroy')->middleware('auth:api');
 
     Route::get('/order/listSeller', 'OrdersController@listSeller')->middleware('auth:api');
