@@ -88,7 +88,7 @@ class AuthorizationsController extends Controller
             if ($is_shop) {
                 return response()->json([
                     'status' => 'false',
-                    'message' => '店铺名已存在',
+                    'message' => '苗厂名已存在',
                 ], 403);
             }
             $user = User::find($userid);
