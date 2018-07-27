@@ -97,11 +97,7 @@ class AuthorizationsController extends Controller
                     'message' => '苗厂名不能为空',
                 ], 403);
             }
-            $user = User::find($userid);
-//            $attributes['phone'] = $phone;
-            $attributes['is_active'] = '1';
-            // 更新用户数据
-            $user->update($attributes);
+
 
             $avatarfile = file_get_contents($avatar);
 //            $file_extension = strtolower(substr(strrchr('http://veg.name/images-pc/mg-code-mp.jpg',"."),1));
@@ -120,27 +116,33 @@ class AuthorizationsController extends Controller
                 'longitude' => $longitude,
                 'latitude' => $latitude,
             ]);
+//            //生成小程序码
             $shopId=$shop->id;
-            $access = json_decode($this->get_access_token(),true);
-            $access_token= $access['access_token'];
-            $url = config('wxxcx.getwxacodeunlimit_url') . $access_token;
-            $data='{"width":"430","auto_color":true,"path":"pages/detail/detail?id='.$shopId.'"}';
-            $da = $this->api_notice_increment($url,$data);
-            if ($da) {
-                $filename = 'qrcode/'.$shopId.'MG'.uniqid().'.png';
-                Storage::disk('upyun')->write($filename, $da);
-                $shopCode=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
-
-                $attributes['code'] = $shopCode;
-                $shop->update($attributes);
-            }
-
+//            $access = json_decode($this->get_access_token(),true);
+//            $access_token= $access['access_token'];
+//            $url = config('wxxcx.getwxacodeunlimit_url') . $access_token;
+//            $data='{"width":"430","auto_color":true,"path":"pages/detail/detail?id='.$shopId.'"}';
+//            $da = $this->api_notice_increment($url,$data);
+//            if ($da) {
+//                $filename = 'qrcode/'.$shopId.'MG'.uniqid().'.png';
+//                Storage::disk('upyun')->write($filename, $da);
+//                $shopCode=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
+//
+//                $attributes['code'] = $shopCode;
+//                $shop->update($attributes);
+//            }
+            //更新用户状态为已入驻，is_active=1
+            $user = User::find($userid);
+//            $attributes['phone'] = $phone;
+            $attributes['is_active'] = '1';
+            // 更新用户数据
+            $user->update($attributes);
             return response()->json([
                 'status' => 'true',
                 'message' => '成功入驻',
             ], 200);
         }
-        return $this->response->errorUnauthorized('请重新打开苗果小程序授权后再申请入驻');
+        return $this->response->errorUnauthorized('请重新申请入驻');
     }
 
     public function get_access_token(){
