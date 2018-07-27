@@ -115,6 +115,7 @@ class AuthorizationsController extends Controller
                 'villageInfo' => $villageInfo,
                 'longitude' => $longitude,
                 'latitude' => $latitude,
+                'code' => 'https://images.veg.kim/mp/mg-code-mp.jpg',
             ]);
 //            //生成小程序码
             $shopId=$shop->id;
