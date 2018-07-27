@@ -49,6 +49,13 @@ class UsersController extends Controller
     public function userPasswordUpdate(Request $request)
     {
         $userid = request()->user()->id;
+        if(!$userid){
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 404,
+                'message' => '密码更新失败',
+            ]);
+        }
         $user = User::find($userid);
         if ($user->is_active == '1') {
             $attributes['password'] = Hash::make($request->password);
