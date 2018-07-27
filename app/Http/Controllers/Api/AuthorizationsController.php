@@ -91,6 +91,12 @@ class AuthorizationsController extends Controller
                     'message' => '苗厂名已存在',
                 ], 403);
             }
+            if (!$title) {
+                return response()->json([
+                    'status' => 'false',
+                    'message' => '苗厂名不能为空',
+                ], 403);
+            }
             $user = User::find($userid);
 //            $attributes['phone'] = $phone;
             $attributes['is_active'] = '1';
