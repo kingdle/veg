@@ -21,8 +21,9 @@ class Message extends JsonResource
             'avatar'=> $this->user->avatar_url,
             'content'=>$this->content,
             'pic'=>json_decode($this->pic),
+            'is_adopt'=>$this->is_adopt,
             'published_at'=>$this->published_at,
-            'created_at'=>$this->created_at,
+            'created_at'=>$this->created_at->format('Y-m-d H:i'),
             'updated_at'=>$this->updated_at,
         ];
     }
