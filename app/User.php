@@ -39,6 +39,9 @@ class User extends Authenticatable
     public function dynamic(){
         return $this->hasMany('App\Dynamic','user_id','id');
     }
+    public function message(){
+        return $this->hasMany('App\Message','user_id','id');
+    }
     public function order(){
         return $this->hasMany('App\Order','user_id','id');
     }

@@ -11,7 +11,7 @@ class MessagesController extends Controller
 {
     public function index()
     {
-        $messages = Message::with('shop')->orderBy('id', 'desc')->paginate(9);
+        $messages = Message::with('user')->orderBy('id', 'desc')->paginate(9);
         return new MessageCollection($messages);
     }
 

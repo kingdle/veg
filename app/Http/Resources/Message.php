@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Message extends JsonResource
@@ -16,8 +17,8 @@ class Message extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'userid'=>$this->user_id,
-            'shop_id'=>$this->shop_id,
+            'nickname'=> $this->user->nickname,
+            'avatar'=> $this->user->avatar_url,
             'content'=>$this->content,
             'pic'=>json_decode($this->pic),
             'published_at'=>$this->published_at,
