@@ -278,7 +278,6 @@ class OrdersController extends Controller
         if ($request->end_at) {
             $attributes['start_at'] = date("Y-m-d",strtotime("-40 day",strtotime($request->end_at)));
             $attributes['end_at'] = $request->end_at;
-
         }
         if ($request->counts) {
             $attributes['counts'] = $request->counts;
@@ -292,13 +291,30 @@ class OrdersController extends Controller
         if ($request->prod_id) {
             $attributes['prod_id'] = $this->prod_id;
         }
-        if ($request->address) {
-            $foo = explode(',', $request->address);
-            $attributes['address'] = $foo[0];
-            $attributes['cityInfo'] = $foo[2];
-            $attributes['villageInfo'] = $foo[1];
-            $attributes['latitude'] = $foo[3];
-            $attributes['longitude'] = $foo[4];
+        if($request->is_true_location){
+            $attributes['is_true_location'] = $request->is_true_location;
+        }
+        if ($request->provinceName) {
+            $attributes['provinceName'] = $request->provinceName;
+        }
+        if ($request->cityName) {
+            $attributes['cityName'] = $request->cityName;
+        }
+        if ($request->countyName) {
+            $attributes['countyName'] = $request->countyName;
+        }
+        if ($request->detailInfo) {
+            $attributes['detailInfo'] = $request->detailInfo;
+            $attributes['villageInfo'] = $request->detailInfo;
+        }
+        if($request->provinceName){
+            $attributes['address']= $request->provinceName.$request->cityName.$request->countyName;
+        }
+        if ($request->latitude) {
+            $attributes['latitude'] = $request->latitude;
+        }
+        if ($request->longitude) {
+            $attributes['longitude'] = $request->longitude;
         }
         if ($request->note_sell) {
             $attributes['note_sell'] =$request->note_sell;
