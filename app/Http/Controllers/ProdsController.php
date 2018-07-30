@@ -88,6 +88,7 @@ class ProdsController extends Controller
         if ($is_product) {
             return response()->json([
                 'status' => 'false',
+                'status_code' => 403,
                 'message' => '品种已存在',
             ], 403);
         }
