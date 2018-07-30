@@ -222,10 +222,22 @@ class OrdersController extends Controller
         if ($request->name) {
             $order->name =$request->name;
         }
+        if ($request->provinceName) {
+            $order->provinceName = $request->provinceName;
+        }
+        if ($request->cityName) {
+            $order->cityName = $request->cityName;
+        }
+        if ($request->countyName) {
+            $order->countyName = $request->countyName;
+        }
+        if ($request->detailInfo) {
+            $order->detailInfo = $request->detailInfo;
+        }
         if ($request->address) {
             $foo = explode(',', $request->address);
             $order->address = $foo[0];
-            $order->cityInfo = $foo[2];
+            $order->cityName = $foo[2];
             $order->villageInfo = $foo[1];
             $order->latitude = $foo[3];
             $order->longitude = $foo[4];
@@ -256,6 +268,51 @@ class OrdersController extends Controller
             $data['status_code'] = '501';
             $data['msg'] = '系统繁忙，请售后再试';
             $data['name'] = $request->name;
+            return json_encode($data);
+        }
+    }
+    public function weOrderUpdate(Request $request){
+        $order = Order::where('id', $request->id)->first();
+        $attributes['name'] = $request->name;
+        $attributes['phone'] = $request->phone;
+        if ($request->end_at) {
+            $attributes['start_at'] = date("Y-m-d",strtotime("-40 day",strtotime($request->end_at)));
+            $attributes['end_at'] = $request->end_at;
+
+        }
+        if ($request->counts) {
+            $attributes['counts'] = $request->counts;
+        } else {
+            $attributes['counts'] = '0';
+        }
+        $attributes['unit_price'] = $request->unit_price;
+        if ($request->unit_price && $request->counts) {
+            $attributes['total_price'] =  $request->unit_price * $request->counts;
+        }
+        if ($request->prod_id) {
+            $attributes['prod_id'] = $this->prod_id;
+        }
+        if ($request->address) {
+            $foo = explode(',', $request->address);
+            $attributes['address'] = $foo[0];
+            $attributes['cityInfo'] = $foo[2];
+            $attributes['villageInfo'] = $foo[1];
+            $attributes['latitude'] = $foo[3];
+            $attributes['longitude'] = $foo[4];
+        }
+        if ($request->note_sell) {
+            $attributes['note_sell'] =$request->note_sell;
+        }
+        $success = $order->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = $order->id . '订单编辑成功';
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
             return json_encode($data);
         }
     }
