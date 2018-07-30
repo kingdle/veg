@@ -84,6 +84,13 @@ class ProdsController extends Controller
             $prod->unit_price =  $request->unit_price;
         }
         $prod->shop_id =$shopId;
+        $is_product = Prod::where('shop_id', $shopId)->where('title', $request->title)->first();
+        if ($is_product) {
+            return response()->json([
+                'status' => 'false',
+                'message' => '品种已存在',
+            ], 403);
+        }
         $success = $prod->save();
         if ($success) {
             return response()->json([
