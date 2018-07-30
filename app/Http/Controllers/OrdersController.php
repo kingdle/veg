@@ -275,6 +275,8 @@ class OrdersController extends Controller
         $order = Order::where('id', $request->id)->first();
         $attributes['name'] = $request->name;
         $attributes['phone'] = $request->phone;
+        $attributes['unit_price'] = $request->unit_price;
+
         if ($request->end_at) {
             $attributes['start_at'] = date("Y-m-d",strtotime("-40 day",strtotime($request->end_at)));
             $attributes['end_at'] = $request->end_at;
@@ -284,12 +286,11 @@ class OrdersController extends Controller
         } else {
             $attributes['counts'] = '0';
         }
-        $attributes['unit_price'] = $request->unit_price;
         if ($request->unit_price && $request->counts) {
             $attributes['total_price'] =  $request->unit_price * $request->counts;
         }
         if ($request->prod_id) {
-            $attributes['prod_id'] = $this->prod_id;
+            $attributes['prod_id'] = $request->prod_id;
         }
         if($request->is_true_location){
             $attributes['is_true_location'] = $request->is_true_location;
@@ -469,6 +470,10 @@ class OrdersController extends Controller
     {
         $order = Order::where('id', $request->id)->first();
         $attributes['address'] = $request->address;
+//        $attributes['provinceName'] = $request->provinceName;
+//        $attributes['cityName'] = $request->cityName;
+//        $attributes['countyName'] = $request->countyName;
+        $attributes['detailInfo'] = $request->name;
         $attributes['villageInfo'] = $request->name;
         $attributes['longitude'] = $request->longitude;
         $attributes['latitude'] = $request->latitude;
