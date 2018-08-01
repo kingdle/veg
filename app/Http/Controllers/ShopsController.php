@@ -42,7 +42,7 @@ class ShopsController extends Controller
         if (!$shop) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
-        $shop->increment('click_count');
+//        $shop->increment('click_count');
         return new \App\Http\Resources\Shop($shop);
     }
 
