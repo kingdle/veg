@@ -38,7 +38,7 @@ class ShopsController extends Controller
 
     public function show($id)
     {
-        $shop = Shop::find($id);
+        $shop = Shop::find($id)->increment('click_count');
         if (!$shop) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }

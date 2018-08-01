@@ -19,7 +19,8 @@ class MessageCollection extends ResourceCollection
     public function with($request){
         return [
             'status'=>'success',
-            'status_code'=>'200'
+            'status_code'=>'200',
+            'slogan'=>Config::find('2'),
         ];
     }
 }
