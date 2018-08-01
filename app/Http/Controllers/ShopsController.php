@@ -38,10 +38,11 @@ class ShopsController extends Controller
 
     public function show($id)
     {
-        $shop = Shop::find($id)->increment('click_count');
+        $shop = Shop::find($id);
         if (!$shop) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
+        $shop->increment('click_count');
         return new \App\Http\Resources\Shop($shop);
     }
 
