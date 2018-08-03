@@ -71,6 +71,8 @@ class AuthorizationsController extends Controller
             $title = $request->title;
 //            $phone = $request->phone;
             $summary = $request->summary;
+            $country = $request->country;
+            $province = $request->province;
             $cityInfo = $request->cityInfo;
             $address = $request->address;
             $villageInfo = $request->villageInfo;
@@ -110,6 +112,8 @@ class AuthorizationsController extends Controller
                 'title' => $title,
                 'summary' => $summary,
                 'avatar' => $shopavatar,
+                'country' => $country,
+                'province' => $province,
                 'cityInfo' => $cityInfo,
                 'address' => $address,
                 'villageInfo' => $villageInfo,

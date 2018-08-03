@@ -23,15 +23,17 @@ class ShopsController extends Controller
         $userId=request()->user()->id;
         $shopId=request()->user()->shop->id;
         $shop = Shop::find($shopId);
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $filename = 'avatars/'.$userId.'MG'.uniqid().'.'.$avatar->getClientOriginalExtension();
-            Storage::disk('upyun')->writeStream($filename, fopen($avatar->getRealPath(), 'r'));
-            $filePath=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
-            $attributes['avatar'] = $filePath;
-        }
+//        if ($request->hasFile('avatar')) {
+//            $avatar = $request->file('avatar');
+//            $filename = 'avatars/'.$userId.'MG'.uniqid().'.'.$avatar->getClientOriginalExtension();
+//            Storage::disk('upyun')->writeStream($filename, fopen($avatar->getRealPath(), 'r'));
+//            $filePath=config('filesystems.disks.upyun.protocol').'://'.config('filesystems.disks.upyun.domain').'/'.$filename;
+//            $attributes['avatar'] = $filePath;
+//        }
         //把session_key
         $attributes['summary'] = $request->summary;
+        $attributes['country'] = $request->country;
+        $attributes['province'] = $request->province;
         $attributes['villageInfo'] = $request->villageInfo;
         $attributes['longitude'] = $request->longitude;
         $attributes['latitude'] = $request->latitude;
