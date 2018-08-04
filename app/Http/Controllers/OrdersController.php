@@ -293,6 +293,8 @@ class OrdersController extends Controller
         }
         if ($request->prod_id) {
             $attributes['prod_id'] = $request->prod_id;
+            Prod::find($order->prod_id)->decrement('likes_count');
+            Prod::find($request->prod_id)->increment('likes_count');
         }
         if($request->is_true_location){
             $attributes['is_true_location'] = $request->is_true_location;
