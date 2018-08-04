@@ -75,6 +75,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
 
     //prods商品分类查询
     Route::resource('/prods', 'ProdsController')->middleware('auth:api');
+    Route::get('/prod/prodSeller/{id}', 'ProdsController@prodSeller')->middleware('auth:api');
     Route::post('/prod/uploadImage', 'ProdsController@uploadImage')->middleware('auth:api');
     Route::post('/prod/createProduct', 'ProdsController@createProduct')->middleware('auth:api');
     //tags商品标签查询

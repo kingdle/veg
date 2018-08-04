@@ -16,7 +16,12 @@ class ProdsController extends Controller
         $prods = Prod::where('shop_id',$shopId)->orwhere('shop_id','187')->orderBy('updated_at', 'desc')->orderBy('likes_count', 'desc')->get();
         return new ProdCollection($prods);
     }
-
+    public function prodSeller($id)
+    {
+//        $shopId = Auth::guard('api')->user()->shop->id;
+        $prods = Prod::where('shop_id',$id)->where('title','not like','%克隆%')->where('title','not like','%代育%')->where('title','not like','%拷贝%')->orderBy('updated_at', 'desc')->orderBy('likes_count', 'desc')->get();
+        return new ProdCollection($prods);
+    }
     public function show($id)
     {
         $prod = Prod::find($id);
