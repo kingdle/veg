@@ -13,7 +13,7 @@ class ProdsController extends Controller
     public function index()
     {
         $shopId = Auth::guard('api')->user()->shop->id;
-        $prods = Prod::where('shop_id',$shopId)->orwhere('shop_id','187')->orderBy('updated_at', 'desc')->orderBy('likes_count', 'desc')->get();
+        $prods = Prod::where('shop_id',$shopId)->orwhere('shop_id','187')->orderBy('created_at', 'desc')->orderBy('likes_count', 'desc')->get();
         return new ProdCollection($prods);
     }
     public function prodSeller($id)
