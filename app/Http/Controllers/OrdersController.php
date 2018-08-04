@@ -248,7 +248,7 @@ class OrdersController extends Controller
         }
         if ($request->prod_id) {
             $order->prod_id =$request->prod_id;
-            Prod::find($request->prod_id)->increment('click_count');
+            Prod::find($request->prod_id)->increment('likes_count');
         }
         if ($request->note_sell) {
             $order->note_sell =$request->note_sell;
