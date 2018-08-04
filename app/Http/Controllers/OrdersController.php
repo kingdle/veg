@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\OrderCollection;
 use App\Order;
+use App\Prod;
 use App\Shop;
 use App\Tag;
 use Auth;
@@ -247,6 +248,7 @@ class OrdersController extends Controller
         }
         if ($request->prod_id) {
             $order->prod_id =$request->prod_id;
+            Prod::find($request->prod_id)->increment('click_count');
         }
         if ($request->note_sell) {
             $order->note_sell =$request->note_sell;
