@@ -48,16 +48,16 @@ class CountController extends Controller
     public function moneyOrder($id)
     {
         $userId = $id;
-        $ordersCount = Order::latest()->where('to_user_id', $userId)->where('is_del', '=','F')->count();//订单总数
-        $seedCount = Order::latest()->where('to_user_id', $userId)->where('is_del', '=','F')->sum('counts');//苗子总数
+        $ordersCount = Order::latest()->where('shop_id', $userId)->where('is_del', '=','F')->count();//订单总数
+        $seedCount = Order::latest()->where('shop_id', $userId)->where('is_del', '=','F')->sum('counts');//苗子总数
 
-        $ordersList = Order::latest()->where('to_user_id', $userId)->where('state','0')->where('payment','0')->where('is_del', '=','F')->count();//未送苗及未收款总数
-        $ordersSend = Order::latest()->where('to_user_id', $userId)->where('state','1')->where('is_del', '=','F')->count();//已送苗总数
-        $ordersPayment = Order::latest()->where('to_user_id', $userId)->where('payment','1')->where('is_del', '=','F')->count();//已收款总数
+        $ordersList = Order::latest()->where('shop_id', $userId)->where('state','0')->where('payment','0')->where('is_del', '=','F')->count();//未送苗及未收款总数
+        $ordersSend = Order::latest()->where('shop_id', $userId)->where('state','1')->where('is_del', '=','F')->count();//已送苗总数
+        $ordersPayment = Order::latest()->where('shop_id', $userId)->where('payment','1')->where('is_del', '=','F')->count();//已收款总数
 
 
-        $unPayment = Order::latest()->where('to_user_id', $userId)->where('payment','0')->where('is_del', '=','F')->sum('total_price');//未收款金额
-        $Payment = Order::latest()->where('to_user_id', $userId)->where('payment','1')->where('is_del', '=','F')->sum('total_price');//已收款金额
+        $unPayment = Order::latest()->where('shop_id', $userId)->where('payment','0')->where('is_del', '=','F')->sum('total_price');//未收款金额
+        $Payment = Order::latest()->where('shop_id', $userId)->where('payment','1')->where('is_del', '=','F')->sum('total_price');//已收款金额
         $money=$unPayment+$Payment;
 //        $moneyCount = Order::latest()->where('user_id', $userId)->count();//订单总金额
 
