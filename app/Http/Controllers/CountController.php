@@ -45,9 +45,9 @@ class CountController extends Controller
         ];
         return json_encode($orderChart);
     }
-    public function moneyOrder()
+    public function moneyOrder($id)
     {
-        $userId = Auth::guard('api')->user()->id;
+        $userId = $id;
         $ordersCount = Order::latest()->where('to_user_id', $userId)->where('is_del', '=','F')->count();//订单总数
         $seedCount = Order::latest()->where('to_user_id', $userId)->where('is_del', '=','F')->sum('counts');//苗子总数
 
