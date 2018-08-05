@@ -59,7 +59,10 @@ class CountController extends Controller
         $unPayment = Order::latest()->where('shop_id', $userId)->where('payment','0')->where('is_del', '=','F')->sum('total_price');//未收款金额
         $Payment = Order::latest()->where('shop_id', $userId)->where('payment','1')->where('is_del', '=','F')->sum('total_price');//已收款金额
         $money=$unPayment+$Payment;
-//        $moneyCount = Order::latest()->where('user_id', $userId)->count();//订单总金额
+
+        if($money>10000){
+            $money = round($money/1000, 2).'万';
+        }
 
         $orderChart = [
             'ordersCount' => $ordersCount,
