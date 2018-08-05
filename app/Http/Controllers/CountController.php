@@ -61,7 +61,7 @@ class CountController extends Controller
         $money=$unPayment+$Payment;
 
         if($money>10000){
-            $money = round($money/10000, 2).'万';
+            $money = round($money/10000, 2).'万元';
         }
 
         $orderChart = [
@@ -70,8 +70,8 @@ class CountController extends Controller
             'orderList' =>$ordersList,
             'orderSend' => $ordersSend,
             'orderPayment' => $ordersPayment,
-            'unPayment' =>$unPayment,
-            'payment' => $Payment,
+            'unPayment' =>$unPayment.'元',
+            'payment' => $Payment.'元',
             'money' => $money
         ];
         return json_encode($orderChart);
