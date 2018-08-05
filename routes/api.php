@@ -87,6 +87,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //统计
     Route::get('/count','CountController@count')->middleware('auth:api');
     Route::get('/countOrder','CountController@countOrder')->middleware('auth:api');
+    Route::get('/moneyOrder','CountController@moneyOrder')->middleware('auth:api');
 
     Route::get('weapp/code','WeChatController@index');
 
