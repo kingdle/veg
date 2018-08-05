@@ -10,13 +10,13 @@ class AlbumsController extends Controller
 {
     public function index()
     {
-        $albums = Album::paginate(32);
+        $albums = Album::paginate(16);
         return new AlbumCollection($albums);
     }
 
     public function show($shop_id)
     {
-        $album = Album::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(32);
+        $album = Album::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(16);
         if ($album->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
