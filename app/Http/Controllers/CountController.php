@@ -61,7 +61,7 @@ class CountController extends Controller
         $money=$unPayment+$Payment;
 
         if($money>10000){
-            $money = round($money/1000, 2).'万';
+            $money = round($money/10000, 2).'万';
         }
 
         $orderChart = [
