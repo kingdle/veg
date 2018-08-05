@@ -19,7 +19,7 @@ class ProdsController extends Controller
     public function prodSeller($id)
     {
 //        $shopId = Auth::guard('api')->user()->shop->id;
-        $prods = Prod::where('shop_id',$id)->where('title','not like','%克隆%')->where('title','not like','%代育%')->where('title','not like','%拷贝%')->orderBy('likes_count', 'desc')->paginate(9);
+        $prods = Prod::where('shop_id',$id)->where('title','not like','%克隆%')->where('title','not like','%代育%')->where('title','not like','%拷贝%')->orderBy('likes_count', 'desc')->get();
         return new ProdCollection($prods);
     }
     public function show($id)
