@@ -88,6 +88,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::get('/count','CountController@count')->middleware('auth:api');
     Route::get('/countOrder','CountController@countOrder')->middleware('auth:api');
     Route::get('/moneyOrder/{id}','CountController@moneyOrder')->middleware('auth:api');
+    Route::get('/weCharts/{id}','CountController@weCharts')->middleware('auth:api');
 
     Route::get('weapp/code','WeChatController@index');
 

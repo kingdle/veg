@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Prod;
 use Auth;
 use App\Album;
 use App\Dynamic;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CountController extends Controller
 {
@@ -73,6 +75,22 @@ class CountController extends Controller
             'unPayment' =>$unPayment.'元',
             'payment' => $Payment.'元',
             'money' => $money
+        ];
+        return json_encode($orderChart);
+    }
+    public function weCharts($id){
+        $table= Order::where('shop_id',$id)->where('is_del', '=','F')->get(array('prod_id','counts','end_at'));
+        foreach ($table as $value){
+            $prod[]= $value->prod_id;
+        }
+        $prodT= Prod::whereIn('id',$prod)->get(['title','id']);
+        foreach ($prodT as $value){
+            $prodTitle[]= $value->title;
+            $prods[]=Order::where('shop_id',$id)->where('prod_id',$value->id)->where('is_del', '=','F')->sum('counts');
+        }
+        $orderChart = [
+            'prod' => $prodTitle,
+            'counts' => $prods,
         ];
         return json_encode($orderChart);
     }
