@@ -31,19 +31,35 @@ class ShopsController extends Controller
 //            $attributes['avatar'] = $filePath;
 //        }
         //把session_key
-        $attributes['summary'] = $request->summary;
-        $attributes['country'] = $request->country;
-        $attributes['province'] = $request->province;
-        $attributes['villageInfo'] = $request->villageInfo;
-        $attributes['longitude'] = $request->longitude;
-        $attributes['latitude'] = $request->latitude;
-        $attributes['address'] = $request->address;
+        if($request->summary){
+            $attributes['summary'] = $request->summary;
+        }
+        if($request->country){
+            $attributes['country'] = $request->country;
+
+        }
+        if($request->province){
+            $attributes['province'] = $request->province;
+        }
+        if($request->cityInfo){
+            $attributes['cityInfo'] = $request->cityInfo;
+        }
+        if($request->villageInfo){
+            $attributes['villageInfo'] = $request->villageInfo;
+        }
+        if($request->longitude){
+            $attributes['longitude'] = $request->longitude;
+            $attributes['latitude'] = $request->latitude;
+        }
+        if($request->longitude){
+            $attributes['address'] = $request->address;
+        }
         // 更新用户数据
         $shop->update($attributes);
         return response()->json([
             'status'=>'true',
             'status_code' => 200,
-            'message' => '店铺信息更新成功',
+            'message' => '苗场信息更新成功',
             'data'=>$shop
         ]);
     }
