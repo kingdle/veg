@@ -16,6 +16,9 @@ class Shop extends Model
     public function user(){
         return $this->belongsTo('App\User','user_id');
     }
+    public function order(){
+        return $this->hasMany('App\Order','shop_id','id');
+    }
     public function dynamic(){
         return $this->hasMany('App\Dynamic','shop_id','id');
     }

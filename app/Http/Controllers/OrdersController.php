@@ -55,7 +55,11 @@ class OrdersController extends Controller
     {
         $userId = Auth::guard('api')->user()->id;
         $phone = $request->phone;
-        $orders = Order::where("phone",'=',$phone)->where('is_del', '=', 'F')->orderby("end_at","desc")->get();
+        $orders = Order::where("phone",'=',$phone)->with(['shop'=>function($query){
+            $query->select('id','title');
+        }])->with(['prod'=>function($query){
+            $query->select('id','sort_id','title');
+        }])->where('is_del', '=', 'F')->orderby("end_at","desc")->get();
         if ($orders->count() == 0) {
             $data['status'] = false;
             $data['status_code'] = '401';
@@ -73,7 +77,7 @@ class OrdersController extends Controller
             ];
             return json_encode($data);
         }
-        return new OrderCollection($orders);
+        return $orders;
     }
     public function lists()
     {
