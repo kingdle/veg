@@ -77,7 +77,17 @@ class OrdersController extends Controller
             ];
             return json_encode($data);
         }
-        return $orders;
+        foreach($orders as $value){
+            $order[] = [
+                'id' => $value->id,
+                'shop' => $value->shop,
+                'prod' => $value->prod,
+                'counts' => $value->counts,
+                'end_at' => substr($value->end_at,0,10),
+                'created_at' => substr($value->created_at,0,10),
+            ];
+        }
+        return $order;
     }
     public function lists()
     {
