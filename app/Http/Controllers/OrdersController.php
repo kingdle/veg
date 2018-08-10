@@ -83,6 +83,8 @@ class OrdersController extends Controller
                 'shop' => $value->shop,
                 'prod' => $value->prod,
                 'counts' => $value->counts,
+                'payment' => $value->payment,
+                'state' => $value->state,
                 'end_at' => substr($value->end_at,0,10),
                 'created_at' => substr($value->created_at,0,10),
             ];
