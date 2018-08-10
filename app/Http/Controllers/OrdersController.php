@@ -31,7 +31,7 @@ class OrdersController extends Controller
     {
         $userId = Auth::guard('api')->user()->id;
         $phone = $request->phone;
-        $orders = Order::where("to_user_id",'=',$userId)->where("phone",'=',$phone)->orderby("end_at","desc")->get();
+        $orders = Order::where("to_user_id",'=',$userId)->where("phone",'=',$phone)->where('is_del', '=', 'F')->orderby("end_at","desc")->get();
         if ($orders->count() == 0) {
             $data['status'] = false;
             $data['status_code'] = '401';
@@ -51,7 +51,30 @@ class OrdersController extends Controller
         }
         return new OrderCollection($orders);
     }
-
+    public function weBuyerList(Request $request)
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $phone = $request->phone;
+        $orders = Order::where("phone",'=',$phone)->where('is_del', '=', 'F')->orderby("end_at","desc")->get();
+        if ($orders->count() == 0) {
+            $data['status'] = false;
+            $data['status_code'] = '401';
+            $data['msg'] = '订单为空';
+            $data['data'] = [];
+            $data['links'] = '';
+            $data['meta'] = [
+                'current_page' => 0,
+                'from' => 0,
+                'last_page' => 0,
+                'path' => '',
+                'per_page' => 9,
+                'to' => 0,
+                'total' => 0
+            ];
+            return json_encode($data);
+        }
+        return new OrderCollection($orders);
+    }
     public function lists()
     {
         $userId = Auth::guard('api')->user()->id;
