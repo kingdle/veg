@@ -147,5 +147,8 @@ $api->version('v2', [
 
         //模板消息
         $api->post('v2/send', 'TemplateController@send')->middleware('auth:api');
+
+        //模板消息
+        $api->get('v2/planting', 'PlantingController@index');
     });
 });
