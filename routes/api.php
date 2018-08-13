@@ -148,7 +148,9 @@ $api->version('v2', [
         //模板消息
         $api->post('v2/send', 'TemplateController@send')->middleware('auth:api');
 
-        //模板消息
+        //种好地
         $api->get('v2/planting', 'PlantingController@index');
+        //蓝睛
+        $api->get('v2/blueEye', 'blue_eyeController@index');
     });
 });
