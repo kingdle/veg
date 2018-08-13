@@ -187,7 +187,46 @@ class DynamicsController extends Controller
             return response()->json([], 500, '文件未通过验证');
         }
     }
+    public function adminCreate(Request $request, Dynamic $dynamic)
+    {
+        $imageUrl = $request->imageUrl;
+        $userId = Auth::guard('api')->user()->id;
+        $shopId = Auth::guard('api')->user()->shop->id;
+        if($request->dynamicContent){
+            $content = $request->dynamicContent;
+        }else{
+            $content = '';
+        }
 
+        $dynamic->user_id = $userId;
+        $dynamic->shop_id = $shopId;
+        $dynamic->content = $content;
+        $dynamic->pic = json_encode($imageUrl);
+        $success = $dynamic->save();
+        if ($request->get('tags')) {
+            $tags = $this->normalizeTag($request->get('tags'));
+            $dynamic->tags()->attach($tags);
+        }
+        if ($request->get('sorts')) {
+            $sorts = $this->normalizeSort($request->get('sorts'));
+            $dynamic->sorts()->attach($sorts);
+        }
+
+        if ($success) {
+            Shop::where('id', $shopId)->increment('dynamic_count');//动态数加1
+            return response()->json([
+                'status' => 'true',
+                'status_code' => 200,
+                'message' => '动态发布成功'.date("h:i:s"),
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 501,
+                'message' => '服务器端错误'.date("h:i:s"),
+            ]);
+        }
+    }
     private function normalizeTag(array $tags)
     {
         $ids = Tag::pluck('id');

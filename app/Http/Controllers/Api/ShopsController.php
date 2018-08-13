@@ -18,6 +18,24 @@ class ShopsController extends Controller
         }
         return new \App\Http\Resources\Shop($shop);
     }
+    public function shopList()
+    {
+        $userId=request()->user()->id;
+        $shops = Shop::where('is_hidden','F')->where('is_service','F')->orderBy('villageInfo', 'desc')->get(array('id','user_id','title','villageInfo'));
+//        foreach ($shops as $value){
+//            $id[]= $value->id;
+//            $user_id[]=$value->user_id;
+//            $title[]= $value->title;
+//            $villageInfo[]=$value->villageInfo;
+//        }
+//        $shopList = [
+//            'id' => $id,
+//            'user_id' => $user_id,
+//            'title' => $title,
+//            'villageInfo' => $villageInfo,
+//        ];
+        return json_encode($shops);
+    }
     public function weUpdate(Request $request)
     {
         $userId=request()->user()->id;
