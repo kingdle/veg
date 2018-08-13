@@ -151,6 +151,6 @@ $api->version('v2', [
         //种好地
         $api->get('v2/planting', 'PlantingController@index');
         //蓝睛
-        $api->get('v2/blueEye', 'blue_eyeController@index');
+        $api->get('v2/blueEye', 'blueEyeController@index');
     });
 });
