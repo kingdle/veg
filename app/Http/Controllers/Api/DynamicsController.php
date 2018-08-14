@@ -69,8 +69,16 @@ class DynamicsController extends Controller
     public function uploadImage(Request $request, Album $album)
     {
         $file = $request->file('file');
-        $userId = Auth::guard('api')->user()->id;
-        $shopId = Auth::guard('api')->user()->shop->id;
+        if($request->shopId){
+            $shopId = $request->shopId;
+        }else{
+            $shopId = Auth::guard('api')->user()->shop->id;
+        }
+        if($request->userId){
+            $userId = $request->userId;
+        }else{
+            $userId = Auth::guard('api')->user()->id;
+        }
 
         if (!$request->hasFile('file')) {
             return response()->json([
