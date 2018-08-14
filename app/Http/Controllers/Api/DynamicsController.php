@@ -120,7 +120,60 @@ class DynamicsController extends Controller
         }
 
     }
+    public function weUploadImages(Request $request, Album $album)
+    {
+        return '111';
+        $file = $request->file('file');
+        if($request->shopId){
+            $shopId = $request->shopId;
+        }else{
+            $shopId = Auth::guard('api')->user()->shop->id;
+        }
+        if($request->userId){
+            $userId = $request->userId;
+        }else{
+            $userId = Auth::guard('api')->user()->id;
+        }
 
+        if (!$request->hasFile('file')) {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 404,
+                'message' => '未获取到图片，上传失败',
+            ]);
+        }
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();     // image/jpeg
+
+            // 上传文件
+            $filename = 'dynamics/' . 'MG' . uniqid() . '.' . $ext;
+            Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
+            $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
+            $album->user_id = $userId;
+            $album->shop_id = $shopId;
+            $album->pic = json_encode($filePath);
+            $album->save();
+            Shop::where('id', $shopId)->increment('pic_count');//图片数加1
+            return response()->json([
+                'status' => 'true',
+                'status_code' => 200,
+                'message' => '上传成功',
+                'url' => $filePath,
+                'name' => $originalName,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 500,
+                'message' => '服务器端错误，请重新上传',
+            ]);
+        }
+
+    }
     public function weCreate(Request $request, Dynamic $dynamic)
     {
         $imageUrl = $request->imageUrl;

@@ -56,7 +56,7 @@ class OrdersController extends Controller
         $userId = Auth::guard('api')->user()->id;
         $phone = $request->phone;
         $orders = Order::where("phone",'=',$phone)->with(['shop'=>function($query){
-            $query->select('id','title','phone');
+            $query->select('id','title');
         }])->with(['prod'=>function($query){
             $query->select('id','sort_id','title','pic');
         }])->where('is_del', '=', 'F')->orderby("end_at","desc")->get();

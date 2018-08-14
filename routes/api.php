@@ -143,6 +143,7 @@ $api->version('v2', [
 
         $api->post('v2/dynamic/index', 'DynamicsController@weIndex');
         $api->post('v2/dynamic/upload', 'DynamicsController@uploadImage')->middleware('auth:api');
+        $api->post('v2/dynamic/weUploadImages', 'DynamicsController@weUploadImages')->middleware('auth:api');
         $api->post('v2/dynamic/create', 'DynamicsController@weCreate')->middleware('auth:api');
         $api->post('v2/dynamic/upfile', 'DynamicsController@upFile')->middleware('auth:api');
         $api->post('v2/dynamic/adminCreate', 'DynamicsController@adminCreate')->middleware('auth:api');
