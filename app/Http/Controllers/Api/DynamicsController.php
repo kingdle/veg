@@ -8,6 +8,7 @@ use App\Http\Resources\DynamicCollection;
 use App\Shop;
 use App\Sort;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -198,8 +199,16 @@ class DynamicsController extends Controller
     public function adminCreate(Request $request, Dynamic $dynamic)
     {
         $imageUrl = $request->imageUrl;
-        $userId = Auth::guard('api')->user()->id;
-        $shopId = Auth::guard('api')->user()->shop->id;
+        if($request->shopId){
+            $shopId = $request->shopId;
+        }else{
+            $shopId = Auth::guard('api')->user()->shop->id;
+        }
+        if($request->userId){
+            $userId = $request->userId;
+        }else{
+            $userId = Auth::guard('api')->user()->id;
+        }
         if($request->dynamicContent){
             $content = $request->dynamicContent;
         }else{
@@ -222,6 +231,7 @@ class DynamicsController extends Controller
 
         if ($success) {
             Shop::where('id', $shopId)->increment('dynamic_count');//动态数加1
+            User::where('id', $userId)->increment('likes_count');//点赞数加1
             return response()->json([
                 'status' => 'true',
                 'status_code' => 200,
