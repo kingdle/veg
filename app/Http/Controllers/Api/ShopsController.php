@@ -21,7 +21,7 @@ class ShopsController extends Controller
     public function shopList()
     {
         $userId=request()->user()->id;
-        $shops = Shop::where('is_hidden','F')->where('is_service','F')->orderBy('villageInfo', 'desc')->get(array('id','user_id','title','villageInfo'));
+        $shops = Shop::where('is_hidden','F')->where('is_service','F')->orderBy('title', 'desc')->get(array('id','user_id','title','villageInfo'));
 //        foreach ($shops as $value){
 //            $id[]= $value->id;
 //            $user_id[]=$value->user_id;
