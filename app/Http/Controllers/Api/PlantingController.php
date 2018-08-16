@@ -15,7 +15,8 @@ class PlantingController extends Controller
             'status_code' => 200,
             'message' => '信息获取成功',
             'data'=>$planting,
-            'url'=>json_decode($planting->slide)
+            'url'=>json_decode($planting->slide),
+            'notice'=>json_decode($planting->notice)
         ]);
     }
 }
