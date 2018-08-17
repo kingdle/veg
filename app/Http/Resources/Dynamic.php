@@ -32,7 +32,7 @@ class Dynamic extends JsonResource
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
             'shop'=>$shop,
-            'answer'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
+            'answers'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
             'tags'=>$this->tags,
             'sorts'=>$this->sorts,
         ];
