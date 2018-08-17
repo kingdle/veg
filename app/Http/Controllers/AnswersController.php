@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class AnswersController extends Controller
 {
     public function index(){
-        $answers = Answer::with('dynamic')->orderBy('id', 'desc')->get();
+        $answers = Answer::with('dynamic')->with('user')->orderBy('id', 'desc')->get();
         return new AnswerCollection($answers);
     }
     public function store(Request $request){

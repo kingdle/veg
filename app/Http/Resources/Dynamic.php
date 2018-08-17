@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Answer;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Dynamic extends JsonResource
@@ -15,7 +16,6 @@ class Dynamic extends JsonResource
     public function toArray($request)
     {
         $shop=new Shop($this->shop);
-        $answers=new Answer($this->answers);
 //        $tags=new TagCollection($this->tags);
         return [
             'id'=>$this->id,
@@ -32,7 +32,7 @@ class Dynamic extends JsonResource
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
             'shop'=>$shop,
-            'answers'=>$answers,
+            'answer'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
             'tags'=>$this->tags,
             'sorts'=>$this->sorts,
         ];

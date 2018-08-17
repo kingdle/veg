@@ -63,7 +63,7 @@ class DynamicsController extends Controller
             }
         }
 
-        $dynamics = Dynamic::with('shop')->with('answers')->where('is_hidden','=','F')->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers')->where('is_hidden','=','F')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
 
