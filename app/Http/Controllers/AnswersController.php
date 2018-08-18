@@ -19,11 +19,13 @@ class AnswersController extends Controller
             'user_id'=>$request->user_id,
             'body'=>$request->body
         ]);
-        Dynamic::find($request->dynamic_id)->increment('answers_count');
+        $dynamic=Dynamic::find($request->dynamic_id);
+        $dynamic->increment('answers_count');
         return response()->json([
             'status' => false,
             'status_code' => '200',
-            'message'=>'回复成功'
+            'message'=>'回复成功',
+            'data'=>$dynamic
         ]);
     }
 }
