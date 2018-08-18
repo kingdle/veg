@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Dynamic;
 use App\Http\Resources\AnswerCollection;
+use App\Http\Resources\DynamicCollection;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class AnswersController extends Controller
             'user_id'=>$request->user_id,
             'body'=>$request->body
         ]);
-        $dynamic=Dynamic::find($request->dynamic_id);
+        $dynamic=Dynamic::find($request->dynamic_id)->with('user');
         $dynamic->increment('answers_count');
         return response()->json([
             'status' => false,
