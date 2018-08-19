@@ -23,25 +23,28 @@ class AnswersController extends Controller
         ]);
         $dynamic=Dynamic::find($request->dynamic_id);
         $dynamic->increment('answers_count');
-        $data['id'] = $dynamic->id;
-        $data['user_id'] = $dynamic->user_id;
-        $data['shop_id'] = $dynamic->shop_id;
-        $data['shop'] = Shop::find($dynamic->shop_id);
-        $data['content'] = $dynamic->content;
-        $data['pic'] = $dynamic->pic;
-        $data['comments_count'] = $dynamic->comments_count;
-        $data['followers_count'] = $dynamic->followers_count;
-        $data['answers_count'] = $dynamic->answers_count;
-        $data['close_comment'] = $dynamic->close_comment;
-        $data['is_hidden'] = $dynamic->is_hidden;
-        $data['published_at'] = $dynamic->published_at;
-        $data['created_at'] = $dynamic->created_at;
-        $data['updated_at'] = $dynamic->updated_at;
+//        $data['id'] = $dynamic->id;
+//        $data['user_id'] = $dynamic->user_id;
+//        $data['shop_id'] = $dynamic->shop_id;
+//        $data['shop'] = Shop::find($dynamic->shop_id);
+//        $data['tags'] = $dynamic->updated_at;
+//        $data['content'] = $dynamic->content;
+//        $data['pic'] = $dynamic->pic;
+//        $data['comments_count'] = $dynamic->comments_count;
+//        $data['followers_count'] = $dynamic->followers_count;
+//        $data['answers_count'] = $dynamic->answers_count;
+//        $data['close_comment'] = $dynamic->close_comment;
+//        $data['is_hidden'] = $dynamic->is_hidden;
+//        $data['published_at'] = $dynamic->published_at;
+//        $data['created_at'] = $dynamic->created_at;
+//        $data['updated_at'] = $dynamic->updated_at;
+        $dynamics = Dynamic::with('shop','answers')->where('id','=',$request->dynamic_id)->get();
+        $dy= new DynamicCollection($dynamics);
         return response()->json([
             'status' => false,
             'status_code' => '200',
             'message'=>'回复成功',
-            'data'=>$data
+            'data'=>$dy
         ]);
     }
 }
