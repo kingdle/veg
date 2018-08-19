@@ -23,4 +23,7 @@ class Dynamic extends Model
     public function sorts(){
         return $this->belongsToMany(Sort::class,'dynamic_sort')->withTimestamps();
     }
+    public function followers(){
+        return $this->belongsToMany(User::class,'user_dynamic')->withTimestamps();
+    }
 }

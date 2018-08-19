@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use App\Answer;
+use App\Follow;
+use Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Dynamic extends JsonResource
@@ -33,6 +35,7 @@ class Dynamic extends JsonResource
             'updated_at'=>$this->updated_at,
             'shop'=>$shop,
             'answers'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
+            'follow'=>Follow::where('dynamic_id',$this->id)->where('user_id',Auth::guard('api')->user()->id)->get(),
             'tags'=>$this->tags,
             'sorts'=>$this->sorts,
         ];

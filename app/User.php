@@ -59,8 +59,13 @@ class User extends Authenticatable
     public function favorites(){
         return $this->belongsToMany(Shop::class,'favorites')->withTimestamps();
     }
-//    public function toArray()
-//    {
-//        return ['username'=>$this->name];
-//    }
+    public function follows(){
+        return $this->belongsToMany(Dynamic::class,'user_dynamic')->withTimestamps();
+    }
+    public function followThis($dynamicId){
+        return $this->follows()->toggle($dynamicId);
+    }
+    public function followed($dynamicId){
+        return !! $this->follows()->where('question_id',$dynamicId)->count();
+    }
 }
