@@ -30,7 +30,7 @@ class FavoritesController extends Controller
     }
     public function store(Request $request){
         $userId=Shop::where('id',$request->get('shop_id'))->first()->user_id;
-        User::where('id', $userId)->increment('followings_count');//关注用户的被关注数加1//increment自增decrement自减
+//        User::where('id', $userId)->increment('followings_count');//关注用户的被关注数加1//increment自增decrement自减
         User::where('id', Auth::user()->id)->increment('followers_count');//用户关注数加1
         Shop::where('id',$request->get('shop_id'))->increment('followers_count');//苗厂关注数加1
         Auth::user()->favorites()->attach($request->get('shop_id'));
@@ -44,7 +44,7 @@ class FavoritesController extends Controller
     public function destroy($id){
         $userId=Shop::where('id',$id)->first()->user_id;
         Auth::user()->favorites()->detach($id);
-        User::where('id', $userId)->decrement('followings_count');//关注用户的被关注数减1//increment自增decrement自减
+//        User::where('id', $userId)->decrement('followings_count');//关注用户的被关注数减1//increment自增decrement自减
         User::where('id', Auth::user()->id)->decrement('followers_count');//关注数减1
         Shop::where('id',$id)->decrement('followers_count');//苗厂关注数减1
         return response()->json([
