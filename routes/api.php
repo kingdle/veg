@@ -97,6 +97,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
 
     //苗场收藏
     Route::resource('/favorite', 'Api\FavoritesController')->middleware('auth:api');
+    Route::post('/isFavorites','Api\FavoritesController@isFavorites')->middleware('auth:api');
 
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');

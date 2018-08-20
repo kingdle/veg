@@ -14,6 +14,20 @@ class FavoritesController extends Controller
     public function index(){
        return Auth::user()->favorites()->pluck('shop_id');
     }
+    public function isFavorites(Request $request){
+        $user_id=Auth::user()->id;
+        $shop_id=$request->shop_id;
+        $favorites=Favorite::where('user_id',$user_id)->where('shop_id',$shop_id)->get();
+        if ($favorites->count() == 0) {
+            return response()->json(['status' => false,'message'=>'未收藏', 'status_code' => '401']);
+        }
+        return response()->json([
+            'status' => true,
+            'status_code' => '200',
+            'message'=>'已收藏',
+            'data'=>$favorites
+        ]);
+    }
     public function store(Request $request){
         $userId=Shop::where('id',$request->get('shop_id'))->first()->user_id;
         User::where('id', $userId)->increment('followings_count');//关注用户的被关注数加1//increment自增decrement自减
