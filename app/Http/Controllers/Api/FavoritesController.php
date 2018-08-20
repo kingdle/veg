@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Dynamic;
 use App\Favorite;
 use App\Http\Resources\DynamicCollection;
 use App\Shop;
@@ -18,7 +17,7 @@ class FavoritesController extends Controller
     }
     public function followShopList(){
         $shop=Favorite::where('user_id',Auth::user()->id)->pluck('shop_id');
-        $shops = Dynamic::with('shop','answers')->whereIn('id',$shop)->get();
+        $shops = Shop::with('shop','answers')->whereIn('id',$shop)->get();
         $shopsList= new DynamicCollection($shops);
         return response()->json([
             'status' => false,
