@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Dynamic;
 use App\Favorite;
+use App\Http\Resources\DynamicCollection;
 use App\Shop;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,6 +15,17 @@ class FavoritesController extends Controller
 {
     public function index(){
        return Auth::user()->favorites()->pluck('shop_id');
+    }
+    public function followShopList(){
+        $shop=Favorite::where('user_id',Auth::user()->id)->pluck('shop_id');
+        $shops = Dynamic::with('shop','answers')->whereIn('id',$shop)->get();
+        $shopsList= new DynamicCollection($shops);
+        return response()->json([
+            'status' => false,
+            'status_code' => '200',
+            'message'=>'我收藏的苗厂',
+            'data'=>$shopsList
+        ]);
     }
     public function isFavorites(Request $request){
         $user_id=Auth::user()->id;
