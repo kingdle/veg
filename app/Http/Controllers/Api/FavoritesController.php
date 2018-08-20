@@ -17,7 +17,7 @@ class FavoritesController extends Controller
     }
     public function followShopList(){
         $shop=Favorite::where('user_id',Auth::user()->id)->pluck('shop_id');
-        $shops = Shop::whereIn('id',$shop)->get();
+        $shops = Shop::with('user')->whereIn('id',$shop)->get();
         $shopsList= new ShopCollection($shops);
         return response()->json([
             'status' => false,
