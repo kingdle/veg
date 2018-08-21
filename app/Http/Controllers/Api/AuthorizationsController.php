@@ -26,16 +26,30 @@ class AuthorizationsController extends Controller
         $weixinSessionKey = $data['session_key'];
         $nickname = $request->nickname;
         $avatar = $request->avatar;
+        if($request->country){
+            $country = $request->country;
+            $attributes['country'] = $country;
+        }
+        if($request->province){
+            $province = $request->province;
+            $attributes['province'] = $province;
+        }
+        if($request->city){
+            $city = $request->city;
+            $attributes['city'] = $city;
+        }
+        if($request->gender){
+            $gender = $request->gender;
+            $attributes['gender'] = $gender;
+        }
         //找到 openid 对应的用户
         $user = User::where('weapp_openid', $weappOpenid)->first();
         //把session_key
         $attributes['weixin_session_key'] = $weixinSessionKey;
-//        if($avatar){
-//            $attributes['avatar'] = $avatar;
-//        }
-//        if($nickname){
-//            $attributes['nickname'] = $nickname;
-//        }
+
+        if($nickname){
+            $attributes['nickname'] = $nickname;
+        }
         if (!$user) {
             User::create([
                 'weapp_openid' => $weappOpenid,
@@ -43,6 +57,10 @@ class AuthorizationsController extends Controller
                 'is_active' => 0,
                 'avatar_url' => $avatar,
                 'nickname' => $nickname,
+                'country' => $country,
+                'province' => $province,
+                'city' => $city,
+                'gender' => $gender,
             ]);
             // 获取对应的用户
             $user = User::where('weapp_openid', $weappOpenid)->first();
