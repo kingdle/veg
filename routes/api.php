@@ -30,6 +30,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //shops店铺查询
     Route::resource('/shops', 'ShopsController');
     Route::post('/shop/distance', 'ShopsController@distance');
+    Route::post('/shop/query', 'ShopsController@query');
     //shop店铺新增
     Route::resource('/shop', 'ShopsController')->middleware('auth:api');
     Route::post('/shop/avatar', 'ShopsController@changeAvatar')->middleware('auth:api');
