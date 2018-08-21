@@ -31,7 +31,7 @@ class ShopsController extends Controller
             $lng = '118.913778';
         }
         $shops = Shop::where("is_hidden",'!=','T')->where("is_service",'!=','T')
-            ->selectRaw('id,summary,title,avatar,cityInfo,address,villageInfo,code,longitude,latitude,dynamic_count,pic_count,acos(cos(' . $lat . '*pi()/180 )*cos(latitude*pi()/180)*cos(' . $lng . '*pi()/180 -longitude*pi()/180)+sin(' . $lat . '*pi()/180 )*sin(latitude*pi()/180))*6370996.81  as distance')  //使用原生sql
+            ->selectRaw('id,summary,title,avatar,province,cityInfo,address,villageInfo,code,longitude,latitude,dynamic_count,pic_count,acos(cos(' . $lat . '*pi()/180 )*cos(latitude*pi()/180)*cos(' . $lng . '*pi()/180 -longitude*pi()/180)+sin(' . $lat . '*pi()/180 )*sin(latitude*pi()/180))*6370996.81  as distance')  //使用原生sql
             ->orderby("distance","asc")->paginate(20);
         return new ShopCollection($shops);
     }
