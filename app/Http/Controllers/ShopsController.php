@@ -49,7 +49,7 @@ class ShopsController extends Controller
         }
         $shops = Shop::where("title",'like',$queryText)->orwhere("summary",'like',$queryText)->orwhere("address",'like',$queryText)->where("is_hidden",'!=','T')->where("is_service",'!=','T')
             ->selectRaw('id,user_id,summary,title,avatar,province,cityInfo,address,villageInfo,code,longitude,latitude,dynamic_count,pic_count,acos(cos(' . $lat . '*pi()/180 )*cos(latitude*pi()/180)*cos(' . $lng . '*pi()/180 -longitude*pi()/180)+sin(' . $lat . '*pi()/180 )*sin(latitude*pi()/180))*6370996.81  as distance')  //使用原生sql
-            ->orderby("distance","asc")->get();
+            ->orderby("distance","asc")->paginate(20);
         return new ShopCollection($shops);
     }
 
