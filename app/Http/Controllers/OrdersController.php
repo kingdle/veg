@@ -53,6 +53,23 @@ class OrdersController extends Controller
     }
     public function weBuyerList(Request $request)
     {
+        if($request->phone ==''){
+            $data['status'] = false;
+            $data['status_code'] = '401';
+            $data['msg'] = '手机号不能为空';
+            $data['data'] = [];
+            $data['links'] = '';
+            $data['meta'] = [
+                'current_page' => 0,
+                'from' => 0,
+                'last_page' => 0,
+                'path' => '',
+                'per_page' => 9,
+                'to' => 0,
+                'total' => 0
+            ];
+            return json_encode($data);
+        }
         $userId = Auth::guard('api')->user()->id;
         $phone = $request->phone;
         $orders = Order::where("phone",'=',$phone)->with(['shop'=>function($query){
