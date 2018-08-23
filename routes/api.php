@@ -160,5 +160,7 @@ $api->version('v2', [
         $api->get('v2/planting', 'PlantingController@index');
         //蓝睛
         $api->get('v2/blueEye', 'blueEyeController@index');
+        //大码运动
+        $api->get('v2/bigCode', 'bigCodeController@index');
     });
 });
