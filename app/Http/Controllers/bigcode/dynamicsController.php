@@ -11,7 +11,7 @@ class dynamicsController extends Controller
 {
     public function index()
     {
-        $dynamics = BigDynamic::orderBy('id', 'desc')->paginate(9);
+        $dynamics = BigDynamic::orderBy('published_at', 'desc')->paginate(9);
         return new bigDynamicCollection($dynamics);
     }
 
