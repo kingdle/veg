@@ -101,6 +101,12 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/isFavorites','Api\FavoritesController@isFavorites')->middleware('auth:api');
     Route::post('/followShopList','Api\FavoritesController@followShopList')->middleware('auth:api');
 
+    //大码运动
+    Route::resource('/bigcode/albums', 'bigcode\albumsController');
+    Route::resource('/bigcode/dynamics', 'bigcode\dynamicsController');
+    Route::resource('/bigcode/sorts', 'bigcode\sortsController');
+    Route::resource('/bigcode/users', 'bigcode\usersController');
+
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
 //    Route::post('authorizations','AuthorizationsController@store');
