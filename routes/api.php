@@ -104,6 +104,8 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     //大码运动
     Route::resource('/bigcode/albums', 'bigcode\albumsController');
     Route::resource('/bigcode/dynamics', 'bigcode\dynamicsController');
+    Route::post('/bigcode/dynamic/uploadImage', 'bigcode\dynamicsController@uploadImage')->middleware('auth:api');
+    Route::post('/bigcode/dynamic/weCreate', 'bigcode\dynamicsController@weCreate')->middleware('auth:api');
     Route::resource('/bigcode/sorts', 'bigcode\sortsController');
     Route::resource('/bigcode/users', 'bigcode\usersController');
 

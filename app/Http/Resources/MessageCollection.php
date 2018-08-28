@@ -22,6 +22,7 @@ class MessageCollection extends ResourceCollection
             'status'=>'success',
             'status_code'=>'200',
             'slogan'=>Config::find('2'),
+            'miaoguoco'=>Config::find('6'),
         ];
     }
 }

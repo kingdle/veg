@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\bigcode;
 
+use App\BigAlbum;
 use App\BigDynamic;
 use App\Http\Resources\bigDynamicCollection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class dynamicsController extends Controller
 {
@@ -23,4 +25,73 @@ class dynamicsController extends Controller
         }
         return $dynamics;
     }
+    public function weCreate(Request $request, BigDynamic $dynamic)
+    {
+        $dynamic->user_id = Auth::guard('api')->user()->id;
+        $dynamic->title =$request->title;
+        $dynamic->content = $request->contents;
+        $dynamic->price = $request->price;
+        $dynamic->counts = $request->counts;
+        $dynamic->pic = json_encode($request->pics);
+        $success = $dynamic->save();
+        if ($success) {
+            return response()->json([
+                'status' => 'true',
+                'status_code' => 200,
+                'message' => '动态发布成功'.date("h:i:s"),
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 501,
+                'message' => '服务器端错误'.date("h:i:s"),
+            ]);
+        }
+    }
+    public function uploadImage(Request $request, BigAlbum $album)
+    {
+        $file = $request->file('file');
+        if($request->userId){
+            $userId = $request->userId;
+        }else{
+            $userId = Auth::guard('api')->user()->id;
+        }
+        if (!$request->hasFile('file')) {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 404,
+                'message' => '未获取到图片，上传失败',
+            ]);
+        }
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();     // image/jpeg
+
+            // 上传文件
+            $filename = 'Bigcode/orders/' . 'BC' . uniqid() . '.' . $ext;
+            Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
+            $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
+            $album->user_id = $userId;
+            $album->pic = json_encode($filePath);
+            $album->save();
+            return response()->json([
+                'status' => 'true',
+                'status_code' => 200,
+                'message' => '上传成功',
+                'url' => $filePath,
+                'name' => $originalName,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 500,
+                'message' => '服务器端错误，请重新上传',
+            ]);
+        }
+
+    }
+
 }
