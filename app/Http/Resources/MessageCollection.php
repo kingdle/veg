@@ -23,6 +23,7 @@ class MessageCollection extends ResourceCollection
             'status_code'=>'200',
             'slogan'=>Config::find('2'),
             'miaoguoco'=>Config::find('6'),
+            'miaoguoslide'=>json_decode(Config::find('6')->slide),
         ];
     }
 }
