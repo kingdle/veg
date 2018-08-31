@@ -108,6 +108,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/bigcode/dynamic/weCreate', 'bigcode\dynamicsController@weCreate')->middleware('auth:api');
     Route::resource('/bigcode/sorts', 'bigcode\sortsController');
     Route::resource('/bigcode/users', 'bigcode\usersController');
+    Route::post('/bigcode/login', 'bigcode\usersController@login');
 
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
