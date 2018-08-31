@@ -92,9 +92,8 @@ class dynamicsController extends Controller
             ]);
         }
     }
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $id= $request->get('id');
         $dynamic = BigDynamic::where('id', $id)->first();
         $attributes['is_hidden'] = 'T';
         $attributes['updated_at'] = now();
@@ -102,7 +101,7 @@ class dynamicsController extends Controller
         if ($success) {
             $data['status'] = true;
             $data['status_code'] = '200';
-            $data['msg'] = '取消成功';
+            $data['msg'] = '删除成功';
             $data['dynamic'] = $dynamic;
             return json_encode($data);
         } else {
