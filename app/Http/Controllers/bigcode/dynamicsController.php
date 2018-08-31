@@ -8,6 +8,7 @@ use App\Http\Resources\bigDynamicCollection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class dynamicsController extends Controller
 {
@@ -74,7 +75,7 @@ class dynamicsController extends Controller
             $filename = 'Bigcode/orders/' . 'BC' . uniqid() . '.' . $ext;
             Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
             $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
-            $album->user_id = $userId;
+//            $album->user_id = $userId;
             $album->pic = json_encode($filePath);
             $album->save();
             return response()->json([
