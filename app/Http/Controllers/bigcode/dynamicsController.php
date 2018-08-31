@@ -33,6 +33,7 @@ class dynamicsController extends Controller
         $dynamic->content = $request->contents;
         $dynamic->price = $request->price;
         $dynamic->counts = $request->counts;
+        $dynamic->sort_id = $request->sort_id+1;
         $dynamic->pic = json_encode($request->pics);
         $success = $dynamic->save();
         if ($success) {
