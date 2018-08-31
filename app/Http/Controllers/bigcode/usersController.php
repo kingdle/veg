@@ -28,14 +28,14 @@ class usersController extends Controller
         // 根据 code 获取微信 openid 和 session_key
         $appid = "wx0990a74fd2d3f8ef";
         $appsecret = "25c552f0bc87ec60740fa52105e9f3b0";
-        //获取openid
-        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$appsecret&code=$code&grant_type=authorization_code";
 
-        $result = $this->https_request($url);
-
-        $jsoninfo = json_decode($result, true);
-return $jsoninfo;
-        $weappOpenid =  $jsoninfo["openid"];
+        $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".
+            $appsecret."&code=".$code."&grant_type=authorization_code";
+        $weixin=file_get_contents($url);//通过code换取网页授权access_token
+        $jsondecode=json_decode($weixin); //对JSON格式的字符串进行编码
+        $array = get_object_vars($jsondecode);//转换成数组
+        $weappOpenid =  $array['openid'];//输出openid
+        $weixinSessionKey = $array['session_key'];
         $nickname = $request->nickname;
         $avatar = $request->avatar;
         if($request->country){
