@@ -24,50 +24,38 @@ class usersController extends Controller
     }
     public function login(Request $request)
     {
-        $code = $request->code;
-        // 根据 code 获取微信 openid 和 session_key
-        $appid = "wx0990a74fd2d3f8ef";
-        $appsecret = "25c552f0bc87ec60740fa52105e9f3b0";
-
-        $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".
-            $appsecret."&code=".$code."&grant_type=authorization_code";
-        $weixin=file_get_contents($url);//通过code换取网页授权access_token
-        $jsondecode=json_decode($weixin); //对JSON格式的字符串进行编码
-        $array = get_object_vars($jsondecode);//转换成数组
-        $weappOpenid =  $array['openid'];//输出openid
-        $weixinSessionKey = $array['session_key'];
+//        $code = $request->code;
+//        // 根据 code 获取微信 openid 和 session_key
+//        $appid = "wx0990a74fd2d3f8ef";
+//        $appsecret = "25c552f0bc87ec60740fa52105e9f3b0";
+//
+//        $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".
+//            $appsecret."&code=".$code."&grant_type=authorization_code";
+//        $weixin=file_get_contents($url);//通过code换取网页授权access_token
+//        $jsondecode=json_decode($weixin); //对JSON格式的字符串进行编码
+//        $array = get_object_vars($jsondecode);//转换成数组
+//        return $array;
+//        $weappOpenid =  $array['openid'];//输出openid
+//        $weixinSessionKey = $array['session_key'];
         $nickname = $request->nickname;
         $avatar = $request->avatar;
-        if($request->country){
-            $country = $request->country;
-            $attributes['country'] = $country;
-        }
-        if($request->province){
-            $province = $request->province;
-            $attributes['province'] = $province;
-        }
-        if($request->city){
-            $city = $request->city;
-            $attributes['city'] = $city;
-        }
-        if($request->gender){
-            $gender = $request->gender;
-            $attributes['gender'] = $gender;
-        }
+        $country = $request->country;
+        $province = $request->province;
+        $city = $request->city;
+        $gender = $request->gender;
         //找到 openid 对应的用户
-        $user = BigUser::where('weapp_openid', $weappOpenid)->first();
+        $user = BigUser::where('nickname', $nickname)->first();
         //把session_key
-        $attributes['weixin_session_key'] = $weixinSessionKey;
+//        $attributes['weixin_session_key'] = $weixinSessionKey;
 
-        if($nickname){
-            $attributes['nickname'] = $nickname;
-        }
+//        if($nickname){
+//            $attributes['nickname'] = $nickname;
+//        }
         if (!$user) {
             BigUser::create([
-                'weapp_openid' => $weappOpenid,
-                'weixin_session_key' => $weixinSessionKey,
-                'is_active' => 0,
-                'avatar_url' => $avatar,
+//                'weapp_openid' => $weappOpenid,
+//                'weixin_session_key' => $weixinSessionKey,
+                'avatar' => $avatar,
                 'nickname' => $nickname,
                 'country' => $country,
                 'province' => $province,
@@ -75,21 +63,21 @@ class usersController extends Controller
                 'gender' => $gender,
             ]);
             // 获取对应的用户
-            $user = BigUser::where('weapp_openid', $weappOpenid)->first();
-            $attributes['weapp_openid'] = $weappOpenid;
+            $user = BigUser::where('nickname', $nickname)->first();
+//            $attributes['weapp_openid'] = $weappOpenid;
         }
         // 更新用户数据
-        $user->update($attributes);
+//        $user->update($attributes);
         // 直接创建token并设置有效期
-        $createToken = $user->createToken($user->weapp_openid);
-        $createToken->token->expires_at = Carbon::now()->addDays(15);
-        $createToken->token->save();
-        $token = $createToken->accessToken;
+//        $createToken = $user->createToken($user->id);
+//        $createToken->token->expires_at = Carbon::now()->addDays(15);
+//        $createToken->token->save();
+//        $token = $createToken->accessToken;
 
         return response()->json([
-            'access_token' => $token,
-            'token_type' => "Bearer",
-            'expires_in' => '21600',
+//            'access_token' => $token,
+//            'token_type' => "Bearer",
+//            'expires_in' => '21600',
             'data'=>$user
         ], 200);
     }

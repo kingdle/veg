@@ -27,7 +27,7 @@ class dynamicsController extends Controller
     }
     public function weCreate(Request $request, BigDynamic $dynamic)
     {
-        $dynamic->user_id = Auth::guard('api')->user()->id;
+//        $dynamic->user_id = Auth::guard('api')->user()->id;
         $dynamic->title =$request->title;
         $dynamic->content = $request->contents;
         $dynamic->price = $request->price;
@@ -51,11 +51,11 @@ class dynamicsController extends Controller
     public function uploadImage(Request $request, BigAlbum $album)
     {
         $file = $request->file('file');
-        if($request->userId){
-            $userId = $request->userId;
-        }else{
-            $userId = Auth::guard('api')->user()->id;
-        }
+//        if($request->userId){
+//            $userId = $request->userId;
+//        }else{
+//            $userId = Auth::guard('api')->user()->id;
+//        }
         if (!$request->hasFile('file')) {
             return response()->json([
                 'status' => 'false',
