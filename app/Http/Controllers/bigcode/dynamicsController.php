@@ -13,7 +13,7 @@ class dynamicsController extends Controller
 {
     public function index()
     {
-        $dynamics = BigDynamic::orderBy('published_at', 'desc')->paginate(9);
+        $dynamics = BigDynamic::where('is_hidden','F')->orderBy('published_at', 'desc')->paginate(9);
         return new bigDynamicCollection($dynamics);
     }
 
@@ -91,7 +91,26 @@ class dynamicsController extends Controller
                 'message' => '服务器端错误，请重新上传',
             ]);
         }
-
+    }
+    public function destroy(Request $request)
+    {
+        $id= $request->get('id');
+        $dynamic = BigDynamic::where('id', $id)->first();
+        $attributes['is_hidden'] = 'T';
+        $attributes['updated_at'] = now();
+        $success = $dynamic->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = '取消成功';
+            $data['dynamic'] = $dynamic;
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
     }
 
 }
