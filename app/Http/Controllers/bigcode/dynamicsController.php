@@ -20,11 +20,11 @@ class dynamicsController extends Controller
 
     public function show($id)
     {
-        $dynamics = BigDynamic::find($id)->get();
+        $dynamics = BigDynamic::find($id);
         if ($dynamics->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
-        return $dynamics;
+        return new \App\Http\Resources\bigDynamic($dynamics);
     }
     public function weCreate(Request $request, BigDynamic $dynamic)
     {
