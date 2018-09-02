@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\bigcode;
 
 use App\BigUser;
+use App\Config;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -81,5 +82,45 @@ class usersController extends Controller
             'data'=>$user
         ], 200);
     }
-
+    public function shopEdit(Request $request)
+    {
+        $config = Config::find('5');
+        if($request->title){
+            $attributes['title'] = $request->title;
+        }
+        if($request->slogan){
+            $attributes['slogan'] = $request->slogan;
+        }
+        if($request->newsTitle){
+            $attributes['newsTitle'] = $request->newsTitle;
+        }
+        if($request->newsSlogan){
+            $attributes['newsSlogan'] = $request->newsSlogan;
+        }
+        if($request->notice){
+            $attributes['notice'] = $request->notice;
+        }
+        if($request->admission){
+            $attributes['admission'] = $request->admission;
+        }
+        if($request->header_circular){
+            $attributes['header_circular'] = $request->header_circular;
+        }
+        if($request->shop_indicator_dots){
+            $attributes['shop_indicator_dots'] = $request->shop_indicator_dots;
+        }
+        $attributes['updated_at'] = now();
+        $success = $config->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = $config->id . '更新成功';
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+    }
 }
