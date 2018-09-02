@@ -94,16 +94,16 @@ class dynamicsController extends Controller
             ]);
         }
     }
-    public function destroy($id)
+    public function destroyById(Request $request)
     {
-        $dynamic = BigDynamic::where('id', $id)->first();
+        $dynamic = BigDynamic::where('id', $request->id)->first();
         $attributes['is_hidden'] = 'T';
         $attributes['updated_at'] = now();
         $success = $dynamic->update($attributes);
         if ($success) {
             $data['status'] = true;
             $data['status_code'] = '200';
-            $data['msg'] = '删除成功';
+            $data['msg'] = '下架成功';
             $data['dynamic'] = $dynamic;
             return json_encode($data);
         } else {
@@ -113,5 +113,42 @@ class dynamicsController extends Controller
             return json_encode($data);
         }
     }
-
+    public function upById(Request $request)
+    {
+        $dynamic = BigDynamic::where('id', $request->id)->first();
+        $attributes['is_hidden'] = 'F';
+        $attributes['updated_at'] = now();
+        $success = $dynamic->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = '上架成功';
+            $data['dynamic'] = $dynamic;
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+    }
+    public function updateCounts(Request $request)
+    {
+        $dynamic = BigDynamic::where('id', $request->id)->first();
+        $attributes['counts'] = $request->counts;
+        $attributes['updated_at'] = now();
+        $success = $dynamic->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = '数量更新成功';
+            $data['dynamic'] = $dynamic;
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+    }
 }

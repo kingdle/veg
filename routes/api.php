@@ -106,6 +106,8 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::resource('/bigcode/dynamics', 'bigcode\dynamicsController');
     Route::post('/bigcode/dynamic/uploadImage', 'bigcode\dynamicsController@uploadImage');
     Route::post('/bigcode/dynamic/weCreate', 'bigcode\dynamicsController@weCreate');
+    Route::post('/bigcode/dynamic/upById', 'bigcode\dynamicsController@upById');
+    Route::post('/bigcode/dynamic/destroyById', 'bigcode\dynamicsController@destroyById');
     Route::resource('/bigcode/sorts', 'bigcode\sortsController');
     Route::resource('/bigcode/users', 'bigcode\usersController');
     Route::post('/bigcode/login', 'bigcode\usersController@login');
