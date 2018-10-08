@@ -214,10 +214,10 @@ class DynamicsController extends Controller
         }else{
             $content = '';
         }
-        if($request->video){
-            $video = $request->video;
+        if($request->videoUrl){
+            $video = $request->videoUrl;
         }else{
-            $video = NULL;
+            $video = '';
         }
         $dynamic->user_id = $userId;
         $dynamic->shop_id = $shopId;

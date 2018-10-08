@@ -204,7 +204,7 @@ class DynamicsController extends Controller
             $type = $file->getClientMimeType();     // image/jpeg
 
             // 上传文件
-            $filename = 'video/' . 'MG' . uniqid() . '.' . $ext;
+            $filename = 'video/' .$shopId. 'MG' . uniqid() . '.' . $ext;
             Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
             $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
             $video->user_id = $userId;
@@ -217,13 +217,7 @@ class DynamicsController extends Controller
             $video->video_duration = $request->video_duration;
             $video->clicks_count = '1';
             $video->save();
-            return response()->json([
-                'status' => 'true',
-                'status_code' => 200,
-                'message' => '上传成功',
-                'url' => $filePath,
-                'name' => $originalName,
-            ]);
+            return json_decode($video->video_url);
         } else {
             return response()->json([
                 'status' => 'false',
