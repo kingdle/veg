@@ -47,7 +47,7 @@ class Shop extends JsonResource
             $distance = $distance / 1000;
             $distance = round($distance, $decimal)."公里";
         }else{
-            $distance = $distance / 100;
+            $distance = $distance / 10;
             $distance = round($distance, $decimal)."米";
         }
 //        if(Auth::user()){

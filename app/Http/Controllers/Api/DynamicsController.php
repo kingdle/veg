@@ -214,11 +214,17 @@ class DynamicsController extends Controller
         }else{
             $content = '';
         }
-
+        if($request->video){
+            $video = $request->video;
+        }else{
+            $video = NULL;
+        }
         $dynamic->user_id = $userId;
         $dynamic->shop_id = $shopId;
         $dynamic->content = $content;
         $dynamic->pic = json_encode($imageUrl);
+        $dynamic->video = json_encode($video);
+
         $success = $dynamic->save();
         if ($request->get('tags')) {
             $tags = $this->normalizeTag($request->get('tags'));

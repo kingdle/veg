@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Album;
 use App\Http\Resources\DynamicCollection;
 use App\Dynamic;
+use App\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -171,6 +172,64 @@ class DynamicsController extends Controller
             $data['status_code'] = '501';
             $data['msg'] = '系统繁忙，请售后再试';
             return json_encode($data);
+        }
+
+    }
+    public function uploadVideo(Request $request, Video $video)
+    {
+        $file = $request->file('file');
+        if($request->shopId){
+            $shopId = $request->shopId;
+        }else{
+            $shopId = Auth::guard('api')->user()->shop->id;
+        }
+        if($request->userId){
+            $userId = $request->userId;
+        }else{
+            $userId = Auth::guard('api')->user()->id;
+        }
+
+        if (!$request->hasFile('file')) {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 404,
+                'message' => '未获取到视频，上传失败',
+            ]);
+        }
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();     // image/jpeg
+
+            // 上传文件
+            $filename = 'video/' . 'MG' . uniqid() . '.' . $ext;
+            Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
+            $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
+            $video->user_id = $userId;
+            $video->shop_id = $shopId;
+            $video->video_thumbnail = '';
+            $video->video_url = json_encode($filePath);
+            $video->video_height = $request->video_height;
+            $video->video_width = $request->video_width;
+            $video->video_size = $request->video_size;
+            $video->video_duration = $request->video_duration;
+            $video->clicks_count = '1';
+            $video->save();
+            return response()->json([
+                'status' => 'true',
+                'status_code' => 200,
+                'message' => '上传成功',
+                'url' => $filePath,
+                'name' => $originalName,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'false',
+                'status_code' => 500,
+                'message' => '服务器端错误，请重新上传',
+            ]);
         }
 
     }

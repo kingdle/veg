@@ -42,6 +42,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::get('/dynamics-lists', 'DynamicsController@lists')->middleware('auth:api');
     Route::post('/news/images', 'DynamicsController@images')->middleware('auth:api');
     Route::post('/news/image', 'DynamicsController@image')->middleware('auth:api');
+    Route::post('/dynamic/uploadVideo', 'DynamicsController@uploadVideo')->middleware('auth:api');
 
     Route::resource('/answers', 'AnswersController');
     //albums相册查询

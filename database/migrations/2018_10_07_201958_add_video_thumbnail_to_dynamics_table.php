@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlbumsTable extends Migration
+class AddVideoThumbnailToDynamicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateAlbumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bigcode_albums', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id')->comment('UserId');
-            $table->string('pic')->comment('图片');
-            $table->timestamps();
+        Schema::table('dynamics', function (Blueprint $table) {
+            $table->text('video_thumbnail')->nullable()->after('pic')->comment('视频缩略图');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateAlbumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bigcode_albums');
+        Schema::table('dynamics', function (Blueprint $table) {
+            $table->dropColumn('video_thumbnail');
+        });
     }
 }
