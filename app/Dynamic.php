@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dynamic extends Model
 {
-    protected $fillable=['user_id','shop_id','sort_id','content','pic','followers_count','published_at','is_hidden'];
+    protected $fillable=['user_id','shop_id','sort_id','content','pic','video','video_thumbnail','followers_count','published_at','is_hidden'];
 
     public function user(){
         return $this->belongsTo('App\User','user_id');

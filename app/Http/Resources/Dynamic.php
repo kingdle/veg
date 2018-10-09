@@ -27,6 +27,7 @@ class Dynamic extends JsonResource
             'content'=>$this->content,
             'pic'=>json_decode($this->pic),
             'video'=>json_decode($this->video),
+            'video_thumbnail'=>json_decode($this->video_thumbnail),
             'followers_count'=>$this->followers_count,
             'answers_count'=>$this->answers_count,
             'close_comment'=>$this->close_comment,
