@@ -198,7 +198,6 @@ class DynamicsController extends Controller
     }
     public function adminCreate(Request $request, Dynamic $dynamic)
     {
-        $imageUrl = $request->imageUrl;
         if($request->shopId){
             $shopId = $request->shopId;
         }else{
@@ -214,13 +213,18 @@ class DynamicsController extends Controller
         }else{
             $content = '';
         }
+        if($request->imageUrl){
+            $imageUrl = json_encode($request->imageUrl);
+        }else{
+            $imageUrl = '';
+        }
         if($request->videoUrl){
-            $video = $request->videoUrl;
+            $video = json_encode($request->videoUrl);
         }else{
             $video = '';
         }
         if($request->video_thumbnail){
-            $video_thumbnail = $request->video_thumbnail;
+            $video_thumbnail = json_encode($request->video_thumbnail);
         }else{
             $video_thumbnail = '';
         }
@@ -228,8 +232,8 @@ class DynamicsController extends Controller
         $dynamic->shop_id = $shopId;
         $dynamic->content = $content;
         $dynamic->pic = json_encode($imageUrl);
-        $dynamic->video = json_encode($video);
-        $dynamic->video_thumbnail = json_encode($video_thumbnail);
+        $dynamic->video = $video;
+        $dynamic->video_thumbnail = $video_thumbnail;
 
         $success = $dynamic->save();
         if ($request->get('tags')) {
