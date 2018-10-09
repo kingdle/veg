@@ -231,7 +231,7 @@ class DynamicsController extends Controller
         $dynamic->user_id = $userId;
         $dynamic->shop_id = $shopId;
         $dynamic->content = $content;
-        $dynamic->pic = json_encode($imageUrl);
+        $dynamic->pic = $imageUrl;
         $dynamic->video = $video;
         $dynamic->video_thumbnail = $video_thumbnail;
 
