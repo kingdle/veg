@@ -216,7 +216,7 @@ class DynamicsController extends Controller
         if($request->imageUrl){
             $imageUrl = json_encode($request->imageUrl);
         }else{
-            $imageUrl = '';
+            $imageUrl = [];
         }
         if($request->videoUrl){
             $video = json_encode($request->videoUrl);
