@@ -6,6 +6,8 @@ use App\Album;
 use App\Http\Resources\DynamicCollection;
 use App\Dynamic;
 use App\Video;
+use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\FFMpeg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +19,7 @@ class DynamicsController extends Controller
         $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
+
     public function distance(Request $request)
     {
         $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->with('tags')->paginate(9);
@@ -43,6 +46,7 @@ class DynamicsController extends Controller
 
 
     }
+
     public function lists()
     {
         $shopId = Auth::guard('api')->user()->shop->id;
@@ -63,7 +67,7 @@ class DynamicsController extends Controller
 
         if (!$request->hasFile('file')) {
             return response()->json([
-                'status'=>'false',
+                'status' => 'false',
                 'status_code' => 404,
                 'message' => '未获取到图片，请重新上传',
             ]);
@@ -84,15 +88,15 @@ class DynamicsController extends Controller
             $album->pic = json_encode($filePath);
             $album->save();
             return response()->json([
-                'status'=>'true',
+                'status' => 'true',
                 'status_code' => 200,
                 'message' => '上传成功',
                 'url' => $filePath,
                 'name' => $originalName,
             ]);
-        }else{
+        } else {
             return response()->json([
-                'status'=>'false',
+                'status' => 'false',
                 'status_code' => 500,
                 'message' => '服务器端错误，请重新上传',
             ]);
@@ -117,13 +121,13 @@ class DynamicsController extends Controller
 
         if ($success) {
             return response()->json([
-                'status'=>'true',
+                'status' => 'true',
                 'status_code' => 200,
                 'message' => '上传成功',
             ]);
         } else {
             return response()->json([
-                'status'=>'false',
+                'status' => 'false',
                 'status_code' => 501,
                 'message' => '服务器端错误',
             ]);
@@ -160,7 +164,7 @@ class DynamicsController extends Controller
         $dynamic->shop_id = $shopId;
         $dynamic->content = $content;
         $dynamic->pic = json_encode($filePath);
-        $success=$dynamic->save();
+        $success = $dynamic->save();
 
         if ($success) {
             $data['status'] = true;
@@ -175,17 +179,18 @@ class DynamicsController extends Controller
         }
 
     }
+
     public function uploadVideo(Request $request, Video $video)
     {
         $file = $request->file('file');
-        if($request->shopId){
+        if ($request->shopId) {
             $shopId = $request->shopId;
-        }else{
+        } else {
             $shopId = Auth::guard('api')->user()->shop->id;
         }
-        if($request->userId){
+        if ($request->userId) {
             $userId = $request->userId;
-        }else{
+        } else {
             $userId = Auth::guard('api')->user()->id;
         }
         if (!$request->hasFile('file')) {
@@ -201,14 +206,31 @@ class DynamicsController extends Controller
             $ext = $file->getClientOriginalExtension();     // 扩展名
             $realPath = $file->getRealPath();   //临时文件的绝对路径
             $type = $file->getClientMimeType();     // image/jpeg
-
             // 上传文件
-            $filename = 'video/' .$shopId. 'MG' . uniqid() . '.' . $ext;
+            $title=$shopId . 'MG' . uniqid();
+            $path='video/' . $title . '.';
+            $filename = $path . $ext;
+            $filethumb = $title . '.jpg';
+            $filethumbnail = $path . 'jpg';
             Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
             $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
+            $fileThumbnailPath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filethumbnail;
+            $ffmpeg = FFMpeg::create(array(
+                'ffmpeg.binaries'  => '/usr/local/Cellar/ffmpeg/4.0.2/bin/ffmpeg',
+                'ffprobe.binaries' => '/usr/local/Cellar/ffmpeg/4.0.2/bin/ffprobe',
+                'timeout'          => 3600, // The timeout for the underlying process
+                'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
+            ), null);
+            $video_jpg = $ffmpeg->open($filePath);
+            $frame = $video_jpg->frame(TimeCode::fromSeconds(1));
+            $frame->save($filethumb);
+            $fileUrl=env('APP_URL').'/'.$filethumb;
+            Storage::disk('upyun')->writeStream($filethumbnail,fopen($fileUrl, 'r'));
+
+
             $video->user_id = $userId;
             $video->shop_id = $shopId;
-            $video->video_thumbnail = '';
+            $video->video_thumbnail = json_encode($fileThumbnailPath);
             $video->video_url = json_encode($filePath);
             $video->video_height = $request->video_height;
             $video->video_width = $request->video_width;
@@ -216,7 +238,8 @@ class DynamicsController extends Controller
             $video->video_duration = $request->video_duration;
             $video->clicks_count = '1';
             $video->save();
-            return json_decode($video->video_url);
+            return $video->id;
+
         } else {
             return response()->json([
                 'status' => 'false',
@@ -226,17 +249,18 @@ class DynamicsController extends Controller
         }
 
     }
+
     public function uploadVideoThumb(Request $request)
     {
         $file = $request->file('file');
-        if($request->shopId){
+        if ($request->shopId) {
             $shopId = $request->shopId;
-        }else{
+        } else {
             $shopId = Auth::guard('api')->user()->shop->id;
         }
-        if($request->userId){
+        if ($request->userId) {
             $userId = $request->userId;
-        }else{
+        } else {
             $userId = Auth::guard('api')->user()->id;
         }
         if (!$request->hasFile('file')) {
@@ -254,7 +278,7 @@ class DynamicsController extends Controller
             $type = $file->getClientMimeType();     // image/jpeg
 
             // 上传文件
-            $filename = 'video/' .$shopId. 'MG' . uniqid() . 'thumb.' . $ext;
+            $filename = 'video/' . $shopId . 'MG' . uniqid() . 'thumb.' . $ext;
             Storage::disk('upyun')->writeStream($filename, fopen($realPath, 'r'));
             $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
 

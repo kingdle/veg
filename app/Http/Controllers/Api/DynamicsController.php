@@ -9,6 +9,7 @@ use App\Shop;
 use App\Sort;
 use App\Tag;
 use App\User;
+use App\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -32,7 +33,7 @@ class DynamicsController extends Controller
                     foreach ($dynamics as $dynamic) {
                         $dynamicsP[] = $dynamic->dynamic_id;
                     }
-                    $dynamics = Dynamic::whereIn('id', $dynamicsP)->where('is_hidden','=','F')->orderBy('id', 'desc')
+                    $dynamics = Dynamic::whereIn('id', $dynamicsP)->where('is_hidden', '=', 'F')->orderBy('id', 'desc')
                         ->paginate(9);
                     return new DynamicCollection($dynamics);
                 }
@@ -56,28 +57,28 @@ class DynamicsController extends Controller
                     foreach ($dss as $ds) {
                         $d[] = $ds->dynamic_id;
                     }
-                    $dynamics = Dynamic::whereIn('id', $d)->where('is_hidden','=','F')->orderBy('id', 'desc')
+                    $dynamics = Dynamic::whereIn('id', $d)->where('is_hidden', '=', 'F')->orderBy('id', 'desc')
                         ->paginate(9);
                     return new DynamicCollection($dynamics);
                 }
             }
         }
 
-        $dynamics = Dynamic::with('shop','answers')->where('is_hidden','=','F')->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop', 'answers')->where('is_hidden', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
 
     public function uploadImage(Request $request, Album $album)
     {
         $file = $request->file('file');
-        if($request->shopId){
+        if ($request->shopId) {
             $shopId = $request->shopId;
-        }else{
+        } else {
             $shopId = Auth::guard('api')->user()->shop->id;
         }
-        if($request->userId){
+        if ($request->userId) {
             $userId = $request->userId;
-        }else{
+        } else {
             $userId = Auth::guard('api')->user()->id;
         }
 
@@ -126,9 +127,9 @@ class DynamicsController extends Controller
         $imageUrl = $request->imageUrl;
         $userId = Auth::guard('api')->user()->id;
         $shopId = Auth::guard('api')->user()->shop->id;
-        if($request->dynamicContent){
+        if ($request->dynamicContent) {
             $content = $request->dynamicContent;
-        }else{
+        } else {
             $content = '';
         }
 
@@ -151,13 +152,13 @@ class DynamicsController extends Controller
             return response()->json([
                 'status' => 'true',
                 'status_code' => 200,
-                'message' => '动态发布成功'.date("h:i:s"),
+                'message' => '动态发布成功' . date("h:i:s"),
             ]);
         } else {
             return response()->json([
                 'status' => 'false',
                 'status_code' => 501,
-                'message' => '服务器端错误'.date("h:i:s"),
+                'message' => '服务器端错误' . date("h:i:s"),
             ]);
         }
     }
@@ -196,38 +197,38 @@ class DynamicsController extends Controller
             return response()->json([], 500, '文件未通过验证');
         }
     }
+
     public function adminCreate(Request $request, Dynamic $dynamic)
     {
-        if($request->shopId){
+        if ($request->shopId) {
             $shopId = $request->shopId;
-        }else{
+        } else {
             $shopId = Auth::guard('api')->user()->shop->id;
         }
-        if($request->userId){
+        if ($request->userId) {
             $userId = $request->userId;
-        }else{
+        } else {
             $userId = Auth::guard('api')->user()->id;
         }
-        if($request->dynamicContent){
+        if ($request->dynamicContent) {
             $content = $request->dynamicContent;
-        }else{
+        } else {
             $content = '';
         }
-        if($request->imageUrl){
+        if ($request->imageUrl) {
             $imageUrl = json_encode($request->imageUrl);
-        }else{
+        } else {
             $imageUrl = '[]';
         }
-        if($request->videoUrl){
-            $video = json_encode($request->videoUrl);
-        }else{
+        if ($request->videoId) {
+            $videoInfo=Video::find($request->videoId);
+            $video = $videoInfo->video_url;
+            $video_thumbnail = $videoInfo->video_thumbnail;
+        } else {
             $video = '';
-        }
-        if($request->video_thumbnail){
-            $video_thumbnail = json_encode($request->video_thumbnail);
-        }else{
             $video_thumbnail = '';
         }
+
         $dynamic->user_id = $userId;
         $dynamic->shop_id = $shopId;
         $dynamic->content = $content;
@@ -236,6 +237,10 @@ class DynamicsController extends Controller
         $dynamic->video_thumbnail = $video_thumbnail;
 
         $success = $dynamic->save();
+        if($request->videoId){
+            $attributes['dynamic_id'] = $dynamic->id;
+            $videoInfo->update($attributes);
+        }
         if ($request->get('tags')) {
             $tags = $this->normalizeTag($request->get('tags'));
             $dynamic->tags()->attach($tags);
@@ -251,16 +256,17 @@ class DynamicsController extends Controller
             return response()->json([
                 'status' => 'true',
                 'status_code' => 200,
-                'message' => '动态发布成功'.date("h:i:s"),
+                'message' => '动态发布成功' . date("h:i:s"),
             ]);
         } else {
             return response()->json([
                 'status' => 'false',
                 'status_code' => 501,
-                'message' => '服务器端错误'.date("h:i:s"),
+                'message' => '服务器端错误' . date("h:i:s"),
             ]);
         }
     }
+
     private function normalizeTag(array $tags)
     {
         $ids = Tag::pluck('id');
