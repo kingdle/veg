@@ -216,16 +216,17 @@ class DynamicsController extends Controller
             $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
             $fileThumbnailPath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filethumbnail;
             $ffmpeg = FFMpeg::create(array(
-                'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg',
-                'ffprobe.binaries' => '/usr/local/bin/ffprobe',
+                'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+                'ffprobe.binaries' => '/usr/bin/ffprobe',
                 'timeout'          => 3600, // The timeout for the underlying process
                 'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
             ), null);
             $video_jpg = $ffmpeg->open($filePath);
-            $frame = $video_jpg->frame(TimeCode::fromSeconds(1));
+            $frame = $video_jpg->frame(TimeCode::fromSeconds(2));
             $frame->save($filethumb);
             $fileUrl=env('APP_URL').'/'.$filethumb;
             Storage::disk('upyun')->writeStream($filethumbnail,fopen($fileUrl, 'r'));
+            Storage::delete($filethumb);
 
 
             $video->user_id = $userId;
