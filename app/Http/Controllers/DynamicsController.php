@@ -226,8 +226,6 @@ class DynamicsController extends Controller
             $frame->save($filethumb);
             $fileUrl=env('APP_URL').'/'.$filethumb;
             Storage::disk('upyun')->writeStream($filethumbnail,fopen($fileUrl, 'r'));
-            $delFileThumb='/var/www/veg/public/'.$filethumb;
-            Storage::disk('public')->delete($delFileThumb);
 
             $video->user_id = $userId;
             $video->shop_id = $shopId;
