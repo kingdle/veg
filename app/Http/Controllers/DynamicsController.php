@@ -216,8 +216,8 @@ class DynamicsController extends Controller
             $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
             $fileThumbnailPath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filethumbnail;
             $ffmpeg = FFMpeg::create(array(
-                'ffmpeg.binaries'  => '/usr/local/Cellar/ffmpeg/4.0.2/bin/ffmpeg',
-                'ffprobe.binaries' => '/usr/local/Cellar/ffmpeg/4.0.2/bin/ffprobe',
+                'ffmpeg.binaries'  => '/usr/local/bin/ffmpeg',
+                'ffprobe.binaries' => '/usr/local/bin/ffprobe',
                 'timeout'          => 3600, // The timeout for the underlying process
                 'ffmpeg.threads'   => 12,   // The number of threads that FFMpeg should use
             ), null);
