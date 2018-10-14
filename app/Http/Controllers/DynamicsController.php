@@ -25,7 +25,11 @@ class DynamicsController extends Controller
         $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->with('tags')->paginate(9);
         return new DynamicCollection($dynamics);
     }
-
+    public function dynamicQuery(Request $request){
+        $queryText='%'.$request->queryText.'%';
+        $dynamics= Dynamic::with('shop','answers','tags')->where("content",'like',$queryText)->where("is_hidden",'!=','T')->orderBy('id', 'desc')->paginate(9);
+        return new DynamicCollection($dynamics);
+    }
     public function show($shop_id)
     {
         $dynamics = Dynamic::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(9);
