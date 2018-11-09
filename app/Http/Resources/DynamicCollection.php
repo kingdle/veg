@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Config;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DynamicCollection extends ResourceCollection
@@ -19,7 +20,9 @@ class DynamicCollection extends ResourceCollection
     public function with($request){
         return [
             'status'=>'success',
-            'status_code'=>'200'
+            'status_code'=>'200',
+            'slogan'=>Config::find('1'),
+            'slide'=>json_decode(Config::find('1')->slide),
         ];
     }
 }
