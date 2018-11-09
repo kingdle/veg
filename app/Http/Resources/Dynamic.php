@@ -17,8 +17,6 @@ class Dynamic extends JsonResource
      */
     public function toArray($request)
     {
-        $shop=new Shop($this->shop);
-//        $tags=new TagCollection($this->tags);
         return [
             'id'=>$this->id,
             'userid'=>$this->user_id,
@@ -35,9 +33,12 @@ class Dynamic extends JsonResource
             'published_at'=>$this->published_at,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
-            'shop'=>$shop,
-            'answers'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
-            'follow'=>Follow::where('dynamic_id',$this->id)->where('user_id',$request->userId)->get(),
+            'shop'=>new Shop($this->shop),
+            'answers'=>$this->answers,
+            'followers'=>$this->followers,
+//            'answers'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
+//            'follow'=>Follow::where('dynamic_id',$this->id)->where('user_id',$request->userId)->get(),
+
             'tags'=>$this->tags,
             'sorts'=>$this->sorts,
         ];

@@ -16,18 +16,18 @@ class DynamicsController extends Controller
 {
     public function index()
     {
-        $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers','followers')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
 
     public function distance(Request $request)
     {
-        $dynamics = Dynamic::with('shop')->orderBy('id', 'desc')->with('tags')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers','followers')->orderBy('id', 'desc')->with('tags')->paginate(9);
         return new DynamicCollection($dynamics);
     }
     public function dynamicQuery(Request $request){
         $queryText='%'.$request->queryText.'%';
-        $dynamics= Dynamic::with('shop','answers','tags')->where("content",'like',$queryText)->where("is_hidden",'!=','T')->orderBy('id', 'desc')->paginate(9);
+        $dynamics= Dynamic::with('shop','answers','followers','tags')->where("content",'like',$queryText)->where("is_hidden",'!=','T')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
     public function show($shop_id)

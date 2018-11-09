@@ -27,11 +27,21 @@ class Shop extends JsonResource
          * @param  Int     $decimal    精度 保留小数位数
          * @return Decimal
          */
+        if($request->latitude){
+            $latitude1 = $request->latitude;
+        }else{
+            $latitude1 ='36.826762';
+        }
+        if($request->longitude){
+            $longitude1 = $request->longitude;
+        }else{
+            $longitude1 = '118.913778';
+        }
         $unit = 1;
         $decimal = 0;
-        $latitude1 = $request->latitude;
+//        $latitude1 = $request->latitude;
         $latitude2 = $this->latitude;
-        $longitude1 = $request->longitude;
+//        $longitude1 = $request->longitude;
         $longitude2 = $this->longitude;
         $EARTH_RADIUS = 6370.996; // 地球半径系数
         $PI = 3.1415926;
