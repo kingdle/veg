@@ -16,13 +16,13 @@ class DynamicsController extends Controller
 {
     public function index()
     {
-        $dynamics = Dynamic::with('shop','answers','followers')->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers','followers','tags')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
 
     public function distance(Request $request)
     {
-        $dynamics = Dynamic::with('shop','answers','followers')->orderBy('id', 'desc')->with('tags')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers','followers','tags')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
     public function dynamicQuery(Request $request){
