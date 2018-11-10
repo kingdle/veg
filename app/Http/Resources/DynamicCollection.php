@@ -18,11 +18,12 @@ class DynamicCollection extends ResourceCollection
         return parent::toArray($request);
     }
     public function with($request){
+        $config=Config::find('1');
         return [
             'status'=>'success',
             'status_code'=>'200',
-            'slogan'=>Config::find('1'),
-            'slide'=>json_decode(Config::find('1')->slide),
+            'slogan'=>$config,
+            'slide'=>json_decode($config->slide),
         ];
     }
 }
