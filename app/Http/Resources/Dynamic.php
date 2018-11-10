@@ -34,9 +34,9 @@ class Dynamic extends JsonResource
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
             'shop'=>new Shop($this->shop),
-            'answers'=>$this->answers,
+//            'answers'=>$this->answers,
             'followers'=>$this->followers,
-//            'answers'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
+            'answers'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
 //            'follow'=>Follow::where('dynamic_id',$this->id)->where('user_id',$request->userId)->get(),
 
             'tags'=>$this->tags,
