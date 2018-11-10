@@ -16,13 +16,13 @@ class DynamicsController extends Controller
 {
     public function index()
     {
-        $dynamics = Dynamic::with('shop','answers','followers','tags')->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers','followers','tags')->where("is_hidden",'!=','T')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
 
     public function distance(Request $request)
     {
-        $dynamics = Dynamic::with('shop','answers','followers','tags')->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers','followers','tags')->where("is_hidden",'!=','T')->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
     public function dynamicQuery(Request $request){
@@ -32,7 +32,7 @@ class DynamicsController extends Controller
     }
     public function show($shop_id)
     {
-        $dynamics = Dynamic::where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers','followers','tags')->where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(9);
         if ($dynamics->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
