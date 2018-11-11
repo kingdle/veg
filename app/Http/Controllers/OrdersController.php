@@ -31,7 +31,7 @@ class OrdersController extends Controller
     {
         $userId = Auth::guard('api')->user()->id;
         $phone = $request->phone;
-        $orders = Order::where("to_user_id",'=',$userId)->where("phone",'=',$phone)->where('is_del', '=', 'F')->orderby("end_at","desc")->get();
+        $orders = Order::where("to_user_id",'=',$userId)->where("phone",'=',$phone)->where('is_del', '=', 'F')->orderby("id","desc")->get();
         if ($orders->count() == 0) {
             $data['status'] = false;
             $data['status_code'] = '401';
