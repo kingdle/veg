@@ -20,7 +20,9 @@ class CreateLocationsTable extends Migration
             $table->string('province')->nullable()->comment('省份');
             $table->string('city')->nullable()->comment('城市');
             $table->string('district')->nullable()->comment('区');
+            $table->string('town')->nullable()->comment('镇');
             $table->string('street')->nullable()->comment('街');
+            $table->string('crossroad')->nullable()->comment('十字路口');
             $table->string('street_number')->nullable()->comment('号');
             $table->string('nation_code')->nullable()->comment('国家代码');
             $table->string('city_code')->nullable()->comment('城市代码');
