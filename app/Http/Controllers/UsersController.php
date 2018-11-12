@@ -97,4 +97,45 @@ class UsersController extends Controller
         request()->user()->update(request()->only('name'));
         return response()->json(['status' => true]);
     }
+    public function weappupdate(Request $request)
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $user = User::where('id', $userId)->first();
+
+        $attributes['country'] = $request->country;
+        $attributes['province'] = $request->province;
+        $attributes['city'] = $request->city;
+        $attributes['district'] = $request->district;
+        $attributes['town'] = $request->town;
+        $attributes['address'] = $request->province.$request->city.$request->district.$request->villageInfo;
+        $attributes['villageInfo'] = $request->villageInfo;
+        $attributes['latitude'] = $request->latitude;
+        $attributes['longitude'] = $request->longitude;
+        // 更新用户数据
+        $user->update($attributes);
+
+        Location::create([
+            'user_id' => $userId,
+            'country' => $request->country,
+            'province' => $request->province,
+            'city' => $request->city,
+            'district' => $request->district,
+            'town' => $request->town,
+            'street' => $request->street,
+            'street_number' => $request->street_number,
+            'crossroad' => $request->crossroad,
+            'nation_code' => $request->nation_code,
+            'city_code' => $request->city_code,
+            'adcode' => $request->adcode,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'location_title' => $request->location_title,
+            'location_dir_desc' => $request->location_dir_desc,
+            'live_place' => $request->live_place,
+        ]);
+
+        return response()->json([
+            'data'=>$user
+        ], 200);
+    }
 }

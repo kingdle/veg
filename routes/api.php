@@ -27,6 +27,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::resource('/messages', 'MessagesController')->middleware('auth:api');
     //users用户查询
     Route::resource('/users', 'UsersController')->middleware('auth:api');
+    Route::post('/user/weappupdate','UsersController@weappupdate')->middleware('auth:api');
     //系统设置
     Route::resource('/configs', 'ConfigsController');
     //shops店铺查询

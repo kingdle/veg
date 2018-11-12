@@ -26,6 +26,9 @@ class User extends JsonResource
             'is_active' => $this->is_active,
             'is_admin' => $this->is_admin,
             'updated_at'=>$this->updated_at,
+            'address'=>$this->address,
+            'latitude'=>$this->latitude,
+            'longitude'=>$this->longitude,
 //            'weapp_openid'=>$this->weapp_openid,
 //            'weixin_session_key'=>$this->weixin_session_key,
 //            'shop'=>new Shop($this->shop)

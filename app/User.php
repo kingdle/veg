@@ -16,7 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'phone', 'email', 'password','avatar','country','province','language','city','is_active',
+        'name', 'phone', 'email', 'password','avatar',
+        'country','province','city','district','town','address','villageInfo','latitude','longitude',
+        'language','is_active',
         'username', 'weixin_openid', 'weixin_unionid', 'nickname','avatar_url','gender',
         'weixin_session_key','weapp_openid',
     ];
