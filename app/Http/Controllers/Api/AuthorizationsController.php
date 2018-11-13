@@ -76,7 +76,8 @@ class AuthorizationsController extends Controller
 
     public function weappShopRegister(Request $request){
         $userid = Auth::guard('api')->user()->id;
-        $avatar = Auth::guard('api')->user()->avatar_url;
+        $avatar_url = Auth::guard('api')->user()->avatar_url;
+        $avatar = str_replace('/132', '/0', $avatar_url);// 替换为大图头像
         if($userid){
             $title = $request->title;
 //            $phone = $request->phone;
@@ -100,13 +101,13 @@ class AuthorizationsController extends Controller
             if ($is_shop) {
                 return response()->json([
                     'status' => 'false',
-                    'message' => '苗厂名已存在',
+                    'message' => '名称已存在',
                 ], 403);
             }
             if (!$title) {
                 return response()->json([
                     'status' => 'false',
-                    'message' => '苗厂名不能为空',
+                    'message' => '名称不能为空',
                 ], 403);
             }
 
