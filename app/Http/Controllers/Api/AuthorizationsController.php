@@ -156,6 +156,7 @@ class AuthorizationsController extends Controller
             return response()->json([
                 'status' => 'true',
                 'message' => '成功入驻',
+                'user' => $user
             ], 200);
         }
         return $this->response->errorUnauthorized('请重新申请入驻');
