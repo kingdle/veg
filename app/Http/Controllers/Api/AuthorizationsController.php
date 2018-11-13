@@ -26,17 +26,9 @@ class AuthorizationsController extends Controller
         $weixinSessionKey = $data['session_key'];
         $nickname = $request->nickname;
         $avatar = $request->avatar;
-        if($request->country){
-            $country = $request->country;
-            $attributes['country'] = $country;
-        }
-        if($request->province){
-            $province = $request->province;
-            $attributes['province'] = $province;
-        }
-        if($request->city){
-            $city = $request->city;
-            $attributes['city'] = $city;
+        if($request->avatar){
+            $avatar = $request->avatar;
+            $attributes['avatar_url'] = $avatar;
         }
         if($request->gender){
             $gender = $request->gender;
