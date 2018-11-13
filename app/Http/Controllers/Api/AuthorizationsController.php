@@ -157,7 +157,8 @@ class AuthorizationsController extends Controller
                 'status' => 'true',
                 'message' => '成功入驻',
                 'user' => $user,
-                'shopId'=>$shopId
+                'shop'=> $shop,
+                'shopId'=> $shopId
             ], 200);
         }
         return $this->response->errorUnauthorized('请重新申请入驻');
