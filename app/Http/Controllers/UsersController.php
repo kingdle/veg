@@ -7,10 +7,17 @@ use App\Location;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Iwanli\Wxxcx\Wxxcx;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+    protected $wxxcx;
+
+    function __construct(Wxxcx $wxxcx)
+    {
+        $this->wxxcx = $wxxcx;
+    }
 
     public function index()
     {
@@ -94,6 +101,28 @@ class UsersController extends Controller
 //        ]);
 //        return response()->json(['status' => true]);
 //    }
+    public function getPhone(Request $request)
+    {
+        $code = request('code', '');
+        $encryptedData = request('encryptedData', '');
+        $iv = request('iv', '');
+        //根据 code 获取用户 session_key 等信息, 返回用户openid 和 session_key
+        $userInfo = $this->wxxcx->getLoginInfo($code);
+        //获取解密后的用户信息
+        $wxinfo=$this->wxxcx->getUserInfo($encryptedData, $iv);
+        return $wxinfo;
+    }
+    public function userPhoneUpdate(Request $request)
+    {
+        $userid = Auth::guard('api')->user()->id;
+        $user = User::find($userid);
+        $attributes['phone'] = request('phoneNumber', '');
+        // 更新用户数据
+        $user->update($attributes);
+        return response()->json([
+            'data'=>$user
+        ], 200);
+    }
     public function update()
     {
         request()->user()->update(request()->only('name'));
@@ -109,7 +138,7 @@ class UsersController extends Controller
         $attributes['city'] = $request->city;
         $attributes['district'] = $request->district;
         $attributes['town'] = $request->town;
-        $attributes['address'] = $request->province.$request->city.$request->district.$request->villageInfo;
+        $attributes['address'] = $request->address;
         $attributes['villageInfo'] = $request->villageInfo;
         $attributes['latitude'] = $request->latitude;
         $attributes['longitude'] = $request->longitude;
