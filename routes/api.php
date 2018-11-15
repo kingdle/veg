@@ -52,6 +52,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/dynamic/uploadVideoThumb', 'DynamicsController@uploadVideoThumb')->middleware('auth:api');
     Route::post('/dynamic/dynamicQuery', 'DynamicsController@dynamicQuery');
     Route::resource('/answers', 'AnswersController');
+    Route::post('/answer/myAnswers','AnswersController@myAnswers');
     //albums相册查询
     Route::resource('/albums', 'AlbumsController');
     //sorts分类查询
