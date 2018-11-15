@@ -17,14 +17,8 @@ class FavoritesController extends Controller
     }
     public function followShopList(){
         $shop=Favorite::where('user_id',Auth::user()->id)->pluck('shop_id');
-        $shops = Shop::with('user')->whereIn('id',$shop)->get();
-        $shopsList= new ShopCollection($shops);
-        return response()->json([
-            'status' => false,
-            'status_code' => '200',
-            'message'=>'我收藏的苗厂',
-            'data'=>$shopsList
-        ]);
+        $shops = Shop::with('user')->whereIn('id',$shop)->orderBy('id', 'desc')->paginate(9);
+        return new ShopCollection($shops);
     }
     public function isFavorites(Request $request){
         $user_id=Auth::user()->id;
