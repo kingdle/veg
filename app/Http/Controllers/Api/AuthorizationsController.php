@@ -98,10 +98,17 @@ class AuthorizationsController extends Controller
 //                ], 403);
 //            }
             $is_shop = Shop::where('title', $title)->first();
+            $is_user = Shop::where('user_id', $userid)->first();
             if ($is_shop) {
                 return response()->json([
                     'status' => 'false',
                     'message' => '名称已存在',
+                ], 403);
+            }
+            if ($is_user) {
+                return response()->json([
+                    'status' => 'false',
+                    'message' => '苗厂已存在',
                 ], 403);
             }
             if (!$title) {
