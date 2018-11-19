@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Answer;
 use Auth;
 use App\User;
 use App\Shop;
@@ -65,12 +66,13 @@ class AuthorizationsController extends Controller
         $createToken->token->expires_at = Carbon::now()->addDays(15);
         $createToken->token->save();
         $token = $createToken->accessToken;
-
+        $answer = Answer::where('to_user_id',$userid)->where('is_read','F')->first();
         return response()->json([
             'access_token' => $token,
             'token_type' => "Bearer",
             'expires_in' => '21600',
-            'data'=>$user
+            'data'=>$user,
+            'answer'=>$answer
         ], 200);
     }
 
