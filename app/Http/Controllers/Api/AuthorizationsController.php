@@ -66,7 +66,11 @@ class AuthorizationsController extends Controller
         $createToken->token->expires_at = Carbon::now()->addDays(15);
         $createToken->token->save();
         $token = $createToken->accessToken;
-        $answer = Answer::where('to_user_id',$user->id)->where('is_read','F')->count();
+        if($user){
+            $answer = Answer::where('to_user_id',$user->id)->where('is_read','F')->count();
+        }else{
+            $answer='0';
+        }
         return response()->json([
             'access_token' => $token,
             'token_type' => "Bearer",
