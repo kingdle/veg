@@ -27,12 +27,14 @@ class AuthorizationsController extends Controller
         $weixinSessionKey = $data['session_key'];
         $nickname = $request->nickname;
         $avatar = $request->avatar;
+        $country = $request->country;
+        $province = $request->province;
+        $city = $request->cityInfo;
+        $gender = $request->gender;
         if($request->avatar){
-            $avatar = $request->avatar;
             $attributes['avatar_url'] = $avatar;
         }
         if($request->gender){
-            $gender = $request->gender;
             $attributes['gender'] = $gender;
         }
         //找到 openid 对应的用户
