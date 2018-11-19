@@ -59,6 +59,10 @@ class AnswersController extends Controller
         ]);
     }
     public function updateIsRead(Request $request){
-
+        $userid = Auth::guard('api')->user()->id;
+        $answer = Answer::where('to_user_id',$userid)->update(['is_read' => 'T','read_at'=>now()]);
+        return response()->json([
+            'data'=>$answer
+        ], 200);
     }
 }

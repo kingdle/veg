@@ -53,6 +53,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/dynamic/dynamicQuery', 'DynamicsController@dynamicQuery');
     Route::resource('/answers', 'AnswersController');
     Route::post('/answer/myAnswers','AnswersController@myAnswers');
+    Route::post('/answer/updateIsRead','AnswersController@updateIsRead');
     //albums相册查询
     Route::resource('/albums', 'AlbumsController');
     //sorts分类查询
