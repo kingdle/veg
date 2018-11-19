@@ -16,13 +16,13 @@ class AnswersController extends Controller
         return new AnswerCollection($answers);
     }
     public function myAnswers(Request $request){
-        $answers=Answer::where('user_id',$request->userId)->where('is_hidden', '=','F')->get(array('dynamic_id'));
+        $answers=Answer::where('user_id',$request->userId)->orwhere('to_user_id',$request->userId)->where('is_hidden', '=','F')->get(array('dynamic_id'));
         foreach ($answers as $value){
             $dynamic_ids[]= $value->dynamic_id;
         }
         $dynamic_ids = array_flip($dynamic_ids);
         $dynamic_ids = array_keys($dynamic_ids);
-        $dynamics= Dynamic::with('shop','answers','followers','tags')->whereIn("id",$dynamic_ids)->where("is_hidden",'!=','T')->orderBy('id', 'desc')->paginate(9);
+        $dynamics= Dynamic::with('shop','answers','followers','tags')->whereIn("id",$dynamic_ids)->where("is_hidden",'!=','T')->orderBy('updated_at', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
     public function store(Request $request){
