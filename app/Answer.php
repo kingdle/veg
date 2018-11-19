@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
     protected $fillable = [
-        'id','user_id','dynamic_id', 'body','votes_count', 'comments_count','is_hidden','close_comment'
+        'id','user_id','to_user_id','dynamic_id', 'body','votes_count', 'comments_count','is_hidden','is_read','read_at','close_comment'
     ];
     public function user(){
         return $this->belongsTo(User::class);

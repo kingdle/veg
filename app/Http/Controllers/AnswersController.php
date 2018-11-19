@@ -28,6 +28,7 @@ class AnswersController extends Controller
     public function store(Request $request){
         Answer::create([
             'dynamic_id'=>$request->dynamic_id,
+            'to_user_id'=>$request->to_user_id,
             'user_id'=>$request->user_id,
             'body'=>$request->body
         ]);
@@ -56,5 +57,8 @@ class AnswersController extends Controller
             'message'=>'回复成功',
             'data'=>$dy
         ]);
+    }
+    public function updateIsRead(Request $request){
+
     }
 }
