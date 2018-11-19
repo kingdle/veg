@@ -108,7 +108,7 @@ class AuthorizationsController extends Controller
             if ($is_user) {
                 return response()->json([
                     'status' => 'false',
-                    'message' => '苗厂已存在',
+                    'message' => '您已注册过',
                 ], 403);
             }
             if (!$title) {
