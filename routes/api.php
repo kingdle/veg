@@ -124,7 +124,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/bigcode/shopEdit', 'bigcode\usersController@shopEdit');
 
 
-    Route::post('/ocr/upload', 'ocrsController@upload');
+    Route::post('/ocr/upload', 'OcrsController@upload');
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
 //    Route::post('authorizations','AuthorizationsController@store');
