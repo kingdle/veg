@@ -10,10 +10,8 @@ class OcrsController extends Controller
     public function upload(Request $request){
         $file=$request->file('file');
         // 获取文件相关信息
-        $originalName = $file->getClientOriginalName(); // 文件原名
         $ext = $file->getClientOriginalExtension();     // 扩展名
         $realPath = $file->getRealPath();   //临时文件的绝对路径
-        $type = $file->getClientMimeType();     // image/jpeg
 
         // 上传文件
         $filename = 'ocrs/' . 'MG' . uniqid() . '.' . $ext;
@@ -51,5 +49,18 @@ class OcrsController extends Controller
         curl_setopt($curl, CURLOPT_POSTFIELDS, $bodys);
         $out_put = curl_exec($curl);
         return $out_put;
+    }
+    public function object_to_array($obj) {
+        $obj = (array)$obj;
+        foreach ($obj as $k => $v) {
+            if (gettype($v) == 'resource') {
+                return;
+            }
+            if (gettype($v) == 'object' || gettype($v) == 'array') {
+                $obj[$k] = (array)object_to_array($v);
+            }
+        }
+
+        return $obj;
     }
 }
