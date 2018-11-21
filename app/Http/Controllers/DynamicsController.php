@@ -32,7 +32,7 @@ class DynamicsController extends Controller
     }
     public function show($shop_id)
     {
-        $dynamics = Dynamic::with('shop','answers','followers','tags')->where('shop_id', $shop_id)->orderBy('id', 'desc')->paginate(9);
+        $dynamics = Dynamic::with('shop','answers','followers','tags')->where('shop_id', $shop_id)->where("is_hidden",'!=','T')->orderBy('id', 'desc')->paginate(9);
         if ($dynamics->count() == 0) {
             return response()->json(['status' => false, 'status_code' => '401']);
         }
@@ -294,5 +294,13 @@ class DynamicsController extends Controller
             ]);
         }
 
+    }
+    public function hiddenDynamic(Request $request)
+    {
+        $userId=Auth::guard('api')->user()->id;
+        $seed = Dynamic::where('id',$request->id)->where('user_id', $userId)->first();
+        $seed->is_hidden = 'T';
+        $seed->save();
+        return response()->json(['deleted']);
     }
 }
