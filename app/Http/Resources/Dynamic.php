@@ -38,7 +38,7 @@ class Dynamic extends JsonResource
 //            'followers'=>$this->followers,
             'answers'=>Answer::where('dynamic_id',$this->id)->with('user')->get(),
             'follow'=>Follow::where('dynamic_id',$this->id)->where('user_id',$request->userId)->get(),
-
+            'followers'=>Follow::where('dynamic_id',$this->id)->with('user')->get(),
             'tags'=>$this->tags,
             'sorts'=>$this->sorts,
         ];
