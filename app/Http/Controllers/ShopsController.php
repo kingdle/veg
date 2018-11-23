@@ -110,7 +110,19 @@ class ShopsController extends Controller
         request()->user()->shop->update(request()->only('summary', 'address'));
         return response()->json(['status' => true]);
     }
-
+    public function titleUpdate()
+    {
+        $userId=request()->user()->id;
+        $is_shop = Shop::where('title', $title)->first();
+        if ($is_shop) {
+            return response()->json([
+                'status' => 'false',
+                'message' => '名称已存在',
+            ], 403);
+        }
+        request()->user()->shop->update(request()->only('title'));
+        return response()->json(['status' => true]);
+    }
     public function changeAvatar(Request $request)
     {
 //        return (request()->header());

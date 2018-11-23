@@ -77,7 +77,7 @@ class ShopsController extends Controller
         return response()->json([
             'status'=>'true',
             'status_code' => 200,
-            'message' => '苗场信息更新成功',
+            'message' => '更新成功',
             'data'=>$shop
         ]);
     }
