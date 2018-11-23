@@ -112,8 +112,9 @@ class ShopsController extends Controller
     }
     public function titleUpdate()
     {
+        $title=request('title', '');
         $userId=request()->user()->id;
-        $is_shop = Shop::where('title', $title)->first();
+        $is_shop = Shop::where('title', $title)->where('user_id',$userId)->first();
         if ($is_shop) {
             return response()->json([
                 'status' => 'false',
