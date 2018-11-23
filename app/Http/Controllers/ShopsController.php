@@ -113,6 +113,7 @@ class ShopsController extends Controller
     public function titleUpdate(Request $request)
     {
         $title=$request->title;
+        $shopId=request()->user()->shop->id;
         $shop = Shop::where('title', $title)->first();
         if ($shop) {
             return response()->json([
@@ -120,14 +121,14 @@ class ShopsController extends Controller
                 'message' => '名称已存在',
             ], 403);
         }
+        $shopTitle=Shop::where('id', $shopId)->first();
         $attributes['title'] = $title;
-        $shop->update($attributes);
+        $shopTitle->update($attributes);
         return response()->json([
             'status'=>'true',
-            'status_code' => 200,
             'message' => '更新成功',
-            'data'=>$shop
-        ]);
+            'data'=>$shopTitle
+        ],200);
     }
     public function changeAvatar(Request $request)
     {
