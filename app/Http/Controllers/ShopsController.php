@@ -112,17 +112,22 @@ class ShopsController extends Controller
     }
     public function titleUpdate()
     {
-        $title=request('title', '');
-        $userId=request()->user()->id;
-        $is_shop = Shop::where('title', $title)->where('user_id',$userId)->first();
-        if ($is_shop) {
+        $title=$request->title;
+        $shop = Shop::where('title', $title)->first();
+        if ($shop) {
             return response()->json([
                 'status' => 'false',
                 'message' => '名称已存在',
             ], 403);
         }
-        request()->user()->shop->update(request()->only('title'));
-        return response()->json(['status' => true]);
+        $attributes['title'] = $title;
+        $shop->update($attributes);
+        return response()->json([
+            'status'=>'true',
+            'status_code' => 200,
+            'message' => '更新成功',
+            'data'=>$shop
+        ]);
     }
     public function changeAvatar(Request $request)
     {
