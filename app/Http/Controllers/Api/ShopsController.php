@@ -62,6 +62,9 @@ class ShopsController extends Controller
         if($request->cityInfo){
             $attributes['cityInfo'] = $request->cityInfo;
         }
+        if($request->address){
+            $attributes['address'] = $request->address;
+        }
         if($request->villageInfo){
             $attributes['villageInfo'] = $request->villageInfo;
         }
