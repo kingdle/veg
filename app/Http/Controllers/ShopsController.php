@@ -110,7 +110,7 @@ class ShopsController extends Controller
         request()->user()->shop->update(request()->only('summary', 'address'));
         return response()->json(['status' => true]);
     }
-    public function titleUpdate()
+    public function titleUpdate(Request $request)
     {
         $title=$request->title;
         $shop = Shop::where('title', $title)->first();
