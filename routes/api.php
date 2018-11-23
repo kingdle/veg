@@ -165,6 +165,7 @@ $api->version('v2', [
         $api->get('v2/shop', 'ShopsController@weShow')->middleware('auth:api');
         $api->get('v2/shopList', 'ShopsController@shopList')->middleware('auth:api');
         $api->post('v2/shop', 'ShopsController@weUpdate')->middleware('auth:api');
+        $api->post('v2/addressUpdate', 'ShopsController@addressUpdate')->middleware('auth:api');
         $api->post('v2/weShopAvatar', 'ShopsController@weShopAvatar')->middleware('auth:api');
 
         $api->post('v2/user', 'UsersController@weUpdate')->middleware('auth:api');

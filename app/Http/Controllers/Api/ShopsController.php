@@ -84,6 +84,39 @@ class ShopsController extends Controller
             'data'=>$shop
         ]);
     }
+    public function addressUpdate(Request $request)
+    {
+        $userId=request()->user()->id;
+        $shopId=request()->user()->shop->id;
+        $shop = Shop::find($shopId);
+        if($request->country){
+            $attributes['country'] = $request->country;
+        }
+        if($request->province){
+            $attributes['province'] = $request->province;
+        }
+        if($request->city){
+            $attributes['cityInfo'] = $request->city;
+        }
+        if($request->address){
+            $attributes['address'] = $request->address;
+        }
+        if($request->villageInfo){
+            $attributes['villageInfo'] = $request->villageInfo;
+        }
+        if($request->longitude){
+            $attributes['longitude'] = $request->longitude;
+            $attributes['latitude'] = $request->latitude;
+        }
+        // 更新用户数据
+        $shop->update($attributes);
+        return response()->json([
+            'status'=>'true',
+            'status_code' => 200,
+            'message' => '更新成功',
+            'data'=> new \App\Http\Resources\Shop($shop)
+        ]);
+    }
     public function weShopAvatar(Request $request)
     {
         $userId=request()->user()->id;
