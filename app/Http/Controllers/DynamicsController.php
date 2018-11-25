@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Album;
 use App\Http\Resources\DynamicCollection;
 use App\Dynamic;
+use App\Shop;
 use App\Video;
 use FFMpeg\Coordinate\TimeCode;
 use FFMpeg\FFMpeg;
@@ -28,6 +29,25 @@ class DynamicsController extends Controller
     public function dynamicQuery(Request $request){
         $queryText='%'.$request->queryText.'%';
         $dynamics= Dynamic::with('shop','answers','followers','tags')->where("content",'like',$queryText)->where("is_hidden",'!=','T')->orderBy('id', 'desc')->paginate(9);
+        return new DynamicCollection($dynamics);
+    }
+    public function dynamicWithShopQuery(Request $request){
+        $queryText='%'.$request->queryText.'%';
+        $shopIds= Shop::where('title','like',$queryText)->get(array('id'));
+        if($shopIds->count()!=0){
+            foreach ($shopIds as $value){
+                $dynamic_shopIds[]= $value->id;
+            }
+            $dynamic_shopIds = array_flip($dynamic_shopIds);
+            $dynamic_shopIds = array_keys($dynamic_shopIds);
+        }else{
+            $dynamic_shopIds=[];
+        }
+        $dynamics= Dynamic::with('shop','answers','followers','tags')
+            ->where("content",'like',$queryText)
+            ->orWhereIn('shop_id', $dynamic_shopIds)
+            ->where("is_hidden",'!=','T')
+            ->orderBy('id', 'desc')->paginate(9);
         return new DynamicCollection($dynamics);
     }
     public function show($shop_id)

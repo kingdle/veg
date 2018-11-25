@@ -52,6 +52,8 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::post('/dynamic/uploadVideo', 'DynamicsController@uploadVideo')->middleware('auth:api');
     Route::post('/dynamic/uploadVideoThumb', 'DynamicsController@uploadVideoThumb')->middleware('auth:api');
     Route::post('/dynamic/dynamicQuery', 'DynamicsController@dynamicQuery');
+    Route::post('/dynamic/dynamicWithShopQuery', 'DynamicsController@dynamicWithShopQuery');
+
     Route::post('/dynamic/hiddenDynamic','DynamicsController@hiddenDynamic')->middleware('auth:api');
     Route::resource('/answers', 'AnswersController');
     Route::post('/answer/myAnswers','AnswersController@myAnswers');
