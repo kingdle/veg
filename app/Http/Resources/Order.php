@@ -56,6 +56,8 @@ class Order extends JsonResource
             'buyer_confirm_at'=>$this->buyer_confirm_at,
             'start_at'=>substr($this->start_at,0,10),
             'end_at'=>substr($this->end_at,0,10),
+            'start_time'=>substr($this->start_at,11,14),
+            'end_time'=>substr($this->end_at,11,14),
             'sendDate'=>[substr($this->start_at,0,10),substr($this->end_at,0,10)],
             'note_buy'=>$this->note_buy,
             'rate_buyer'=>$this->rate_buyer,

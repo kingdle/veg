@@ -382,6 +382,53 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+    public function shopUpdate(Request $request, Order $order)
+    {
+        $order = Order::where('id', $request->id)->first();
+        $attributes['counts'] = request('counts', '');
+        $attributes['fee_earnest'] = request('fee_earnest', '0');
+        $attributes['fee_earnest_at'] = now();
+        $attributes['fee_actual'] = request('fee_actual', '0');
+        $attributes['unit_price'] = request('unit_price', '0');
+        $attributes['total_price'] = request('total_price', '0');
+        $attributes['name'] = request('name', NULL);
+        $attributes['nickname'] = request('nickname', NULL);
+        $attributes['address'] = request('address', NULL);
+        $attributes['provinceName'] = request('provinceName', NULL);
+        $attributes['cityName'] = request('cityName', NULL);
+        $attributes['countyName'] = request('countyName', NULL);
+        $attributes['townName'] = request('townName', NULL);
+        $attributes['detailInfo'] = request('detailInfo', NULL);
+        $attributes['villageInfo'] = request('villageInfo', NULL);
+        $attributes['longitude'] = request('longitude', NULL);
+        $attributes['latitude'] = request('latitude', NULL);
+        $attributes['is_true_location'] = request('is_true_location', '0');
+        $attributes['phone'] = request('phone', NULL);
+        $attributes['payment'] = request('payment', '0');
+        $attributes['start_at'] = request('start_at', NULL);
+        $attributes['end_at'] = request('end_at', NULL);
+        $attributes['note_sell'] = request('note_sell', NULL);
+        if ($request->prod_id) {
+            $attributes['prod_id'] = request('prod_id', NULL);
+            $unlikes=Prod::find($order->prod_id);
+            if($unlikes['likes_count'] > 0){
+                $unlikes->decrement('likes_count');
+            }
+            Prod::find($request->prod_id)->increment('likes_count');
+        }
+        $success = $order->update($attributes);
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = $order->id . '订单编辑成功';
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '502';
+            $data['msg'] = '系统繁忙，请售后再试';
+            return json_encode($data);
+        }
+    }
     public function weOrderUpdate(Request $request){
         $order = Order::where('id', $request->id)->first();
         $attributes['name'] = $request->name;
