@@ -16,7 +16,7 @@ class AddProvanceToOrdersTable extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->string('provinceName')->nullable()->after('address')->comment('省');
             $table->string('countyName')->nullable()->after('cityInfo')->comment('县级市');
-            $table->string('detailInfo')->nullable()->after('countyName')->comment('详细地址');
+            $table->text('detailInfo')->nullable()->after('countyName')->comment('详细地址');
             $table->renameColumn('cityInfo', 'cityName')->comment('市');
         });
     }

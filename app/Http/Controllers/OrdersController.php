@@ -10,6 +10,7 @@ use App\Shop;
 use App\Tag;
 use Auth;
 use Illuminate\Http\Request;
+use Psr\Log\NullLogger;
 
 class OrdersController extends Controller
 {
@@ -331,6 +332,56 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+    public function shopStore(Request $request, Order $order)
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $shopId = Auth::guard('api')->user()->shop->id;
+        $order->fill($request->all());
+        $order->to_user_id = $userId;
+        $order->shop_id = $shopId;
+        $order->prod_id = request('prod_id', '');
+        $order->counts = request('counts', '');
+        $order->fee_earnest = request('fee_earnest', '0');
+        $order->fee_earnest_at = now();
+        $order->fee_actual = request('fee_actual', '0');
+        $order->unit_price = request('unit_price', '0');
+        $order->total_price = request('total_price', '0');
+        $order->name = request('name', NULL);
+        $order->nickname = request('nickname', NULL);
+        $order->address = request('address', NULL);
+        $order->provinceName = request('provinceName', NULL);
+        $order->cityName = request('cityName', NULL);
+        $order->countyName = request('countyName', NULL);
+        $order->townName = request('townName', NULL);
+        $order->detailInfo = request('detailInfo', NULL);
+        $order->villageInfo = request('villageInfo', NULL);
+        $order->longitude = request('longitude', NULL);
+        $order->latitude = request('latitude', NULL);
+        $order->is_true_location = request('is_true_location', '0');
+        $order->phone = request('phone', NULL);
+        $order->payment = request('payment', '0');
+        $order->start_at = request('start_at', NULL);
+        $order->end_at = request('end_at', NULL);
+        $order->note_sell = request('note_sell', NULL);
+        if ($request->prod_id) {
+            Prod::find($request->prod_id)->increment('likes_count');
+        }
+        $success = $order->save();
+
+        if ($success) {
+            $data['status'] = true;
+            $data['status_code'] = '200';
+            $data['msg'] = '订单新建成功';
+            $data['name'] = $order->name;
+            return json_encode($data);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '501';
+            $data['msg'] = '系统繁忙，请售后再试';
+            $data['name'] = $order->name;
+            return json_encode($data);
+        }
+    }
     public function weOrderUpdate(Request $request){
         $order = Order::where('id', $request->id)->first();
         $attributes['name'] = $request->name;
@@ -536,11 +587,12 @@ class OrdersController extends Controller
     {
         $order = Order::where('id', $request->id)->first();
         $attributes['address'] = $request->address;
-//        $attributes['provinceName'] = $request->provinceName;
-//        $attributes['cityName'] = $request->cityName;
-//        $attributes['countyName'] = $request->countyName;
-        $attributes['detailInfo'] = $request->name;
-        $attributes['villageInfo'] = $request->name;
+        $attributes['provinceName'] = $request->provinceName;
+        $attributes['cityName'] = $request->cityName;
+        $attributes['countyName'] = $request->countyName;
+        $attributes['detailInfo'] = $request->detailInfo;
+        $attributes['townName'] = $request->townName;
+        $attributes['villageInfo'] = $request->villageInfo;
         $attributes['longitude'] = $request->longitude;
         $attributes['latitude'] = $request->latitude;
         $attributes['is_true_location'] = '0';
