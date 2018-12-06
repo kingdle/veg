@@ -23,8 +23,8 @@ class CreateGreenhousesTable extends Migration
             $table->integer('pic_count')->default(0)->comment('相片数');
             $table->integer('dynamic_count')->default(0)->comment('动态数');
             $table->string('address')->nullable()->comment('所在地址');
-            $table->string('cityInfo')->nullable()->comment('城市');
-            $table->string('villageInfo')->nullable()->comment('村庄信息');
+            $table->string('city')->nullable()->comment('城市');
+            $table->string('village')->nullable()->comment('村庄信息');
             $table->string('longitude')->nullable()->comment('经度');
             $table->string('latitude')->nullable()->comment('纬度');
             $table->timestamp('published_at')->nullable()->comment('建设日期');

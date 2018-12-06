@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Greenhouse;
 use App\Http\Resources\OrderCollection;
 use App\Order;
 use App\Prod;
@@ -32,7 +33,7 @@ class OrdersController extends Controller
     {
         $userId = Auth::guard('api')->user()->id;
         $phone = $request->phone;
-        $orders = Order::where("to_user_id",'=',$userId)->where("phone",'=',$phone)->where('is_del', '=', 'F')->orderby("id","desc")->get();
+        $orders = Order::where("to_user_id", '=', $userId)->where("phone", '=', $phone)->where('is_del', '=', 'F')->orderby("id", "desc")->get();
         if ($orders->count() == 0) {
             $data['status'] = false;
             $data['status_code'] = '401';
@@ -52,9 +53,10 @@ class OrdersController extends Controller
         }
         return new OrderCollection($orders);
     }
+
     public function weBuyerList(Request $request)
     {
-        if($request->phone ==''){
+        if ($request->phone == '') {
             $data['status'] = false;
             $data['status_code'] = '401';
             $data['msg'] = '手机号不能为空';
@@ -73,12 +75,12 @@ class OrdersController extends Controller
         }
         $userId = Auth::guard('api')->user()->id;
         $phone = $request->phone;
-        $orders = Order::where("phone",'=',$phone)->with(['shop'=>function($query){
-            $query->select('id','title');
-        }])->with(['prod'=>function($query){
-            $query->select('id','sort_id','title','pic');
-        }])->where('is_del', '=', 'F')->orderby("end_at","desc")->get();
-        $orderCounts=Order::latest()->where("phone",'=',$phone)->where('is_del', '=','F')->count();//订单总数
+        $orders = Order::where("phone", '=', $phone)->with(['shop' => function ($query) {
+            $query->select('id', 'title');
+        }])->with(['prod' => function ($query) {
+            $query->select('id', 'sort_id', 'title', 'pic');
+        }])->where('is_del', '=', 'F')->orderby("end_at", "desc")->get();
+        $orderCounts = Order::latest()->where("phone", '=', $phone)->where('is_del', '=', 'F')->count();//订单总数
         if ($orders->count() == 0) {
             $data['status'] = false;
             $data['status_code'] = '401';
@@ -96,7 +98,7 @@ class OrdersController extends Controller
             ];
             return json_encode($data);
         }
-        foreach($orders as $value){
+        foreach ($orders as $value) {
             $order[] = [
                 'id' => $value->id,
                 'shop' => $value->shop,
@@ -104,13 +106,14 @@ class OrdersController extends Controller
                 'counts' => $value->counts,
                 'payment' => $value->payment,
                 'state' => $value->state,
-                'counts'=>$orderCounts,
-                'end_at' => substr($value->end_at,0,10),
-                'created_at' => substr($value->created_at,0,10),
+                'counts' => $orderCounts,
+                'end_at' => substr($value->end_at, 0, 10),
+                'created_at' => substr($value->created_at, 0, 10),
             ];
         }
         return $order;
     }
+
     public function lists()
     {
         $userId = Auth::guard('api')->user()->id;
@@ -134,11 +137,12 @@ class OrdersController extends Controller
         }
         return new OrderCollection($orders);
     }
+
     public function listSize(Request $request)
     {
-        $pagination= $request->pagination;
+        $pagination = $request->pagination;
         $userId = Auth::guard('api')->user()->id;
-        $orders = Order::with('tag')->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate($pagination?$pagination:9);
+        $orders = Order::with('tag')->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate($pagination ? $pagination : 9);
         if ($orders->count() == 0) {
             $data['status'] = false;
             $data['status_code'] = '401';
@@ -158,49 +162,53 @@ class OrdersController extends Controller
         }
         return new OrderCollection($orders);
     }
+
     public function queryList()
     {
         $userId = Auth::guard('api')->user()->id;
         $orders = Order::where('to_user_id', $userId)->where('name', '!=', '')->where('is_del', '=', 'F')->distinct()->get(['name']);
         $multiplied = $orders->map(function ($item, $key) {
             return [
-                'value'=>$item->name,
+                'value' => $item->name,
             ];
         })->all();
         return $multiplied;
     }
+
     public function queryPhone()
     {
         $userId = Auth::guard('api')->user()->id;
         $orders = Order::where('to_user_id', $userId)->where('phone', '!=', '')->where('is_del', '=', 'F')->distinct()->get(['phone']);
         return $orders;
     }
+
     public function queryAddress()
     {
         $userId = Auth::guard('api')->user()->id;
         $orders = Order::where('to_user_id', $userId)->where('villageInfo', '!=', '')->where('is_del', '=', 'F')->distinct()->get(['villageInfo']);
         return $orders;
     }
+
     public function queryResult(Request $request)
     {
         $userId = Auth::guard('api')->user()->id;
-        if($request->name){
-            $orders = Order::where('to_user_id', $userId)->where('name','like','%'.$request->name.'%')->orwhere('nickname','like','%'.$request->name.'%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($request->name) {
+            $orders = Order::where('to_user_id', $userId)->where('name', 'like', '%' . $request->name . '%')->orwhere('nickname', 'like', '%' . $request->name . '%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         }
-        if($request->phone){
-            $orders = Order::where('to_user_id', $userId)->where('phone','=',$request->phone)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($request->phone) {
+            $orders = Order::where('to_user_id', $userId)->where('phone', '=', $request->phone)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         }
-        if($request->villageInfo){
-            $orders = Order::where('to_user_id', $userId)->where('villageInfo','like','%'.$request->villageInfo.'%')->orwhere('address','like','%'.$request->villageInfo.'%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($request->villageInfo) {
+            $orders = Order::where('to_user_id', $userId)->where('villageInfo', 'like', '%' . $request->villageInfo . '%')->orwhere('address', 'like', '%' . $request->villageInfo . '%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         }
-        if($request->start_at){
-            $orders = Order::where('to_user_id', $userId)->where('start_at','like','%'.$request->start_at.'%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($request->start_at) {
+            $orders = Order::where('to_user_id', $userId)->where('start_at', 'like', '%' . $request->start_at . '%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         }
-        if($request->end_at){
-            $orders = Order::where('to_user_id', $userId)->where('end_at','like','%'.$request->end_at.'%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($request->end_at) {
+            $orders = Order::where('to_user_id', $userId)->where('end_at', 'like', '%' . $request->end_at . '%')->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         }
-        if($request->tag_id){
-            $orders = Order::where('to_user_id', $userId)->where('tag_id','=',$request->tag_id)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        if ($request->tag_id) {
+            $orders = Order::where('to_user_id', $userId)->where('tag_id', '=', $request->tag_id)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
         }
         if ($orders->count() == 0) {
             $data['status'] = false;
@@ -222,6 +230,7 @@ class OrdersController extends Controller
         return new OrderCollection($orders);
 
     }
+
     public function show($id)
     {
         $order = Order::find($id);
@@ -247,7 +256,7 @@ class OrdersController extends Controller
             $order->longitude = $foo[4];
         }
         if ($request->unit_price && $request->counts) {
-            $order->total_price =  $request->unit_price * $request->counts;
+            $order->total_price = $request->unit_price * $request->counts;
         }
         if ($request->tags) {
             $order->tag_id = $this->normalizeTag($request->tags)['0'];
@@ -272,6 +281,7 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
     public function weStore(Request $request, Order $order)
     {
         $userId = Auth::guard('api')->user()->id;
@@ -280,7 +290,7 @@ class OrdersController extends Controller
         $order->to_user_id = $userId;
         $order->shop_id = $shopId;
         if ($request->name) {
-            $order->name =$request->name;
+            $order->name = $request->name;
         }
         if ($request->provinceName) {
             $order->provinceName = $request->provinceName;
@@ -303,17 +313,17 @@ class OrdersController extends Controller
             $order->longitude = $foo[4];
         }
         if ($request->unit_price && $request->counts) {
-            $order->total_price =  $request->unit_price * $request->counts;
+            $order->total_price = $request->unit_price * $request->counts;
         }
         if ($request->prod_id) {
-            $order->prod_id =$request->prod_id;
+            $order->prod_id = $request->prod_id;
             Prod::find($request->prod_id)->increment('likes_count');
         }
         if ($request->note_sell) {
-            $order->note_sell =$request->note_sell;
+            $order->note_sell = $request->note_sell;
         }
         if ($request->end_at) {
-            $order->start_at = date("Y-m-d",strtotime("-40 day",strtotime($request->end_at)));
+            $order->start_at = date("Y-m-d", strtotime("-40 day", strtotime($request->end_at)));
             $order->end_at = $request->end_at;
         }
         $success = $order->save();
@@ -332,7 +342,8 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
-    public function shopStore(Request $request, Order $order)
+
+    public function shopStore(Request $request, Order $order, Greenhouse $greenhouse)
     {
         $userId = Auth::guard('api')->user()->id;
         $shopId = Auth::guard('api')->user()->shop->id;
@@ -367,6 +378,22 @@ class OrdersController extends Controller
             Prod::find($request->prod_id)->increment('likes_count');
         }
         $success = $order->save();
+        $farmer = Greenhouse::where('phone', $request->phone)->where('shop_id', $shopId)->get();
+        if ($farmer->count() == 0) {
+            $greenhouse->shop_id = $shopId;
+            $greenhouse->title = request('name', NULL);
+            $greenhouse->phone = request('phone', NULL);
+            $greenhouse->address = request('address', NULL);
+            $greenhouse->country = request('country', NULL);
+            $greenhouse->province = request('provinceName', NULL);
+            $greenhouse->city = request('cityName', NULL);
+            $greenhouse->district = request('countyName', NULL);
+            $greenhouse->town = request('townName', NULL);
+            $greenhouse->village = request('villageInfo', NULL);
+            $greenhouse->longitude = request('longitude', NULL);
+            $greenhouse->latitude = request('latitude', NULL);
+            $greenhouse->save();
+        }
 
         if ($success) {
             $data['status'] = true;
@@ -382,6 +409,7 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
     public function shopUpdate(Request $request, Order $order)
     {
         $order = Order::where('id', $request->id)->first();
@@ -410,8 +438,8 @@ class OrdersController extends Controller
         $attributes['note_sell'] = request('note_sell', NULL);
         if ($request->prod_id) {
             $attributes['prod_id'] = request('prod_id', NULL);
-            $unlikes=Prod::find($order->prod_id);
-            if($unlikes['likes_count'] > 0){
+            $unlikes = Prod::find($order->prod_id);
+            if ($unlikes['likes_count'] > 0) {
                 $unlikes->decrement('likes_count');
             }
             Prod::find($request->prod_id)->increment('likes_count');
@@ -429,14 +457,16 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
-    public function weOrderUpdate(Request $request){
+
+    public function weOrderUpdate(Request $request)
+    {
         $order = Order::where('id', $request->id)->first();
         $attributes['name'] = $request->name;
         $attributes['phone'] = $request->phone;
         $attributes['unit_price'] = $request->unit_price;
 
         if ($request->end_at) {
-            $attributes['start_at'] = date("Y-m-d",strtotime("-40 day",strtotime($request->end_at)));
+            $attributes['start_at'] = date("Y-m-d", strtotime("-40 day", strtotime($request->end_at)));
             $attributes['end_at'] = $request->end_at;
         }
         if ($request->counts) {
@@ -445,18 +475,18 @@ class OrdersController extends Controller
             $attributes['counts'] = '0';
         }
         if ($request->unit_price && $request->counts) {
-            $attributes['total_price'] =  $request->unit_price * $request->counts;
+            $attributes['total_price'] = $request->unit_price * $request->counts;
         }
         if ($request->prod_id) {
             $attributes['prod_id'] = $request->prod_id;
 
-            $unlikes=Prod::find($order->prod_id);
-            if($unlikes['likes_count'] > 0){
+            $unlikes = Prod::find($order->prod_id);
+            if ($unlikes['likes_count'] > 0) {
                 $unlikes->decrement('likes_count');
             }
             Prod::find($request->prod_id)->increment('likes_count');
         }
-        if($request->is_true_location){
+        if ($request->is_true_location) {
             $attributes['is_true_location'] = $request->is_true_location;
         }
         if ($request->provinceName) {
@@ -472,8 +502,8 @@ class OrdersController extends Controller
             $attributes['detailInfo'] = $request->detailInfo;
             $attributes['villageInfo'] = $request->detailInfo;
         }
-        if($request->provinceName){
-            $attributes['address']= $request->provinceName.$request->cityName.$request->countyName;
+        if ($request->provinceName) {
+            $attributes['address'] = $request->provinceName . $request->cityName . $request->countyName;
         }
         if ($request->latitude) {
             $attributes['latitude'] = $request->latitude;
@@ -482,7 +512,7 @@ class OrdersController extends Controller
             $attributes['longitude'] = $request->longitude;
         }
         if ($request->note_sell) {
-            $attributes['note_sell'] =$request->note_sell;
+            $attributes['note_sell'] = $request->note_sell;
         }
         $success = $order->update($attributes);
         if ($success) {
@@ -497,6 +527,7 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
     public function updateOrder(Request $request)
     {
         $order = Order::where('id', $request->id)->first();
@@ -509,7 +540,7 @@ class OrdersController extends Controller
         }
         $attributes['unit_price'] = $request->unit_price;
         if ($request->unit_price && $request->counts) {
-            $attributes['total_price'] =  $request->unit_price * $request->counts;
+            $attributes['total_price'] = $request->unit_price * $request->counts;
         }
         $attributes['state'] = $request->states;
         $attributes['payment'] = $request->payment;
@@ -547,6 +578,7 @@ class OrdersController extends Controller
     {
 
     }
+
     //苗场订单未送苗、未付款listSeller
     public function listSeller()
     {
@@ -561,6 +593,7 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
     //已送苗列表listState
     public function listState()
     {
@@ -575,6 +608,7 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
     //已付款列表listPayment
     public function listPayment()
     {
@@ -630,6 +664,7 @@ class OrdersController extends Controller
         }
 
     }
+
     public function updateLocation(Request $request)
     {
         $order = Order::where('id', $request->id)->first();
@@ -657,6 +692,7 @@ class OrdersController extends Controller
         }
 
     }
+
     public function buyerCreate(Request $request, Order $order)
     {
         $userId = Auth::guard('api')->user()->id;
@@ -723,7 +759,7 @@ class OrdersController extends Controller
             $attributes['unit_price'] = $request->unit_price;
         }
         if ($request->unit_price && $request->counts) {
-            $attributes['total_price'] =  $request->unit_price * $request->counts;
+            $attributes['total_price'] = $request->unit_price * $request->counts;
         }
         if ($request->tag_id) {
             $attributes['tag_id'] = $request->get('tag_id');
@@ -763,6 +799,7 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
     public function buyerConfirm(Request $request)
     {
         $order = Order::where('id', $request->id)->first();
@@ -786,6 +823,7 @@ class OrdersController extends Controller
         }
 
     }
+
     public function sellerTransport(Request $request)
     {
         if (!$request->id) {
@@ -835,9 +873,10 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
     public function weDestroy(Request $request)
     {
-        $id= $request->id;
+        $id = $request->id;
         $order = Order::where('id', $id)->first();
         $attributes['is_del'] = 'T';
         $attributes['deleted_at'] = now();
@@ -855,6 +894,7 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
+
     private function normalizeTag($tags)
     {
         $ids = Tag::pluck('id');
