@@ -92,6 +92,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
     Route::get('/order/listSeller', 'OrdersController@listSeller')->middleware('auth:api');
     Route::get('/order/listState', 'OrdersController@listState')->middleware('auth:api');
     Route::get('/order/listPayment', 'OrdersController@listPayment')->middleware('auth:api');
+    Route::post('/order/listByPhoneName', 'OrdersController@listByPhoneName')->middleware('auth:api');
 
     //prods商品分类查询
     Route::resource('/prods', 'ProdsController')->middleware('auth:api');

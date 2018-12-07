@@ -623,7 +623,28 @@ class OrdersController extends Controller
             return json_encode($data);
         }
     }
-
+    public function listByPhoneName(Request $request)
+    {
+        $userId = Auth::guard('api')->user()->id;
+        if($request->queryText){
+            $queryText='%'.$request->queryText.'%';
+            $orders= Order::where([
+                ['to_user_id', $userId],
+                ['phone', 'like', $queryText]
+            ])->orWhere([['to_user_id', $userId],
+                ['name', 'like', $queryText]])->paginate(9);
+        }else{
+            $orders = Order::where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        }
+        if ($orders->count()) {
+            return new OrderCollection($orders);
+        } else {
+            $data['status'] = false;
+            $data['status_code'] = '404';
+            $data['msg'] = '订单为空';
+            return json_encode($data);
+        }
+    }
     public function updatePayment(Request $request)
     {
         $order = Order::where('id', $request->id)->first();
