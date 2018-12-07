@@ -19,6 +19,9 @@ class OcrsController extends Controller
         $filePath = config('filesystems.disks.upyun.protocol') . '://' . config('filesystems.disks.upyun.domain') . '/' . $filename;
         return $this->ocr($filePath);
     }
+    public function imgUrl(Request $request){
+        return $this->ocr($request->imgUrl);
+    }
     public function ocr($filePath){
         $host = "https://wordimg.market.alicloudapi.com";
         $path = "/word";
