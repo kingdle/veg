@@ -930,4 +930,37 @@ class OrdersController extends Controller
         return $ids;
     }
 
+    public function orderList(Request $request)
+    {
+        $userId = Auth::guard('api')->user()->id;
+        $queryText = '%'.$request->queryText.'%';
+        if ($queryText !='') {
+            $orders = Order::where('to_user_id', $userId)->where(function ($query) use ($queryText){
+                $query->where('name', 'like', $queryText)
+                    ->orWhere('phone', 'like', $queryText);
+            })->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+            return new OrderCollection($orders);
+        } else {
+            $orders = Order::where('to_user_id', $userId)->where('state', $request->state)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        }
+        if ($orders->count() == 0) {
+            $data['status'] = false;
+            $data['status_code'] = '401';
+            $data['msg'] = '订单为空';
+            $data['data'] = [];
+            $data['links'] = '';
+            $data['meta'] = [
+                'current_page' => 0,
+                'from' => 0,
+                'last_page' => 0,
+                'path' => '',
+                'per_page' => 9,
+                'to' => 0,
+                'total' => 0
+            ];
+            return json_encode($data);
+        }
+        return new OrderCollection($orders);
+
+    }
 }
