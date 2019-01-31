@@ -626,24 +626,85 @@ class OrdersController extends Controller
     public function listByPhoneName(Request $request)
     {
         $userId = Auth::guard('api')->user()->id;
-        if($request->queryText){
-            $queryText='%'.$request->queryText.'%';
-            $orders= Order::where([
-                ['to_user_id', $userId],
-                ['phone', 'like', $queryText]
-            ])->orWhere([['to_user_id', $userId],
-                ['name', 'like', $queryText]])->paginate(9);
-        }else{
-            $orders = Order::where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+        $state=$request->state;
+        if($state=='4'){
+            if($request->queryText){
+                $queryText='%'.$request->queryText.'%';
+                $orders= Order::where([
+                    ['to_user_id', $userId],
+                    ['phone', 'like', $queryText]
+                ])->orWhere([['to_user_id', $userId],
+                    ['name', 'like', $queryText]])->paginate(9);
+            }else{
+                $orders = Order::where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+            }
+            if ($orders->count()) {
+                return new OrderCollection($orders);
+            } else {
+                $data['status'] = false;
+                $data['status_code'] = '404';
+                $data['msg'] = '订单为空';
+                return json_encode($data);
+            }
+        }elseif($state=='0'){
+            if($request->queryText){
+                $queryText='%'.$request->queryText.'%';
+                $orders= Order::where('state',$state)->where([
+                    ['to_user_id', $userId],
+                    ['phone', 'like', $queryText]
+                ])->orWhere([['to_user_id', $userId],
+                    ['name', 'like', $queryText]])->paginate(9);
+            }else{
+                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+            }
+            if ($orders->count()) {
+                return new OrderCollection($orders);
+            } else {
+                $data['status'] = false;
+                $data['status_code'] = '404';
+                $data['msg'] = '订单为空';
+                return json_encode($data);
+            }
+        }elseif($state=='1'){
+            if($request->queryText){
+                $queryText='%'.$request->queryText.'%';
+                $orders= Order::where('state',$state)->where([
+                    ['to_user_id', $userId],
+                    ['phone', 'like', $queryText]
+                ])->orWhere([['to_user_id', $userId],
+                    ['name', 'like', $queryText]])->paginate(9);
+            }else{
+                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+            }
+            if ($orders->count()) {
+                return new OrderCollection($orders);
+            } else {
+                $data['status'] = false;
+                $data['status_code'] = '404';
+                $data['msg'] = '订单为空';
+                return json_encode($data);
+            }
+        }elseif($state=='2'){
+            if($request->queryText){
+                $queryText='%'.$request->queryText.'%';
+                $orders= Order::where('state',$state)->where([
+                    ['to_user_id', $userId],
+                    ['phone', 'like', $queryText]
+                ])->orWhere([['to_user_id', $userId],
+                    ['name', 'like', $queryText]])->paginate(9);
+            }else{
+                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+            }
+            if ($orders->count()) {
+                return new OrderCollection($orders);
+            } else {
+                $data['status'] = false;
+                $data['status_code'] = '404';
+                $data['msg'] = '订单为空';
+                return json_encode($data);
+            }
         }
-        if ($orders->count()) {
-            return new OrderCollection($orders);
-        } else {
-            $data['status'] = false;
-            $data['status_code'] = '404';
-            $data['msg'] = '订单为空';
-            return json_encode($data);
-        }
+
     }
     public function updatePayment(Request $request)
     {
@@ -934,14 +995,17 @@ class OrdersController extends Controller
     {
         $userId = Auth::guard('api')->user()->id;
         $queryText = '%'.$request->queryText.'%';
-        if ($queryText !='') {
+        if ($request->queryText) {
             $orders = Order::where('to_user_id', $userId)->where(function ($query) use ($queryText){
                 $query->where('name', 'like', $queryText)
                     ->orWhere('phone', 'like', $queryText);
             })->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
-            return new OrderCollection($orders);
         } else {
-            $orders = Order::where('to_user_id', $userId)->where('state', $request->state)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+            if($request->state){
+                $orders = Order::where('to_user_id', $userId)->where('state', $request->state)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+            }else{
+                $orders = Order::where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+            }
         }
         if ($orders->count() == 0) {
             $data['status'] = false;
