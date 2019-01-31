@@ -636,7 +636,7 @@ class OrdersController extends Controller
                 ])->orWhere([['to_user_id', $userId],
                     ['name', 'like', $queryText]])->paginate(9);
             }else{
-                $orders = Order::where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+                $orders = Order::where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('updated_at', 'desc')->paginate(9);
             }
             if ($orders->count()) {
                 return new OrderCollection($orders);
@@ -655,7 +655,7 @@ class OrdersController extends Controller
                 ])->orWhere([['to_user_id', $userId],
                     ['name', 'like', $queryText]])->paginate(9);
             }else{
-                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('updated_at', 'desc')->paginate(9);
             }
             if ($orders->count()) {
                 return new OrderCollection($orders);
@@ -674,7 +674,7 @@ class OrdersController extends Controller
                 ])->orWhere([['to_user_id', $userId],
                     ['name', 'like', $queryText]])->paginate(9);
             }else{
-                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('updated_at', 'desc')->paginate(9);
             }
             if ($orders->count()) {
                 return new OrderCollection($orders);
@@ -693,7 +693,7 @@ class OrdersController extends Controller
                 ])->orWhere([['to_user_id', $userId],
                     ['name', 'like', $queryText]])->paginate(9);
             }else{
-                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('id', 'desc')->paginate(9);
+                $orders = Order::where('state',$state)->where('to_user_id', $userId)->where('is_del', '=', 'F')->orderBy('updated_at', 'desc')->paginate(9);
             }
             if ($orders->count()) {
                 return new OrderCollection($orders);
