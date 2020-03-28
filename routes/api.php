@@ -134,6 +134,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'cors'], function () {
 
     Route::post('/ocr/upload', 'OcrsController@upload');
     Route::post('/ocr/imgUrl', 'OcrsController@imgUrl');
+    Route::post('/formPhone', 'PhoneController@store');
 //    //第三方登录(微信)
 //    Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore');
 //    Route::post('authorizations','AuthorizationsController@store');

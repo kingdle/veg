@@ -13,6 +13,11 @@ class SortsController extends Controller
         $sorts = Sort::where('parent_id','=','0')->where('title','like','%'.$request->query('q').'%')->get();
         return new SortCollection($sorts);
     }
+	public function sortList()
+	{
+		$sorts = Sort::get();
+		return new SortCollection($sorts);
+	}
     public function weIndex()
     {
         $sorts = Sort::orderBy('hot', 'desc')->get();
